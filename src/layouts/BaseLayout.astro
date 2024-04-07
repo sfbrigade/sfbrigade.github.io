@@ -1,0 +1,19 @@
+---
+import Page from "@/layouts/Page.astro";
+import HeaderNav from "../components/HeaderNav.astro";
+import FooterNav from "../components/FooterNav.astro";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Page title={title}>
+	<HeaderNav />
+	<main class="container">
+		<slot />
+	</main>
+	<FooterNav />
+</Page>

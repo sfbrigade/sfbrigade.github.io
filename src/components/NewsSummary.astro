@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import NewsSummaryItem from "@/components/NewsSummaryItem.astro";
+
+interface Props {
+	title?: string;
+}
+
+const { title = "In the News" } = Astro.props;
+const posts = await getCollection("blog");
+const recentPosts = posts.slice(-3);
+---
+
+<section>
+	<h2>{title}</h2>
+	<div class="grid">
+		{recentPosts.map((post) => <NewsSummaryItem post={post} />)}
+	</div>
+</section>
+
+<style>
+
+</style>

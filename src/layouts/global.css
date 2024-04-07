@@ -1,0 +1,12 @@
+:root {
+	--pico-block-spacing-horizontal: 2rem;
+	--pico-block-spacing-vertical: 3rem;
+}
+
+.container {
+	max-width: 1100px;
+}
+
+article {
+	margin: var(--pico-block-spacing-vertical) 0;
+}

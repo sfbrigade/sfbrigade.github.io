@@ -1,0 +1,50 @@
+---
+import NavLink from "./NavLink.astro";
+import NavDropdown from "./NavDropdown.astro";
+
+const routes = [
+	{ label: "Wiki", page: "wiki" },
+	{ label: "Get Started", page: "getting-started" },
+	{ label: "Events", page: "events" },
+	{ label: "Projects", page: "projects" },
+	{ label: "Blog", page: "blog" },
+	{ label: "Donate", page: "donate" },
+	{ label: "About", page: "about",
+		pages: [
+			{ label: "Code of Conduct", page: "about/code-of-conduct" }
+		]
+	}
+];
+---
+
+<header class="container">
+	<nav>
+		<ul>
+			<li>
+				{/* the href of "" on the homepage link here looks a little weird, but the base
+					path is prefixed to these links, so basePath + "" == the root page */}
+				<NavLink href="" class="contrast">
+					<strong>SF Civic Tech</strong>
+				</NavLink>
+			</li>
+		</ul>
+		<ul>
+			{routes.map(({ label, page, pages }) => (
+				<li>
+					<NavLink href={page}>
+						{label}
+					</NavLink>
+					{!!pages?.length &&
+						<NavDropdown items={pages} />
+					}
+				</li>
+			))}
+		</ul>
+	</nav>
+</header>
+
+<style>
+	header {
+		padding: 0;
+	}
+</style>

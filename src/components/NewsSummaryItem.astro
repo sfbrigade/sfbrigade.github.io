@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getBlogImage } from "@/utils/getBlogImage";
+
+interface Props {
+	post: CollectionEntry<"blog">;
+}
+
+const { post: { slug, data: { title, image } } } = Astro.props;
+const imageData = await getBlogImage(image);
+const backgroundImageURL = imageData?.src ?? "";
+const postURL = "blog/" + slug;
+---
+
+<article style={`background-image: url(${backgroundImageURL})`}>
+	<a href={postURL}>
+		<div class="dimmer"></div>
+		<h3>{title}</h3>
+	</a>
+</article>
+
+<style>
+	article {
+		aspect-ratio: 1;
+		background-size: cover;
+		background-position: center;
+		padding: var(--pico-block-spacing-horizontal);
+		overflow: hidden;
+		position: relative;
+		flex-direction: column;
+		justify-content: flex-end;
+		display: flex;
+	}
+
+	article > a {
+		text-decoration: none;
+	}
+
+	article h3 {
+		--pico-color: white;
+		font-size: 1rem;
+		margin-bottom: 0;
+		position: relative;
+	}
+
+	.dimmer {
+		background-color: rgba(0, 0, 0, 40%);
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		transition: background-color .2s;
+		position: absolute;
+	}
+
+	article:hover .dimmer {
+		background-color: rgba(0, 0, 0, 25%);
+	}
+</style>

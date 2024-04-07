@@ -1,0 +1,28 @@
+---
+interface Props {
+	title: string;
+	body: string;
+	label: string;
+	href: string;
+}
+
+const { title, body, label, href } = Astro.props;
+---
+
+<article>
+	<header>{title}</header>
+	<p>
+		{body}
+	</p>
+	<footer>
+		<a href={href} role="button" class="secondary" target="_blank">
+			{label}
+		</a>
+	</footer>
+</article>
+
+<style>
+	article > footer > a[role=button] {
+		width: 100%;
+	}
+</style>
