@@ -1,0 +1,51 @@
+---
+interface Props {
+	name: string;
+	title: string;
+	image: string;
+}
+
+const { name, title, image } = Astro.props;
+---
+
+<div class="card">
+	<header>
+		<img src={image} alt={name} />
+	</header>
+	<footer>
+		<h3>{name}</h3>
+		<h4>{title}</h4>
+	</footer>
+</div>
+
+<style>
+	.card {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		gap: var(--pico-block-spacing);
+	}
+
+	img {
+		border-radius: 50%;
+		width: 114px;
+		height: 114px;
+		object-fit: cover;
+	}
+
+	h3, h4 {
+		text-align: center;
+		margin: 0;
+	}
+
+	h3 {
+		font-size: 1.25rem;
+	}
+
+	h4 {
+		font-weight: normal;
+		font-size: 1rem;
+		margin-top: 0.25rem;
+	}
+</style>

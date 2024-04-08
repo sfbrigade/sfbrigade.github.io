@@ -1,4 +1,5 @@
 :root {
+	--pico-block-spacing: 2rem;
 	--pico-block-spacing-horizontal: 2rem;
 	--pico-block-spacing-vertical: 3rem;
 }

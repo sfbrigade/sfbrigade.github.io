@@ -1,0 +1,42 @@
+---
+import TeamMember from "@/components/TeamMember.astro";
+---
+
+<div class="grid">
+	<TeamMember
+		name="Francis Li"
+		title="Lead"
+		image="https://static.wixstatic.com/media/950c24_0db069162d3943028631401731c7043e~mv2.png/v1/fill/w_114,h_114,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Francis%20Li.png"
+	/>
+
+	<TeamMember
+		name="Janice Tam"
+		title="Co-Lead"
+		image="https://static.wixstatic.com/media/950c24_fa347e6309bf49edb130e4713e136b84~mv2.png/v1/fill/w_114,h_114,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Headshot.png"
+	/>
+
+	<TeamMember
+		name="Edward Wu"
+		title="Secretary"
+		image="https://static.wixstatic.com/media/950c24_9d43cc9e00c14988bcbb3c2a659f51e5~mv2.jpg/v1/crop/x_87,y_83,w_330,h_333/fill/w_114,h_114,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/profile-square.jpg"
+	/>
+
+	<TeamMember
+		name="John Dunning"
+		title="Technical Lead"
+		image="https://static.wixstatic.com/media/950c24_fd75ee179b204b7d86fcc37bbcea4549~mv2.png/v1/fill/w_114,h_114,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/stylish-boy_edited.png"
+	/>
+
+	<TeamMember
+		name="Robby Taine"
+		title="Treasurer"
+		image="https://static.wixstatic.com/media/950c24_e839649b8bde40b0a6160f5e58f986c8~mv2.png/v1/fill/w_114,h_114,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/man-wearing-blazer_edited.png"
+	/>
+</div>
+
+<style>
+	div.grid {
+		margin: var(--pico-block-spacing-vertical) 0;
+		grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+	}
+</style>

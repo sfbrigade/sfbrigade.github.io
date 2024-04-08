@@ -1,57 +1,69 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import TeamList from "@/components/TeamList.astro";
 ---
 
 <BaseLayout title="About">
-	<h1>About</h1>
+	<h1>About SF Civic Tech</h1>
 
-	<h2> Code of Conduct </h2>
+	<p>
+		SF Civic Tech was originally founded in 2013 as Code for San Francisco, part
+		of the Code for America Brigade Network. After the
+		<a href="https://codeforamerica.org/news/reflections-on-the-brigade-networks-next-chapter/">sunsetting
+		of the Code for America Brigade Program</a> in 2023, the organization renamed
+		itself to SF Civic Tech in 2024. SF Civic Tech is a member of the
+		<a href="https://www.civictechnologists.org/">Alliance of Civic Technologists</a>.
+	</p>
+
+	<p>
+		SF Civic Tech is a group of people, first and foremost. We also call ourselves
+		technologists, planners, designers, doers, thinkers, and activists. Each week,
+		we actively work together to improve the City and County of San Francisco,
+		often using technology to support our efforts. By connecting people,
+		organizations, resources, tools, and networks to build for San Francisco, we
+		will all thrive.
+	</p>
+
+	<p>
+		SF Civic Tech is a safe space for experimentation, learning and practicing
+		skills, taking chances, and asking questions, all to affect and encourage
+		positive change. Whenever possible, we proactively reach out to those who are
+		left out, excluded, ignored, or discriminated against. Those people, in our
+		opinion, represent our most desirable source for experiences, knowledge, and
+		thoughts. We fail without their involvement.
+	</p>
+
+	<h2 id="core-team">Meet the Team</h2>
+
+	<TeamList />
+
+	<h2 id="code-of-conduct">Code of Conduct</h2>
+
 	<p>SF Civic Tech is a space for everyone. What does that mean?</p>
 
 	<ul>
-		<li> We value the people here and make everyone feel welcome </li>
-		<li> We make room for all brigade members to engage, discuss, and collaborate </li>
-		<li> We support each other to build a strong civic tech community </li>
-		<li> We respect the boundaries of others </li>
+		<li>We value the people here and make everyone feel welcome</li>
+		<li>We make room for all brigade members to engage, discuss, and collaborate</li>
+		<li>We support each other to build a strong civic tech community</li>
+		<li>We respect the boundaries of others</li>
 	</ul>
 
-	<p> These are not just statements of belief, but principles that we collectively enact.
-		We are dedicated to upholding them, and to ensuring that all members of our community
-		respect them. </p>
-
-	<p>The full Code of Conduct is available, with more detailed information about our
-		community principles. You’ll also find our harassment policy, along with information
-		about who to contact if you think the policy has been violated. For other questions
-		about the Code of Conduct, or about our collective, reach out to hello@sfcivictech.org.
+	<p>
+		These are not just statements of belief, but principles that we collectively
+		enact. We are dedicated to upholding them, and to ensuring that all members
+		of our community respect them.
 	</p>
 
-	<div class="code-of-conduct-btn">
-		<a href="code-of-conduct" role="button">Read the full Code of Conduct</a>
-	</div>
+	<p>
+		The full <a href="about/code-of-conduct">Code of Conduct</a> is available, with
+		more detailed information about our community principles. You’ll also find
+		our harassment policy, along with information about who to contact if you
+		think the policy has been violated. For other questions about the Code of
+		Conduct, or about our collective, reach out to
+		<a href="mailto:hello@sfcivictech.org">hello@sfcivictech.org</a>.
+	</p>
+
+	<a href="about/code-of-conduct" role="button">
+		Read the full Code of Conduct
+	</a>
 </BaseLayout>
-
-<style>
-	h1, h2 {
-		text-align: center;
-	}
-
-	h2 {
-		font-size: 20px;
-	}
-
-	p, ul {
-		line-height: 1.4em;
-		font-size: 16px;
-		margin-bottom: 20px;
-
-		li {
-			margin-bottom: 0;
-		}
-	}
-
-	.code-of-conduct-btn {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-</style>
