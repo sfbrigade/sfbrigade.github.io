@@ -3,8 +3,8 @@ import icon from "astro-icon";
 
 export default defineConfig({
 	//	site: "https://www.sfcivictech.org/"
-	//	site: "https://sfbrigade.github.io",
 	//	base: "/",
+	site: "https://sfbrigade.github.io",
 	base: "/astro-static-site/",
 	compressHTML: false,
 	integrations: [
