@@ -2,10 +2,10 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Card from "@/components/Card.astro";
 import NewsSummary from "@/components/NewsSummary.astro";
+import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
 ---
 
-<BaseLayout title="Home">
-	<h1>We are SF Civic Tech</h1>
+<BaseLayout title="Home" header="We are SF Civic Tech">
 	<p>
 		We are a welcoming and inclusive volunteer group of developers, designers,
 		data geeks, and citizen activists who use creative technology to solve civic
@@ -19,19 +19,19 @@ import NewsSummary from "@/components/NewsSummary.astro";
 			title="Propose a Project"
 			body="Have any idea to improve community or civic life in San Francisco? We want to hear it."
 			label="Propose a Project"
-			href="https://docs.google.com/forms/d/e/1FAIpQLSexe5qvmJ6LTiU1HcR-XAzlrgPLBudVBPK_ouHeBkFz2JVUHw/viewform"
+			href={pitchProjectURL}
 		/>
 		<Card
 			title="Chat on Slack"
 			body="Join a rich set of active projects on slack, available whenever and wherever you are."
 			label="Join Slack"
-			href="https://c4sf.me/slack"
+			href={slackURL}
 		/>
 		<Card
 			title="Join Our Newsletter"
 			body="Keep in touch with the latest and greatest in the civic tech community."
 			label="Get the Newsletter"
-			href="https://eepurl.com/bfFkF9"
+			href={newsletterURL}
 		/>
 	</div>
 	<NewsSummary />
