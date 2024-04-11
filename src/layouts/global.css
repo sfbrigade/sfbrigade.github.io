@@ -2,6 +2,7 @@
 	--pico-block-spacing: 2rem;
 	--pico-block-spacing-horizontal: 2rem;
 	--pico-block-spacing-vertical: 3rem;
+	--color-accent: rgb(236, 95, 93);
 }
 
 article {
@@ -9,9 +10,9 @@ article {
 }
 
 @media (min-width: 1024px) {
-  .container {
-    max-width: 900px;
-  }
+	.container {
+		max-width: 900px;
+	}
 }
 
 @media (min-width: 1280px) {

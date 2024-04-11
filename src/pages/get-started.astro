@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { base, meetupURL, memberFormURL, projectsURL, slackURL } from "@/utils/urls";
 ---
 
 <BaseLayout title="Get Started">
@@ -7,4 +8,73 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 		Regardless of skillset or background, anyone can contribute to their
 		community through SF Civic Tech
 	</p>
+	<ol class="steps">
+		<li>
+			<h3>Tell us about yourself</h3>
+			<p>
+				Fill out our <a href={memberFormURL}>2 minute form</a> so we can help match you with opportunities
+			</p>
+		</li>
+		<li>
+			<h3>Onboard</h3>
+			<p>
+				Get familiar with SF Civic Tech
+			</p>
+			<ol>
+				<li>
+					Read our <a href={base("/about/code-of-conduct")}>Code of Conduct</a>
+				</li>
+				<li>
+					Read over the <a href={projectsURL}>Current Projects</a>
+				</li>
+				<li>
+					Join our <a href={slackURL}>Slack</a>
+				</li>
+			</ol>
+		</li>
+		<li>
+			<h3>Attend Hack Night</h3>
+			<p>
+				We meet remotely every Wednesday to work on projects! Head over to our
+				<a href={meetupURL}>Meetup page</a> for more info.
+			</p>
+		</li>
+		<li>
+			<h3>Join a Project</h3>
+			<p>
+				Review our current portfolio listed on our <a href={projectsURL}>Projects</a> page. Join us at Hack Night or on Slack to get involved!
+			</p>
+		</li>
+	</ol>
 </BaseLayout>
+
+<style>
+	h3 {
+		margin: 0.5rem 0;
+		font-size: 1.25rem;
+		color: var(--color-accent);
+	}
+
+	ol.steps {
+		list-style: none;
+		counter-reset: item;
+		margin-top: var(--pico-block-spacing-vertical);
+	}
+
+	ol.steps > li {
+		counter-increment: item;
+		padding-left: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+	ol.steps > li::marker {
+		content: counter(item);
+		font-weight: bold;
+		font-size: 1.75rem;
+		color: var(--color-accent);
+	}
+
+	a {
+		font-weight: bold;
+	}
+</style>

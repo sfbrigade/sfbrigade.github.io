@@ -1,19 +1,23 @@
 ---
 import { Icon } from "astro-icon/components";
 import NavLink from "./NavLink.astro";
+import {
+	facebookURL,
+	githubURL,
+	linkedinURL,
+	meetupURL,
+	pitchProjectURL,
+	proposalsURL,
+	slackURL,
+	twitterURL
+} from "@/utils/urls";
 
 const columns = [
 	[
 		"Resources",
 		[
-			[
-				"https://docs.google.com/forms/d/e/1FAIpQLScHe7aWQ-2n3lSTU1WfcK8rhBZp8pkDGH9EcJdbQb5lqMbbzA/viewform",
-				"propose a talk",
-			],
-			[
-				"https://docs.google.com/forms/d/e/1FAIpQLSexe5qvmJ6LTiU1HcR-XAzlrgPLBudVBPK_ouHeBkFz2JVUHw/viewform",
-				"pitch a project",
-			],
+			[proposalsURL, "propose a talk"],
+			[pitchProjectURL, "pitch a project"],
 		],
 	],
 	[
@@ -28,12 +32,12 @@ const columns = [
 	[
 		"Elsewhere",
 		[
-			["https://twitter.com/sfbrigade", "twitter", true],
-			["https://www.facebook.com/codeforsanfrancisco", "facebook", true],
-			["https://www.linkedin.com/company/18115347/", "linkedin", true],
-			["https://github.com/sfbrigade/", "github", true],
-			["https://c4sf.me/slack", "slack", true],
-			["https://www.meetup.com/sfcivictech/", "meetup", true],
+			[twitterURL, "twitter", true],
+			[facebookURL, "facebook", true],
+			[linkedinURL, "linkedin", true],
+			[githubURL, "github", true],
+			[slackURL, "slack", true],
+			[meetupURL, "meetup", true],
 		],
 	],
 ] as const;
