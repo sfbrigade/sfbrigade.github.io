@@ -5,7 +5,7 @@ export default defineConfig({
 	//	site: "https://www.sfcivictech.org/"
 	//	base: "/",
 	site: "https://sfbrigade.github.io",
-	base: "/astro-static-site/",
+	base: "/astro-static-site",
 	compressHTML: false,
 	integrations: [
 		icon({

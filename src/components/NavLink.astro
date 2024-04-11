@@ -7,19 +7,21 @@ interface Props {
 // we can destructure `class` from props, but we have to rename it so it won't
 // trigger syntax errors in the JS
 const { href, class: className } = Astro.props;
-
+const baseURL = import.meta.env.BASE_URL;
 // remove the base URL from the beginning of the current page so we can match
 // it against the href prop, which shouldn't include any base URL.  because of
 // annoying differences between dev and build modes, due to this behavior
 // (https://github.com/withastro/astro/issues/5630), we also have to remove
 // any trailing slash so currentPage can match the href.
 const currentPage = Astro.url.pathname
-	.replace(import.meta.env.BASE_URL, "")
+	.replace(baseURL, "")
 	.replace(/\/$/, "");
 const ariaCurrent = currentPage === href ? "page" : false;
+// if the path is relative to the root, prepend the base URL
+const prefix = href.startsWith("/") ? baseURL : "";
 ---
 
-<a href={href} class={className} aria-current={ariaCurrent}>
+<a href={prefix + href} class={className} aria-current={ariaCurrent}>
 	<slot />
 </a>
 
