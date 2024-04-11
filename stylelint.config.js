@@ -11,7 +11,7 @@ export default {
 	rules: {
 		"block-no-empty": true,
 		"length-zero-no-unit": [true, { ignore: ["custom-properties"] }],
-		"rule-empty-line-before": "always",
+		"rule-empty-line-before": ["always", { except: ["first-nested", "after-single-line-comment"] }],
 		"@stylistic/indentation": "tab",
 		"@stylistic/number-leading-zero": null,
 		"@stylistic/selector-list-comma-newline-after": null,

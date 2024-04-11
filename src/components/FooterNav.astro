@@ -48,8 +48,6 @@ const columns = [
 					{links.map(([page, label, needsIcon]) => (
 						<li class="footer-list-cat-list-item ">
 							{needsIcon &&
-								// @ts-expect-error adding a class attribute to the <Icon> component
-								// works just fine but TS complains, so tell it to keep quiet
 								<Icon name={"fa:" + label} class="icon" />
 							}
 							<NavLink href={page}>
@@ -66,8 +64,7 @@ const columns = [
 <style>
 	h3 {
 		font-size: 1.25rem;
-		margin: 0;
-		text-transform: uppercase;
+		margin: 0 0 0.5rem 0;
 	}
 
 	ul {
