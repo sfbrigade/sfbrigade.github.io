@@ -5,14 +5,16 @@ import FooterNav from "../components/FooterNav.astro";
 
 interface Props {
 	title: string;
+	header?: string;
 }
 
-const { title } = Astro.props;
+const { title, header = title } = Astro.props;
 ---
 
 <Page title={title}>
 	<HeaderNav />
 	<main class="container">
+		<h1>{header}</h1>
 		<slot />
 	</main>
 	<FooterNav />

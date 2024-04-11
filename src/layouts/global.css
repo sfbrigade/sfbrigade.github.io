@@ -8,6 +8,12 @@ article {
 	margin: var(--pico-block-spacing-vertical) 0;
 }
 
+@media (min-width: 1024px) {
+  .container {
+    max-width: 900px;
+  }
+}
+
 @media (min-width: 1280px) {
 	.container {
 		max-width: 1000px;
