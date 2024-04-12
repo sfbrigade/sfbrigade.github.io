@@ -8,23 +8,24 @@ interface Props {
 const { name, title, image } = Astro.props;
 ---
 
-<div class="card">
-	<header>
-		<img src={image} alt={name} />
-	</header>
-	<footer>
+<figure>
+	<img src={image} alt={name} />
+	<figcaption>
 		<h3>{name}</h3>
 		<h4>{title}</h4>
-	</footer>
-</div>
+	</figcaption>
+</figure>
 
 <style>
-	.card {
+	figure {
+		flex-grow: 1;
+		flex-basis: 0%;
+		min-width: 15ch;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		gap: var(--pico-block-spacing);
+		gap: calc(.5 * var(--pico-block-spacing));
 	}
 
 	img {

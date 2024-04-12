@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+	title: string;
+	src: Image;
+}
+
+const { title, src } = Astro.props;
+---
+
+<li>
+	<figure>
+		<Image src={src} alt={title} />
+		<figcaption>
+			<h3>{title}</h3>
+			<slot />
+		</figcaption>
+	</figure>
+</li>
+
+<style>
+	figure {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		gap: 1.5rem;
+	}
+
+	figure figcaption {
+		padding: 0;
+	}
+
+	figure img {
+		width: 100px;
+	}
+
+	h3 {
+		margin: 0.5rem 0;
+		font-size: 1.25rem;
+		color: var(--color-accent);
+	}
+
+	li {
+		counter-increment: item;
+		padding-left: 1rem;
+		margin-bottom: var(--pico-block-spacing-vertical);
+		position: relative;
+	}
+
+	li::before {
+		content: counter(item);
+		font-weight: bold;
+		font-size: 2rem;
+		color: var(--color-accent);
+		position: absolute;
+		left: -1.5rem;
+		line-height: 1;
+	}
+</style>
