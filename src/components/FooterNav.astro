@@ -44,38 +44,45 @@ const columns = [
 ---
 
 <footer class="container">
-	<nav>
-		{columns.map(([cat, links]) => (
-			<div>
-				<h3>{cat}</h3>
-				<ul>
-					{links.map(([page, label, needsIcon]) => (
-						<li class="footer-list-cat-list-item ">
-							{needsIcon &&
-								<Icon name={"fa:" + label} class="icon" />
-							}
-							<NavLink href={page}>
-								{label}
-							</NavLink>
-						</li>
-					))}
-				</ul>
-			</div>
-		))}
-	</nav>
+	{columns.map(([cat, links]) => (
+		<nav>
+			<h3>{cat}</h3>
+			<ul>
+				{links.map(([page, label, needsIcon]) => (
+					<li>
+						{needsIcon &&
+							<Icon name={"fa:" + label} class="icon" />
+						}
+						<NavLink href={page}>
+							{label}
+						</NavLink>
+					</li>
+				))}
+			</ul>
+		</nav>
+	))}
 </footer>
 
 <style>
+	footer {
+		padding-top: 0;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	nav {
+		flex-direction: column;
+		justify-content: start;
+	}
+
 	h3 {
 		font-size: 1.25rem;
-		margin: 0 0 0.5rem 0;
+		margin-bottom: 0.5rem;
 	}
 
 	ul {
-		--nav-element-spacing-horizontal: 0;
-		align-items: start;
-		display: flex;
-		flex-direction: column;
+		display: block;
 	}
 
 	ul:first-of-type, ul:last-of-type {
@@ -84,6 +91,12 @@ const columns = [
 	}
 
 	li {
+		padding: .15rem 0;
+		display: block;
+	}
+
+	/* force the a's in the NavLink to have no extra spacing */
+	li > :global(a) {
 		margin: 0;
 		padding: 0;
 	}
