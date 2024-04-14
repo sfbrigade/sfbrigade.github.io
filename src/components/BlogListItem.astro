@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { dateFromSlug } from "@/utils/dateFromSlug";
+import { getBlogImage } from "@/utils/getBlogImage";
+
+interface Props {
+	post: CollectionEntry<"blog">;
+}
+
+const {
+	post: {
+		slug,
+		data: {
+			title,
+			image,
+			date = dateFromSlug(slug),
+			description,
+		}
+	}
+} = Astro.props;
+const imageData = await getBlogImage(image);
+const backgroundImageURL = imageData?.src ?? "";
+const postURL = "blog/" + slug;
+const dateString = date?.toLocaleDateString("en-US",
+	{ year: "numeric", month: "short", day: "numeric" });
+---
+
+<li>
+	{imageData &&
+		<div class="thumbnail" style={`background-image: url(${backgroundImageURL})`}></div>
+	}
+	<div class="info">
+		<time datetime={date?.toISOString()}>{dateString}</time>
+		<h3><a href={postURL}>{title}</a></h3>
+		<p>{description}</p>
+	</div>
+</li>
+
+<style define:vars={{ backgroundImageURL }}>
+	li {
+		margin: var(--pico-block-spacing-vertical) 0 0 0;
+		display: flex;
+		flex-direction: row;
+		gap: var(--pico-block-spacing-horizontal);
+	}
+
+	div.thumbnail {
+		aspect-ratio: 1;
+		background-size: cover;
+		background-position: center;
+		width: 14rem;
+		height: 14rem;
+	}
+
+	time {
+		color: var(--pico-muted-color);
+		margin-bottom: var(--pico-block-spacing);
+		line-height: 1;
+		display: block;
+	}
+</style>

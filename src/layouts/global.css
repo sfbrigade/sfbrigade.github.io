@@ -9,6 +9,13 @@ article {
 	margin: var(--pico-block-spacing-vertical) 0;
 }
 
+ul[role="list"],
+ol[role="list"] {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 @media (min-width: 1024px) {
 	.container {
 		max-width: 900px;

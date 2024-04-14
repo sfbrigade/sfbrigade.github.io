@@ -1,18 +1,14 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import BlogListItem from "@/components/BlogListItem.astro";
 
-const posts = await getCollection("blog");
+// list the posts in reverse chronological order
+const posts = (await getCollection("blog")).reverse();
 ---
 
-<BaseLayout title="Blog">
-	<ul>
-		{
-			posts.reverse().map((post) => (
-				<li>
-					<a href={"blog/" + post.slug}>{post.data.title}</a>
-				</li>
-			))
-		}
+<BaseLayout title="In the News">
+	<ul role="list">
+		{posts.map((post) => <BlogListItem post={post} />)}
 	</ul>
 </BaseLayout>
