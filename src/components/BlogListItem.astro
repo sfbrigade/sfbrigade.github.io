@@ -13,6 +13,7 @@ const {
 		data: {
 			title,
 			image,
+			image_alt = "",
 			date = dateFromSlug(slug),
 			description,
 		}
@@ -27,7 +28,10 @@ const dateString = date?.toLocaleDateString("en-US",
 
 <li>
 	{imageData &&
-		<div class="thumbnail" style={`background-image: url(${backgroundImageURL})`}></div>
+		<div class="thumbnail"
+			style={`background-image: url(${backgroundImageURL})`}
+			title={image_alt}
+		></div>
 	}
 	<div class="info">
 		<time datetime={date?.toISOString()}>{dateString}</time>
@@ -36,7 +40,7 @@ const dateString = date?.toLocaleDateString("en-US",
 	</div>
 </li>
 
-<style define:vars={{ backgroundImageURL }}>
+<style>
 	li {
 		margin: var(--pico-block-spacing-vertical) 0 0 0;
 		display: flex;

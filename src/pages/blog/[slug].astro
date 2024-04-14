@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import NavLink from "@/components/NavLink.astro";
+import { dateFromSlug } from "@/utils/dateFromSlug";
 import { getBlogImage } from "@/utils/getBlogImage";
 
 export async function getStaticPaths()
@@ -18,17 +20,48 @@ export async function getStaticPaths()
 	}));
 }
 
-const { entry: { render, data: { title, image, image_alt = "" } } } = Astro.props;
+const {
+	entry: {
+		render,
+		slug,
+		data: {
+			title,
+			image,
+			image_alt = "",
+			date = dateFromSlug(slug),
+			description,
+		}
+	}
+} = Astro.props;
 const { Content } = await render();
 const imageData = await getBlogImage(image);
+const dateString = date?.toLocaleDateString("en-US",
+	{ year: "numeric", month: "short", day: "numeric" });
 ---
 
-<BaseLayout title={title}>
-	{
-		imageData &&
-			<p>
-				<Image src={imageData} alt={image_alt} />
-			</p>
-	}
+<BaseLayout title={title} header="">
+	<h1>{title}</h1>
+	<div class="date">
+		<time datetime={date?.toISOString()}>{dateString}</time>
+		<NavLink href="/blog">All posts</NavLink>
+	</div>
+	{imageData &&
+		<p>
+			<Image src={imageData} alt={image_alt} />
+		</p>}
 	<Content />
 </BaseLayout>
+
+<style>
+	h1 {
+		margin-bottom: calc(var(--pico-block-spacing-vertical) * .5);
+	}
+
+	.date {
+		font-size: smaller;
+		margin-bottom: calc(var(--pico-block-spacing-vertical) * 1.5);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+</style>
