@@ -8,7 +8,7 @@ interface Props {
 
 const { title = "In the News" } = Astro.props;
 const posts = await getCollection("blog");
-const recentPosts = posts.slice(-3);
+const recentPosts = posts.slice(-3).reverse();
 ---
 
 <section>
@@ -17,7 +17,3 @@ const recentPosts = posts.slice(-3);
 		{recentPosts.map((post) => <NewsSummaryItem post={post} />)}
 	</div>
 </section>
-
-<style>
-
-</style>

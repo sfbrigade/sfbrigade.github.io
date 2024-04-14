@@ -8,7 +8,7 @@ const posts = await getCollection("blog");
 <BaseLayout title="Blog">
 	<ul>
 		{
-			posts.map((post) => (
+			posts.reverse().map((post) => (
 				<li>
 					<a href={"blog/" + post.slug}>{post.data.title}</a>
 				</li>

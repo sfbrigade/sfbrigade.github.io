@@ -12,4 +12,4 @@ export const githubURL = "https://github.com/sfbrigade";
 export const facebookURL = "https://www.facebook.com/sfcivictech";
 export const linkedinURL = "https://www.linkedin.com/company/sfbrigade/";
 
-export const base = (url: string) => `${url.startsWith("/") ? import.meta.env.BASE_URL : ""}${url}`;
+export const base = (url: string) => ((url.startsWith("/") ? import.meta.env.BASE_URL : "") + url).replaceAll("//", "/");

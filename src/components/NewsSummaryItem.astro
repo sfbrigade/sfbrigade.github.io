@@ -1,20 +1,33 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { dateFromSlug } from "@/utils/dateFromSlug";
 import { getBlogImage } from "@/utils/getBlogImage";
 
 interface Props {
 	post: CollectionEntry<"blog">;
 }
 
-const { post: { slug, data: { title, image } } } = Astro.props;
+const {
+	post: {
+		slug,
+		data: {
+			title,
+			image,
+			date = dateFromSlug(slug)
+		}
+	}
+} = Astro.props;
 const imageData = await getBlogImage(image);
 const backgroundImageURL = imageData?.src ?? "";
 const postURL = "blog/" + slug;
+const dateString = date?.toLocaleDateString("en-US",
+	{ year: "numeric", month: "short", day: "numeric" });
 ---
 
 <article style={`background-image: url(${backgroundImageURL})`}>
+	<div class="dimmer"></div>
 	<a href={postURL}>
-		<div class="dimmer"></div>
+		<time datetime={date?.toISOString()}>{dateString}</time>
 		<h3>{title}</h3>
 	</a>
 </article>
@@ -24,23 +37,31 @@ const postURL = "blog/" + slug;
 		aspect-ratio: 1;
 		background-size: cover;
 		background-position: center;
-		padding: var(--pico-block-spacing-horizontal);
+		padding: 0;
 		overflow: hidden;
 		position: relative;
-		flex-direction: column;
-		justify-content: flex-end;
-		display: flex;
 	}
 
 	article > a {
+		--pico-color: white;
 		text-decoration: none;
+		height: 100%;
+		padding: var(--pico-block-spacing);
+		flex-direction: column;
+		justify-content: space-between;
+		display: flex;
+		position: relative;
+	}
+
+	article time {
+		color: var(--pico-color, white);
+		font-size: 0.75rem;
 	}
 
 	article h3 {
 		--pico-color: white;
 		font-size: 1rem;
 		margin-bottom: 0;
-		position: relative;
 	}
 
 	.dimmer {
