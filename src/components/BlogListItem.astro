@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { dateFromSlug } from "@/utils/dateFromSlug";
 import { getBlogImage } from "@/utils/getBlogImage";
+import { base } from "@/utils/urls";
 
 interface Props {
 	post: CollectionEntry<"blog">;
@@ -21,7 +22,7 @@ const {
 } = Astro.props;
 const imageData = await getBlogImage(image);
 const backgroundImageURL = imageData?.src ?? "";
-const postURL = "/blog/" + slug;
+const postURL = base("/blog/" + slug);
 const dateString = date?.toLocaleDateString("en-US",
 	{ year: "numeric", month: "short", day: "numeric" });
 ---
