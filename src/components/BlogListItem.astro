@@ -21,7 +21,7 @@ const {
 } = Astro.props;
 const imageData = await getBlogImage(image);
 const backgroundImageURL = imageData?.src ?? "";
-const postURL = "blog/" + slug;
+const postURL = "/blog/" + slug;
 const dateString = date?.toLocaleDateString("en-US",
 	{ year: "numeric", month: "short", day: "numeric" });
 ---
