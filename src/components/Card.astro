@@ -1,28 +1,61 @@
 ---
 interface Props {
+	color: string;
 	title: string;
 	body: string;
 	label: string;
 	href: string;
 }
 
-const { title, body, label, href } = Astro.props;
+const { color, title, body, label, href } = Astro.props;
 ---
 
-<article>
-	<header>{title}</header>
+<div class="card" style={`background: ${color}`}>
+	<slot />
+	<h3>{title}</h3>
 	<p>
 		{body}
 	</p>
-	<footer>
-		<a href={href} role="button" class="secondary" target="_blank">
-			{label}
-		</a>
-	</footer>
-</article>
+	<a href={href} target="_blank">
+		{label}
+	</a>
+</div>
 
 <style>
-	article > footer > a[role=button] {
-		width: 100%;
+	.card {
+		--pico-color: var(--pico-contrast-inverse);
+		font-size: smaller;
+		text-align: center;
+		align-items: center;
+		padding: var(--pico-block-spacing);
+		display: flex;
+		flex-direction: column;
+		gap: calc(var(--pico-block-spacing) * .25);
+	}
+
+	.card :global(img) {
+		width: 60%;
+	}
+
+	h3 {
+		--pico-color: var(--pico-contrast-inverse);
+		font-size: 1.25rem;
+		text-transform: uppercase;
+	}
+
+	p {
+		height: 100%;
+	}
+
+	a {
+		--pico-color: var(--pico-contrast-inverse);
+		--pico-underline: rgba(255, 255, 255, 0.35);
+		font-weight: bold;
+		font-size: larger;
+	}
+
+	a:hover {
+		--pico-color: var(--pico-contrast-inverse);
+		--pico-underline: rgba(255, 255, 255, 0.9);
 	}
 </style>

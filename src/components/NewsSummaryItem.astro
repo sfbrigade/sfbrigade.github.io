@@ -38,12 +38,14 @@ const dateString = date?.toLocaleDateString("en-US",
 		background-size: cover;
 		background-position: center;
 		padding: 0;
+		margin-bottom: 0;
+		border-radius: 0;
 		overflow: hidden;
 		position: relative;
 	}
 
 	article > a {
-		--pico-color: white;
+		--pico-color: var(--pico-contrast-inverse);
 		text-decoration: none;
 		height: 100%;
 		padding: var(--pico-block-spacing);

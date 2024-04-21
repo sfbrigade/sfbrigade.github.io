@@ -1,9 +1,13 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Card from "@/components/Card.astro";
 import NewsSummary from "@/components/NewsSummary.astro";
 import HackNightHero from "@/components/HackNightHero.astro";
 import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
+import propose from "@/assets/home/lightbulb.png";
+import chat from "@/assets/home/chat.png";
+import newsletter from "@/assets/home/megaphone.png";
 ---
 
 <BaseLayout title="Home" header="We are SF Civic Tech">
@@ -15,26 +19,44 @@ import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
 	<p>
 		<a href="get-started" role="button">Get Started</a>
 	</p>
+
 	<HackNightHero />
+
 	<div class="grid">
 		<Card
+			color="#ec5f5d"
 			title="Propose a Project"
 			body="Have any idea to improve community or civic life in San Francisco? We want to hear it."
 			label="Propose a Project"
 			href={pitchProjectURL}
-		/>
+		>
+			<Image src={propose} alt="lightbulb icon" />
+		</Card>
 		<Card
+			color="#67b4f5"
 			title="Chat on Slack"
 			body="Join a rich set of active projects on slack, available whenever and wherever you are."
 			label="Join Slack"
 			href={slackURL}
-		/>
+		>
+			<Image src={chat} alt="chat bubbles icon" />
+		</Card>
 		<Card
+			color="#c05f9a"
 			title="Join Our Newsletter"
 			body="Keep in touch with the latest and greatest in the civic tech community."
 			label="Get the Newsletter"
 			href={newsletterURL}
-		/>
+		>
+			<Image src={newsletter} alt="megaphone icon" />
+		</Card>
 	</div>
+
 	<NewsSummary />
 </BaseLayout>
+
+<style>
+	.grid {
+		margin-bottom: var(--pico-block-spacing-vertical);
+	}
+</style>
