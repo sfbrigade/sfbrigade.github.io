@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Card from "@/components/Card.astro";
 import NewsSummary from "@/components/NewsSummary.astro";
+import HackNightHero from "@/components/HackNightHero.astro";
 import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
 ---
 
@@ -14,6 +15,7 @@ import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
 	<p>
 		<a href="get-started" role="button">Get Started</a>
 	</p>
+	<HackNightHero />
 	<div class="grid">
 		<Card
 			title="Propose a Project"

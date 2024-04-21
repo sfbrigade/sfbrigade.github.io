@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import { meetupURL, zoomURL } from "@/utils/urls";
+import hackNight from "@/assets/home/hack-night.png";
+---
+
+<section>
+	<div class="info">
+		<h3>Virtual Civic Hack Night</h3>
+		<p>
+			Not just for techies, success means having volunteers from all across our community!
+		</p>
+		<p>
+			All of our meetings are currently remote. Everyone is welcome!
+		</p>
+		<p>
+			<a href={meetupURL}>Every Wednesday at 6:30pm Pacific</a>
+		</p>
+		<p>
+			Join us on Zoom
+			<a href={zoomURL}>https://c4sf.me/zoom</a>
+		</p>
+	</div>
+	<div class="image">
+		<Image src={hackNight} alt="hack night" />
+	</div>
+</section>
+
+<style>
+	section {
+		margin-top: var(--pico-block-spacing-vertical);
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: stretch;
+		gap: 0;
+	}
+
+	.info {
+		--pico-color: var(--pico-contrast-inverse);
+		background: rgb(50, 50, 102);
+		text-align: center;
+		padding: var(--pico-block-spacing);
+		flex: 1.2;
+	}
+
+	.info a {
+		--pico-color: var(--pico-contrast-inverse);
+		--pico-underline: rgba(255, 255, 255, 0.35);
+	}
+
+	.info a:hover {
+		--pico-underline: rgba(255, 255, 255, 1);
+	}
+
+	.info h3 {
+		--pico-color: var(--color-accent);
+	}
+
+	.image {
+		padding: var(--pico-block-spacing);
+		background: #f7efde;
+		flex: 1.8;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+</style>

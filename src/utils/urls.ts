@@ -11,5 +11,6 @@ export const twitterURL = "https://twitter.com/sfcivictech";
 export const githubURL = "https://github.com/sfbrigade";
 export const facebookURL = "https://www.facebook.com/sfcivictech";
 export const linkedinURL = "https://www.linkedin.com/company/sfbrigade/";
+export const zoomURL = "https://c4sf.me/zoom";
 
 export const base = (url: string) => url.startsWith("/") ? (import.meta.env.BASE_URL + url).replace("//", "/") : url;
