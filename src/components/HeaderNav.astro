@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import NavLink from "./NavLink.astro";
 import NavDropdown from "./NavDropdown.astro";
 import { meetupURL, projectsURL, wikiURL } from "@/utils/urls";
+import logo from "@/assets/sfct-logo-black.png";
 
 const routes = [
 	{ label: "Wiki", page: wikiURL },
@@ -21,11 +23,14 @@ const routes = [
 <header class="container">
 	<nav>
 		<ul>
-			<li>
+			<li class="home">
 				{/* the href of "" on the homepage link here looks a little weird, but the base
 					path is prefixed to these links, so basePath + "" == the root page */}
 				<NavLink href="" class="contrast">
-					<strong>SF Civic Tech</strong>
+					<Image src={logo} alt="SF Civic Tech Logo" height="50%" />
+					<div class="name"><strong>SF Civic Tech</strong>
+						<em>formerly Code for San Francisco</em>
+					</div>
 				</NavLink>
 			</li>
 		</ul>
@@ -47,5 +52,33 @@ const routes = [
 <style>
 	header {
 		padding: 0;
+	}
+
+	img {
+		margin: 0 .5rem .5rem 0;
+	}
+
+	.name {
+		display: inline-flex;
+		flex-direction: column;
+	}
+
+	/* we don't want any space between the name and the logo to get underlined */
+	.home :global(a:hover)  {
+		text-decoration: none;
+	}
+
+	.home :global(a:hover) strong {
+		text-decoration: underline;
+	}
+
+	strong {
+		white-space: nowrap;
+	}
+
+	em {
+		color: var(--pico-muted-color);
+		font-size: 0.6em;
+		line-height: 1;
 	}
 </style>

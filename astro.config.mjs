@@ -6,7 +6,7 @@ export default defineConfig({
 	//	base: "",
 	site: "https://sfbrigade.github.io",
 	base: "/astro-static-site/",
-	trailingSlash: "never",
+	trailingSlash: "ignore",
 	compressHTML: false,
 	integrations: [
 		icon({
