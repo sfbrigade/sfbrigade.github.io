@@ -1,4 +1,6 @@
 ---
+image: dev-mission.jpg
+image_alt: "Uber Fellows watching a demonstration by Uber Fellowship Instructor, Francis Li, inside Uber HQ"
 title: "The Dev/Mission, Uber, C4SF Fellowship"
 description: Civic Tech Design 101 for the Next Generation of Tech Talent
 pin_to_frontpage: true
