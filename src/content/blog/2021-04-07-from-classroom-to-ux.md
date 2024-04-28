@@ -4,7 +4,7 @@ image_alt: Portrait of Niko
 title: "Meet Niko: From the Classroom to UX"
 description: Moving from education to user experience
 pin_to_frontpage: true
-image_list_only: true
+image_list_only: false
 ---
 At Code for Sf, our members come from all different technical backgrounds. Some have known from the beginning they wanted to pursue a career in technology, while others found their passion a little later. Niko falls into that latter group. Before he became the UX wizard he is today, Niko worked in education, specifically, non-traditional education such as outdoor science programs or teaching English in Japan.
 

@@ -28,12 +28,13 @@ const {
 			title,
 			image,
 			image_alt = "",
+			image_list_only,
 			date = dateFromSlug(slug),
 		}
 	}
 } = Astro.props;
 const { Content } = await render();
-const imageData = await getBlogImage(image);
+const imageData = !image_list_only && await getBlogImage(image);
 const dateString = date?.toLocaleDateString("en-US",
 	{ year: "numeric", month: "short", day: "numeric" });
 ---

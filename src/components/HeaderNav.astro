@@ -24,10 +24,8 @@ const routes = [
 	<nav>
 		<ul>
 			<li class="home">
-				{/* the href of "" on the homepage link here looks a little weird, but the base
-					path is prefixed to these links, so basePath + "" == the root page */}
-				<NavLink href="" class="contrast">
-					<Image src={logo} alt="SF Civic Tech Logo" height="50%" />
+				<NavLink href="/" class="contrast">
+					<Image src={logo} alt="SF Civic Tech Logo" height="50" loading="eager" />
 					<div class="name"><strong>SF Civic Tech</strong>
 						<em>formerly Code for San Francisco</em>
 					</div>

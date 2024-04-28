@@ -1,4 +1,6 @@
 ---
+image: dev-mission.jpg
+image_alt: Uber Fellows watching a demonstration by Uber Fellowship Instructor, Francis Li, inside Uber HQ
 title: "The Dev/Mission, Uber, C4SF Fellowship"
 description: Civic Tech Design 101 for the Next Generation of Tech Talent
 pin_to_frontpage: true
@@ -18,7 +20,7 @@ Collaboration can be a great way for organizations to leverage each other’s st
 
 Francis Li, Dev/Mission board secretary, has been facilitating the development of the Fellowship between the partners and actively engaging the fellows as the lead coding mentor. He described his experience this way: "As a long-time brigade volunteer, it's been exciting and very rewarding to be able to combine the diversity and equity initiative of Dev/Mission with the civic technology projects of Code for San Francisco in providing new opportunities for young people in our city to learn about careers in technology." Within the brigade, Francis was a key contributor to Intentional Walk, an app developed by C4SF for the SF Department of Public Health. The third partner is a corporate sponsor; Microsoft funded the first cohort, with Uber stepping up to both fund the stipends as well as provide coding mentorship for the second and third cohorts.
 
-![Photo](/src/assets/blog/dev-mission.jpg "Uber Fellows watching a demonstration by Uber Fellowship Instructor, Francis Li, inside Uber HQ")
+![Uber Fellows watching a demonstration by Uber Fellowship Instructor, Francis Li, inside Uber HQ](/src/assets/blog/dev-mission.jpg)
 *Uber Fellows watching a demonstration by Uber Fellowship Instructor, Francis Li, inside Uber HQ*
 
 ## Process: Civic Tech Design 101:

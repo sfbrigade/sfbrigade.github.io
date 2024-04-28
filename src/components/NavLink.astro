@@ -17,7 +17,7 @@ const baseURL = import.meta.env.BASE_URL.replace(/\/$/, "");
 // any trailing slash so currentPage can match the href.
 const currentPage = Astro.url.pathname
 	.replace(baseURL, "")
-	.replace(/\/$/, "");
+	.replace(/(?<=\w)\/$/, "");
 const ariaCurrent = currentPage === href ? "page" : false;
 ---
 
