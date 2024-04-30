@@ -1,8 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { dateFromSlug } from "@/utils/dateFromSlug";
-import { getBlogImage } from "@/utils/getBlogImage";
-import { base } from "@/utils/urls";
+import { base, dateFromSlug, getBlogImage } from "@/utils";
 
 interface Props {
 	post: CollectionEntry<"blog">;

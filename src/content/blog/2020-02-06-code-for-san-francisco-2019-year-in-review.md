@@ -1,5 +1,5 @@
 ---
-date: 2020-02-06
+date: '2020-02-06'
 image: NDoCH-2019.jpg
 image_alt: 'Emily Wasserman, team captain leads of National Day of Civic Hacking at GitHub'
 title: Code for San Francisco 2019 Year in Review

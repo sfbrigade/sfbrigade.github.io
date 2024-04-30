@@ -1,5 +1,5 @@
 ---
-date: 2018-10-20
+date: '2018-10-20'
 image: we-vote-logo-1500x1410.png
 image_alt: We Vote logo
 authors:
