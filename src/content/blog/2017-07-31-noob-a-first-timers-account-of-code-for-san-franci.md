@@ -3,7 +3,7 @@ authors:
 - lauren_harriman
 date: '2017-07-31'
 published: true
-title: 'NOOB: A First Timer''s Account of Code for San Francisco Civic Hack Night'
+title: 'Noob: A First Timer''s Account of Code for San Francisco Civic Hack Night'
 image: sign.jpg
 image_alt: Entrance to Code for San Francisco Hack Night
 description: My very first [Code for America Civic Hack Night](https://www.codeforamerica.org/blog/2013/07/24/brigade-101-how-to-hack-night/) began with pressing a buzzer to gain entry to the Code for America building in San Francisco's SoMa district. A very welcoming receptionist greeted me and noticed right away that I was new. He pointed me towards the red name tags for newbies (as opposed to the blue name tags for returning attendees). The color coding of newbies and repeat attendees, plus the use of name tags in the first place, made it so much easier to strike up conversations with people and quickly learn why each attendee decided to spend their Wednesday night volunteering.

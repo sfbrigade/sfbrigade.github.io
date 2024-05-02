@@ -1,4 +1,4 @@
-import { parseYMDToDate } from "@/utils";
+import { parseYMDToDate } from "@/utils/dayjs";
 
 export function dateFromSlug(
 	slug: string)
