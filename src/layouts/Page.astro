@@ -1,6 +1,6 @@
 ---
-import "@picocss/pico";
 import { base } from "@/utils/urls";
+import "@picocss/pico";
 import "./global.css";
 
 interface Props {
@@ -16,7 +16,7 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 	<head>
 		<base href={baseURL} />
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="The home of SF Civic Tech" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href={base("favicon.ico")} />
 
