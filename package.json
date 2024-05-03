@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint:es": "eslint .",
-    "lint:css": "stylelint \"**/*.{astro,css}\"",
+    "lint:css": "stylelint \"src/**/*.{astro,css}\"",
     "lint:fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
     "lint": "(npm run lint:es || cd .) && npm run lint:css"
   },
