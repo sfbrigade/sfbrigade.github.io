@@ -14,7 +14,7 @@ On November 4th, San Franciscans head to the polls to vote for, amongst other th
 
 To visualize that:
 
-{% include image.html name="visualization.png" alt="Supervisor Farrell 2014 Campaign Contributions" %}
+![Supervisor Farrell 2014 Campaign Contributions](../../assets/blog/visualization.png)
 
 We got that data in a matter of seconds from the San Francisco Brigade’s Campaign Data Visualization App. You can, too.
 

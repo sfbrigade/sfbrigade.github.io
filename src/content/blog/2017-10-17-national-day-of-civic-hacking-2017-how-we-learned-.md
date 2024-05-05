@@ -27,7 +27,7 @@ During the exercise, participants split into three groups. One person in each gr
  
 Participants were first asked to identify the community’s vulnerable populations and how they would be impacted by a large magnitude earthquake. Facilitated by the leader, the group addressed three categories: central shelter, shelter in place, and mass feeding. The ‘operations’ team identified needs in terms of supplies, food/water, power, and medical supplies for the designated number of people per category. The ‘logistics’ team located where and addressed how these things could be attained. Throughout the exercise, the group recognized gaps within each category.
 
-{% include image.html name="meagan.jpg" alt="table top mapping team" %}
+![table top mapping team](../../assets/blog/meagan.jpg)
 
 Once the table top exercise was complete, each individual group debriefed their maps. The leaders of the incident command system presented their performance gaps and potential for improvement. The consensus was that everyone could benefit from being more prepared and having a system in place for times of stress.
 

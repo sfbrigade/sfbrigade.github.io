@@ -19,7 +19,7 @@ Carla Mays was followed by Damian Ortellado @daortellado from the California Dep
 
 Members from the Brigade’s Data Science Working Group have been working with Open Justice on juvenile justice data with prompts from CA DOJ on issues such as: Which counties/agencies arrest African American juveniles at a statistically significantly higher rate than that of other counties/agencies? For the same criminal offense, are particular ethnic juvenile groups more likely to be treated with harsher consequences by law enforcement? 
 
-{% include image.html name="dswg.jpg" alt="Open Justice presentation" %}
+![Open Justice presentation](../../assets/blog/dswg.jpg)
 
 The Data Science Working Group is an example of how the civic tech volunteer movement is maturing. The Group is a dedicated team working on complex social issues in partnership with a government agency. The civic tech movement is the testing place for innovative ideas in government technology and also for training the next generation of what Carla dubbed “public administration for the 21st century”.
 
