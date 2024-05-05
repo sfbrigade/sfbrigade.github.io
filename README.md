@@ -9,12 +9,12 @@ A quick migration of the existing site content into a lightly-styled Astro build
 - [ ] Add SEO metadata to all pages
 - [ ] Fix favicon
 - [ ] Clean up jekyll code from old posts
-- [ ] Always show the first image in a blog post as the thumbnail
-- [ ] Don't show the image key in the frontmatter at the top of the post if it's used within the post
-- [ ] Make nav bar responsive on narrow screens
+- [X] Always show the first image in a blog post as the thumbnail
+- [X] Don't show the image key in the frontmatter at the top of the post if it's used within the post
+- [X] Make nav bar responsive on narrow screens
 - [ ] Compress HTML in build
 - [ ] Set or improve blog descriptions
-- [ ] Replace img with Image in post markdown
+- [X] Replace img with Image in post markdown
 - [ ] Restore dark mode when some text colors are fixed
 - [ ] Add more interesting header fonts
 

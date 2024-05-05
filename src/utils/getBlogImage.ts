@@ -5,13 +5,13 @@ import type { ImageMetadata } from "astro";
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/blog/*.{jpeg,jpg,png,gif}");
 
 export async function getBlogImage(
-	imagePath: string = ""): Promise<ImageMetadata | null>
+	imagePath: string): Promise<ImageMetadata | null>
 {
 	if (images[imagePath]) {
 		return (await images[imagePath]()).default;
 	}
 
-	console.error(`Missing image: ${imagePath}`);
+	imagePath && console.error(`Missing image: ${imagePath}`);
 
 	return null;
 }

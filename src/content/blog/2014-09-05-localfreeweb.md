@@ -14,7 +14,7 @@ If you couldn’t access the internet right now, how would you figure out where 
 
 Many organizations and institutions offer access to free, internet-enabled computers, but there is no way for someone to find these locations without being online already. In short, you need the internet to find the internet.
 
-On August 15, Code for San Francisco, a Code for America brigade, launched <a href="http://LocalFreeWeb.org">LocalFreeWeb</a> to bring access to free, internet-enabled computers (not just Wi-Fi) to anyone who can send a text message. This effort to bring the benefits of the Web to low-income, mono-lingual, and other disadvantaged people is designed not only to give access to the Web, but also to generate interest among folks who might not know why they would use the internet in the first place. 
+On August 15, Code for San Francisco, a Code for America brigade, launched <a href="http://LocalFreeWeb.org">LocalFreeWeb</a> to bring access to free, internet-enabled computers (not just Wi-Fi) to anyone who can send a text message. This effort to bring the benefits of the Web to low-income, mono-lingual, and other disadvantaged people is designed not only to give access to the Web, but also to generate interest among folks who might not know why they would use the internet in the first place.
 
 
 
@@ -27,7 +27,7 @@ Every bus stop in San Francisco has a bus stop identification number. When someo
 
 ### How it works (technical details)
 
-LocalFreeWeb was built with CartoDB and Twilio. CartoDB stores a database of the locations providing free internet, along with all the relevant data about the location, such as address, phone number, hours, and geolocation (coordinates), as well as another database of all the bus stops in SF with their Stop ID and corresponding geolocation. Twilio handles the sending and receiving of text messages. 
+LocalFreeWeb was built with CartoDB and Twilio. CartoDB stores a database of the locations providing free internet, along with all the relevant data about the location, such as address, phone number, hours, and geolocation (coordinates), as well as another database of all the bus stops in SF with their Stop ID and corresponding geolocation. Twilio handles the sending and receiving of text messages.
 
 To make these technologies work together, we created an app with Flask (a Python framework for web applications). When Twilio receives a text message from a user, the Flask app parses out the Stop ID from the message body and requests the geolocation of the Stop ID from CartoDB. With the received geolocation, the app makes another request to CartoDB asking for the three closest locations of free, internet-enabled computers to the bus stop's geolocation. Then it formats the metadata for the three closest locations into a readable text message and sends it back to the user.
 
@@ -50,7 +50,7 @@ Now that we’ve built and tested this first version, we will be spreading the w
 - Finalizing a partnership with Clear Channel Media
 - More outreach to relevant community organizations
 - Converting the text messaging app into at least Spanish, Mandarin & Tagalog
-- Partnering with MTA to have signs permanently placed at Wave Shelters explaining how to use our service 
+- Partnering with MTA to have signs permanently placed at Wave Shelters explaining how to use our service
 - Acquiring funding for a shortcode ie; 311 for finding 'Free Internet' locations
 
 
@@ -62,7 +62,7 @@ Now that we’ve built and tested this first version, we will be spreading the w
 4. Check out the code and make suggestions
 5. Use the open source code to build a version for your city (and tell us about it!)
 
-If you’re in San Francisco and interested in helping build LocalFreeWeb, we’d love to see you at <a href="http://www.meetup.com/Code-for-San-Francisco-Civic-Hack-Night/">Code for San Francisco civic hack nights</a>. 
+If you’re in San Francisco and interested in helping build LocalFreeWeb, we’d love to see you at <a href="http://www.meetup.com/Code-for-San-Francisco-Civic-Hack-Night/">Code for San Francisco civic hack nights</a>.
 
 ### We need people with all types of skills:
 - Writing

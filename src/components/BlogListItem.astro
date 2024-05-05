@@ -19,22 +19,20 @@ const {
 	}
 } = Astro.props;
 const imageData = await getBlogImage(image);
-const backgroundImageURL = imageData?.src ?? "";
+const backgroundImageURL = imageData?.src ?? "/src/assets/blog/default-thumbnail.png";
 const postURL = base("/blog/" + slug);
 const dateString = formatShortMDY(date);
 ---
 
 <li>
-	{imageData &&
-		<div class="thumbnail"
-			style={`background-image: url(${backgroundImageURL})`}
-			title={image_alt}
-		></div>
-	}
+	<div class="thumbnail"
+		style={`background-image: url(${backgroundImageURL})`}
+		title={image_alt}
+	/>
 	<div class="info">
 		<time datetime={date?.toISOString()}>{dateString}</time>
 		<h3><a href={postURL}>{title}</a></h3>
-		<p>{description}</p>
+		<Fragment set:html={description} />
 	</div>
 </li>
 
@@ -56,7 +54,7 @@ const dateString = formatShortMDY(date);
 
 	time {
 		color: var(--pico-muted-color);
-		margin-bottom: var(--pico-block-spacing);
+		margin-bottom: calc(var(--pico-block-spacing) * 0.5);
 		line-height: 1;
 		display: block;
 	}

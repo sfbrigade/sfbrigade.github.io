@@ -8,6 +8,7 @@ published: true
 title: Code for America Brigade Congress
 image: congress.jpg
 image_alt: Brigade Congress Attendees
+image_list_only: true
 description: The report back from Code for San Franicisco's Brigade contingent to the 2017 Code for America Brigade Congress.
 ---
 
@@ -91,7 +92,7 @@ Jenn Pahlka, the founder of Code for America, spoke of the importance of our wor
 to hold government officials accountable for delivering equitable, open and user-friendly services to the citizens they
 serve. As inspiring as her speech was, she emphasized that she was equally as inspired by seeing us working all across
 the U.S. to make government work for the people. As she ended her speech, a quote displayed on the screen behind her. It
-captured the weekend’s ethos quite well: 
+captured the weekend’s ethos quite well:
 
 > “Efficiency in government is a matter of social justice.”
 ![Jen Pahlka Presenting](../../assets/blog/jen.jpg)

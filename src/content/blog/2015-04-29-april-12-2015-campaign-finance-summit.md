@@ -30,7 +30,9 @@ The first presentation was by Jesse Mainardi, Deputy Executive Director, SF Ethi
 * [Buckley v. Valeo](http://en.wikipedia.org/wiki/Buckley_v._Valeo)
 * [Citizens United v. FEC](http://en.wikipedia.org/wiki/Citizens_United_v._FEC)
 
+<!--
 {% include youtube.html id="Y6Sg24MQ-aE" caption="Video of Jesse's talk" %}
+-->
 
 [**Jesse's Slides**](https://docs.google.com/presentation/d/1Q4jqA4XrRBPIaw_lCW3lBJJy7MRLp93OVSChNoa1vPc/edit?usp=sharing)
 
@@ -39,29 +41,39 @@ The first presentation was by Jesse Mainardi, Deputy Executive Director, SF Ethi
 
 Jay Costa, Executive Director, Counter PAC, walked us through how wealthy individuals and corporations use non-profit 501(c)(4)s to hide their vast contributions. Due to laws which allow donations to remain anonymous to these non-profits, funds are shuffled around in a kind of shell game effectively hiding who is financing political advertising.
 
+<!--
 {% include youtube.html id="I5SXO4ZMakE" caption="Video of Jay's talk" %}
+-->
 
 ## Phil
 Phillip Ung, Director of Public Affairs at California Forward, gave us a historical overview of how Cal-Access was created after the Online Disclosure Act of 1996. Originally created as a publisher and repository for endless government campaign finance forms, Cal-Access is a roadblock in the age of open data. The data is also only available for state races, local jurisdiction data is mostly only available in local government offices.
 
+<!--
 {% include youtube.html id="1Z7GFfDOg1E" caption="Video of Phillip's talk" %}
+-->
 
 ## Oliver
 Oliver Luby, District 1 Policy Manager, City of Oakland, opened with a 2010 FPPC paper Big Money Talks: “Just 15 wealthy special interests have spent more than $1 billion in the past 10 years to influence California voters and public officials.” This spending is done through independent expenditures, and Oliver has a keen sense of the weak spots in independent expenditure reports and disclosures. Luby pointed to the campaign data loop-hole of data being filled out only in paper forms.
 
+<!--
 {% include youtube.html id="ue_JO5rES0c" caption="Video of Oliver's talk" %}
+-->
 
 ## Journalist Panel
 As to be expected, the press panel had a lively discussion. In attendance were: Aaron Williams, News Applications Developer, Center for Investigative Reporting; Michael Stoll, Editor, San Francisco Public Press; John Osborn, Digital Communication Manager, EdSource.
 
 Michael pointed to the importance of journalists having access to campaign data tools to tell the story behind the data. “A story isn’t worth doing unless you bring new information to it.” The data is the starting point to set the public policy debate. Technology can be an expensive challenge for a non profit news organization and the journalist discussed partnerships with each other and technologists as one way of bringing information to the public. CIR and LA Times created the California Data Coalition to pool resources on data and compete on stories. The SF Public Press is collaborating with the Internet Archive. John Osborn reminded us to “Thank the city clerk who gives you access to data.” They are the unsung heros in the depths of city hall.
 
+<!--
 {% include youtube.html id="9fz1WD-BvaY" caption="Video of Journalist Panel" %}
+-->
 
 ## Miriam
 Miriam Marks, Data Director at MapLight. “The challenges with using state data are the challenges of using Cal-Access.” Miriam illustrated how MapLight has found its way through the labyrinth that Cal-Access places between users and campaign finance data. Despite this, MapLight is able to build comprehensive, data-rich stories which track the influence of money in politics.
 
+<!--
 {% include youtube.html id="yz7oJWLbzUY" caption="Video of Miriam's talk" %}
+-->
 
 [**Miriam's Slides**](https://docs.google.com/presentation/d/1n3MTLB2FJKCPfeHauY0Gsl5r9AonMMoVHPB_Ggotjl4/edit?usp=sharing)
 

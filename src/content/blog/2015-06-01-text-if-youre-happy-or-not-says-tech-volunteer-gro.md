@@ -1,10 +1,12 @@
 ---
-authors:
-- julio_feliciano
-- seunghee_eu
-date: '2015-06-01'
-published: true
 title: "Text if you\u2019re happy or not says tech volunteer group"
+description: >-
+  Code for San Francisco volunteer hackers launched the Happiness Survey to better understand the Bay Area state of mind.
+date: '2015-06-01'
+authors:
+  - julio_feliciano
+  - seunghee_eu
+published: true
 ---
 
 FOR IMMEDIATE RELEASE

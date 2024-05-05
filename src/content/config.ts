@@ -1,4 +1,5 @@
 import { z, defineCollection } from "astro:content";
+import { marked } from "marked";
 import { parseYMD } from "@/utils";
 
 const blogCollection = defineCollection({
@@ -32,7 +33,11 @@ const blogCollection = defineCollection({
 			.optional(),
 		image_alt: z.string().optional(),
 		image_list_only: z.boolean().optional(),
-		description: z.string().optional(),
+		description: z.string()
+			// some description fields contain markdown, which we want to convert to
+			// formatted paragraph tags
+			.transform((value) => marked.parse(value))
+			.optional(),
 	}),
 });
 
