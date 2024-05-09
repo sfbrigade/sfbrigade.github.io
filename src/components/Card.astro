@@ -10,7 +10,7 @@ interface Props {
 const { color, title, body, label, href } = Astro.props;
 ---
 
-<div class="card" style={`background: ${color}`}>
+<div class="card shadow-2xl rounded-lg" style={`background: ${color}`}>
 	<slot />
 	<h3>{title}</h3>
 	<p>
