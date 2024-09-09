@@ -24,17 +24,19 @@ const routes = [
 	<nav>
 		<ul>
 			<li class="home">
-				{/* the href of "" on the homepage link here looks a little weird, but the base
-					path is prefixed to these links, so basePath + "" == the root page */}
-				<NavLink href="" class="contrast">
-					<Image src={logo} alt="SF Civic Tech Logo" height="50%" />
+				<NavLink href="/" class="contrast">
+					<Image src={logo} alt="SF Civic Tech Logo" class="logo" loading="eager" />
 					<div class="name"><strong>SF Civic Tech</strong>
 						<em>formerly Code for San Francisco</em>
 					</div>
 				</NavLink>
 			</li>
 		</ul>
-		<ul>
+		<input type="checkbox" id="toggle-button" aria-controls="nav-links" />
+		<label for="toggle-button" class="toggle-icon">
+			<span></span>
+		</label>
+		<ul id="nav-links">
 			{routes.map(({ label, page, pages }) => (
 				<li>
 					<NavLink href={page}>
@@ -54,7 +56,9 @@ const routes = [
 		padding: 0;
 	}
 
-	img {
+	.logo {
+		width: auto;
+		height: 50px;
 		margin: 0 .5rem .5rem 0;
 	}
 
@@ -64,7 +68,7 @@ const routes = [
 	}
 
 	/* we don't want any space between the name and the logo to get underlined */
-	.home :global(a:hover)  {
+	.home :global(a:hover) {
 		text-decoration: none;
 	}
 
@@ -80,5 +84,107 @@ const routes = [
 		color: var(--pico-muted-color);
 		font-size: 0.6em;
 		line-height: 1;
+	}
+
+	#nav-links li {
+		white-space: nowrap;
+	}
+
+	#toggle-button, .toggle-icon {
+		display: none;
+		user-select: none;
+	}
+
+	@media only screen and (max-width: 768px) {
+		header {
+			max-width: initial;
+			display: flex;
+		}
+
+		nav {
+			width: 100%;
+			align-items: center;
+			position: relative;
+		}
+
+		.home {
+			margin: 0 var(--pico-spacing);
+		}
+
+		.logo {
+			height: 25px;
+		}
+
+		#nav-links {
+			padding-bottom: var(--pico-spacing);
+			padding-left: 95px;
+			display: none;
+			box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.25);
+		}
+
+		#nav-links li {
+			padding-left: 0;
+		}
+
+		#toggle-button:checked ~ #nav-links {
+			background-color: var(--pico-background-color);
+			top: 100%;
+			width: 100%;
+			display: flex;
+			align-items: start;
+			flex-direction: column;
+			position: absolute;
+			z-index: 100;
+		}
+
+		.toggle-icon {
+			padding: .5rem;
+			margin: 0 calc(var(--pico-spacing) - .5rem);
+			cursor: pointer;
+			position: relative;
+			display: inline-block;
+		}
+
+		.toggle-icon > span {
+			background: #333;
+			display: block;
+			height: .1rem;
+			position: relative;
+			transition: background .2s ease-out;
+			width: 1rem;
+
+			&::before,
+			&::after {
+				background: #333;
+				content: "";
+				display: block;
+				height: 100%;
+				position: absolute;
+				transition: all .2s ease-out;
+				width: 100%;
+			}
+
+			&::before {
+				top: 6px;
+			}
+
+			&::after {
+				top: -6px;
+			}
+		}
+
+		#toggle-button:checked ~ .toggle-icon > span {
+			background: transparent;
+
+			&::before {
+				transform: rotate(45deg);
+				top: 0;
+			}
+
+			&::after {
+				transform: rotate(-45deg);
+				top: 0;
+			}
+		}
 	}
 </style>

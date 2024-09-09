@@ -3,8 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import NavLink from "@/components/NavLink.astro";
-import { dateFromSlug } from "@/utils/dateFromSlug";
-import { getBlogImage } from "@/utils/getBlogImage";
+import { dateFromSlug, getBlogImage, formatShortMDY } from "@/utils";
 
 export async function getStaticPaths()
 {
@@ -28,14 +27,14 @@ const {
 			title,
 			image,
 			image_alt = "",
+			image_list_only,
 			date = dateFromSlug(slug),
 		}
 	}
 } = Astro.props;
 const { Content } = await render();
-const imageData = await getBlogImage(image);
-const dateString = date?.toLocaleDateString("en-US",
-	{ year: "numeric", month: "short", day: "numeric" });
+const imageData = !image_list_only && await getBlogImage(image);
+const dateString = formatShortMDY(date);
 ---
 
 <BaseLayout title={title} header="">

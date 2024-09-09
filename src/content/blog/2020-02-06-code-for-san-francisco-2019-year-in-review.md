@@ -1,11 +1,11 @@
 ---
-date: 2020-02-06
+date: '2020-02-06'
 image: NDoCH-2019.jpg
 image_alt: 'Emily Wasserman, team captain leads of National Day of Civic Hacking at GitHub'
 title: Code for San Francisco 2019 Year in Review
 description: 2019 was a very busy year for the Code for SF community!
 pin_to_frontpage: true
-image_list_only: true
+image_list_only: false
 ---
 2019 was a year full of exciting changes for the Code for San Francisco community. We began the year in a new location at Code for America's new headquarters on Mission Street in SoMa, after six years of calling 9th & Minna our home. The new location features lots more meeting rooms, providing space for multiple new projects to spring up and for our existing teams to expand. As core organizers, we focused on our mission of making Code for San Francisco a community space where civic minded individuals from all across San Francisco can come together to have a positive impact on community issues. Volunteers bring the enthusiasm, dedication and creativity. The core team makes sure there’s dinner.
 

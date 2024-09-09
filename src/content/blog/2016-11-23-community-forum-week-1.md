@@ -58,4 +58,4 @@ The general feeling that came out of these responses was a feeling if fear and u
 
 This week we'll be discussing a new question based off the previous: **There is a lot of anger and resentment in our community and America today. How can we as a community of civic technologists direct it towards positive action?** Stay tuned for more updates as the forum progresses!
 
-{% include image.html name="cfa.jpg" alt="CFA HQ Wall Quotes" style="max-height: 400px" %}
+![CFA HQ Wall Quotes](../../assets/blog/cfa.jpg)

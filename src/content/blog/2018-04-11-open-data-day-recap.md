@@ -32,7 +32,7 @@ Sandra was followed by two lightning talks from the open data community.
 
 ### Samuel Estabook on Open Street Map
 
-{% include image.html name="osm.jpg" alt="Photo of Open Street Map slide" style="max-height: 400px" %}
+![Photo of Open Street Map slide](../../assets/blog/osm.jpg)
 
 [Samuel](http://twitter.com/mapping_sam) provided different ways to participate in the largest open, crowdsourced mapping project:
 [OpenStreetMap.org](http://OpenStreetMap.org)
@@ -44,7 +44,7 @@ the list of trees in DataSF, which includes 190k line CSV file, and published an
 searchable: https://sf-tree-search.now.sh/ This is how [@simonw](http://twitter.com/simonw) did it:
 https://github.com/simonw/sf-tree-search#how-i-built-this
 
-{% include image.html name="datasette.jpg" alt="Photo of Simon" style="max-height: 400px" %}
+![Photo of Simon](../../assets/blog/datasette.jpg)
 
 ### Unconference sessions
 
@@ -53,13 +53,13 @@ census moving San Francisco to #1 on the census. [@synchronouscity](http://twitt
 exploring San Francisco’s open data portal and how to make use of the open data portal, including tips, tricks and
 secrets.
 
-{% include image.html name="jason.jpg" alt="Photo of Jason's presentation" style="max-height: 400px" %}
+![Photo of Jason's presentation](../../assets/blog/jason.jpg)
 
 Brigade member, Sony Green, led a session on Data Visualization with VR. Discussions were held around using VR for
 helping with PTSD, physical therapy, stroke victims and surgery with some cool demos including an Oculus visualization
 of EEG data.
 
-{% include image.html name="vr.jpg" alt="Photo of VR presentation" style="max-height: 400px" %}
+![Photo of VR presentation](../../assets/blog/vr.jpg)
 
 ## Wrap Up
 

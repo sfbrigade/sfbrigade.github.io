@@ -8,6 +8,7 @@ published: true
 title: Code for America Brigade Congress
 image: congress.jpg
 image_alt: Brigade Congress Attendees
+image_list_only: true
 description: The report back from Code for San Franicisco's Brigade contingent to the 2017 Code for America Brigade Congress.
 ---
 
@@ -31,12 +32,12 @@ Brigade, including excellent work on promoting diversity in brigades from fellow
 as a talk by Ryan and I about the [SF Fire Risk prediction model](https://github.com/sfbrigade/datasci-firerisk) that we
 and a number of contributors had worked on over the past year.
 
-{% include image.html name="fire-risk.jpg" alt="Fire Risk Project Presentation" %}
+![Fire Risk Project Presentation](../../assets/blog/fire-risk.jpg)
 
 Then came the unconference voting. I’d never been to an unconference before, but to summarize for the uninitiated: there
 is no set agenda.
 
-{% include image.html name="unconference.jpg" alt="Unconference Voting" %}
+![Unconference Voting](../../assets/blog/unconference.jpg)
 
 Participants typically submit session ideas ahead of time, although some people had bursts of inspiration and added
 theirs to the fray that morning. Every session proposer goes up on stage and gives a quick pitch on the content of their
@@ -91,14 +92,14 @@ Jenn Pahlka, the founder of Code for America, spoke of the importance of our wor
 to hold government officials accountable for delivering equitable, open and user-friendly services to the citizens they
 serve. As inspiring as her speech was, she emphasized that she was equally as inspired by seeing us working all across
 the U.S. to make government work for the people. As she ended her speech, a quote displayed on the screen behind her. It
-captured the weekend’s ethos quite well: 
+captured the weekend’s ethos quite well:
 
 > “Efficiency in government is a matter of social justice.”
-{% include image.html name="jen.jpg" alt="Jen Pahlka Presenting" %}
+![Jen Pahlka Presenting](../../assets/blog/jen.jpg)
 
 As the conference came to a close, we assembled the California Brigade representatives for one last picture. An important note that came out of this was that there’s a lot of really great work happening at Open Oakland, Code for San Jose, the newly formed Code for Berkeley, and as far north as Code for Sacramento! We all put together our brigade’s regular meeting times in this google spreadsheet so that we could all better coordinate with each other. As the new year rolls around we’re really hopeful that 2018 brings closer connection between all the California Brigades!
 
-{% include image.html name="congress.jpg" alt="Brigade Congress Attendees" %}
+![Brigade Congress Attendees](../../assets/blog/congress.jpg)
 
 And finally, here’s one last photo of everyone at Independence Hall in Philadelphia, where both the U.S. Declaration of
 Independence and U.S. Constitution were signed!

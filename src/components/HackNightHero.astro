@@ -14,7 +14,7 @@ import hackNight from "@/assets/home/hack-night.png";
 			All of our meetings are currently remote. Everyone is welcome!
 		</p>
 		<p>
-			<a href={meetupURL}>Every Wednesday at 6:30pm Pacific</a>
+			<a href={meetupURL}>Every Wednesday at 6:30pm&nbsp;Pacific</a>
 		</p>
 		<p>
 			Join us on Zoom
@@ -22,7 +22,7 @@ import hackNight from "@/assets/home/hack-night.png";
 		</p>
 	</div>
 	<div class="image">
-		<Image src={hackNight} alt="hack night" />
+		<Image src={hackNight} alt="hack night" loading="eager" />
 	</div>
 </section>
 
@@ -47,6 +47,7 @@ import hackNight from "@/assets/home/hack-night.png";
 	.info a {
 		--pico-color: var(--pico-contrast-inverse);
 		--pico-underline: rgba(255, 255, 255, 0.35);
+		font-weight: bold;
 	}
 
 	.info a:hover {

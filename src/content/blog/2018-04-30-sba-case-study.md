@@ -6,6 +6,7 @@ published: true
 title: Small Business Administration Case Study
 image: image11.png
 image_alt: SBA application prototype screenshot
+image_list_only: true
 description: |
   A look at how Code for San Francisco's Data Science Working group was able to work with the local Small Business
   Administration office to develop a tool to analyze loan data and answer questions to increase the office's impact.
@@ -113,7 +114,8 @@ exciting to work on. Responding to feedback, refining the problems, narrowing th
 persistent in pitching from week to week were critical to building a dedicated and focused team.
 
 <h3 data-toc-skip class="text-center">The Project's Journey</h3>
-{% include image.html name="image18.jpg" alt="Project timeline" caption="Timeline of our project; Visual by Kenny" %}
+![Project timeline](../../assets/blog/image18.jpg)
+*Timeline of our project; Visual by Kenny*
 
 <h3 data-toc-text="Phase 2: Backend Data Work">Backend Data Work <small>Timeframe: March to August</small></h3>
 
@@ -125,9 +127,9 @@ county or zip code and later investigated whether we could map by congressional 
 An early prototype in Tableau came together quickly and was used to refine what we wanted in later, more polished
 iterations of a final prototype.
 
-{% include image.html name="image15.png" alt="Prototype screenshot" %}
+![Prototype screenshot](../../assets/blog/image15.png)
 
-{% include image.html name="image7.png" alt="Prototype screenshot" %}
+![Prototype screenshot](../../assets/blog/image7.png)
 
 Vince La took charge of tracking the ideas and requests that would arise each week. Each weekly hack night consisted of
 huddles to talk through tough problems followed by doling out assignments to complete before the next meeting.
@@ -203,7 +205,7 @@ You can view our low-fidelity prototype here:
 
 [http://ec2-54-175-133-20.compute-1.amazonaws.com/app/](http://ec2-54-175-133-20.compute-1.amazonaws.com/app/)
 
-{% include image.html name="image11.png" alt="Prototype screenshot" %}
+![Prototype screenshot](../../assets/blog/image11.png)
 
 <h3 data-toc-text="Phase 4: MVP Push"><strong>Phase 4:</strong> MVP Push <small>Timeframe: September to Present</small></h3>
 
