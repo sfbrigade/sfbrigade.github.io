@@ -7,7 +7,7 @@ A quick migration of the existing site content into a lightly-styled Astro build
 
 - [ ] Set `base` tag by looking at the current domain name?  Different configs?
 - [ ] Add SEO metadata to all pages
-- [ ] Fix favicon
+- [X] Fix favicon
 - [ ] Clean up jekyll code from old posts
 - [X] Always show the first image in a blog post as the thumbnail
 - [X] Don't show the image key in the frontmatter at the top of the post if it's used within the post
