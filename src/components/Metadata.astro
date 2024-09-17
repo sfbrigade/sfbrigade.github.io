@@ -1,0 +1,27 @@
+---
+import { metaTag, ogMetaTag } from "../utils/meta";
+
+export type MetadataProp = Record<string, string | number>;
+
+interface Props {
+	meta: MetadataProp;
+}
+
+const { meta: {
+	title,
+	url,
+	image,
+	...meta }
+} = Astro.props;
+const tags = Object.entries(meta)
+	.map(([key, value]) => metaTag(key, value))
+	.join("\n");
+const ogTags = Object.entries({ title, url, image, ...meta })
+	.map(([key, value]) => value ? ogMetaTag(key, value) : null)
+	.filter(Boolean)
+	.join("\n");
+---
+
+<link rel="canonical" href={String(url)} />
+<Fragment set:html={tags} />
+<Fragment set:html={ogTags} />

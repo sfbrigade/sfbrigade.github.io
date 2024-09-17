@@ -25,6 +25,7 @@ const {
 		slug,
 		data: {
 			title,
+			description,
 			image,
 			image_alt = "",
 			image_list_only,
@@ -35,9 +36,17 @@ const {
 const { Content } = await render();
 const imageData = !image_list_only && await getBlogImage(image);
 const dateString = formatShortMDY(date);
+const meta = {
+	description,
+	image: imageData?.src ?? ""
+};
 ---
 
-<BaseLayout title={title} header="">
+<BaseLayout
+	title={title}
+	header=""
+	meta={meta}
+>
 	<h1>{title}</h1>
 	<div class="date">
 		<time datetime={date?.toISOString()}>{dateString}</time>

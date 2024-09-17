@@ -1,13 +1,22 @@
 ---
 import { base } from "@/utils/urls";
+import Metadata from "@/components/Metadata.astro";
+import type { MetadataProp } from "@/components/Metadata.astro";
 import "@picocss/pico";
 import "./global.css";
 
 interface Props {
 	title: string;
+	meta?: MetadataProp;
 }
 
-const { title } = Astro.props;
+const pageTitle = `${Astro.props.title} | SF Civic Tech`;
+const meta = {
+	title: pageTitle,
+	description: "A welcoming and inclusive volunteer group of activists who use creative technology to solve civic and social problems.",
+	url: Astro.url.href,
+	...Astro.props.meta,
+};
 const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 ---
 
@@ -16,7 +25,6 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 	<head>
 		<base href={baseURL} />
 		<meta charset="UTF-8" />
-		<meta name="description" content="A welcoming and inclusive volunteer group of activists who use creative technology to solve civic and social problems." />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href={base("favicon.ico")} />
 		<link rel="apple-touch-icon" sizes="180x180" href={base("apple-touch-icon.png")} />
@@ -27,7 +35,9 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 		<meta name="msapplication-TileColor" content="#da532c" />
 		<meta name="theme-color" content="#ffffff" />
 
-		<title>{title} | SF Civic Tech</title>
+		<Metadata meta={meta} />
+
+		<title>{pageTitle}</title>
 	</head>
 	<body>
 		<slot />

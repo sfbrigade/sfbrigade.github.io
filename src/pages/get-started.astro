@@ -6,9 +6,16 @@ import about from "@/assets/get-started/about.webp";
 import onboard from "@/assets/get-started/onboard.webp";
 import attend from "@/assets/get-started/attend.webp";
 import join from "@/assets/get-started/join.webp";
+
+const meta = {
+	description: "Get started with SF Civic Tech. We're here to help you get involved.",
+	image: onboard.src,
+};
 ---
 
-<BaseLayout title="Get Started">
+<BaseLayout title="Get Started"
+	meta={meta}
+>
 	<p>
 		Regardless of skillset or background, anyone can contribute to their
 		community through SF Civic Tech

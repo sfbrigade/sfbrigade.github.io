@@ -2,16 +2,21 @@
 import Page from "@/layouts/Page.astro";
 import HeaderNav from "@/components/HeaderNav.astro";
 import FooterNav from "@/components/FooterNav.astro";
+import type { MetadataProp } from "@/components/Metadata.astro";
 
 interface Props {
 	title: string;
 	header?: string;
+	meta?: MetadataProp;
 }
 
-const { title, header = title } = Astro.props;
+const { title, header = title, meta } = Astro.props;
 ---
 
-<Page title={title}>
+<Page
+	title={title}
+	meta={meta}
+>
 	<HeaderNav />
 	<main class="container">
 		{header &&
