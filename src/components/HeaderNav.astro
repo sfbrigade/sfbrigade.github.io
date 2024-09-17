@@ -2,11 +2,11 @@
 import { Image } from "astro:assets";
 import NavLink from "./NavLink.astro";
 import NavDropdown from "./NavDropdown.astro";
-import { meetupURL, projectsURL, wikiURL } from "@/utils/urls";
-import logo from "@/assets/sfct-logo-black.png";
+import { meetupURL, projectsURL } from "@/utils/urls";
+import logo from "@/assets/logo.svg";
+import logoType from "@/assets/logoType.svg";
 
 const routes = [
-	{ label: "Wiki", page: wikiURL },
 	{ label: "Get Started", page: "/get-started" },
 	{ label: "Events", page: meetupURL },
 	{ label: "Projects", page: projectsURL },
@@ -26,7 +26,8 @@ const routes = [
 			<li class="home">
 				<NavLink href="/" class="contrast">
 					<Image src={logo} alt="SF Civic Tech Logo" class="logo" loading="eager" />
-					<div class="name"><strong>SF Civic Tech</strong>
+					<div class="name">
+						<Image src={logoType} alt="SF Civic Tech" class="logo-type" loading="eager" />
 						<em>formerly Code for San Francisco</em>
 					</div>
 				</NavLink>
@@ -62,9 +63,18 @@ const routes = [
 		margin: 0 .5rem .5rem 0;
 	}
 
+	.logo-type {
+		width: auto;
+		height: 24px;
+		margin: 0 0 2px;
+	}
+
 	.name {
 		display: inline-flex;
 		flex-direction: column;
+		align-items: start;
+		position: relative;
+		top: 1px;
 	}
 
 	/* we don't want any space between the name and the logo to get underlined */
@@ -112,7 +122,11 @@ const routes = [
 		}
 
 		.logo {
-			height: 25px;
+			height: 38px;
+		}
+
+		.logo-type {
+			height: 20px;
 		}
 
 		#nav-links {
