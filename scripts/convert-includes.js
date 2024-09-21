@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import glob from "fast-glob";
 
-const IncludeImagePattern = /^\{%\s+include\s+image.html\s+(.+?)(\s+\w+="(?:[^"\\]|\\.)*")*\s+%}/mg;
+const IncludeImagePattern = /^\s*\{%\s+include\s+image.html\s+(.+?)(\s+\w+="(?:[^"\\]|\\.)*")*\s*%}/mg;
 const NameValuePattern = /(\w+)="((?:[^"\\]|\\.)*)"/g;
 const BasePath = "../../assets/blog/";
 
@@ -36,7 +36,6 @@ for (const postPath of postPaths) {
 
 		updatedFiles.push(filename);
 		await fs.writeFile(postPath, newContent);
-//		await fs.writeFile(path.join("src/content/new-blog", filename), newContent);
 	}
 }
 

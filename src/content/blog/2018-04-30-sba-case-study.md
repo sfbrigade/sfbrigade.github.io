@@ -7,7 +7,7 @@ title: Small Business Administration Case Study
 image: image11.png
 image_alt: SBA application prototype screenshot
 image_list_only: true
-description: |
+description: >
   A look at how Code for San Francisco's Data Science Working group was able to work with the local Small Business
   Administration office to develop a tool to analyze loan data and answer questions to increase the office's impact.
 
@@ -114,7 +114,9 @@ exciting to work on. Responding to feedback, refining the problems, narrowing th
 persistent in pitching from week to week were critical to building a dedicated and focused team.
 
 <h3 data-toc-skip class="text-center">The Project's Journey</h3>
+
 ![Project timeline](../../assets/blog/image18.jpg)
+
 *Timeline of our project; Visual by Kenny*
 
 <h3 data-toc-text="Phase 2: Backend Data Work">Backend Data Work <small>Timeframe: March to August</small></h3>
@@ -166,33 +168,23 @@ all of this. By the end of the white board session, we set a deadline and timeli
 2.  References to successful SBA-support small businesses
 3.  Identification of which small businesses are support by SBA
 
-<div class="row">
-  <div class="col-lg-6">
-    {% include image.html name="image17.jpg" alt="Whiteboard before sprint" caption="The Whiteboard, pre-sprint"%}
-  </div>
-  <div class="col-lg-6">
-    {% include image.html name="image20.jpg" alt="Whiteboard after sprint" caption="Post-sprint"%}
-  </div>
-</div>
+![Whiteboard before sprint](../../assets/blog/image17.jpg)
+*The Whiteboard, pre-sprint*
+
+![Whiteboard after sprint](../../assets/blog/image20.jpg)
+*Post-sprint*
 
 Moving forward, the design and development team met a few times to define technical constraints and distill our sprint
 findings into specs and features. Given a tight timeline of 3 weeks, we pulled together some wireframes and coded them
 out.
 
-<div class="row">
-  <div class="col-lg-6">
-    {% include image.html name="image10.jpg" alt="Screenshot" %}
-  </div>
-  <div class="col-lg-6">
-    {% include image.html name="image14.jpg" alt="Screenshot" %}
-  </div>
-  <div class="col-lg-6">
-    {% include image.html name="image16.jpg" alt="Screenshot" %}
-  </div>
-  <div class="col-lg-6">
-    {% include image.html name="image13.jpg" alt="Screenshot" %}
-  </div>
-</div>
+![Screenshot](../../assets/blog/image10.jpg)
+
+![Screenshot](../../assets/blog/image14.jpg)
+
+![Screenshot](../../assets/blog/image16.jpg)
+
+![Screenshot](../../assets/blog/image13.jpg)
 
 There are 4 main components to it:
 
@@ -294,17 +286,17 @@ cross-functionally and always keeping a focus on the product.
 
 #### What was a big win for you or a major learning point?
 
-“I found it very energizing to be surrounded by a group of smart volunteers with such a diverse set of skills.” - **Mike
+“I found it very energizing to be surrounded by a group of smart volunteers with such a diverse set of skills.” &mdash; **Mike
 Mathews, Data Pipeline Engineer**
 
 “A major win for me was showing what could be done simply by engaging with the open source and civic tech communities
 directly - opening the doors to a motivated and talented community of volunteers created benefits for our agency, the
-volunteers themselves, and public as well.” - **Noah Brod, Project Sponsor**
+volunteers themselves, and public as well.” &mdash; **Noah Brod, Project Sponsor**
 
 “The collaborative approach and inclusive nature of the volunteers made for an extremely positive project experience.
 The major win for me was how transparent everyone was when communicating about challenges, feasibility, expectations,
-and schedule changes.” - **Brianna Bischofberger, UX Designer**
+and schedule changes.” &mdash; **Brianna Bischofberger, UX Designer**
 
 “Coming from a UX design background, this project was a breath of fresh air! I love how the user we were designing for
 (Noah) was an active part of our product development - showing up to our weekly meetings and participating in our slack
-group. It made keeping the product user-centered so much easier.” - **Kenny Nieh, Product Designer**
+group. It made keeping the product user-centered so much easier.” &mdash; **Kenny Nieh, Product Designer**
