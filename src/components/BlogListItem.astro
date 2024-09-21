@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { base, dateFromSlug, getBlogImage, formatShortMDY } from "@/utils";
+import defaultThumbnail from "../assets/blog/default-thumbnail.png";
 
 interface Props {
 	post: CollectionEntry<"blog">;
@@ -19,7 +20,7 @@ const {
 	}
 } = Astro.props;
 const imageData = await getBlogImage(image);
-const backgroundImageURL = imageData?.src ?? "/src/assets/blog/default-thumbnail.png";
+const backgroundImageURL = imageData?.src ?? defaultThumbnail.src;
 const postURL = base("/blog/" + slug);
 const dateString = formatShortMDY(date);
 ---
