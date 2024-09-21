@@ -14,7 +14,7 @@
     "lint": "(npm run lint:es || cd .) && npm run lint:css"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.3",
+    "@astrojs/check": "^0.8.3",
     "@iconify-json/fa": "^1.2.0",
     "@picocss/pico": "^2.0.6",
     "@stylistic/eslint-plugin": "^2.8.0",
