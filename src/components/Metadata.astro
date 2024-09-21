@@ -1,5 +1,5 @@
 ---
-import { metaTag, ogMetaTag } from "../utils/meta";
+import { metaTag, ogMetaTag } from "@/utils/meta";
 
 export type MetadataProp = Record<string, string | number>;
 
@@ -13,10 +13,17 @@ const { meta: {
 	image,
 	...meta }
 } = Astro.props;
+
 const tags = Object.entries(meta)
 	.map(([key, value]) => metaTag(key, value))
 	.join("\n");
-const ogTags = Object.entries({ title, url, image, ...meta })
+const ogTags = Object.entries({
+	title,
+	url,
+	// make sure the image metadata is an absolute URL, not just a relative path
+	image: new URL(image, import.meta.env.SITE),
+	...meta
+})
 	.map(([key, value]) => value ? ogMetaTag(key, value) : null)
 	.filter(Boolean)
 	.join("\n");
