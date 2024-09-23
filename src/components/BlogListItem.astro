@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { base, dateFromSlug, getBlogImage, formatShortMDY } from "@/utils";
 import defaultThumbnail from "../assets/blog/default-thumbnail.png";
@@ -6,6 +7,10 @@ import defaultThumbnail from "../assets/blog/default-thumbnail.png";
 interface Props {
 	post: CollectionEntry<"blog">;
 }
+
+// the thumbnail item is set to 14rem square, and the font size is 21px, so
+// double that to support a max 2X image
+const ThumbnailWidth = 14 * 21 * 2;
 
 const {
 	post: {
@@ -20,16 +25,21 @@ const {
 	}
 } = Astro.props;
 const imageData = await getBlogImage(image);
-const backgroundImageURL = imageData?.src ?? defaultThumbnail.src;
+const backgroundImage = imageData || defaultThumbnail;
 const postURL = base("/blog/" + slug);
 const dateString = formatShortMDY(date);
 ---
 
 <li>
-	<div class="thumbnail"
-		style={`background-image: url(${backgroundImageURL})`}
-		title={image_alt}
-	/>
+	<a href={postURL}>
+		<Image class="thumbnail"
+			src={backgroundImage}
+			alt={image_alt}
+			widths={[ThumbnailWidth]}
+			sizes=`${ThumbnailWidth}px`
+			inferSize
+		/>
+	</a>
 	<div class="info">
 		<time datetime={date?.toISOString()}>{dateString}</time>
 		<h3><a href={postURL}>{title}</a></h3>
@@ -46,10 +56,10 @@ const dateString = formatShortMDY(date);
 		gap: var(--pico-block-spacing-horizontal);
 	}
 
-	div.thumbnail {
+	img.thumbnail {
 		aspect-ratio: 1;
-		background-size: cover;
-		background-position: center;
+		object-fit: cover;
+		object-position: center;
 		width: 14rem;
 		height: 14rem;
 	}
