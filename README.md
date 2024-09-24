@@ -1,4 +1,4 @@
-# astro-static-site
+# sfcivictech.org
 
 A quick migration of the existing site content into a lightly-styled Astro build.
 
