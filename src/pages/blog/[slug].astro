@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import NavLink from "@/components/NavLink.astro";
-import { dateFromSlug, getBlogImage, formatShortMDY } from "@/utils";
+import { dateFromSlug, getImageAsset, formatShortMDY } from "@/utils";
 
 export async function getStaticPaths()
 {
@@ -34,7 +34,7 @@ const {
 	}
 } = Astro.props;
 const { Content } = await render();
-const imageData = !image_list_only && await getBlogImage(image);
+const imageData = !image_list_only && await getImageAsset(image);
 const dateString = formatShortMDY(date);
 const meta = {
 	description,

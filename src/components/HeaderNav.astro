@@ -2,14 +2,14 @@
 import { Image } from "astro:assets";
 import NavLink from "./NavLink.astro";
 import NavDropdown from "./NavDropdown.astro";
-import { meetupURL, projectsURL } from "@/utils/urls";
-import logo from "@/assets/logo.svg";
-import logoType from "@/assets/logoType.svg";
+import { meetupURL } from "@/utils/urls";
+import logo from "@/assets/brand/logo.svg";
+import logoType from "@/assets/brand/logoType.svg";
 
 const routes = [
 	{ label: "Get Started", page: "/get-started" },
 	{ label: "Events", page: meetupURL },
-	{ label: "Projects", page: projectsURL },
+	{ label: "Projects", page: "/projects" },
 	{ label: "Blog", page: "/blog" },
 	{ label: "Donate", page: "/donate" },
 	{ label: "About", page: "/about",

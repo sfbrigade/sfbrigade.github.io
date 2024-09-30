@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import { base, dateFromSlug, getBlogImage, formatShortMDY } from "@/utils";
-import defaultThumbnail from "../assets/blog/default-thumbnail.png";
+import DefaultThumbnail from "@/components/DefaultThumbnail.astro";
+import { base, dateFromSlug, getImageAsset, formatShortMDY } from "@/utils";
 
 interface Props {
 	post: CollectionEntry<"blog">;
@@ -10,7 +10,8 @@ interface Props {
 
 // the thumbnail item is set to 14rem square, and the font size is 21px, so
 // double that to support a max 2X image
-const ThumbnailWidth = 14 * 21 * 2;
+const ThumbnailWidth = 14 * 21;
+const Thumbnail2X = 2 * ThumbnailWidth;
 
 const {
 	post: {
@@ -24,23 +25,25 @@ const {
 		}
 	}
 } = Astro.props;
-const imageData = await getBlogImage(image);
-const backgroundImage = imageData || defaultThumbnail;
+const thumbnailImage = await getImageAsset(image);
 const postURL = base("/blog/" + slug);
 const dateString = formatShortMDY(date);
 ---
 
 <li>
 	<a href={postURL}>
-		<Image class="thumbnail"
-			src={backgroundImage}
-			alt={image_alt}
-			widths={[ThumbnailWidth]}
-			sizes=`${ThumbnailWidth}px`
-			inferSize
-		/>
+			{thumbnailImage
+				? <Image class="thumbnail"
+						src={thumbnailImage}
+						alt={image_alt}
+						widths={[Thumbnail2X]}
+						sizes=`${Thumbnail2X}px`
+						inferSize
+					/>
+				: <DefaultThumbnail size={ThumbnailWidth} />
+			}
 	</a>
-	<div class="info">
+	<div>
 		<time datetime={date?.toISOString()}>{dateString}</time>
 		<h3><a href={postURL}>{title}</a></h3>
 		{/* descriptionHTML is formatted as a <p> tag */}
@@ -64,7 +67,7 @@ const dateString = formatShortMDY(date);
 		height: 14rem;
 	}
 
-	div.info {
+	li > div {
 		flex: 1;
 	}
 

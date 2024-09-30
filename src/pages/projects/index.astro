@@ -1,0 +1,56 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ProjectSummaryItem from "@/components/ProjectSummaryItem.astro";
+import "@/utils/groupBy";
+
+const projects = (await getCollection("projects"));
+const projectsByStatus = Object.groupBy(projects, (project) => project.data.status);
+const meta = {
+	description: "Civic tech projects by, and for, San Francisco residents",
+};
+---
+
+<BaseLayout title="Projects"
+	header="Projects"
+	meta={meta}
+>
+	<p>All projects built by SF Civic Tech are:</p>
+
+	<ul>
+		<li>Open source</li>
+		<li>Volunteer-driven</li>
+		<li>Not-for-profit</li>
+		<li>In service of the public good</li>
+	</ul>
+
+	{projectsByStatus.active?.length &&
+		<h2>Active projects</h2>
+
+		<ul role="list">
+			{projectsByStatus.active.map((project) => (
+				<ProjectSummaryItem project={project} />
+			))}
+		</ul>
+	}
+
+	{projectsByStatus.inactive?.length &&
+		<h2>Inactive projects</h2>
+
+		<ul role="list">
+			{projectsByStatus.inactive?.map((project) => (
+				<ProjectSummaryItem project={project} />
+			))}
+		</ul>
+	}
+
+	{projectsByStatus.completed?.length &&
+		<h2>Completed projects</h2>
+
+		<ul role="list">
+			{projectsByStatus.completed?.map((project) => (
+				<ProjectSummaryItem project={project} />
+			))}
+		</ul>
+	}
+</BaseLayout>

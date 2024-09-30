@@ -1,0 +1,136 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import OptionalAnchor from "@/components/OptionalAnchor.astro";
+import DefaultThumbnail from "@/components/DefaultThumbnail.astro";
+import { getImageAsset } from "@/utils";
+
+interface Props {
+	project: CollectionEntry<"projects">;
+}
+
+const ThumbnailWidth = 165;
+const Thumbnail2X = 2 * ThumbnailWidth;
+
+const {
+	project: {
+		data: {
+			status,
+			name,
+			thumbnail,
+			descriptionHTML,
+			technologies,
+			repos,
+			slack,
+			website,
+		}
+	}
+} = Astro.props;
+const thumbnailImage = thumbnail?.startsWith("http")
+	? thumbnail
+	: await getImageAsset(thumbnail);
+const url = repos?.[0];
+---
+
+<li class="project">
+	<article>
+		<OptionalAnchor href={url}>
+			{thumbnailImage
+				? <Image class="thumbnail"
+						src={thumbnailImage}
+						alt={name}
+						widths={[Thumbnail2X]}
+						sizes=`${Thumbnail2X}px`
+						inferSize
+					/>
+				: <DefaultThumbnail size={ThumbnailWidth} />
+			}
+		</OptionalAnchor>
+
+		<section>
+			<h3>
+				<OptionalAnchor href={url}>
+					{name}
+				</OptionalAnchor>
+			</h3>
+
+			{/* descriptionHTML is formatted as a <p> tag */}
+			<Fragment set:html={descriptionHTML} />
+
+			{technologies &&
+				<h4>Tech stack</h4>
+				<p>{technologies.join(", ")}</p>
+			}
+
+			<div class="links">
+				{(slack && status !== "completed") &&
+					<p>
+						<Icon name={"fa:slack"} class="icon" /> Join: <a href={slack.url}>{slack.name}</a>
+					</p>
+				}
+
+				{repos?.length &&
+					<>
+						{repos.map((url) => (
+							<p>
+								<Icon name={"fa:github"} class="icon" /> Contribute: <a href={url}>{url.replace("https://github.com/", "")}</a>
+							</p>
+						))}
+					</>
+				}
+
+				{website &&
+					<p>
+						<Icon name={"fa:external-link"} class="icon" /> Visit: <a href={website}>{website}</a>
+					</p>
+				}
+			</div>
+		</section>
+	</article>
+</li>
+
+<style>
+	li.project {
+		margin: var(--pico-block-spacing-vertical) 0 0 0;
+	}
+
+	article {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		gap: var(--pico-block-spacing-horizontal);
+	}
+
+	img.thumbnail {
+		aspect-ratio: 1;
+		object-fit: contain;
+		object-position: center top;
+		width: 165px;
+		height: 165px;
+		max-width: unset;
+	}
+
+	section {
+		margin-bottom: 0;
+	}
+
+	h4 {
+		margin-bottom: calc(.5 * var(--pico-typography-spacing-vertical));
+	}
+
+	div.links {
+		margin-top: calc(1.75 * var(--pico-typography-spacing-vertical));
+	}
+
+	.icon {
+		display: inline-block;
+		min-width: 1.5rem;
+		text-align: center;
+	}
+
+	.icon[data-icon="fa:github"] {
+		top: -.15rem;
+		position: relative;
+	}
+</style>

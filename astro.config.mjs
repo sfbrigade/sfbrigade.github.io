@@ -11,9 +11,18 @@ export default defineConfig({
 	compressHTML: false,
 	integrations: [
 		icon({
+			iconDir: "src/assets/icons",
 			include: {
 				// Include only specific `fa` icons in the bundle
-				fa: ["twitter", "facebook", "linkedin", "github", "slack", "meetup"],
+				fa: [
+					"twitter",
+					"facebook",
+					"linkedin",
+					"github",
+					"slack",
+					"meetup",
+					"external-link",
+				],
 			},
 		}),
 	],
