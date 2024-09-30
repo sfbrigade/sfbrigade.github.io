@@ -20,8 +20,10 @@ const tags = Object.entries(meta)
 const ogTags = Object.entries({
 	title,
 	url,
-	// make sure the image metadata is an absolute URL, not just a relative path
-	image: new URL(image, import.meta.env.SITE),
+	// make sure the image metadata is an absolute URL, not just a relative path,
+	// and only include the key if it's truthy, so we don't include an `undefined`
+	// og:image tag
+	image: image && new URL(image as string, import.meta.env.SITE),
 	...meta
 })
 	.map(([key, value]) => value ? ogMetaTag(key, value) : null)

@@ -3,19 +3,30 @@ import Page from "@/layouts/Page.astro";
 import HeaderNav from "@/components/HeaderNav.astro";
 import FooterNav from "@/components/FooterNav.astro";
 import type { MetadataProp } from "@/components/Metadata.astro";
+import type { MarkdownContent } from "astro";
 
 interface Props {
 	title: string;
 	header?: string;
 	meta?: MetadataProp;
+	frontmatter?: MarkdownContent;
 }
 
-const { title, header = title, meta } = Astro.props;
+const { frontmatter, title = frontmatter?.title, header = title, meta } = Astro.props;
+let pageMeta = meta;
+
+if (frontmatter && !meta?.description) {
+	// there's frontmatter, which means we're laying out a markdown file, so make
+	// sure there's metadata for the page, and copy any description from the
+	// markdown file
+	pageMeta ??= {};
+	pageMeta.description = frontmatter.description;
+}
 ---
 
 <Page
 	title={title}
-	meta={meta}
+	meta={pageMeta}
 >
 	<HeaderNav />
 	<main class="container">

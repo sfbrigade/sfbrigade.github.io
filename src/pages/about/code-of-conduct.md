@@ -1,7 +1,7 @@
 ---
 layout: "@/layouts/BaseLayout.astro"
 title: Code of Conduct
-description: Code of Conduct
+description: This Code of Conduct contains not just statements of belief, but principles that we collectively enact. We are dedicated to upholding them, and to ensuring that all members of our community respect them.
 ---
 
 # SF Civic Tech is a space for everyone.

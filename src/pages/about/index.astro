@@ -1,9 +1,16 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import TeamList from "@/components/TeamList.astro";
+
+const meta = {
+	description: "SF Civic Tech is a group of people, first and foremost. We also call ourselves technologists, planners, designers, doers, thinkers, and activists. Each week, we actively work together to improve the City and County of San Francisco, often using technology to support our efforts. By connecting people, organizations, resources, tools, and networks to build for San Francisco, we will all thrive."
+};
 ---
 
-<BaseLayout title="About" header="About SF Civic Tech">
+<BaseLayout title="About"
+	header="About SF Civic Tech"
+	meta={meta}
+>
 	<p>
 		SF Civic Tech was originally founded in 2013 as Code for San Francisco, part
 		of the Code for America Brigade Network. After the
