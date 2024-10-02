@@ -1,10 +1,8 @@
 ---
-import { Image } from "astro:assets";
 import NavLink from "./NavLink.astro";
 import NavDropdown from "./NavDropdown.astro";
 import { meetupURL } from "@/utils/urls";
-import logo from "@/assets/brand/logo.svg";
-import logoType from "@/assets/brand/logoType.svg";
+import HeaderLogo from "./HeaderLogo.astro";
 
 const routes = [
 	{ label: "Get Started", page: "/get-started" },
@@ -21,15 +19,11 @@ const routes = [
 ---
 
 <header class="container">
-	<nav>
+	<nav aria-label="Header">
 		<ul>
 			<li class="home">
 				<NavLink href="/" class="contrast">
-					<Image src={logo} alt="SF Civic Tech Logo" class="logo" loading="eager" />
-					<div class="name">
-						<Image src={logoType} alt="SF Civic Tech" class="logo-type" loading="eager" />
-						<em>formerly Code for San Francisco</em>
-					</div>
+					<HeaderLogo />
 				</NavLink>
 			</li>
 		</ul>
@@ -57,45 +51,6 @@ const routes = [
 		padding: 0;
 	}
 
-	.logo {
-		width: auto;
-		height: 50px;
-		margin: 0 .5rem .5rem 0;
-	}
-
-	.logo-type {
-		width: auto;
-		height: 24px;
-		margin: 0 0 2px;
-	}
-
-	.name {
-		display: inline-flex;
-		flex-direction: column;
-		align-items: start;
-		position: relative;
-		top: 1px;
-	}
-
-	/* we don't want any space between the name and the logo to get underlined */
-	.home :global(a:hover) {
-		text-decoration: none;
-	}
-
-	.home :global(a:hover) strong {
-		text-decoration: underline;
-	}
-
-	strong {
-		white-space: nowrap;
-	}
-
-	em {
-		color: var(--pico-muted-color);
-		font-size: 0.6em;
-		line-height: 1;
-	}
-
 	#nav-links li {
 		white-space: nowrap;
 	}
@@ -121,17 +76,9 @@ const routes = [
 			margin: 0 var(--pico-spacing);
 		}
 
-		.logo {
-			height: 38px;
-		}
-
-		.logo-type {
-			height: 20px;
-		}
-
 		#nav-links {
 			padding-bottom: var(--pico-spacing);
-			padding-left: 95px;
+			padding-left: 56px;
 			display: none;
 			box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.25);
 		}

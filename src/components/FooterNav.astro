@@ -45,7 +45,7 @@ const columns = [
 
 <footer class="container">
 	{columns.map(([cat, links]) => (
-		<nav>
+		<nav aria-label="Footer">
 			<h3>{cat}</h3>
 			<ul>
 				{links.map(([page, label, needsIcon]) => (
