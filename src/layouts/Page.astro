@@ -34,6 +34,12 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 		<link rel="mask-icon" href={base("safari-pinned-tab.svg")} color="#5bbad5" />
 		<meta name="msapplication-TileColor" content="#da532c" />
 		<meta name="theme-color" content="#ffffff" />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="SF Civic Tech"
+			href={new URL("rss.xml", Astro.site)}
+		/>
 
 		<Metadata meta={meta} />
 

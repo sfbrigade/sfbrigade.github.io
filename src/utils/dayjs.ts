@@ -16,3 +16,4 @@ export default dayjs;
 export const parseYMD = (date: string) => dayjs(date, "YYYY-MM-DD", true);
 export const parseYMDToDate = (date: string) => parseYMD(date).toDate();
 export const formatShortMDY = (date: Date) => date ? dayjs(date).format("MMM D, YYYY") : "";
+export const formatRSSDate = (date: Date) => date ? dayjs(date).format("ddd, D MMM YYYY HH:mm:ss ZZ") : "";

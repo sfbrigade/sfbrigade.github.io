@@ -16,6 +16,8 @@ const blog = defineCollection({
 		description: z.string(),
 		date: z.string()
 			.transform((value, ctx) => {
+				// we treat the date as a string instead of using the built-in date parsing
+				// so we can force it to be in PST, rather than the default UTC
 				const date = parseYMD(value);
 
 				if (!date.isValid()) {
@@ -24,6 +26,11 @@ const blog = defineCollection({
 						message: "Invalid date",
 					});
 
+					// annoyingly, nothing about the file being validated here is available
+					// to this function.  if we could get the filename, we could pull a
+					// missing date out of the name.  given that we can't, we have to return
+					// undefined here and make any code that iterates over the collection
+					// call dateFromSlug(slug) for undefined dates, like rss.xml.js.
 					return z.NEVER;
 				}
 

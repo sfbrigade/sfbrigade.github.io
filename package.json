@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.8.3",
+    "@astrojs/rss": "^4.0.8",
     "@iconify-json/fa": "^1.2.0",
     "@picocss/pico": "^2.0.6",
     "@stylistic/eslint-plugin": "^2.8.0",

@@ -2,11 +2,8 @@ import { defineConfig } from "astro/config";
 import icon from "astro-icon";
 
 export default defineConfig({
-	site: "https://www.sfcivictech.us",
-//	site: "https://www.sfcivictech.org",
+	site: "https://www.sfcivictech.org",
 	base: "",
-	//  site: "https://sfbrigade.github.io",
-	//  base: "/astro-static-site/",
 	trailingSlash: "ignore",
 	compressHTML: false,
 	integrations: [
