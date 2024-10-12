@@ -1,6 +1,8 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import { dateFromSlug, formatRSSDate } from "@/utils";
+import { dateFromSlug } from "@/utils";
+
+const DescriptionPattern = /\s*<p>(.*)<\/p>/;
 
 export async function GET(context)
 {
@@ -16,11 +18,15 @@ export async function GET(context)
 				date = dateFromSlug(slug),
 			},
 		} = post;
+		// we want to include any embedded HTML, like anchors, but don't want the
+		// description surrounded by <p> tags
+		const description = descriptionHTML.match(DescriptionPattern)?.[1] || descriptionHTML;
+
 
 		return {
 			title,
-			description: descriptionHTML,
-			pubDate: formatRSSDate(date),
+			description,
+			pubDate: date,
 			link: `/blog/${slug}`,
 		};
 	});
