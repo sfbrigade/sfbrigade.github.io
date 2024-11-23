@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import GetStartedStep from "@/components/GetStartedStep.astro";
-import { base, meetupURL, memberFormURL, projectsURL, slackURL } from "@/utils/urls";
+import { base, meetupURL, memberFormURL, projectsURL, slackURL, codeOfConductURL } from "@/utils/urls";
 import about from "@/assets/get-started/about.webp";
 import onboard from "@/assets/get-started/onboard.webp";
 import attend from "@/assets/get-started/attend.webp";
@@ -35,7 +35,7 @@ const meta = {
 		>
 			<ol>
 				<li>
-					Read our <a href={base("/about/code-of-conduct")}>Code of Conduct</a>
+					Read our <a href={base(codeOfConductURL)}>Code of Conduct</a>
 				</li>
 				<li>
 					Read over the <a href={projectsURL}>Current Projects</a>

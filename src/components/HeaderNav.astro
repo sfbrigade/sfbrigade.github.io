@@ -1,18 +1,26 @@
 ---
 import NavLink from "./NavLink.astro";
 import NavDropdown from "./NavDropdown.astro";
-import { meetupURL } from "@/utils/urls";
+import {
+	meetupURL,
+	getStartedURL,
+	aboutURL,
+	blogURL,
+	codeOfConductURL,
+	donateURL,
+	projectsURL,
+} from "@/utils/urls";
 import HeaderLogo from "./HeaderLogo.astro";
 
 const routes = [
-	{ label: "Get Started", page: "/get-started" },
+	{ label: "Get Started", page: getStartedURL },
 	{ label: "Events", page: meetupURL },
-	{ label: "Projects", page: "/projects" },
-	{ label: "Blog", page: "/blog" },
-	{ label: "Donate", page: "/donate" },
-	{ label: "About", page: "/about",
+	{ label: "Projects", page: projectsURL },
+	{ label: "Blog", page: blogURL },
+	{ label: "Donate", page: donateURL },
+	{ label: "About", page: aboutURL,
 		pages: [
-			{ label: "Code of Conduct", page: "/about/code-of-conduct" }
+			{ label: "Code of Conduct", page: codeOfConductURL }
 		]
 	}
 ];
