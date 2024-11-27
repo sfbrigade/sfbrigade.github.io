@@ -2,6 +2,7 @@
 import { base } from "@/utils/urls";
 import Metadata from "@/components/Metadata.astro";
 import type { MetadataProp } from "@/components/Metadata.astro";
+import MetricsSnippet from "@/components/MetricsSnippet.astro";
 import "@picocss/pico";
 import "./global.css";
 
@@ -42,6 +43,7 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 		/>
 
 		<Metadata meta={meta} />
+		<MetricsSnippet />
 
 		<title>{pageTitle}</title>
 	</head>
