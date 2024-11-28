@@ -1,8 +1,10 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes and PRs targeting the default branch
   push:
+    branches: ["main"]
+  pull_request:
     branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -22,7 +24,7 @@ concurrency:
 
 env:
   BUILD_PATH: "." # default value when not using subfolders
-  # BUILD_PATH: subfolder
+  POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
 
 jobs:
   build:
@@ -74,6 +76,8 @@ jobs:
           path: ${{ env.BUILD_PATH }}/dist
 
   deploy:
+    # Only deploy from the main branch, or when manually triggered
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

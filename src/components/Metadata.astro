@@ -16,7 +16,7 @@ const { meta: {
 
 const tags = Object.entries(meta)
 	.map(([key, value]) => metaTag(key, value))
-	.join("\n");
+	.join("\n\t\t");
 const ogTags = Object.entries({
 	title,
 	url,
@@ -28,9 +28,9 @@ const ogTags = Object.entries({
 })
 	.map(([key, value]) => value ? ogMetaTag(key, value) : null)
 	.filter(Boolean)
-	.join("\n");
+	.join("\n\t\t");
 ---
 
 <link rel="canonical" href={String(url)} />
-<Fragment set:html={tags} />
-<Fragment set:html={ogTags} />
+		<Fragment set:html={tags} />
+		<Fragment set:html={ogTags} />
