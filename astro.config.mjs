@@ -5,7 +5,7 @@ export default defineConfig({
 	site: "https://www.sfcivictech.org",
 	base: "",
 	trailingSlash: "ignore",
-	compressHTML: false,
+	compressHTML: true,
 	integrations: [
 		icon({
 			iconDir: "src/assets/icons",
