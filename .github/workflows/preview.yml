@@ -10,6 +10,11 @@ on:
 
 concurrency: preview-${{ github.ref }}
 
+env:
+  BUILD_PATH: "." # default value when not using subfolders
+  POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+  ACTIONS_STEP_DEBUG: true
+
 jobs:
   deploy-preview:
     runs-on: ubuntu-20.04
@@ -42,7 +47,7 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: preview-${{ github.ref }}/${{ env.BUILD_PATH }}/${{ steps.detect-package-manager.outputs.lockfile }}
+          cache-dependency-path: ${{ env.BUILD_PATH }}/${{ steps.detect-package-manager.outputs.lockfile }}
 
       - name: Setup Pages
         id: pages
