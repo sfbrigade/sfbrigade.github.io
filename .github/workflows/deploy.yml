@@ -1,8 +1,10 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes and PRs targeting the default branch
   push:
+    branches: ["main"]
+  pull_request:
     branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -58,6 +60,7 @@ jobs:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
           cache-dependency-path: ${{ env.BUILD_PATH }}/${{ steps.detect-package-manager.outputs.lockfile }}
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -79,6 +82,7 @@ jobs:
           path: ${{ env.BUILD_PATH }}/dist
 
   deploy:
+    name: Deploy
     # Only deploy from the main branch, or when manually triggered
     if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     environment:
@@ -86,7 +90,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
-    name: Deploy
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
