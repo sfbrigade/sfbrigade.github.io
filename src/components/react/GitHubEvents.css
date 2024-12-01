@@ -1,0 +1,86 @@
+.github-events-container {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+.event-list {
+	display: flex;
+	overflow-x: auto;
+	gap: 16px;
+	padding: 16px;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none; /* Hide scrollbar for Firefox */
+	-ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+
+.event-list::-webkit-scrollbar {
+	display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.event-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	width: 200px;
+	flex-shrink: 0;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-decoration: none;
+	color: inherit;
+	scroll-snap-align: start;
+	padding: 16px;
+	text-align: center;
+}
+
+.event-card img {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	margin-bottom: 12px;
+}
+
+.event-info h4 {
+	margin: 8px 0;
+	font-size: 1rem;
+	color: #333;
+}
+
+.event-info p {
+	font-size: 0.875rem;
+	color: #555;
+	margin: 8px 0;
+}
+
+.timestamp {
+	font-size: 0.75rem;
+	color: #999;
+}
+
+.scroll-button {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	border: none;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+}
+
+.scroll-button.left {
+	left: 8px;
+}
+
+.scroll-button.right {
+	right: 8px;
+}
