@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import "./GitHubEvents.css";
+import styles from "./GitHubEvents.module.css";
 
 type GitHubEvent = {
 	handle: string;
@@ -99,6 +99,7 @@ export default function GitHubEvents({ org }: GitHubEventsProps) {
 	useEffect(() => {
 		const updateScrollButtons = () => {
 			const container = containerRef.current;
+
 			if (container) {
 				setCanScrollLeft(container.scrollLeft > 0);
 				setCanScrollRight(
@@ -108,6 +109,7 @@ export default function GitHubEvents({ org }: GitHubEventsProps) {
 		};
 
 		const container = containerRef.current;
+
 		if (container) {
 			container.addEventListener("scroll", updateScrollButtons);
 			updateScrollButtons();
@@ -117,8 +119,10 @@ export default function GitHubEvents({ org }: GitHubEventsProps) {
 
 	const scrollByPage = (direction: "left" | "right") => {
 		const container = containerRef.current;
+
 		if (container) {
 			const scrollAmount = container.clientWidth;
+
 			container.scrollBy({
 				left: direction === "left" ? -scrollAmount : scrollAmount,
 				behavior: "smooth",
@@ -131,16 +135,16 @@ export default function GitHubEvents({ org }: GitHubEventsProps) {
 	}
 
 	return (
-		<div className="github-events-container">
+		<div className={styles.githubEventsContainer}>
 			{canScrollLeft && (
 				<button
-					className="scroll-button left"
+					className={`${styles.scrollButton} ${styles.left}`}
 					onClick={() => scrollByPage("left")}
 				>
 					{"<"}
 				</button>
 			)}
-			<div className="event-list" ref={containerRef}>
+			<div className={styles.eventList} ref={containerRef}>
 				{events.map((event, index) => {
 					const { link, avatar, handle, message, timestamp } = event;
 
@@ -149,15 +153,15 @@ export default function GitHubEvents({ org }: GitHubEventsProps) {
 							href={link}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="event-card"
+							className={styles.eventCard}
 							key={index}
 						>
-							<div className="event-info">
+							<div className={styles.eventInfo}>
 								<img src={avatar} alt={`${handle}'s avatar`} />
 								<h4>{handle}</h4>
 								<p>{message}</p>
 							</div>
-							<span className="timestamp"
+							<span className={styles.timestamp}
 								title={new Date(timestamp).toLocaleString()}
 							>
 								{formatRelativeTime(timestamp)}
@@ -168,7 +172,7 @@ export default function GitHubEvents({ org }: GitHubEventsProps) {
 			</div>
 			{canScrollRight && (
 				<button
-					className="scroll-button right"
+					className={`${styles.scrollButton} ${styles.right}`}
 					onClick={() => scrollByPage("right")}
 				>
 					{">"}
