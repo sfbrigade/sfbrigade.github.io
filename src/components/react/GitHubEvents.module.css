@@ -18,48 +18,6 @@
 	display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
-.event-card {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-	width: 200px;
-	flex-shrink: 0;
-	background: #f9f9f9;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	text-decoration: none;
-	color: inherit;
-	scroll-snap-align: start;
-	padding: 16px;
-	text-align: center;
-}
-
-.event-card time {
-	font-size: 0.75rem;
-	color: #999;
-}
-
-.event-info img {
-	width: 64px;
-	height: 64px;
-	border-radius: 50%;
-	margin-bottom: 12px;
-}
-
-.event-info h4 {
-	margin: 8px 0;
-	font-size: 1rem;
-	color: #333;
-}
-
-.event-info p {
-	font-size: 0.875rem;
-	color: #555;
-	margin: 8px 0;
-}
-
 .scroll-button {
 	position: absolute;
 	top: 50%;

@@ -1,4 +1,5 @@
 export type GitHubEvent = {
+	repoName: string;
 	handle: string;
 	avatar: string;
 	message: string;
@@ -27,20 +28,28 @@ export async function getRecentEvents(
 			&& !event.actor.login.includes("dependabot")
 		)
 		.map((event: any) => {
-			const { actor, payload, type, created_at } = event;
+			const { actor, payload, type, created_at, repo: { name } } = event;
+			const repoName = name.replace(org + "/", "");
 
 			if (type === "PushEvent") {
 				return payload.commits.map((commit: any) => ({
-					handle: actor.login,
+					repoName,
+					handle: actor.display_login,
 					avatar: actor.avatar_url,
 					message: commit.message,
-					link: commit.url.replace("api.", "").replace("/repos", ""),
+					// you can get to the html_url value if you call another API, but just
+					// create that URL manually
+					link: commit.url
+						.replace("api.", "")
+						.replace("/repos", "")
+						.replace("/commits/", "/commit/"),
 					timestamp: created_at,
 				}));
 			}
 
 			if (type === "PullRequestEvent") {
 				return {
+					repoName,
 					handle: actor.login,
 					avatar: actor.avatar_url,
 					message: payload.pull_request.title,
