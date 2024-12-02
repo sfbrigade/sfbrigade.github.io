@@ -36,7 +36,12 @@
 	text-align: center;
 }
 
-.event-card img {
+.event-card time {
+	font-size: 0.75rem;
+	color: #999;
+}
+
+.event-info img {
 	width: 64px;
 	height: 64px;
 	border-radius: 50%;
@@ -53,11 +58,6 @@
 	font-size: 0.875rem;
 	color: #555;
 	margin: 8px 0;
-}
-
-.timestamp {
-	font-size: 0.75rem;
-	color: #999;
 }
 
 .scroll-button {
