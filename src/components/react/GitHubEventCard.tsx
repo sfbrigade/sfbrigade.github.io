@@ -2,6 +2,8 @@ import { intlFormatDistance } from "date-fns/intlFormatDistance";
 import type { GitHubEvent } from "@/components/react/ghEventsAPI.ts";
 import styles from "@/components/react/GitHubEventCard.module.css";
 
+const MaxTooltipLength = 350;
+
 interface GitHubEventProps {
 	event: GitHubEvent;
 	now?: Date;
@@ -12,6 +14,9 @@ export default function GitHubEventCard({
 	now = new Date() }: GitHubEventProps)
 {
 	const { repoName, link, avatar, handle, message, timestamp } = event;
+	const tooltip = message.length > MaxTooltipLength
+		? message.slice(0, MaxTooltipLength) + "..."
+		: message;
 
 	return (
 		<a
@@ -21,11 +26,11 @@ export default function GitHubEventCard({
 			target="_blank"
 			rel="noopener noreferrer"
 		>
-			<div className={styles.eventInfo}>
+			<header>
 				<img src={avatar} alt={`${handle}'s avatar`} />
 				<h3>{handle}</h3>
-				<p title={message}>{message}</p>
-			</div>
+			</header>
+			<p title={tooltip}>{message}</p>
 			<footer>
  				<h4>{repoName}</h4>
 				<time

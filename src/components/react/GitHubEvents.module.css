@@ -7,7 +7,7 @@
 .event-list {
 	display: flex;
 	overflow-x: auto;
-	gap: 16px;
+	gap: var(--pico-grid-column-gap);
 	padding-bottom: 16px;
 	scroll-snap-type: x mandatory;
 	scrollbar-width: none; /* Hide scrollbar for Firefox */
@@ -18,7 +18,7 @@
 	display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
-button.scroll-button {
+.scroll-button {
 	--dead-space: .25rem;
 	position: absolute;
 	top: 50%;
@@ -36,20 +36,20 @@ button.scroll-button {
 	justify-content: center;
 	align-items: center;
 	z-index: 10;
-}
 
-.scroll-button:hover {
-	color: hsla(0, 0%, 10%, .5);
-}
+	&:hover {
+		color: hsla(0, 0%, 10%, .5);
+	}
 
-.scroll-button:active {
-	color: hsla(0, 0%, 10%, .65);
-}
+	&:active {
+		color: hsla(0, 0%, 10%, .65);
+	}
 
-.scroll-button.left {
-	left: var(--dead-space);
-}
+	&.left {
+		left: var(--dead-space);
+	}
 
-.scroll-button.right {
-	right: var(--dead-space);
+	&.right {
+		right: var(--dead-space);
+	}
 }
