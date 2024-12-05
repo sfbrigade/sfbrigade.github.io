@@ -1,6 +1,7 @@
 .event-card {
 	aspect-ratio: 1;
 	width: 30%;
+	min-width: 30ch;
 	height: 100%;
 	text-decoration: none;
 	padding: 16px;
@@ -15,6 +16,7 @@
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	scroll-snap-align: start;
+	overflow: hidden;
 }
 
 .event-card img {

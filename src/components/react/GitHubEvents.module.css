@@ -18,16 +18,19 @@
 	display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
-.scroll-button {
+button.scroll-button {
+	--dead-space: .25rem;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	background: rgba(0, 0, 0, 0.5);
-	color: #fff;
+	width: calc(2rem + 2 * var(--dead-space));
+	height: calc(2rem + 2 * var(--dead-space));
+	padding: var(--dead-space);
+	color: hsla(0, 0%, 10%, .25);
+	transition: color 0.3s ease;
+	background: none;
 	border: none;
 	border-radius: 50%;
-	width: 40px;
-	height: 40px;
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
@@ -35,10 +38,18 @@
 	z-index: 10;
 }
 
+.scroll-button:hover {
+	color: hsla(0, 0%, 10%, .5);
+}
+
+.scroll-button:active {
+	color: hsla(0, 0%, 10%, .65);
+}
+
 .scroll-button.left {
-	left: 8px;
+	left: var(--dead-space);
 }
 
 .scroll-button.right {
-	right: 8px;
+	right: var(--dead-space);
 }

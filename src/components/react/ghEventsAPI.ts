@@ -37,8 +37,8 @@ export async function getRecentEvents(
 					handle: actor.display_login,
 					avatar: actor.avatar_url,
 					message: commit.message,
-					// you can get to the html_url value if you call another API, but just
-					// create that URL manually
+					// you can get to the html_url value if you call another API, but to
+					// make things easier, just create that URL manually
 					link: commit.url
 						.replace("api.", "")
 						.replace("/repos", "")
