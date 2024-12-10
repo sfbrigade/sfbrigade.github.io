@@ -1,0 +1,11 @@
+---
+import GitHubEvents from "@/components/react/GitHubEvents";
+import HomeSection from "@/components/HomeSection.astro";
+---
+
+<HomeSection title="In the Code">
+	<GitHubEvents
+		org="sfbrigade"
+		client:only="react"
+	/>
+</HomeSection>

@@ -1,25 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import NewsSummaryItem from "@/components/NewsSummaryItem.astro";
+import HomeSection from "@/components/HomeSection.astro";
 
-interface Props {
-	title?: string;
-}
-
-const { title = "In the News" } = Astro.props;
 const posts = await getCollection("blog");
 const recentPosts = posts.slice(-3).reverse();
 ---
 
-<section>
-	<h2>{title}</h2>
-	<div class="grid">
-		{recentPosts.map((post) => <NewsSummaryItem post={post} />)}
-	</div>
-</section>
-
-<style>
-	section {
-		margin-bottom: 0;
-	}
-</style>
+<HomeSection title="In the News">
+	{recentPosts.map((post) => <NewsSummaryItem post={post} />)}
+</HomeSection>

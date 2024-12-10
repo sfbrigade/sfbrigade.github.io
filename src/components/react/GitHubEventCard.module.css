@@ -1,0 +1,59 @@
+.event-card {
+	--sp1: calc(.25 * var(--pico-block-spacing));
+	--sp2: calc(2 * var(--sp1));
+	--sp4: calc(4 * var(--sp1));
+	aspect-ratio: 1;
+	width: 25%;
+	min-width: 28ch;
+	height: 100%;
+	text-decoration: none;
+	padding: var(--sp2);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: space-between;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: var(--pico-border-radius);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	scroll-snap-align: start;
+	overflow: hidden;
+
+	img {
+		width: calc(3 * var(--sp2));
+		height: calc(3 * var(--sp2));
+		border-radius: 50%;
+		margin-bottom: var(--sp1);
+	}
+
+	h3 {
+		margin: 0 0 var(--sp1) 0;
+		font-size: 1rem;
+	}
+
+	p {
+		font-size: smaller;
+		color: #555;
+		margin: 0;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	footer > * {
+		font-size: .75rem;
+	}
+
+	h4 {
+		margin: var(--sp1) 0 0;
+		color: #888;
+	}
+
+	time {
+		color: #999;
+	}
+}
