@@ -18,14 +18,19 @@
 	display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
+.button-container {
+	margin-top: .5rem;
+	width: 100%;
+	height: 2rem;
+	position: relative;
+}
+
 .scroll-button {
-	--dead-space: .25rem;
 	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	width: calc(2rem + 2 * var(--dead-space));
-	height: calc(2rem + 2 * var(--dead-space));
-	padding: var(--dead-space);
+	top: 0;
+	width: 2rem;
+	height: 2rem;
+	padding: 0;
 	color: hsla(0, 0%, 10%, .25);
 	transition: color 0.3s ease;
 	background: none;
@@ -35,7 +40,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: 10;
+	box-shadow: none;
 
 	&:hover {
 		color: hsla(0, 0%, 10%, .5);
@@ -46,10 +51,10 @@
 	}
 
 	&.left {
-		left: var(--dead-space);
+		left: 0;
 	}
 
 	&.right {
-		right: var(--dead-space);
+		right: 0;
 	}
 }
