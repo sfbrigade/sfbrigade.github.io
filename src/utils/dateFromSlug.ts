@@ -9,5 +9,7 @@ export function dateFromSlug(
 		return parseYMDToDate(leadingDate);
 	}
 
-	return null;
+	console.warn(`WARNING: dateFromSlug(): No date found in "${slug}"`);
+
+	return new Date(0);
 }

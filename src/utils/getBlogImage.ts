@@ -11,7 +11,7 @@ export async function getBlogImage(
 		return (await images[imagePath]()).default;
 	}
 
-	imagePath && console.error(`Missing image: ${imagePath}`);
+	console.error(`Missing image: ${imagePath}`);
 
 	return null;
 }

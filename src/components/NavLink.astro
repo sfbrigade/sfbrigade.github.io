@@ -18,7 +18,9 @@ const baseURL = import.meta.env.BASE_URL.replace(/\/$/, "");
 const currentPage = Astro.url.pathname
 	.replace(baseURL, "")
 	.replace(/(?<=\w)\/$/, "");
-const ariaCurrent = currentPage === href ? "page" : false;
+// set the attribute to undefined when it's not the current page so
+// aria-current="false" isn't added to the anchor
+const ariaCurrent = currentPage === href ? "page" : undefined;
 ---
 
 <a href={base(href)} class={className} aria-current={ariaCurrent}>

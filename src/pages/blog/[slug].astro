@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import NavLink from "@/components/NavLink.astro";
-import { dateFromSlug, getImageAsset, formatShortMDY } from "@/utils";
+import { getImageAsset, formatShortMDY } from "@/utils";
+import { getBlogPosts } from "@/content";
 
 export async function getStaticPaths()
 {
-	const posts = await getCollection("blog");
+	const posts = await getBlogPosts();
 
 	return posts.map((entry) => ({
 		params: {
@@ -22,19 +22,18 @@ export async function getStaticPaths()
 const {
 	entry: {
 		render,
-		slug,
 		data: {
 			title,
 			description,
 			image,
 			image_alt = "",
 			image_list_only,
-			date = dateFromSlug(slug),
+			date
 		}
 	}
 } = Astro.props;
 const { Content } = await render();
-const imageData = !image_list_only && await getImageAsset(image);
+const imageData = !image_list_only && image && await getImageAsset(image);
 const dateString = formatShortMDY(date);
 const meta = {
 	description,

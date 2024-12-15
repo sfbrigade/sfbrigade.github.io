@@ -1,9 +1,9 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { dateFromSlug, getBlogImage, formatShortMDY } from "@/utils";
+import { getBlogImage, formatShortMDY } from "@/utils";
+import type { Post } from "@/content";
 
 interface Props {
-	post: CollectionEntry<"blog">;
+	post: Post;
 }
 
 const {
@@ -12,11 +12,11 @@ const {
 		data: {
 			title,
 			image,
-			date = dateFromSlug(slug)
+			date
 		}
 	}
 } = Astro.props;
-const imageData = await getBlogImage(image);
+const imageData = image && await getBlogImage(image);
 const backgroundImageURL = imageData?.src ?? "";
 const postURL = "blog/" + slug;
 const dateString = formatShortMDY(date);

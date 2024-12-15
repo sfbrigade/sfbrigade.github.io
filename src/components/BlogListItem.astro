@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
 import DefaultThumbnail from "@/components/DefaultThumbnail.astro";
-import { base, dateFromSlug, getImageAsset, formatShortMDY } from "@/utils";
+import { base, getImageAsset, formatShortMDY } from "@/utils";
+import type { Post } from "@/content";
 
 interface Props {
-	post: CollectionEntry<"blog">;
+	post: Post;
 }
 
 // the thumbnail item is set to 14rem square, and the font size is 21px, so
@@ -20,12 +20,12 @@ const {
 			title,
 			image,
 			image_alt = "",
-			date = dateFromSlug(slug),
+			date,
 			descriptionHTML,
 		}
 	}
 } = Astro.props;
-const thumbnailImage = await getImageAsset(image);
+const thumbnailImage = image && await getImageAsset(image);
 const postURL = base("/blog/" + slug);
 const dateString = formatShortMDY(date);
 ---
