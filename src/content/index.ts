@@ -1,23 +1,9 @@
-import { getCollection, type CollectionEntry } from "astro:content";
-import { dateFromSlug } from "@/utils";
+import { getCollection } from "astro:content";
 
-type BlogEntry = CollectionEntry<"blog">;
-export type Post = Omit<BlogEntry, "data"> & { data: Omit<BlogEntry["data"], "date"> & { date: Date } };
-
-export async function getBlogPosts() : Promise<Post[]>
+export async function getBlogPosts()
 {
+	// sort the blog posts in reverse chronological order
 	return (await getCollection("blog"))
-		.map((post) => {
-			const { slug, data } = post;
-
-			// some posts don't have a date specified, so create one from the filename
-			if (!data.date) {
-				data.date = dateFromSlug(slug);
-			}
-
-			return post as Post;
-		})
-		// sort the blog posts in reverse chronological order
 		.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 }
 

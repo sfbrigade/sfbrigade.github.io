@@ -1,6 +1,7 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection, z } from "astro:content";
 import { marked } from "marked";
-import { parseYMD } from "@/utils";
+import { dateStringFromSlug, parseYMD } from "@/utils";
+import { globWithParser } from "@/content/globWithParser";
 
 const SFCTRepoPattern = /^[^/]+$/;
 const GHRepoPattern = /^[^/]+\/[^/]+$/;
@@ -10,7 +11,20 @@ const GHRepoBase = "https://github.com/";
 const assetPath = (directory: string, filename: string) => `/src/assets/${directory}/${filename}`;
 
 const blog = defineCollection({
-	type: "content", // v2.5.0 and later
+	loader: globWithParser({
+		pattern: "**/*.md",
+		base: "./src/content/blog",
+		parser: async (entry) => {
+			const { id, data } = entry;
+
+			if (!data.date) {
+				// cast the data object to keep TypeScript happy
+				(data as { date?: string }).date = dateStringFromSlug(id);
+			}
+
+			return entry;
+		}
+	}),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
@@ -35,8 +49,7 @@ const blog = defineCollection({
 				}
 
 				return date.toDate();
-			})
-			.optional(),
+			}),
 		image: z.string()
 			.transform((value) => {
 				if (!value) {

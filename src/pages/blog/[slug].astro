@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import NavLink from "@/components/NavLink.astro";
 import { getImageAsset, formatShortMDY } from "@/utils";
@@ -11,7 +12,7 @@ export async function getStaticPaths()
 
 	return posts.map((entry) => ({
 		params: {
-			slug: entry.slug
+			slug: entry.id
 		},
 		props: {
 			entry
@@ -21,7 +22,6 @@ export async function getStaticPaths()
 
 const {
 	entry: {
-		render,
 		data: {
 			title,
 			description,
@@ -32,7 +32,7 @@ const {
 		}
 	}
 } = Astro.props;
-const { Content } = await render();
+const { Content } = await render(Astro.props.entry);
 const imageData = !image_list_only && image && await getImageAsset(image);
 const dateString = formatShortMDY(date);
 const meta = {
