@@ -1,10 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import ProjectSummaryItem from "@/components/ProjectSummaryItem.astro";
+import { getProjects } from "@/content";
 import "@/utils/groupBy";
 
-const projects = (await getCollection("projects"));
+const projects = await getProjects();
 const projectsByStatus = Object.groupBy(projects, (project) => project.data.status);
 const meta = {
 	description: "Civic tech projects by, and for, San Francisco residents",

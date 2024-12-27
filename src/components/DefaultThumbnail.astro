@@ -1,13 +1,15 @@
+
 ---
 import { Icon } from "astro-icon/components";
 
 interface Props {
-	size?: number;
-	width?: number;
-	height?: number;
+	size?: number | string;
+	width?: number | string;
+	height?: number | string;
+	style?: string;
 }
 
-const { size, width, height } = Astro.props;
+const { size, width, height, style } = Astro.props;
 
 // below, set the viewBox to add 10% padding around the icon
 ---
@@ -17,6 +19,7 @@ const { size, width, height } = Astro.props;
 	size={size}
 	width={width}
 	height={height}
+	style={style}
 />
 
 <style>

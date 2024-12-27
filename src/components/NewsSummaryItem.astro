@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { dateFromSlug, getBlogImage, formatShortMDY } from "@/utils";
+import { getBlogImage, formatShortMDY } from "@/utils";
+import DefaultThumbnail from "@/components/DefaultThumbnail.astro";
 
 interface Props {
 	post: CollectionEntry<"blog">;
@@ -8,21 +9,23 @@ interface Props {
 
 const {
 	post: {
-		slug,
+		id,
 		data: {
 			title,
 			image,
-			date = dateFromSlug(slug)
+			date
 		}
 	}
 } = Astro.props;
-const imageData = await getBlogImage(image);
+const imageData = image && await getBlogImage(image);
 const backgroundImageURL = imageData?.src ?? "";
-const postURL = "blog/" + slug;
+const postURL = "blog/" + id;
 const dateString = formatShortMDY(date);
 ---
 
 <article style={`background-image: url(${backgroundImageURL})`}>
+	{ !imageData &&
+		<DefaultThumbnail size="100%" style="position: absolute;" />}
 	<div class="dimmer"></div>
 	<a href={postURL}>
 		<time datetime={date?.toISOString()}>{dateString}</time>

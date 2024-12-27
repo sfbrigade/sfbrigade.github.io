@@ -1,21 +1,18 @@
 import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
-import { dateFromSlug } from "@/utils";
+import { getBlogPosts } from "@/content";
 
 const DescriptionPattern = /\s*<p>(.*)<\/p>/;
 
 export async function GET(context)
 {
-	const blog = await getCollection("blog");
-	const items = blog.map((post) => {
+	const posts = await getBlogPosts();
+	const items = posts.map((post) => {
 		const {
 			slug,
 			data: {
 				title,
 				descriptionHTML,
-				// pubDate is required, but some posts don't have a date specified, so
-				// create one from the filename
-				date = dateFromSlug(slug),
+				date,
 			},
 		} = post;
 		// we want to include any embedded HTML, like anchors, but don't want the

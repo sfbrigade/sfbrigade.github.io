@@ -1,10 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import NewsSummaryItem from "@/components/NewsSummaryItem.astro";
 import HomeSection from "@/components/HomeSection.astro";
+import { getBlogPosts } from "@/content";
 
-const posts = await getCollection("blog");
-const recentPosts = posts.slice(-3).reverse();
+const posts = await getBlogPosts();
+const recentPosts = posts.slice(0, 3);
 ---
 
 <HomeSection title="In the News">

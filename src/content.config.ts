@@ -1,42 +1,62 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 import { marked } from "marked";
-import { parseYMD } from "@/utils";
+import {
+	dayjs,
+	dateStringFromSlug,
+	isValidYMD,
+	parseYMDToDate
+} from "@/utils";
+import { globWithParser } from "@/content/globWithParser";
 
 const SFCTRepoPattern = /^[^/]+$/;
 const GHRepoPattern = /^[^/]+\/[^/]+$/;
 const SFCTRepoBase = "https://github.com/sfbrigade/";
 const GHRepoBase = "https://github.com/";
+const MarkdownPattern = "**/[^_]*.md";
 
 const assetPath = (directory: string, filename: string) => `/src/assets/${directory}/${filename}`;
 
 const blog = defineCollection({
-	type: "content", // v2.5.0 and later
+	// this loader calls the parser function after the markdown has been parsed but
+	// before the data has been checked against the schema, which gives us a chance
+	// to extract the date from the slug if it's missing from the frontmatter.  the
+	// APIs aren't really documented, so it's possible this will break in a future
+	// rev of Astro.  if it does, we can go back to replacing missing dates in
+	// getBlogPosts().
+	loader: globWithParser({
+		pattern: MarkdownPattern,
+		base: "./src/content/blog",
+		parser: async (entry) => {
+			const { id, data } = entry;
+
+			if (!data.date) {
+				// cast the data object to keep TypeScript happy
+				(data as { date?: string }).date = dateStringFromSlug(id);
+			}
+
+			return entry;
+		}
+	}),
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		date: z.string()
-			.transform((value, ctx) => {
-				// we treat the date as a string instead of using the built-in date parsing
-				// so we can force it to be in PST, rather than the default UTC
-				const date = parseYMD(value);
+		// use preprocess() so we can handle either strings or Date objects
+		date: z.preprocess((value) => {
+			if (value instanceof Date && !isNaN(value.getTime())) {
+				// this value is from frontmatter of the form `date: YYYY-MM-DD`, with
+				// no quotes, which Astro parses as a UTC date.  convert that to a dayjs
+				// object, call utc() to force it back to UTC (since we've set the default
+				// timezone to PST), and then format its calendar date as a YMD string.
+				// we can then continue with string parsing logic below.
+				value = dayjs(value).utc().format("YYYY-MM-DD");
+			}
 
-				if (!date.isValid()) {
-					ctx.addIssue({
-						code: z.ZodIssueCode.custom,
-						message: "Invalid date",
-					});
-
-					// annoyingly, nothing about the file being validated here is available
-					// to this function.  if we could get the filename, we could pull a
-					// missing date out of the name.  given that we can't, we have to return
-					// undefined here and make any code that iterates over the collection
-					// call dateFromSlug(slug) for undefined dates, like rss.xml.js.
-					return z.NEVER;
-				}
-
-				return date.toDate();
-			})
-			.optional(),
+			return isValidYMD(value)
+				? parseYMDToDate(value)
+				: value;
+			},
+			z.date()),
 		image: z.string()
 			.transform((value) => {
 				if (!value) {
@@ -58,7 +78,10 @@ const blog = defineCollection({
 });
 
 const projects = defineCollection({
-	type: "content", // v2.5.0 and later
+	loader: glob({
+		pattern: MarkdownPattern,
+		base: "./src/content/projects"
+	}),
 	schema: z.object({
 		status: z.enum(["active", "inactive", "completed"]),
 		name: z.string(),
