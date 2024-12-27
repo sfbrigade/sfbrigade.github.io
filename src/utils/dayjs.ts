@@ -17,3 +17,5 @@ export const parseYMD = (date: string) => dayjs.tz(date);
 export const parseYMDToDate = (date: string) => parseYMD(date).toDate();
 export const formatShortMDY = (date: Date) => date ? dayjs.tz(date).format("MMM D, YYYY") : "";
 export const formatRSSDate = (date: Date) => date ? dayjs.tz(date).format("ddd, D MMM YYYY HH:mm:ss ZZ") : "";
+export const isValidYMD = (date: unknown): date is string =>
+	typeof date === "string" && dayjs(date, "YYYY-MM-DD", true).isValid();

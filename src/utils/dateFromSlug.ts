@@ -19,5 +19,5 @@ export function dateFromSlug(
 export function dateStringFromSlug(
 	slug: string)
 {
-	return slug.match(YMDPattern)?.[0];
+	return slug.match(YMDPattern)?.[0] || "UNKNOWN DATE";
 }
