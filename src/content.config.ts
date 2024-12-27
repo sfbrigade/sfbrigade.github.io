@@ -1,4 +1,5 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 import { marked } from "marked";
 import {
 	dayjs,
@@ -12,6 +13,7 @@ const SFCTRepoPattern = /^[^/]+$/;
 const GHRepoPattern = /^[^/]+\/[^/]+$/;
 const SFCTRepoBase = "https://github.com/sfbrigade/";
 const GHRepoBase = "https://github.com/";
+const MarkdownPattern = "**/[^_]*.md";
 
 const assetPath = (directory: string, filename: string) => `/src/assets/${directory}/${filename}`;
 
@@ -23,7 +25,7 @@ const blog = defineCollection({
 	// rev of Astro.  if it does, we can go back to replacing missing dates in
 	// getBlogPosts().
 	loader: globWithParser({
-		pattern: "**/*.md",
+		pattern: MarkdownPattern,
 		base: "./src/content/blog",
 		parser: async (entry) => {
 			const { id, data } = entry;
@@ -76,7 +78,10 @@ const blog = defineCollection({
 });
 
 const projects = defineCollection({
-	type: "content", // v2.5.0 and later
+	loader: glob({
+		pattern: MarkdownPattern,
+		base: "./src/content/projects"
+	}),
 	schema: z.object({
 		status: z.enum(["active", "inactive", "completed"]),
 		name: z.string(),
