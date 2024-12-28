@@ -22,6 +22,7 @@ export async function getRecentEvents(
 	}
 
 	const events = await response.json();
+	const eventKeys = new Set<string>();
 	const filteredEvents: GitHubEvent[] = events
 		.filter((event: any) =>
 			(event.type === "PushEvent" || event.type === "PullRequestEvent")
@@ -58,7 +59,19 @@ export async function getRecentEvents(
 				};
 			}
 		})
-		.flat();
+		.flat()
+		.filter((event: GitHubEvent) => {
+			const key = `${event.repoName}-${event.handle}-${event.message}`;
+
+			if (eventKeys.has(key)) {
+				// we've already seen a newer version of this event, so filter it out
+				return false;
+			}
+
+			eventKeys.add(key);
+
+			return true;
+		});
 
 	return filteredEvents;
 }

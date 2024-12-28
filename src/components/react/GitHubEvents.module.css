@@ -1,7 +1,8 @@
 .github-events-container {
 	position: relative;
 	width: 100%;
-	overflow: hidden;
+	display: flex;
+	align-items: center;
 }
 
 .event-list {
@@ -26,10 +27,10 @@
 }
 
 .scroll-button {
+	--button-size: 2rem;
 	position: absolute;
-	top: 0;
-	width: 2rem;
-	height: 2rem;
+	width: var(--button-size);
+	height: var(--button-size);
 	padding: 0;
 	color: hsla(0, 0%, 10%, .25);
 	transition: color 0.3s ease;
@@ -51,10 +52,14 @@
 	}
 
 	&.left {
-		left: 0;
+		left: calc(var(--button-size) * -1 - var(--pico-grid-column-gap));
 	}
 
 	&.right {
-		right: 0;
+		left: calc(100% + var(--pico-grid-column-gap));
+	}
+
+	@media (max-width: 900px) {
+		display: none;
 	}
 }

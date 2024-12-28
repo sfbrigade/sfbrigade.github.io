@@ -16,10 +16,13 @@
 	justify-content: space-between;
 	background: #f9f9f9;
 	border: 1px solid #ddd;
-	border-radius: var(--pico-border-radius);
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: background 0.3s ease;
 	scroll-snap-align: start;
 	overflow: hidden;
+
+	&:hover {
+		background: rgb(241, 241, 241);
+	}
 
 	img {
 		width: calc(3 * var(--sp2));

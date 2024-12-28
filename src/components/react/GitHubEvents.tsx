@@ -103,23 +103,27 @@ export default function GitHubEvents({
 
 	return (
 		<div className={styles.githubEventsContainer}>
+			{canScrollLeft &&
+				<ScrollButton
+					direction="left"
+					onClick={scrollByPage}
+				/>
+			}
 			<div className={styles.eventList} ref={containerRef}>
-				{events.map((event) => <GitHubEventCard event={event} now={now} />)}
-			</div>
-			<div className={styles.buttonContainer}>
-				{canScrollLeft &&
-					<ScrollButton
-						direction="left"
-						onClick={scrollByPage}
+				{events.map((event) =>
+					<GitHubEventCard
+						key={event.link}
+						event={event}
+						now={now}
 					/>
-				}
-				{canScrollRight &&
-					<ScrollButton
-						direction="right"
-						onClick={scrollByPage}
-					/>
-				}
+				)}
 			</div>
+			{canScrollRight &&
+				<ScrollButton
+					direction="right"
+					onClick={scrollByPage}
+				/>
+			}
 		</div>
 	);
 }
