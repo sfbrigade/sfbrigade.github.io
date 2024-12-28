@@ -13,11 +13,12 @@ export const pitchProjectURL = "https://docs.google.com/forms/d/e/1FAIpQLSexe5qv
 export const newsletterURL = "https://eepurl.com/bfFkF9";
 export const memberFormURL = "https://c4sf.me/member";
 export const slackURL = "https://c4sf.me/slack";
+export const zoomURL = "https://c4sf.me/zoom";
+export const githubURL = "https://github.com/sfbrigade";
 export const meetupURL = "https://www.meetup.com/sfcivictech/";
-export const twitterURL = "https://twitter.com/sfcivictech";
-export const githubURL = "https://github.com/sfcivictech";
 export const facebookURL = "https://www.facebook.com/sfcivictech";
 export const linkedinURL = "https://www.linkedin.com/company/sfcivictech/";
-export const zoomURL = "https://c4sf.me/zoom";
+export const blueskyURL = "https://bsky.app/profile/sfcivictech.bsky.social";
+export const twitterURL = "https://twitter.com/sfbrigade";
 
 export const base = (url: string) => url.startsWith("/") ? (import.meta.env.BASE_URL + url).replace("//", "/") : url;

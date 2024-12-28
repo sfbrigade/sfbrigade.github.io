@@ -18,6 +18,7 @@
     "@astrojs/react": "^4.1.2",
     "@astrojs/rss": "^4.0.10",
     "@iconify-json/fa": "^1.2.1",
+    "@iconify-json/fa6-brands": "^1.2.5",
     "@picocss/pico": "^2.0.6",
     "@stylistic/eslint-plugin": "^2.12.1",
     "@stylistic/stylelint-config": "^2.0.0",

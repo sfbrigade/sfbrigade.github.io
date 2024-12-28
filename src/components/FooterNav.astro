@@ -9,6 +9,7 @@ import {
 	pitchProjectURL,
 	proposeTalkURL,
 	slackURL,
+	blueskyURL,
 	twitterURL
 } from "@/utils/urls";
 
@@ -32,12 +33,13 @@ const columns = [
 	[
 		"Elsewhere",
 		[
-			[githubURL, "github", true],
-			[slackURL, "slack", true],
-			[meetupURL, "meetup", true],
-			[twitterURL, "twitter", true],
-			[facebookURL, "facebook", true],
-			[linkedinURL, "linkedin", true],
+			[githubURL, "github", "fa:github"],
+			[slackURL, "slack", "fa:slack"],
+			[meetupURL, "meetup", "fa:meetup"],
+			[blueskyURL, "bluesky", "fa6-brands:bluesky"],
+			[facebookURL, "facebook", "fa:facebook"],
+			[linkedinURL, "linkedin", "fa:linkedin"],
+			[twitterURL, "twitter", "fa6-brands:twitter"],
 		],
 	],
 ] as const;
@@ -48,10 +50,10 @@ const columns = [
 		<nav aria-label="Footer">
 			<h3>{cat}</h3>
 			<ul>
-				{links.map(([page, label, needsIcon]) => (
+				{links.map(([page, label, iconName]) => (
 					<li>
-						{needsIcon &&
-							<Icon name={"fa:" + label} class="icon" />
+						{iconName &&
+							<Icon name={iconName} class="icon" />
 						}
 						<NavLink href={page}>
 							{label}
@@ -92,7 +94,15 @@ const columns = [
 
 	li {
 		padding: .15em 0;
-		display: block;
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+	}
+
+	/* Pico CSS adds a ::before with content: "" for li's, which adds space on the
+		 left that we don't want */
+	li::before {
+		content: none;
 	}
 
 	/* force the a's in the NavLink to have no extra spacing */

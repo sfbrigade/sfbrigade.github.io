@@ -14,13 +14,16 @@ export default defineConfig({
 			include: {
 				// Include only specific `fa` icons in the bundle
 				fa: [
-					"twitter",
 					"facebook",
 					"linkedin",
 					"github",
 					"slack",
 					"meetup",
 					"external-link",
+				],
+				"fa6-brands": [
+					"bluesky",
+					"twitter",
 				],
 			},
 		}),
