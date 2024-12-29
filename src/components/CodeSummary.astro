@@ -1,11 +1,17 @@
 ---
-import GitHubEvents from "@/components/react/GitHubEvents";
+import GitHubEvents from "@/components/GitHubEvents/GitHubEvents";
 import HomeSection from "@/components/HomeSection.astro";
+
+const id = "in-the-code";
 ---
 
-<HomeSection title="In the Code">
+<HomeSection
+	title="In the Code"
+	id={id}
+>
 	<GitHubEvents
 		org="sfbrigade"
+		sectionID={id}
 		client:only="react"
 	/>
 </HomeSection>

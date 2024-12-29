@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import GitHubEventCard from "@/components/react/GitHubEventCard.tsx";
-import { getRecentEvents, type GitHubEvent } from "@/components/react/ghEventsAPI.ts";
-import styles from "./GitHubEvents.module.css";
+import React, { use, useCallback, useEffect, useRef, useState } from "react";
+import GitHubEventCard from "@/components/GitHubEvents/GitHubEventCard.tsx";
+import { getRecentEvents } from "@/components/GitHubEvents/getRecentEvents.ts";
+import styles from "./GitHubEventsList.module.css";
 
 const LeftArrow = () => (
 	<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 512 512">
@@ -39,25 +39,18 @@ function ScrollButton({
 	);
 }
 
-interface GitHubEventsProps {
+interface GitHubEventsListProps {
 	org: string;
 }
 
-export default function GitHubEvents({
-	org }: GitHubEventsProps)
+export default function GitHubEventsList({
+	org }: GitHubEventsListProps)
 {
-	const [events, setEvents] = useState<GitHubEvent[]>([]);
-	const [error, setError] = useState<string | null>(null);
+	const events = use(getRecentEvents(org));
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
 	const [canScrollRight, setCanScrollRight] = useState(false);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const now = new Date();
-
-	useEffect(() => {
-		getRecentEvents(org)
-			.then(setEvents)
-			.catch((err) => setError(err.message));
-	}, [org]);
 
 	useEffect(() => {
 		function updateScrollButtons()
@@ -94,12 +87,6 @@ export default function GitHubEvents({
 			});
 		}
 	}, []);
-
-	if (error) {
-		console.error("GitHubEvents error", error);
-
-		return null;
-	}
 
 	return (
 		<div className={styles.githubEventsContainer}>

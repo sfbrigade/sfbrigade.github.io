@@ -1,0 +1,21 @@
+@keyframes pulse {
+	0%, 100% {
+		color: #eee;
+	}
+	50% {
+		color: #ccc;
+	}
+}
+
+.loader {
+	width: 100%;
+	aspect-ratio: 3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	svg {
+		height: 40%;
+		animation: pulse 2s infinite;
+	}
+}

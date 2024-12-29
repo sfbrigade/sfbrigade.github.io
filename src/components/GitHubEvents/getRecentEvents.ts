@@ -7,7 +7,7 @@ export type GitHubEvent = {
 	timestamp: string;
 };
 
-export async function getRecentEvents(
+async function fetchRecentEvents(
 	org: string): Promise<GitHubEvent[]>
 {
 	const apiUrl = `https://api.github.com/orgs/${org}/events`;
@@ -21,9 +21,10 @@ export async function getRecentEvents(
 		throw new Error(`Failed to fetch events: ${response.statusText}`);
 	}
 
-	const events = await response.json();
 	const eventKeys = new Set<string>();
-	const filteredEvents: GitHubEvent[] = events
+	const events = await response.json();
+
+	return events
 		.filter((event: any) =>
 			(event.type === "PushEvent" || event.type === "PullRequestEvent")
 			&& !event.actor.login.includes("dependabot")
@@ -72,6 +73,24 @@ export async function getRecentEvents(
 
 			return true;
 		});
-
-	return filteredEvents;
 }
+
+function withCache<T>(
+	func: (key: string) => Promise<T>): (key: string) => Promise<T>
+{
+  const cache = new Map<string, Promise<T>>();
+
+  return (key) => {
+    if (!cache.has(key)) {
+			// in theory, we probably want to catch errors here, delete the key and
+			// then re-throw the error, but the .catch() runs outside the rendering
+			// flow, so the ErrorBoundary won't catch the error.  since we hide the
+			// whole component on an error anyway, don't worry about it for now.
+      cache.set(key, func(key));
+    }
+
+    return cache.get(key)!;
+  };
+}
+
+export const getRecentEvents = withCache(fetchRecentEvents);

@@ -1,6 +1,6 @@
 import { intlFormatDistance } from "date-fns/intlFormatDistance";
-import type { GitHubEvent } from "@/components/react/ghEventsAPI.ts";
-import styles from "@/components/react/GitHubEventCard.module.css";
+import type { GitHubEvent } from "@/components/GitHubEvents/getRecentEvents.ts";
+import styles from "@/components/GitHubEvents/GitHubEventCard.module.css";
 
 const MaxTooltipLength = 350;
 
