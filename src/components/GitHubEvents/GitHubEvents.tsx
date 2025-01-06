@@ -1,6 +1,7 @@
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import GitHubEventsList from "./GitHubEventsList";
 import ErrorBoundary from "./ErrorBoundary";
+import { getRecentEvents } from "./getRecentEvents";
 import styles from "./GitHubEvents.module.css";
 
 const GitHubIcon = () => (
@@ -24,6 +25,8 @@ export default function GitHubEvents({
 	org,
 	sectionID = "" }: GitHubEventsProps)
 {
+	const [eventsPromise] = useState(() => getRecentEvents(org));
+
 	const handleError = () => {
 		const section = document.getElementById(sectionID);
 
@@ -38,7 +41,7 @@ export default function GitHubEvents({
 	return (
 		<ErrorBoundary onError={handleError}>
 			<Suspense fallback={<Loader />}>
-				<GitHubEventsList org={org} />
+				<GitHubEventsList eventsPromise={eventsPromise} />
 			</Suspense>
 		</ErrorBoundary>
 	);

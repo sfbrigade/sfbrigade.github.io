@@ -1,16 +1,73 @@
+const EventProcessors = [
+	{
+		type: "PushEvent",
+		process: (event: any, repo: string) => {
+			const { actor, payload, created_at } = event;
+
+			return payload.commits.map((commit: any) => ({
+				id: commit.sha,
+				repo,
+				username: actor.display_login,
+				avatar: actor.avatar_url,
+				message: commit.message,
+				// you can get to the html_url value if you call another API, but to
+				// make things easier, just create that URL manually
+				link: commit.url
+					.replace("api.", "")
+					.replace("/repos", "")
+					.replace("/commits/", "/commit/"),
+				timestamp: created_at,
+			}));
+		}
+	},
+	{
+		type: "PullRequestEvent",
+		process: (event: any, repo: string) => {
+			const { id, actor, payload: { action, pull_request }, created_at } = event;
+
+			return {
+				id,
+				repo,
+				username: actor.login,
+				avatar: actor.avatar_url,
+				message: `PR ${action}: ${pull_request.title}`,
+				link: pull_request.html_url,
+				timestamp: created_at,
+			};
+		}
+	},
+	{
+		type: "IssuesEvent",
+		process: (event: any, repo: string) => {
+			const { id, actor, payload: { action, issue }, created_at } = event;
+
+			return {
+				id,
+				repo,
+				username: actor.login,
+				avatar: actor.avatar_url,
+				message: `Issue ${action}: ${issue.title}`,
+				link: issue.html_url,
+				timestamp: created_at,
+			};
+		}
+	},
+];
+
 export type GitHubEvent = {
-	repoName: string;
-	handle: string;
+	id: string;
+	repo: string;
+	username: string;
 	avatar: string;
 	message: string;
 	link: string;
 	timestamp: string;
 };
 
-async function fetchRecentEvents(
+export async function getRecentEvents(
 	org: string): Promise<GitHubEvent[]>
 {
-	const apiUrl = `https://api.github.com/orgs/${org}/events`;
+	const apiUrl = `https://api.github.com/orgs/${org}/events?per_page=100`;
 	const headers = {
 		Accept: "application/vnd.github.v3+json",
 		"User-Agent": "GitHub-Events-Collector",
@@ -25,44 +82,32 @@ async function fetchRecentEvents(
 	const events = await response.json();
 
 	return events
-		.filter((event: any) =>
-			(event.type === "PushEvent" || event.type === "PullRequestEvent")
-			&& !event.actor.login.includes("dependabot")
-		)
 		.map((event: any) => {
-			const { actor, payload, type, created_at, repo: { name } } = event;
-			const repoName = name.replace(org + "/", "");
+			if (!event.actor.login.includes("dependabot")) {
+				const { type, repo: { name } } = event;
+				const repo = name.replace(org + "/", "");
 
-			if (type === "PushEvent") {
-				return payload.commits.map((commit: any) => ({
-					repoName,
-					handle: actor.display_login,
-					avatar: actor.avatar_url,
-					message: commit.message,
-					// you can get to the html_url value if you call another API, but to
-					// make things easier, just create that URL manually
-					link: commit.url
-						.replace("api.", "")
-						.replace("/repos", "")
-						.replace("/commits/", "/commit/"),
-					timestamp: created_at,
-				}));
+				for (const processor of EventProcessors) {
+					if (processor.type === type) {
+						const result = processor.process(event, repo);
+
+						if (result) {
+							return result;
+						}
+					}
+				}
 			}
 
-			if (type === "PullRequestEvent") {
-				return {
-					repoName,
-					handle: actor.login,
-					avatar: actor.avatar_url,
-					message: payload.pull_request.title,
-					link: payload.pull_request.html_url,
-					timestamp: created_at,
-				};
-			}
+			return null;
 		})
 		.flat()
 		.filter((event: GitHubEvent) => {
-			const key = `${event.repoName}-${event.handle}-${event.message}`;
+			if (!event) {
+				// filter out the events that didn't match any of the processors
+				return false;
+			}
+
+			const key = `${event.repo}-${event.username}-${event.message}`;
 
 			if (eventKeys.has(key)) {
 				// we've already seen a newer version of this event, so filter it out
@@ -74,23 +119,3 @@ async function fetchRecentEvents(
 			return true;
 		});
 }
-
-function withCache<T>(
-	func: (key: string) => Promise<T>): (key: string) => Promise<T>
-{
-  const cache = new Map<string, Promise<T>>();
-
-  return (key) => {
-    if (!cache.has(key)) {
-			// in theory, we probably want to catch errors here, delete the key and
-			// then re-throw the error, but the .catch() runs outside the rendering
-			// flow, so the ErrorBoundary won't catch the error.  since we hide the
-			// whole component on an error anyway, don't worry about it for now.
-      cache.set(key, func(key));
-    }
-
-    return cache.get(key)!;
-  };
-}
-
-export const getRecentEvents = withCache(fetchRecentEvents);

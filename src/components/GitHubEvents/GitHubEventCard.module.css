@@ -2,10 +2,11 @@
 	--sp1: calc(.25 * var(--pico-block-spacing));
 	--sp2: calc(2 * var(--sp1));
 	--sp4: calc(4 * var(--sp1));
-	aspect-ratio: 1;
-	width: 25%;
+	--border-width: 1px;
+	/* subtract one border width from the container's total width so the rightmost card doesn't get clipped */
+	width: calc((100% - 2 * var(--pico-grid-column-gap) - var(--border-width)) / 3);
 	min-width: 28ch;
-	height: 100%;
+	aspect-ratio: 1;
 	text-decoration: none;
 	padding: var(--sp2);
 	text-align: center;
@@ -15,18 +16,19 @@
 	align-items: center;
 	justify-content: space-between;
 	background: #f9f9f9;
-	border: 1px solid #ddd;
+	border: var(--border-width) solid #ddd;
 	transition: background 0.3s ease;
 	scroll-snap-align: start;
 	overflow: hidden;
+	word-break: break-word;
 
 	&:hover {
 		background: rgb(241, 241, 241);
 	}
 
 	img {
-		width: calc(3 * var(--sp2));
-		height: calc(3 * var(--sp2));
+		width: calc(3.5 * var(--sp2));
+		aspect-ratio: 1;
 		border-radius: 50%;
 		margin-bottom: var(--sp1);
 	}
@@ -38,6 +40,7 @@
 
 	p {
 		font-size: smaller;
+		line-height: 1.35;
 		color: #555;
 		margin: 0;
 		display: -webkit-box;
@@ -49,6 +52,7 @@
 
 	footer > * {
 		font-size: .75rem;
+		line-height: 1;
 	}
 
 	h4 {

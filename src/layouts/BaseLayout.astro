@@ -1,18 +1,23 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import Page from "@/layouts/Page.astro";
 import HeaderNav from "@/components/HeaderNav.astro";
 import FooterNav from "@/components/FooterNav.astro";
 import type { MetadataProp } from "@/components/Metadata.astro";
-import type { MarkdownContent } from "astro";
 
 interface Props {
 	title: string;
 	header?: string;
 	meta?: MetadataProp;
-	frontmatter?: MarkdownContent;
+	frontmatter?: CollectionEntry<"blog">["data"] | CollectionEntry<"projects">["data"];
 }
 
-const { frontmatter, title = frontmatter?.title, header = title, meta } = Astro.props;
+const {
+	meta,
+	frontmatter,
+	title = (frontmatter?.title ?? frontmatter?.name),
+	header = title,
+} = Astro.props;
 let pageMeta = meta;
 
 if (frontmatter && !meta?.description) {

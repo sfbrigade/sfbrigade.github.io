@@ -1,6 +1,6 @@
-import React, { use, useCallback, useEffect, useRef, useState } from "react";
-import GitHubEventCard from "@/components/GitHubEvents/GitHubEventCard.tsx";
-import { getRecentEvents } from "@/components/GitHubEvents/getRecentEvents.ts";
+import { use, useCallback, useEffect, useRef, useState } from "react";
+import GitHubEventCard from "./GitHubEventCard";
+import { type GitHubEvent } from "./getRecentEvents";
 import styles from "./GitHubEventsList.module.css";
 
 const LeftArrow = () => (
@@ -40,13 +40,13 @@ function ScrollButton({
 }
 
 interface GitHubEventsListProps {
-	org: string;
+	eventsPromise: Promise<GitHubEvent[]>
 }
 
 export default function GitHubEventsList({
-	org }: GitHubEventsListProps)
+	eventsPromise }: GitHubEventsListProps)
 {
-	const events = use(getRecentEvents(org));
+	const events = use(eventsPromise);
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
 	const [canScrollRight, setCanScrollRight] = useState(false);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -99,7 +99,7 @@ export default function GitHubEventsList({
 			<div className={styles.eventList} ref={containerRef}>
 				{events.map((event) =>
 					<GitHubEventCard
-						key={event.link}
+						key={event.id}
 						event={event}
 						now={now}
 					/>
