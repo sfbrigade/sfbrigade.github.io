@@ -1,6 +1,6 @@
 import { use, useCallback, useEffect, useRef, useState } from "react";
 import GitHubEventCard from "./GitHubEventCard";
-import { type GitHubEvent } from "./getRecentEvents";
+import { type GitHubEvent } from "./getRecentEvents.tsx";
 import styles from "./GitHubEventsList.module.css";
 
 const LeftArrow = () => (
@@ -96,7 +96,7 @@ export default function GitHubEventsList({
 					onClick={scrollByPage}
 				/>
 			}
-			<div className={styles.eventList} ref={containerRef}>
+			<div className={styles.scrollContainer} ref={containerRef}>
 				{events.map((event) =>
 					<GitHubEventCard
 						key={event.id}

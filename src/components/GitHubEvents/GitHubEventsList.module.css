@@ -3,27 +3,21 @@
 	width: 100%;
 	display: flex;
 	align-items: center;
+	container-type: inline-size;
 }
 
-.event-list {
+.scroll-container {
+	flex: 1;
 	display: flex;
-	overflow-x: auto;
 	gap: var(--pico-grid-column-gap);
-	padding-bottom: 16px;
+	overflow-x: auto;
 	scroll-snap-type: x mandatory;
 	scrollbar-width: none; /* Hide scrollbar for Firefox */
 	-ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
-}
 
-.event-list::-webkit-scrollbar {
-	display: none; /* Hide scrollbar for Chrome/Safari */
-}
-
-.button-container {
-	margin-top: .5rem;
-	width: 100%;
-	height: 2rem;
-	position: relative;
+	&::-webkit-scrollbar {
+		display: none; /* Hide scrollbar for Chrome/Safari */
+	}
 }
 
 .scroll-button {
@@ -32,8 +26,9 @@
 	width: var(--button-size);
 	height: var(--button-size);
 	padding: 0;
-	color: hsla(0, 0%, 10%, .25);
-	transition: color 0.3s ease;
+	color: var(--pico-secondary-background);
+	opacity: .25;
+	transition: opacity 0.3s ease;
 	background: none;
 	border: none;
 	border-radius: 50%;
@@ -44,11 +39,11 @@
 	box-shadow: none;
 
 	&:hover {
-		color: hsla(0, 0%, 10%, .5);
+		opacity: .5;
 	}
 
 	&:active {
-		color: hsla(0, 0%, 10%, .65);
+		opacity: .75;
 	}
 
 	&.left {

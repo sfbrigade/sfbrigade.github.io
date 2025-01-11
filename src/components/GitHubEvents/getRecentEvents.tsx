@@ -30,7 +30,8 @@ const EventProcessors = [
 				repo,
 				username: actor.login,
 				avatar: actor.avatar_url,
-				message: `PR ${action}: ${pull_request.title}`,
+				message: <><strong>PR {action}:</strong> {pull_request.title}</>,
+				tooltip: `PR ${action}: ${pull_request.title}`,
 				link: pull_request.html_url,
 				timestamp: created_at,
 			};
@@ -46,7 +47,8 @@ const EventProcessors = [
 				repo,
 				username: actor.login,
 				avatar: actor.avatar_url,
-				message: `Issue ${action}: ${issue.title}`,
+				message: <><strong>Issue {action}:</strong> {issue.title}</>,
+				tooltip: `Issue ${action}: ${issue.title}`,
 				link: issue.html_url,
 				timestamp: created_at,
 			};
@@ -60,6 +62,7 @@ export type GitHubEvent = {
 	username: string;
 	avatar: string;
 	message: string;
+	tooltip?: string;
 	link: string;
 	timestamp: string;
 };
@@ -98,19 +101,16 @@ export async function getRecentEvents(
 				}
 			}
 
+			// this is an event we want to ignore
 			return null;
 		})
 		.flat()
 		.filter((event: GitHubEvent) => {
-			if (!event) {
-				// filter out the events that didn't match any of the processors
-				return false;
-			}
+			const key = event?.id;
 
-			const key = `${event.repo}-${event.username}-${event.message}`;
-
-			if (eventKeys.has(key)) {
-				// we've already seen a newer version of this event, so filter it out
+			if (!event || eventKeys.has(key)) {
+				// filter out the events that didn't match any of the processors or that
+				// we've already seen
 				return false;
 			}
 

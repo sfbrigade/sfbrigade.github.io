@@ -1,13 +1,17 @@
-.event-card {
+a.event-card {
 	--sp1: calc(.25 * var(--pico-block-spacing));
 	--sp2: calc(2 * var(--sp1));
 	--sp4: calc(4 * var(--sp1));
 	--border-width: 1px;
-	/* subtract one border width from the container's total width so the rightmost card doesn't get clipped */
-	width: calc((100% - 2 * var(--pico-grid-column-gap) - var(--border-width)) / 3);
-	min-width: 28ch;
+	--muted-text-opacity: .75;
+	/* subtract one border width from the container's total width so the rightmost card doesn't get clipped.  use the cqw unit to get the width of the container, which is
+	 .scroll-container, and not our immediate parent, whose width is the full width
+	 of all the cards. */
+	width: calc((100cqw - 2 * var(--pico-grid-column-gap) - var(--border-width)) / 3);
+	min-width: 22ch;
 	aspect-ratio: 1;
 	text-decoration: none;
+	color: var(--pico-muted-color);
 	padding: var(--sp2);
 	text-align: center;
 	display: flex;
@@ -15,15 +19,19 @@
 	flex-shrink: 0;
 	align-items: center;
 	justify-content: space-between;
-	background: #f9f9f9;
-	border: var(--border-width) solid #ddd;
+	background: var(--pico-form-element-background-color);
+	border: var(--border-width) solid var(--pico-card-border-color);
 	transition: background 0.3s ease;
 	scroll-snap-align: start;
 	overflow: hidden;
 	word-break: break-word;
 
+	@media (max-width: 900px) {
+		aspect-ratio: unset;
+	}
+
 	&:hover {
-		background: rgb(241, 241, 241);
+		background: var(--pico-dropdown-hover-background-color);
 	}
 
 	img {
@@ -41,13 +49,17 @@
 	p {
 		font-size: smaller;
 		line-height: 1.35;
-		color: #555;
+		color: var(--pico-muted-color);
 		margin: 0;
 		display: -webkit-box;
 		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 		text-overflow: ellipsis;
+
+		strong {
+			opacity: var(--muted-text-opacity);
+		}
 	}
 
 	footer > * {
@@ -57,10 +69,10 @@
 
 	h4 {
 		margin: var(--sp1) 0 0;
-		color: #888;
+		opacity: var(--muted-text-opacity);
 	}
 
 	time {
-		color: #999;
+		opacity: var(--muted-text-opacity);
 	}
 }

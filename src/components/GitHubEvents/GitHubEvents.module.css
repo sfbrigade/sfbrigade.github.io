@@ -1,13 +1,14 @@
 @keyframes pulse {
 	0%, 100% {
-		color: #eee;
+		opacity: .05;
 	}
 	50% {
-		color: #ccc;
+		opacity: .4;
 	}
 }
 
 .loader {
+	color: var(--pico-secondary-background);
 	width: 100%;
 	aspect-ratio: 3;
 	display: flex;

@@ -1,7 +1,7 @@
 import { Suspense, useState } from "react";
 import GitHubEventsList from "./GitHubEventsList";
 import ErrorBoundary from "./ErrorBoundary";
-import { getRecentEvents } from "./getRecentEvents";
+import { getRecentEvents } from "./getRecentEvents.tsx";
 import styles from "./GitHubEvents.module.css";
 
 const GitHubIcon = () => (
