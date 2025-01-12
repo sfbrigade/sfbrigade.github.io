@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Card from "@/components/Card.astro";
+import CodeSummary from "@/components/CodeSummary.astro";
 import NewsSummary from "@/components/NewsSummary.astro";
 import HackNightHero from "@/components/HackNightHero.astro";
 import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
@@ -53,10 +54,15 @@ import newsletter from "@/assets/home/megaphone.png";
 	</div>
 
 	<NewsSummary />
+	<CodeSummary />
 </BaseLayout>
 
 <style>
 	.grid {
 		margin-bottom: var(--pico-block-spacing-vertical);
+	}
+
+	section:last-of-type {
+		margin-bottom: 0;
 	}
 </style>

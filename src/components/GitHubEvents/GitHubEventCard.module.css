@@ -1,4 +1,4 @@
-a.event-card {
+.event-card {
 	--sp1: calc(.25 * var(--pico-block-spacing));
 	--sp2: calc(2 * var(--sp1));
 	--sp4: calc(4 * var(--sp1));
@@ -25,10 +25,6 @@ a.event-card {
 	scroll-snap-align: start;
 	overflow: hidden;
 	word-break: break-word;
-
-	@media (max-width: 900px) {
-		aspect-ratio: unset;
-	}
 
 	&:hover {
 		background: var(--pico-dropdown-hover-background-color);
@@ -74,5 +70,13 @@ a.event-card {
 
 	time {
 		opacity: var(--muted-text-opacity);
+	}
+
+	@media (max-width: 1024px) {
+		aspect-ratio: unset;
+
+		p {
+			-webkit-line-clamp: 2;
+		}
 	}
 }
