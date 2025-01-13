@@ -11,7 +11,7 @@
 	min-width: 22ch;
 	aspect-ratio: 1;
 	text-decoration: none;
-	color: var(--pico-muted-color);
+	--pico-color: var(--pico-muted-color);
 	padding: var(--sp2);
 	text-align: center;
 	display: flex;
@@ -28,6 +28,8 @@
 
 	&:hover {
 		background: var(--pico-dropdown-hover-background-color);
+		/* prevent the text from getting the anchor hover color */
+		--pico-color: var(--pico-muted-color);
 	}
 
 	img {
@@ -45,7 +47,6 @@
 	p {
 		font-size: smaller;
 		line-height: 1.35;
-		color: var(--pico-muted-color);
 		margin: 0;
 		display: -webkit-box;
 		-webkit-line-clamp: 3;

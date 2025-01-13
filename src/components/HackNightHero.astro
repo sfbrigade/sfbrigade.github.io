@@ -56,6 +56,7 @@ import hackNight from "@/assets/home/hack-night.png";
 
 	.info h2 {
 		--pico-color: var(--color-accent);
+		margin-bottom: calc(2 * var(--pico-typography-spacing-vertical));
 	}
 
 	.image {
@@ -65,5 +66,15 @@ import hackNight from "@/assets/home/hack-night.png";
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+	}
+
+	@media only screen and (max-width: 768px) {
+		section {
+			flex-direction: column;
+		}
+
+		.info {
+			padding-inline: calc(2 * var(--pico-block-spacing));
+		}
 	}
 </style>
