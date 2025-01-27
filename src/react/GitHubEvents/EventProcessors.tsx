@@ -1,9 +1,10 @@
 export const EventProcessors = [
 	{
 		type: "PushEvent",
-		process: (
+		process(
 			event: any,
-			repo: string) => {
+			repo: string)
+		{
 			const { actor, payload, created_at } = event;
 
 			return payload.commits.map((commit: any) => ({
@@ -24,9 +25,10 @@ export const EventProcessors = [
 	},
 	{
 		type: "PullRequestEvent",
-		process: (
+		process(
 			event: any,
-			repo: string) => {
+			repo: string)
+		{
 			const {
 				id,
 				actor,
@@ -48,9 +50,10 @@ export const EventProcessors = [
 	},
 	{
 		type: "IssuesEvent",
-		process: (
+		process(
 			event: any,
-			repo: string) => {
+			repo: string)
+		{
 			const { id, actor, payload: { action, issue }, created_at } = event;
 
 			return {

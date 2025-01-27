@@ -1,5 +1,5 @@
 import { use, useCallback, useEffect, useRef, useState } from "react";
-import GitHubEventCard from "./GitHubEventCard";
+import GitHubEventCard from "./GitHubEventCard.tsx";
 import { type GitHubEvent } from "./getRecentEvents.tsx";
 import styles from "./GitHubEventsList.module.css";
 

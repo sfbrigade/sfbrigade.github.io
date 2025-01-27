@@ -1,7 +1,10 @@
 ---
-import GitHubEvents from "@/components/GitHubEvents/GitHubEvents";
+import GitHubEvents from "@/react/GitHubEvents/GitHubEvents";
 import HomeSection from "@/components/HomeSection.astro";
 
+// we'll pass the ID of the section to the GitHubEvents component so that it can
+// hide the whole section in case there's an error, rather than leave a broken
+// component on the page
 const id = "in-the-code";
 ---
 

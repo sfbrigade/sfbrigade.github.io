@@ -1,6 +1,6 @@
 import { Suspense, useState } from "react";
-import GitHubEventsList from "./GitHubEventsList";
-import ErrorBoundary from "./ErrorBoundary";
+import GitHubEventsList from "./GitHubEventsList.tsx";
+import ErrorBoundary from "./ErrorBoundary.tsx";
 import { getRecentEvents } from "./getRecentEvents.tsx";
 import styles from "./GitHubEvents.module.css";
 
