@@ -19,8 +19,8 @@ remodeled a to create a kind of developer-in-the-round presentation space.
 
 ## Sandra Zuniga
 
-The keynote speaker was Sandra Zuniga, Director of the [Fix-It Team](http://sfmayor.org/neighborhoods/fix-it-team) for
-the City of San Francisco [@fixitteamsf](http://twitter.com/fixitteamsf). Appointed by the late Mayor Ed Lee in 2016 to
+The keynote speaker was Sandra Zuniga, Director of the [Fix-It Team](https://sfmayor.org/neighborhoods/fix-it-team) for
+the City of San Francisco [@fixitteamsf](https://twitter.com/fixitteamsf). Appointed by the late Mayor Ed Lee in 2016 to
 lead his Safe and Clean Neighborhoods Promise Initiative, Sandra’s work brings both qualitative and quantitative data
 together to make sound decisions to improve neighborhood quality of life. As Fix-It Director, Sandra works with seven
 different City agencies to implement both quick and sustainable fixes in San Francisco, and has championed a number of
@@ -34,14 +34,14 @@ Sandra was followed by two lightning talks from the open data community.
 
 ![Photo of Open Street Map slide](../../assets/blog/osm.jpg)
 
-[Samuel](http://twitter.com/mapping_sam) provided different ways to participate in the largest open, crowdsourced mapping project:
-[OpenStreetMap.org](http://OpenStreetMap.org)
+[Samuel](https://twitter.com/mapping_sam) provided different ways to participate in the largest open, crowdsourced mapping project:
+[OpenStreetMap.org](https://OpenStreetMap.org)
 
 ### Simon Willison on Datasette
 
 Every wanted to know how many ficus trees where in your neighborhood? In the city? Simon Willison from Datasette took
 the list of trees in DataSF, which includes 190k line CSV file, and published an interface that makes the data
-searchable: https://sf-tree-search.now.sh/ This is how [@simonw](http://twitter.com/simonw) did it:
+searchable: https://sf-tree-search.now.sh/ This is how [@simonw](https://twitter.com/simonw) did it:
 https://github.com/simonw/sf-tree-search#how-i-built-this
 
 ![Photo of Simon](../../assets/blog/datasette.jpg)
@@ -49,7 +49,7 @@ https://github.com/simonw/sf-tree-search#how-i-built-this
 ### Unconference sessions
 
 Several workshops and unconference sessions filled out the rest of the data.  Volunteers helped with the Open Data
-census moving San Francisco to #1 on the census. [@synchronouscity](http://twitter.com/synchronouscity) led two sessions
+census moving San Francisco to #1 on the census. [@synchronouscity](https://twitter.com/synchronouscity) led two sessions
 exploring San Francisco’s open data portal and how to make use of the open data portal, including tips, tricks and
 secrets.
 

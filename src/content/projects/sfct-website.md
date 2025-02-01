@@ -11,7 +11,7 @@ technologies:
 repos:
   - sfbrigade.github.io
 slack:
-  name: "#proj-website-2024"
+  name: "#proj-sfcivictech-website"
   url: https://sfbrigade.slack.com/archives/C051X1WTCVA
 website: https://sfcivictech.org
 ---

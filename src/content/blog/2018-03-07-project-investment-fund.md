@@ -76,8 +76,8 @@ to applications that best incorporate the following characteristics:
 
 # Ready to Apply?
 
-* [Read This to Prepare](http://bit.ly/2F2jEVo)
-* [Then Apply Here](http://bit.ly/2ozWGi8)
+* [Read This to Prepare](https://bit.ly/2F2jEVo)
+* [Then Apply Here](https://bit.ly/2ozWGi8)
 
 # Questions?
 

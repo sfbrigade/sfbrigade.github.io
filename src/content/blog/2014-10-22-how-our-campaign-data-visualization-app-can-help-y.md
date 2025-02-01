@@ -33,4 +33,4 @@ Some other interesting findings:
 
 [Coming Soon]
 
-Find out all this, and more, before the election with the San Francisco Brigade’s Campaign Data Visualization App. Access it here: [http://election-sf.herokuapp.com/](http://election-sf.herokuapp.com/).
+Find out all this, and more, before the election with the San Francisco Brigade’s Campaign Data Visualization App. Access it here: [https://election-sf.herokuapp.com/](https://election-sf.herokuapp.com/).

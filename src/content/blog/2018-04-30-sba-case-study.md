@@ -59,11 +59,11 @@ description: >
   </tr>
   <tr>
     <th scope="row">Webpage:</th>
-    <td><a href="http://sites.google.com/site/cfasbadash/data-map">http://sites.google.com/site/cfasbadash/data-map</a></td>
+    <td><a href="https://sites.google.com/site/cfasbadash/data-map">https://sites.google.com/site/cfasbadash/data-map</a></td>
   </tr>
   <tr>
     <th scope="row">MVP Prototype:</th>
-    <td><a href="http://ec2-54-175-133-20.compute-1.amazonaws.com/app/">http://ec2-54-175-133-20.compute-1.amazonaws.com/app/</a></td>
+    <td><a href="https://ec2-54-175-133-20.compute-1.amazonaws.com/app/">https://ec2-54-175-133-20.compute-1.amazonaws.com/app/</a></td>
   </tr>
 </table>
 
@@ -195,7 +195,7 @@ There are 4 main components to it:
 
 You can view our low-fidelity prototype here:
 
-[http://ec2-54-175-133-20.compute-1.amazonaws.com/app/](http://ec2-54-175-133-20.compute-1.amazonaws.com/app/)
+[https://ec2-54-175-133-20.compute-1.amazonaws.com/app/](https://ec2-54-175-133-20.compute-1.amazonaws.com/app/)
 
 ![Prototype screenshot](../../assets/blog/image11.png)
 

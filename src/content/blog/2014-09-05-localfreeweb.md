@@ -14,7 +14,7 @@ If you couldn’t access the internet right now, how would you figure out where 
 
 Many organizations and institutions offer access to free, internet-enabled computers, but there is no way for someone to find these locations without being online already. In short, you need the internet to find the internet.
 
-On August 15, Code for San Francisco, a Code for America brigade, launched <a href="http://LocalFreeWeb.org">LocalFreeWeb</a> to bring access to free, internet-enabled computers (not just Wi-Fi) to anyone who can send a text message. This effort to bring the benefits of the Web to low-income, mono-lingual, and other disadvantaged people is designed not only to give access to the Web, but also to generate interest among folks who might not know why they would use the internet in the first place.
+On August 15, Code for San Francisco, a Code for America brigade, launched <a href="https://LocalFreeWeb.org">LocalFreeWeb</a> to bring access to free, internet-enabled computers (not just Wi-Fi) to anyone who can send a text message. This effort to bring the benefits of the Web to low-income, mono-lingual, and other disadvantaged people is designed not only to give access to the Web, but also to generate interest among folks who might not know why they would use the internet in the first place.
 
 
 
@@ -56,13 +56,13 @@ Now that we’ve built and tested this first version, we will be spreading the w
 
 ### How you can help
 
-1. Go to <a href="http://LocalFreeWeb.org">LocalFreeWeb.org</a> and let us know how/if it works!
+1. Go to <a href="https://LocalFreeWeb.org">LocalFreeWeb.org</a> and let us know how/if it works!
 2. Use the form on the website to add more locations
 3. Print out <a href="https://drive.google.com/file/d/0B3Rg0E6TFEMCZGRGS1BtbzZxWjg/edit?usp=sharing">fliers</a> and post them near bus stops in your neighborhood
 4. Check out the code and make suggestions
 5. Use the open source code to build a version for your city (and tell us about it!)
 
-If you’re in San Francisco and interested in helping build LocalFreeWeb, we’d love to see you at <a href="http://www.meetup.com/Code-for-San-Francisco-Civic-Hack-Night/">Code for San Francisco civic hack nights</a>.
+If you’re in San Francisco and interested in helping build LocalFreeWeb, we’d love to see you at <a href="https://www.meetup.com/Code-for-San-Francisco-Civic-Hack-Night/">Code for San Francisco civic hack nights</a>.
 
 ### We need people with all types of skills:
 - Writing

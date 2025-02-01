@@ -7,7 +7,7 @@ authors:
   - Francis Li
 ---
 
-Hello! I’m Francis, a member of SF Civic Tech's current leadership team. Our organization was founded in [2013](https://web.archive.org/web/20131217073736/http://codeforsanfrancisco.org/) as Code for San Francisco. We were part of the Code for America Brigade Network, a nationwide collection of volunteer groups united by a common goal:  leveraging technology to help government work better and tackle local civic issues.
+Hello! I’m Francis, a member of SF Civic Tech's current leadership team. Our organization was founded in [2013](https://web.archive.org/web/20131217073736/https://codeforsanfrancisco.org/) as Code for San Francisco. We were part of the Code for America Brigade Network, a nationwide collection of volunteer groups united by a common goal:  leveraging technology to help government work better and tackle local civic issues.
 
 I joined as a volunteer in 2014 and still remember the excitement and energy of those early years, where every week during Civic Hack Night like-minded community members would gather together in-person, sharing food and knowledge and applying them in common purpose towards building new technology for our city.
 

@@ -10,7 +10,7 @@ description: >-
 pin_to_frontpage: yes
 image_list_only: false
 ---
-The [<dev/Mission>](http://devmission.org/) Code for San Francisco Fellowship began with a desire of the C4SF organizing team to increase the diversity of the communities that participate in our weekly hack night. The team thought they could make a contribution to the movement to bring tech training to underserved communities, and also contribute to tech equity, by tapping into the large pool of volunteer knowledge and skills that shows up at our weekly hack nights.
+The [<dev/Mission>](https://devmission.org/) Code for San Francisco Fellowship began with a desire of the C4SF organizing team to increase the diversity of the communities that participate in our weekly hack night. The team thought they could make a contribution to the movement to bring tech training to underserved communities, and also contribute to tech equity, by tapping into the large pool of volunteer knowledge and skills that shows up at our weekly hack nights.
 
 We thought we might be more effective if we partnered with a community-based organization and found a great fit with <dev/Mission>. CEO Leo Sosa describes <dev/Mission> as “A nonprofit organization that aims to train untapped young adults for careers in tech who can bring prosperity to underserved communities”. <dev/Mission’s> technology training programs teach young adults ages 16-24, skills in IoT, hardware/software, coding and critical career skills. <dev/Mission> has also opened up STEM training labs for K-12 and a digital music program for ages 14-21. [Microsoft](https://blogs.microsoft.com/bayarea/), a sponsor to <dev/Mission>, agreed to support the Fellows who completed the Fellowship with a stipend.
 
@@ -24,7 +24,7 @@ The Fellows spent the next six months working with Francis Li, their <dev/Missio
 
 The Fellowship was a learning experience for both the Fellows and the Code for San Francisco Team. It may have been a bit ambitious to learn basic product development, UX design and coding, but the Fellows really impressed us with their dedication.
 
-**Project Name:** [The View](http://sfviews.org/)  \
+**Project Name:** [The View](https://sfviews.org/)  \
 **Project Lead:** [Edgar Catalan](https://www.linkedin.com/in/edgarcatalan10/), with C4SF intern [Sebastian Meyer](https://www.linkedin.com/in/sebastian-meyer-95a03a188/)
 
 **Problem Description:** The youth today struggles to be informed in any way about what is going in our city with news and technology. I was seeing a pattern that we get bored quickly because of lack of interest, not understanding it, or something is too long to read.
@@ -35,7 +35,7 @@ _How was the experience of taking a project from concept to prototype? Anything 
 
 **Edgar:** The experience was memorable because I took time from school to draw the User Interface for the app and then implementing it to HTML, CSS, and Javascript. What surprised me was how much I enjoyed building a dynamic web application. I remember first starting the fellowship I felt that I wasn't going to have fun but ended up being memorable.
 
-**Sebastian:** [The View](http://sfviews.org/) was an excellent learning experience. I realized through the process of conceptualizing the front end with Edgar and developing the content that I had a knack for journalism and basic content creation, but also content management, which is a skillset that will be useful for me to know about in my future career. I was surprised by how tedious it was to find content that was worthy of the site, as so much tech news is rather bland and inconsequential, with the occasional interesting and/or controversial news piece sticking out. This added an additional challenge to making the content of the site interesting and fresh, and stretched my writing and researching skills.
+**Sebastian:** [The View](https://sfviews.org/) was an excellent learning experience. I realized through the process of conceptualizing the front end with Edgar and developing the content that I had a knack for journalism and basic content creation, but also content management, which is a skillset that will be useful for me to know about in my future career. I was surprised by how tedious it was to find content that was worthy of the site, as so much tech news is rather bland and inconsequential, with the occasional interesting and/or controversial news piece sticking out. This added an additional challenge to making the content of the site interesting and fresh, and stretched my writing and researching skills.
 
 _Do you have any plans now that the Fellowship is done, do you have plans to keep developing the project?_
 
@@ -70,4 +70,4 @@ _Do you have any plans now that the Fellowship is done, do you have plans to kee
 Daniel and Ajmal worked directly with [Pestec](https://www.pestec.com/), Property Managers, Resident Service Coordinators and public housing residents to design a web app that enables residents to report pest issues in their housing. While they didn't work directly with Brigade volunteers they did use basic civic design principles of designing with the residents, not for the residents of public housing, to help identify those issues that concerned them.
 
 **About the author:**\
-[Allen Meyer](http://allenmeyerdesign.com/) has been volunteering with the Brigade since 2013 and is currently a visual designer for the San Francisco Human Services Agency.
+[Allen Meyer](https://allenmeyerdesign.com/) has been volunteering with the Brigade since 2013 and is currently a visual designer for the San Francisco Human Services Agency.

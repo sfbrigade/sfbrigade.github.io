@@ -27,8 +27,8 @@ Participants were given a crash course on how legal decisions have created the c
 
 The first presentation was by Jesse Mainardi, Deputy Executive Director, SF Ethics Commission. Jesse lead us through a brief history of campaign finances and the legal decisions that given rise to SuperPACS:
 
-* [Buckley v. Valeo](http://en.wikipedia.org/wiki/Buckley_v._Valeo)
-* [Citizens United v. FEC](http://en.wikipedia.org/wiki/Citizens_United_v._FEC)
+* [Buckley v. Valeo](https://en.wikipedia.org/wiki/Buckley_v._Valeo)
+* [Citizens United v. FEC](https://en.wikipedia.org/wiki/Citizens_United_v._FEC)
 
 <!--
 {% include youtube.html id="Y6Sg24MQ-aE" caption="Video of Jesse's talk" %}

@@ -69,7 +69,7 @@ Now that we have a live beta of the website, our next steps are:
 
 Excited about this path forward and want to contribute? Or do you have questions, feedback or concerns? Drop into
 [#website](https://sfbrigade.slack.com/app_redirect?channel=website) on our Slack (if you aren't on Slack, you can
-join via [c4sf.me/slack](http://c4sf.me/slack)) or drop us a line at
+join via [c4sf.me/slack](https://c4sf.me/slack)) or drop us a line at
 [hello@codeforsanfrancisco.org](mailto:hello@codeforsanfrancisco.org).
 
 If you want to be involved in the organization of the brigade and decisions like this? Drop by our next monthly [open
@@ -83,7 +83,7 @@ managing BrigadeHub. We would not be here today without his vision for expanding
 contribute and curate content on our site. While BrigadeHub has been retired, this vision will carry on through our
 work.
 
-Also thank you to [Jason Lally](http://jasonlally.com/) for heavily contributing to this discussion and for the
+Also thank you to [Jason Lally](https://jasonlally.com/) for heavily contributing to this discussion and for the
 migration of projects to the new site.
 
 Lastly, thank you to [ChiHackNight](https://chihacknight.org/) for providing the initial template and site design which

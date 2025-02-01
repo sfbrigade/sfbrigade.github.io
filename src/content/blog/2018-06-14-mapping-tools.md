@@ -38,8 +38,8 @@ This is a brand new tool. [The Geographic Geometry Generator (3G) ](https://civi
 point or shape on a map and it gives you geometry and coordinates. It is incredibly useful for people without GIS skills
 to create, name, and save custom geometry. Want to gerrymander your voting district? This is the tool for you.
 
-These tools are built using [Leaflet Draw,](http://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html) an open
-source GIS toolbar plugin and [JS library](http://leafletjs.com/) for interactive maps.
+These tools are built using [Leaflet Draw,](https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html) an open
+source GIS toolbar plugin and [JS library](https://leafletjs.com/) for interactive maps.
 
 Currently there are two projects using these tools namely [SF Crime Data](https://sfcrimedata.org/) and [SFMTA Board
 Meetings Resolution Database.](https://civic.geosphere.io/maps/sfmta-resolutions/) We hope that more Brigade members
