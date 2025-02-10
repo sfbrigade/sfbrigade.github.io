@@ -4,9 +4,10 @@
 	--sp4: calc(4 * var(--sp1));
 	--border-width: 1px;
 	--muted-text-opacity: .75;
-	/* subtract one border width from the container's total width so the rightmost card doesn't get clipped.  use the cqw unit to get the width of the container, which is
-	 .scroll-container, and not our immediate parent, whose width is the full width
-	 of all the cards. */
+	/* subtract one border width from the container's total width so the rightmost
+	 card doesn't get clipped.  use the cqw unit to get the width of the container,
+	 which is .scroll-container, and not our immediate parent, whose width is the
+	 full width of all the cards. */
 	width: calc((100cqw - 2 * var(--pico-grid-column-gap) - var(--border-width)) / 3);
 	min-width: 22ch;
 	aspect-ratio: 1;

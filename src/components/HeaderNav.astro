@@ -123,8 +123,8 @@ const routes = [
 				width: 1rem;
 			}
 
-			/* annoyingly, the PostCSS nesting plugin can't seem to handle pseudoelements
-				 like &::before, even though it's valid CSS.  so we have to write out span. */
+			/* annoyingly, the PostCSS nesting plugin can't seem to handle pseudoelements */
+			/* like &::before, even though it's valid CSS.  so we have to write out span. */
 			span::before,
 			span::after {
 				content: "";
@@ -134,6 +134,7 @@ const routes = [
 				height: 100%;
 				position: absolute;
 			}
+
 			span::before {
 				top: 6px;
 			}

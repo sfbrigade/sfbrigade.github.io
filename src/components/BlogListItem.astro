@@ -8,9 +8,10 @@ interface Props {
 	post: CollectionEntry<"blog">;
 }
 
-// the thumbnail item is set to 14rem square, and the font size is 21px, so
-// double that to support a max 2X image
-const ThumbnailWidth = 14 * 21;
+// the thumbnail item is set to 14rem square, and the largest base font size is
+// 21px, so double that to support a max 2X image
+const ThumbnailUnits = 14;
+const ThumbnailWidth = ThumbnailUnits * 21;
 const Thumbnail2X = 2 * ThumbnailWidth;
 
 const {
@@ -28,6 +29,7 @@ const {
 const thumbnailImage = image && await getImageAsset(image);
 const postURL = base("/blog/" + id);
 const dateString = formatShortMDY(date);
+const thumbnailSize = `${ThumbnailUnits}rem`;
 ---
 
 <li>
@@ -40,7 +42,7 @@ const dateString = formatShortMDY(date);
 						sizes=`${Thumbnail2X}px`
 						inferSize
 					/>
-				: <DefaultThumbnail size={ThumbnailWidth} />
+				: <DefaultThumbnail size={thumbnailSize} />
 			}
 	</a>
 	<div>
@@ -51,7 +53,7 @@ const dateString = formatShortMDY(date);
 	</div>
 </li>
 
-<style>
+<style define:vars={{ thumbnailSize }}>
 	li {
 		margin: var(--pico-block-spacing-vertical) 0 0 0;
 		display: flex;
@@ -63,8 +65,8 @@ const dateString = formatShortMDY(date);
 		aspect-ratio: 1;
 		object-fit: cover;
 		object-position: center;
-		width: 14rem;
-		height: 14rem;
+		width: var(--thumbnailSize);
+		height: var(--thumbnailSize);
 	}
 
 	li > div {
