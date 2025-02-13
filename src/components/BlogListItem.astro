@@ -29,6 +29,10 @@ const {
 const thumbnailImage = image && await getImageAsset(image);
 const postURL = base("/blog/" + id);
 const dateString = formatShortMDY(date);
+// ideally we'd pass this thumbnailSize string into the style tag for the
+// thumbnail width/height below, but doing so causes the var to be added in a
+// style attribute on every single element in this component, which is pretty
+// ugly.  for now, just hardcode 14rem in the style.
 const thumbnailSize = `${ThumbnailUnits}rem`;
 ---
 
@@ -53,7 +57,7 @@ const thumbnailSize = `${ThumbnailUnits}rem`;
 	</div>
 </li>
 
-<style define:vars={{ thumbnailSize }}>
+<style>
 	li {
 		margin: var(--pico-block-spacing-vertical) 0 0 0;
 		display: flex;
@@ -65,8 +69,8 @@ const thumbnailSize = `${ThumbnailUnits}rem`;
 		aspect-ratio: 1;
 		object-fit: cover;
 		object-position: center;
-		width: var(--thumbnailSize);
-		height: var(--thumbnailSize);
+		width: 14rem;
+		height: 14rem;
 	}
 
 	li > div {
