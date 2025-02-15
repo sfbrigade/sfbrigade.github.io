@@ -25,8 +25,8 @@
     "@stylistic/stylelint-plugin": "^3.1.2",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
-    "@typescript-eslint/parser": "^8.23.0",
-    "astro": "^5.2.5",
+    "@typescript-eslint/parser": "^8.24.0",
+    "astro": "^5.3.0",
     "astro-icon": "=1.1.1",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
@@ -40,6 +40,6 @@
     "stylelint": "^16.14.1",
     "stylelint-config-html": "^1.1.0",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.23.0"
+    "typescript-eslint": "^8.24.0"
   }
 }
