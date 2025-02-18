@@ -8,6 +8,7 @@ import {
 	parseYMDToDate
 } from "@/utils";
 import { globWithParser } from "@/content/globWithParser";
+import { minutes } from "@/content/minutes/collection";
 
 const SFCTRepoPattern = /^[^/]+$/;
 const GHRepoPattern = /^[^/]+\/[^/]+$/;
@@ -23,7 +24,7 @@ const blog = defineCollection({
 	// to extract the date from the slug if it's missing from the frontmatter.  the
 	// APIs aren't really documented, so it's possible this will break in a future
 	// rev of Astro.  if it does, we can go back to replacing missing dates in
-	// getBlogPosts().
+	// getBlogPosts() instead, by making the date in the schema optional.
 	loader: globWithParser({
 		pattern: MarkdownPattern,
 		base: "./src/content/blog",
@@ -131,4 +132,5 @@ const projects = defineCollection({
 export const collections = {
 	blog,
 	projects,
+	minutes,
 };

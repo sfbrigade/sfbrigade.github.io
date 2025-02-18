@@ -25,6 +25,9 @@ concurrency:
 env:
   BUILD_PATH: "." # default value when not using subfolders
   POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+  BOARD_MINUTES_DRIVE_ID: ${{ secrets.BOARD_MINUTES_DRIVE_ID }}
+  BOARD_MINUTES_DRIVE_FOLDER: ${{ secrets.BOARD_MINUTES_DRIVE_FOLDER }}
+  BOARD_MINUTES_DRIVE_KEYS_JSON: ${{ secrets.BOARD_MINUTES_DRIVE_KEYS_JSON }}
 
 jobs:
   build:

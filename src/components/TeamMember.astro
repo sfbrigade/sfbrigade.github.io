@@ -12,7 +12,11 @@ const { name, title, image } = Astro.props;
 ---
 
 <figure>
-	<Image src={image} alt={name} />
+	<Image
+		src={image}
+		alt={name}
+		loading="eager"
+	/>
 	<figcaption>
 		<h3>{name}</h3>
 		<h4>{title}</h4>
