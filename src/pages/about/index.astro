@@ -1,25 +1,18 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import TeamList from "@/components/TeamList.astro";
+import { getMinutes } from "@/content";
 
 const meta = {
 	description: "SF Civic Tech is a group of people, first and foremost. We also call ourselves technologists, planners, designers, doers, thinkers, and activists. Each week, we actively work together to improve the City and County of San Francisco, often using technology to support our efforts. By connecting people, organizations, resources, tools, and networks to build for San Francisco, we will all thrive."
 };
+const minutes = await getMinutes();
 ---
 
 <BaseLayout title="About"
 	header="About SF Civic Tech"
 	meta={meta}
 >
-	<p>
-		SF Civic Tech was originally founded in 2013 as Code for San Francisco, part
-		of the Code for America Brigade Network. After the
-		<a href="https://codeforamerica.org/news/reflections-on-the-brigade-networks-next-chapter/">sunsetting
-		of the Code for America Brigade Program</a> in 2023, the organization renamed
-		itself to SF Civic Tech in 2024. SF Civic Tech is a member of the
-		<a href="https://www.civictechnologists.org/">Alliance of Civic Technologists</a>.
-	</p>
-
 	<p>
 		SF Civic Tech is a group of people, first and foremost. We also call ourselves
 		technologists, planners, designers, doers, thinkers, and activists. Each week,
@@ -38,9 +31,33 @@ const meta = {
 		thoughts. We fail without their involvement.
 	</p>
 
-	<h2 id="core-team">Meet the Team</h2>
+	<p>
+		SF Civic Tech was originally founded in 2013 as Code for San Francisco, part
+		of the Code for America Brigade Network. After the
+		<a href="https://codeforamerica.org/news/reflections-on-the-brigade-networks-next-chapter/">sunsetting
+		of the Code for America Brigade Program</a> in 2023, the organization renamed
+		itself to SF Civic Tech in 2024 and became an independent 501(c)3 tax-exempt
+		non-profit.  SF Civic Tech is also a member of the
+		<a href="https://www.civictechnologists.org/">Alliance of Civic Technologists</a>.
+	</p>
+
+	<h2 id="core-team">Meet the Board</h2>
 
 	<TeamList />
+
+	{minutes.length > 0 &&
+		<h3 id="minutes">Minutes of Quarterly Board Meetings</h3>
+
+		<ul>
+			{minutes.map(({ data: { url, year, quarter, isDraft }}) => (
+				<li>
+					<a href={url} target="_blank">
+						{year} Q{quarter} {isDraft ? "(Draft)" : ""}
+					</a>
+				</li>
+			))}
+		</ul>
+	}
 
 	<h2 id="code-of-conduct">Code of Conduct</h2>
 
@@ -72,3 +89,9 @@ const meta = {
 		Read the full Code of Conduct
 	</a>
 </BaseLayout>
+
+<style>
+	a[role="button"] {
+		margin-top: calc(.5 * var(--pico-block-spacing-vertical));
+	}
+</style>

@@ -17,3 +17,10 @@ export async function getProjects()
 				? 1
 				: 0);
 }
+
+export async function getMinutes()
+{
+	// sort the minutes in reverse chronological order
+	return (await getCollection("minutes"))
+		.sort((a, b) => b.data.year - a.data.year || b.data.quarter - a.data.quarter);
+}
