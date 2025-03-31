@@ -1,0 +1,187 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { base } from "@/utils/urls";
+import HeaderNav from "@/pages/beta/components/HeaderNav.astro";
+import FooterNav from "@/components/FooterNav.astro";
+import type { MetadataProp } from "@/components/Metadata.astro";
+import Metadata from "@/components/Metadata.astro";
+import MetricsSnippet from "@/components/MetricsSnippet.astro";
+import "@/styles/global.css";
+
+interface Props {
+	title: string;
+	header?: string;
+	meta?: MetadataProp;
+	frontmatter?: CollectionEntry<"blog">["data"] | CollectionEntry<"projects">["data"];
+}
+
+const {
+	meta,
+	frontmatter,
+	title: propTitle = "",
+	header = propTitle,
+} = Astro.props;
+
+let pageMeta = meta;
+let title = propTitle;
+
+// Handle frontmatter title/name based on the type of content
+if (frontmatter) {
+	// For blog posts, use the title property
+	if ("title" in frontmatter) {
+		title = frontmatter.title;
+	}
+	// For projects, use the name property
+	else if ("name" in frontmatter) {
+		title = frontmatter.name;
+	}
+	// Copy description from frontmatter if not provided in meta
+	if (!meta?.description && "description" in frontmatter) {
+		pageMeta ??= {};
+		pageMeta.description = frontmatter.description;
+	}
+}
+
+const pageTitle = `${title} | SF Civic Tech`;
+const metaData = {
+	title: pageTitle,
+	description: "A welcoming and inclusive volunteer group of activists who use creative technology to solve civic and social problems.",
+	url: Astro.url.href,
+	...pageMeta,
+};
+const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
+
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<base href={baseURL} />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href={base("favicon.ico")} />
+		<link rel="apple-touch-icon" sizes="180x180" href={base("apple-touch-icon.png")} />
+		<link rel="icon" type="image/png" sizes="32x32" href={base("favicon-32x32.png")} />
+		<link rel="icon" type="image/png" sizes="16x16" href={base("favicon-16x16.png")} />
+		<link rel="manifest" href={base("site.webmanifest")} />
+		<link rel="mask-icon" href={base("safari-pinned-tab.svg")} color="#5bbad5" />
+		<meta name="msapplication-TileColor" content="#da532c" />
+		<meta name="theme-color" content="#ffffff" />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="SF Civic Tech"
+			href={new URL("rss.xml", Astro.site)}
+		/>
+		<Metadata meta={metaData} />
+		<MetricsSnippet />
+
+		<!-- Google Fonts for Barlow and Barlow Condensed -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&family=Barlow+Condensed:wght@700&display=swap" rel="stylesheet">
+
+		<title>{pageTitle}</title>
+	</head>
+	<body class="font-[var(--font-barlow)]">
+		<HeaderNav />
+		<main>
+			{header && !Astro.props.header &&
+				<h1 class="text-3xl font-bold mb-8">{header}</h1>
+			}
+			<slot />
+		</main>
+		<div class="max-w-[920px] mx-auto px-4 mt-16">
+			<FooterNav />
+		</div>
+	</body>
+</html>
+
+<style is:global>
+	/* Tailwind design tokens */
+	:root {
+		--grid-columns: 12;
+		--column-width: 40px;
+		--gutter-width: 40px;
+		--grid-width: calc(var(--grid-columns) * var(--column-width) + (var(--grid-columns) - 1) * var(--gutter-width));
+	}
+
+	/* Tailwind classes */
+	/* 
+	.font-barlow {
+		font-family: "Barlow", sans-serif;
+	}
+
+	.font-barlow-condensed {
+		font-family: "Barlow Condensed", sans-serif;
+	}
+	*/
+
+	/* Footer Tailwind Styles */
+	footer.container {
+		max-width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		font-size: 0.875rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	footer nav {
+		flex-direction: column;
+		justify-content: start;
+	}
+
+	footer h3 {
+		font-size: 1.25rem;
+		margin-bottom: 0.5rem;
+		font-weight: 700;
+		color: var(--color-sf-red);
+		text-transform: uppercase;
+		font-family: "Barlow Condensed", sans-serif;
+	}
+
+	footer ul {
+		display: block;
+		padding: 0;
+		margin: 0;
+	}
+
+	footer li {
+		padding: 0.15rem 0;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	footer li::before {
+		content: none;
+	}
+
+	footer li a {
+		margin: 0;
+		padding: 0;
+		color: var(--color-sf-gray-600);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+
+	footer li a:hover {
+		color: var(--color-sf-red);
+	}
+
+	footer .icon {
+		display: inline-block;
+		min-width: 1.5em;
+		text-align: center;
+		vertical-align: baseline;
+	}
+
+	@media (max-width: 768px) {
+		footer.container {
+			flex-direction: column;
+			gap: 2rem;
+		}
+	}
+</style>

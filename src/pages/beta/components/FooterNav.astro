@@ -1,0 +1,66 @@
+---
+import { Icon } from "astro-icon/components";
+import {
+	githubURL,
+	meetupURL,
+	slackURL,
+	twitterURL,
+	linkedinURL,
+	facebookURL,
+	instagramURL,
+	youtubeURL,
+	emailURL,
+	codeOfConductURL,
+} from "@/utils/urls";
+
+const socialLinks = [
+	{ icon: "fa6-brands:github", href: githubURL, label: "GitHub" },
+	{ icon: "fa6-brands:meetup", href: meetupURL, label: "Meetup" },
+	{ icon: "fa6-brands:slack", href: slackURL, label: "Slack" },
+	{ icon: "fa6-brands:twitter", href: twitterURL, label: "Twitter" },
+	{ icon: "fa6-brands:linkedin", href: linkedinURL, label: "LinkedIn" },
+	{ icon: "fa6-brands:facebook", href: facebookURL, label: "Facebook" },
+];
+
+const footerLinks = [
+	{ label: "Code of Conduct", href: codeOfConductURL },
+	{ label: "Privacy Policy", href: "/privacy" },
+	{ label: "Terms of Service", href: "/terms" },
+];
+---
+
+<footer class="bg-gray-100 py-12 mt-16">
+	<div class="max-w-[920px] mx-auto px-4">
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+			<div>
+				<h2 class="text-(--color-sf-red) font-(--font-condensed) uppercase text-2xl font-bold mb-4">About SF Civic Tech</h2>
+				<p class="text-gray-700 mb-4">We are a welcoming and inclusive volunteer group of developers, designers, data geeks, and citizen activists who use creative technology to solve civic and social problems.</p>
+				<p class="text-gray-700">SF Civic Tech is a Code for America Brigade, part of a national network of civic-minded volunteers who contribute their skills toward using the web as a platform for local government and community service.</p>
+			</div>
+			<div>
+				<h2 class="text-[var(--color-sf-red)] font-[var(--font-barlow-condensed)] uppercase text-2xl font-bold mb-4">Connect With Us</h2>
+				<div class="flex flex-wrap gap-4">
+					{socialLinks.map((link) => (
+						<a
+							href={link.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-gray-700 hover:text-[var(--color-sf-red)] transition-colors"
+							aria-label={link.label}
+						>
+							<Icon name={link.icon} class="w-6 h-6" />
+						</a>
+					))}
+				</div>
+			</div>
+		</div>
+		<div class="border-t border-gray-300 pt-6 flex flex-col md:flex-row justify-between items-center">
+			<div class="text-gray-600 mb-4 md:mb-0"> {new Date().getFullYear()} SF Civic Tech. All rights reserved.</div>
+			<div class="flex gap-6">
+				{footerLinks.map((link) => (
+					<a href={link.href} class="text-gray-600 hover:text-[var(--color-sf-red)] transition-colors">{link.label}</a>
+				))}
+			</div>
+		</div>
+	</div>
+</footer>

@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+import { meetupURL, zoomURL } from "@/utils/urls";
+import hackNight from "@/assets/home/hack-night.png";
+---
+
+<section class="flex flex-col md:flex-row justify-between items-stretch mt-12">
+	<div class="bg-[var(--color-sf-navy)] text-center p-8 flex-[1.2] flex flex-col justify-center">
+		<h2 class="text-[var(--color-sf-red)] font-[var(--font-barlow-condensed)] uppercase text-5xl font-bold mb-8">Virtual Civic Hack Night</h2>
+		<p class="text-[var(--color-white)] mb-4">
+			Not just for techies, success means having volunteers from all across our community!
+		</p>
+		<p class="text-[var(--color-white)] mb-4">
+			Everyone is welcome!
+		</p>
+		<p class="mb-4">
+			<a href={meetupURL} class="text-[var(--color-white)] font-bold hover:underline decoration-[var(--color-white)]/90">Every Wednesday at 6:30pm&nbsp;Pacific</a>
+		</p>
+		<p>
+			Join us on Zoom
+			<a href={zoomURL} class="text-[var(--color-white)] font-bold hover:underline decoration-[var(--color-white)]/90">https://c4sf.me/zoom</a>
+		</p>
+	</div>
+	<div class="bg-[var(--color-sf-cream)] p-8 flex-[1.8] flex items-center justify-center">
+		<Image src={hackNight} alt="hack night" loading="eager" class="w-full" />
+	</div>
+</section>
