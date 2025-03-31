@@ -1,68 +1,64 @@
 ---
-import { Image } from "astro:assets";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import Card from "@/components/Card.astro";
+import BaseLayout from "@/pages/beta/layouts/BaseLayout.astro";
 import CodeSummary from "@/components/CodeSummary.astro";
 import NewsSummary from "@/components/NewsSummary.astro";
-import HackNightHero from "@/components/HackNightHero.astro";
-import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
-import propose from "@/assets/home/lightbulb.png";
-import chat from "@/assets/home/chat.png";
-import newsletter from "@/assets/home/megaphone.png";
+import HomeSection from "@/pages/beta/components/HomeSection.astro";
+import { newsletterURL, pitchProjectURL, slackURL, getStartedURL } from "@/utils/urls";
+import BigText from "./components/BigText.astro";
 ---
 
-<BaseLayout title="Home" header="We are SF Civic Tech">
-	<p>
-		We are a welcoming and inclusive volunteer group of developers, designers,
-		data geeks, and citizen activists who use creative technology to solve civic
-		and social problems.
-	</p>
-	<p>
-		<a href="get-started" role="button">Get Started</a>
-	</p>
+<BaseLayout title="Home" header="">
+	<div class="max-w-[920px] mx-auto px-4">
+		<BigText
+			title="SF Civic Tech"
+		>
+				We are a welcoming and inclusive volunteer group of developers, designers,
+				data geeks, and citizen activists who use creative technology to solve civic
+				and social problems.
+		</BigText>
 
-	<HackNightHero />
+		<BigText
+			title="Every Wed 6:30PM"
+			anchor="right"
+		>
+			<p>Virtual Civic Hack Night</p>
+			<p>Not just for techies, success means having volunteers from all across
+				our community.</p>
+			<p>Everyone is welcome!</p>
+		</BigText>
 
-	<div class="grid">
-		<Card
-			color="#ec5f5d"
-			title="Propose a Project"
-			body="Have any idea to improve community or civic life in San Francisco? We want to hear it."
-			label="Propose a Project"
-			href={pitchProjectURL}
-		>
-			<Image src={propose} alt="lightbulb icon" />
-		</Card>
-		<Card
-			color="#67b4f5"
-			title="Chat on Slack"
-			body="Join a rich set of active projects on slack, available whenever and wherever you are."
-			label="Join Slack"
-			href={slackURL}
-		>
-			<Image src={chat} alt="chat bubbles icon" />
-		</Card>
-		<Card
-			color="#c05f9a"
-			title="Join Our Newsletter"
-			body="Keep in touch with the latest and greatest in the civic tech community."
-			label="Get the Newsletter"
-			href={newsletterURL}
-		>
-			<Image src={newsletter} alt="megaphone icon" />
-		</Card>
+		<HomeSection title="GET INVOLVED">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+				<div>
+					<h3 class="font-[var(--font-barlow-condensed)] text-2xl font-bold mb-2">Propose a Project</h3>
+					<p class="font-[var(--font-barlow)] text-lg mb-4">
+						Have an idea to improve community or civic life in San Francisco? We want to hear it.
+					</p>
+					<a href={pitchProjectURL} class="text-[var(--color-sf-red)] font-bold hover:underline">Propose a Project →</a>
+				</div>
+				<div>
+					<h3 class="font-[var(--font-barlow-condensed)] text-2xl font-bold mb-2">Join the Conversation</h3>
+					<p class="font-[var(--font-barlow)] text-lg mb-4">
+						Our Slack workspace is the main hub for communication and collaboration. Introduce yourself!
+					</p>
+					<a href={slackURL} class="text-[var(--color-sf-red)] font-bold hover:underline">Join Slack →</a>
+				</div>
+				<div>
+					<h3 class="font-[var(--font-barlow-condensed)] text-2xl font-bold mb-2">Stay Informed</h3>
+					<p class="font-[var(--font-barlow)] text-lg mb-4">
+						Sign up for our newsletter to stay updated on events, projects, and other announcements.
+					</p>
+					<a href={newsletterURL} class="text-[var(--color-sf-red)] font-bold hover:underline">Subscribe →</a>
+				</div>
+			</div>
+		</HomeSection>
+
+		<div class="mb-16">
+			<NewsSummary />
+		</div>
+
+		<div class="mb-16">
+			<CodeSummary />
+		</div>
 	</div>
-
-	<NewsSummary />
-	<CodeSummary />
 </BaseLayout>
-
-<style>
-	.grid {
-		margin-bottom: var(--pico-block-spacing-vertical);
-	}
-
-	section:last-of-type {
-		margin-bottom: 0;
-	}
-</style>
