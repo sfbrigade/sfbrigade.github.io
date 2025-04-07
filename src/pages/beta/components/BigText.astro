@@ -2,16 +2,37 @@
 import TagOrnament from "./TagOrnament.astro";
 
 interface Props {
-	title: string;
 	id?: string;
-	showOrnament?: boolean;
 	anchor?: "left" | "right";
+	size?: "lg" | "md" | "sm";
+	showOrnament?: boolean;
 }
 
-const { title, id, showOrnament = true, anchor = "left" } = Astro.props;
-const [firstWord, ...rest] = title.split(/\s+/);
+const Sizes = {
+	lg: {
+		Heading: "h2",
+		headingFontSize: "text-9xl",
+		bodyFontSize: "text-4xl",
+	},
+	md: {
+		Heading: "h3",
+		headingFontSize: "text-7xl leading-[0.9]",
+		bodyFontSize: "text-2xl leading-[1.1]",
+	},
+	sm: {
+		Heading: "h4",
+		headingFontSize: "text-3xl",
+		bodyFontSize: "text-lg",
+	},
+};
 
-// 	<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+const {
+	id,
+	anchor = "left",
+	size = "lg",
+	showOrnament = true,
+} = Astro.props;
+const { Heading, headingFontSize, bodyFontSize } = Sizes[size];
 ---
 
 <section id={id} class="py-4">
@@ -24,31 +45,30 @@ const [firstWord, ...rest] = title.split(/\s+/);
 			{ "flex-row-reverse": anchor === "right" },
 		]}
 	>
-		<h2
+		<Heading
 			class:list={[
 				"flex-1",
 				"font-condensed",
-				"font-semi-bold",
+				"font-semibold",
 				"uppercase",
-				"text-9xl",
-				"whitespace-pre-line",
+				headingFontSize,
 				"leading-[0.8]",
 				"mb-0",
 				anchor === "left" && "text-right",
 			]}
 		>
-			<span class="text-primary">{firstWord}</span>
-			<br>
-			{rest.join("\n")}
-		</h2>
+			<slot name="title" />
+		</Heading>
 		<div
 			class:list={[
+				"body",
 				"flex-1",
-				"text-3xl",
+				"text-stone-800",
+				bodyFontSize,
 				anchor === "right" && "text-right",
 			]}
 		>
-			<slot />
+			<slot name="body" />
 		</div>
 	</div>
 	{showOrnament && (
@@ -57,3 +77,23 @@ const [firstWord, ...rest] = title.split(/\s+/);
 		</div>
 	)}
 </section>
+
+<style>
+	h2, h3, h4 {
+		:global(b) {
+			color: var(--color-sf-red);
+			font-weight: inherit;
+		}
+	}
+
+	div.body {
+		:global(p:last-of-type) {
+			margin-bottom: 0;
+		}
+
+		:global(i) {
+      color: var(--color-stone-600);
+      font-weight: 600;
+		}
+	}
+</style>
