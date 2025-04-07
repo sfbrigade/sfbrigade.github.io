@@ -34,7 +34,7 @@ const [firstWord, ...rest] = title.split(/\s+/);
 				"whitespace-pre-line",
 				"leading-[0.8]",
 				"mb-0",
-				`text-${anchor === "left" ? "right" : "left"}`,
+				anchor === "left" && "text-right",
 			]}
 		>
 			<span class="text-primary">{firstWord}</span>
@@ -45,7 +45,7 @@ const [firstWord, ...rest] = title.split(/\s+/);
 			class:list={[
 				"flex-1",
 				"text-3xl",
-				`text-${anchor}`,
+				anchor === "right" && "text-right",
 			]}
 		>
 			<slot />
