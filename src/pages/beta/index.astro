@@ -2,56 +2,96 @@
 import BaseLayout from "@/pages/beta/layouts/BaseLayout.astro";
 import CodeSummary from "@/components/CodeSummary.astro";
 import NewsSummary from "@/components/NewsSummary.astro";
-import HomeSection from "@/pages/beta/components/HomeSection.astro";
 import { newsletterURL, pitchProjectURL, slackURL, getStartedURL } from "@/utils/urls";
 import BigText from "./components/BigText.astro";
 ---
 
 <BaseLayout title="Home" header="">
-	<div class="max-w-[920px] mx-auto px-4">
-		<BigText
-			title="SF Civic Tech"
-		>
-				We are a welcoming and inclusive volunteer group of developers, designers,
-				data geeks, and citizen activists who use creative technology to solve civic
+	<div class="max-w-[920px] mx-auto px-4 py-12">
+		<BigText>
+			<Fragment slot="title">
+				<b>SF</b><br>
+				Civic<br>
+				Tech
+			</Fragment>
+			<Fragment slot="body">
+				We are a welcoming and inclusive volunteer group of <i>developers</i>, <i>designers</i>,
+				<i>data geeks</i>, and <i>citizen activists</i> who use creative technology to address civic
 				and social problems.
+			</Fragment>
 		</BigText>
 
-		<BigText
-			title="Every Wed 6:30PM"
-			anchor="right"
-		>
-			<p>Virtual Civic Hack Night</p>
-			<p>Not just for techies, success means having volunteers from all across
-				our community.</p>
-			<p>Everyone is welcome!</p>
+		<BigText anchor="right">
+			<Fragment slot="title">
+				<b>Every</b><br>
+				Wed<br>
+				6:30PM
+			</Fragment>
+			<Fragment slot="body">
+				<p><i>Virtual Civic Hack Night</i></p>
+				<p>Not just for techies, success means having volunteers from all across
+					our community.</p>
+				<p>Everyone is welcome!</p>
+			</Fragment>
 		</BigText>
 
+		<BigText size="md" showOrnament={false}>
+			<Fragment slot="title">
+				<b>Propose a<br>
+				Project</b>
+			</Fragment>
+			<Fragment slot="body">
+				<p>Have an idea to improve community or civic life in San Francisco? We want to hear it.</p>
+			</Fragment>
+		</BigText>
+
+		<BigText size="md" anchor="right" showOrnament={false}>
+			<Fragment slot="title">
+				<b>Join the<br>
+				Conversation</b>
+			</Fragment>
+			<Fragment slot="body">
+				<p>Our Slack workspace is the main hub for communication and collaboration. Introduce yourself!</p>
+			</Fragment>
+		</BigText>
+
+		<BigText size="md">
+			<Fragment slot="title">
+				<b>Stay<br>
+				Informed</b>
+			</Fragment>
+			<Fragment slot="body">
+				<p>Sign up for our newsletter to stay updated on events, projects, and other announcements.</p>
+			</Fragment>
+		</BigText>
+
+<!--
 		<HomeSection title="GET INVOLVED">
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
 				<div>
-					<h3 class="font-[var(--font-barlow-condensed)] text-2xl font-bold mb-2">Propose a Project</h3>
-					<p class="font-[var(--font-barlow)] text-lg mb-4">
+					<h3 class="font-[var(&#45;&#45;font-barlow-condensed)] text-2xl font-bold mb-2">Propose a Project</h3>
+					<p class="font-[var(&#45;&#45;font-barlow)] text-lg mb-4">
 						Have an idea to improve community or civic life in San Francisco? We want to hear it.
 					</p>
-					<a href={pitchProjectURL} class="text-[var(--color-sf-red)] font-bold hover:underline">Propose a Project →</a>
+					<a href={pitchProjectURL} class="text-[var(&#45;&#45;color-sf-red)] font-bold hover:underline">Propose a Project →</a>
 				</div>
 				<div>
-					<h3 class="font-[var(--font-barlow-condensed)] text-2xl font-bold mb-2">Join the Conversation</h3>
-					<p class="font-[var(--font-barlow)] text-lg mb-4">
+					<h3 class="font-[var(&#45;&#45;font-barlow-condensed)] text-2xl font-bold mb-2">Join the Conversation</h3>
+					<p class="font-[var(&#45;&#45;font-barlow)] text-lg mb-4">
 						Our Slack workspace is the main hub for communication and collaboration. Introduce yourself!
 					</p>
-					<a href={slackURL} class="text-[var(--color-sf-red)] font-bold hover:underline">Join Slack →</a>
+					<a href={slackURL} class="text-[var(&#45;&#45;color-sf-red)] font-bold hover:underline">Join Slack →</a>
 				</div>
 				<div>
-					<h3 class="font-[var(--font-barlow-condensed)] text-2xl font-bold mb-2">Stay Informed</h3>
-					<p class="font-[var(--font-barlow)] text-lg mb-4">
+					<h3 class="font-[var(&#45;&#45;font-barlow-condensed)] text-2xl font-bold mb-2">Stay Informed</h3>
+					<p class="font-[var(&#45;&#45;font-barlow)] text-lg mb-4">
 						Sign up for our newsletter to stay updated on events, projects, and other announcements.
 					</p>
-					<a href={newsletterURL} class="text-[var(--color-sf-red)] font-bold hover:underline">Subscribe →</a>
+					<a href={newsletterURL} class="text-[var(&#45;&#45;color-sf-red)] font-bold hover:underline">Subscribe →</a>
 				</div>
 			</div>
 		</HomeSection>
+-->
 
 		<div class="mb-16">
 			<NewsSummary />
