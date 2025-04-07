@@ -41,7 +41,8 @@ export default defineConfig({
 				localsConvention: "camelCase",
 			}
 		},
-
-		plugins: [tailwindcss()]
+		plugins: [
+			tailwindcss()
+		]
 	}
 });
