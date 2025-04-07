@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap");
 @import "tailwindcss";
 
 @theme {
 	--font-body: "Barlow", sans-serif;
 	--font-condensed: "Barlow Condensed", sans-serif;
 
-	/* Semantic Colors (Examples - using existing colors) */
 	--color-primary: var(--color-sf-red);
 	--color-text-base: black;
 	--color-background-base: white;
@@ -13,31 +12,41 @@
 
 @layer base {
 	:root {
-		/* Fonts */
-		/*--font-barlow: "Barlow", sans-serif;*/
-		/*--font-barlow-condensed: "Barlow Condensed", sans-serif;*/
-		/*--font-body: "Barlow", sans-serif;*/
-		/*--font-condensed: "Barlow Condensed", sans-serif;*/
-
 		/* Colors */
 		--color-sf-red: #f22613;
+		/*
 		--color-sf-blue: #67b4f5;
 		--color-sf-purple: #c05f9a;
 		--color-sf-navy: #323266;
 		--color-sf-cream: #f7efde;
-
-		/* Grid Variables (Kept for reference, though direct use in classes might change in v4) */
-		/* Tailwind v4 aims to handle layout more intrinsically or via native CSS like Grid/Flexbox */
-		/* It's less common to define grid widths/gaps this way in v4 */
-		/* --grid-width: ???; /* You'll need to define the actual value if needed */
-		/* --gutter-width: ???; /* You'll need to define the actual value if needed */
-
+		*/
 	}
 
-	/* You might add base styles here too, like body background/text color */
+	html {
+		font-size: 12px; /* Base font size for smallest screens */
+		-webkit-tap-highlight-color: transparent; /* Optional: improves mobile tap experience */
+	}
+
+	/* Apply larger base font size starting from 'md' breakpoint */
+	@media (min-width: theme("screens.md")) {
+		html {
+			font-size: 14px; /* Standard base font size for medium screens and up */
+		}
+	}
+
+	@media (min-width: theme("screens.lg")) {
+		html {
+			font-size: 16px;
+		}
+	}
+
 	body {
 		font-family: var(--font-body);
 		color: var(--color-text-base);
 		background-color: var(--color-background-base);
+	}
+
+	p {
+		@apply mb-4;
 	}
 }
