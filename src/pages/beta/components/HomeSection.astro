@@ -11,8 +11,8 @@ const { title, id, showOrnament = true } = Astro.props;
 ---
 
 <section id={id} class="mb-16">
-	<h2 class="text-[var(--color-sf-red)] font-[var(--font-barlow-condensed)] uppercase text-5xl font-bold mb-8 text-center">{title}</h2>
-	<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+	<h2 class="text-primary font-condensed font-semibold uppercase text-7xl mb-8 text-center">{title}</h2>
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 		<slot />
 	</div>
 	{showOrnament && (
