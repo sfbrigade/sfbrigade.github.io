@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/pages/beta/layouts/BaseLayout.astro";
 import CodeSummary from "@/components/CodeSummary.astro";
-import NewsSummary from "@/components/NewsSummary.astro";
+import NewsSummary from "./components/NewsSummary.astro";
 import { newsletterURL, pitchProjectURL, slackURL, getStartedURL } from "@/utils/urls";
 import BigText from "./components/BigText.astro";
 ---
@@ -97,8 +97,10 @@ import BigText from "./components/BigText.astro";
 			<NewsSummary />
 		</div>
 
+<!--
 		<div class="mb-16">
 			<CodeSummary />
 		</div>
+-->
 	</div>
 </BaseLayout>

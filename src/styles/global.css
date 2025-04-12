@@ -8,6 +8,16 @@
 	--color-primary: var(--color-sf-red);
 	--color-text-base: black;
 	--color-background-base: white;
+
+	--text-sm: 1rem;       /* 16px */
+	--text-base: 1.125rem; /* 18px */
+	--text-lg: 1.25rem;    /* 20px */
+	--text-xl: 1.5rem;     /* 24px */
+	--text-2xl: 1.875rem;  /* 30px */
+	--text-3xl: 2.25rem;   /* 36px */
+	--text-4xl: 3rem;      /* 48px */
+	--text-5xl: 3.75rem;   /* 60px */
+	--text-6xl: 4.5rem;    /* 72px */
 }
 
 @layer base {
@@ -30,18 +40,20 @@
 	/* Apply larger base font size starting from 'md' breakpoint */
 	@media (min-width: theme("screens.md")) {
 		html {
-			font-size: 14px; /* Standard base font size for medium screens and up */
+			font-size: 16px; /* Standard base font size for medium screens and up */
 		}
 	}
 
 	@media (min-width: theme("screens.lg")) {
 		html {
-			font-size: 16px;
+			font-size: 18px;
 		}
 	}
 
 	body {
+		/*
 		font-family: var(--font-body);
+		*/
 		color: var(--color-text-base);
 		background-color: var(--color-background-base);
 	}
