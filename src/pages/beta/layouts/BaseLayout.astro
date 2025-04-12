@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { base } from "@/utils/urls";
 import HeaderNav from "@/pages/beta/components/HeaderNav.astro";
-import FooterNav from "@/components/FooterNav.astro";
+import FooterNav from "@/pages/beta/components/FooterNav.astro";
 import type { MetadataProp } from "@/components/Metadata.astro";
 import Metadata from "@/components/Metadata.astro";
 import MetricsSnippet from "@/components/MetricsSnippet.astro";
@@ -82,7 +82,7 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 
 		<title>{pageTitle}</title>
 	</head>
-	<body class="font-[var(--font-barlow)]">
+	<body class="font-body">
 		<HeaderNav />
 		<main>
 			{header && !Astro.props.header &&
@@ -95,92 +95,3 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 		</div>
 	</body>
 </html>
-
-<style is:global>
-	/* Tailwind design tokens */
-	:root {
-		--grid-columns: 12;
-		--column-width: 40px;
-		--gutter-width: 40px;
-		--grid-width: calc(var(--grid-columns) * var(--column-width) + (var(--grid-columns) - 1) * var(--gutter-width));
-	}
-
-	/* Tailwind classes */
-	/*
-	.font-barlow {
-		font-family: "Barlow", sans-serif;
-	}
-
-	.font-barlow-condensed {
-		font-family: "Barlow Condensed", sans-serif;
-	}
-	*/
-
-	/* Footer Tailwind Styles */
-	footer.container {
-		max-width: 100% !important;
-		padding: 0 !important;
-		margin: 0 !important;
-		font-size: 0.875rem;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-
-	footer nav {
-		flex-direction: column;
-		justify-content: start;
-	}
-
-	footer h3 {
-		font-size: 1.25rem;
-		margin-bottom: 0.5rem;
-		font-weight: 700;
-		color: var(--color-sf-red);
-		text-transform: uppercase;
-		font-family: "Barlow Condensed", sans-serif;
-	}
-
-	footer ul {
-		display: block;
-		padding: 0;
-		margin: 0;
-	}
-
-	footer li {
-		padding: 0.15rem 0;
-		display: flex;
-		align-items: center;
-		gap: 0.25rem;
-	}
-
-	footer li::before {
-		content: none;
-	}
-
-	footer li a {
-		margin: 0;
-		padding: 0;
-		color: var(--color-sf-gray-600);
-		text-decoration: none;
-		transition: color 0.2s;
-	}
-
-	footer li a:hover {
-		color: var(--color-sf-red);
-	}
-
-	footer .icon {
-		display: inline-block;
-		min-width: 1.5em;
-		text-align: center;
-		vertical-align: baseline;
-	}
-
-	@media (max-width: 768px) {
-		footer.container {
-			flex-direction: column;
-			gap: 2rem;
-		}
-	}
-</style>
