@@ -69,6 +69,18 @@ jobs:
 #      - name: Change to repository directory
 #        run: cd ${{ github.workspace }}
 
+      - name: current
+        run: ls -al
+
+      - name: parent
+        run: ls -al ..
+
+      - name: grandparent
+        run: ls -al ../..
+
+      - name: ${{ github.workspace }}
+        run: ls -al ${{ github.workspace }}
+
       - name: Deploy to Cloudflare Pages
         id: deploy
         uses: cloudflare/wrangler-action@v3
