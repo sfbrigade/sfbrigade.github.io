@@ -62,8 +62,8 @@ jobs:
       - name: Build with Astro
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
-            --site "${{ steps.pages.outputs.origin }}" \
-            --base "${{ steps.pages.outputs.base_path }}"
+            --site "https://www.sfcivictech.org" \
+            --base ""
         working-directory: ${{ env.BUILD_PATH }}
 
 #      - name: Change to repository directory
@@ -71,12 +71,6 @@ jobs:
 
       - name: current
         run: ls -al
-
-      - name: parent
-        run: ls -al ..
-
-      - name: grandparent
-        run: ls -al ../..
 
       - name: ${{ github.workspace }}
         run: ls -al ${{ github.workspace }}
