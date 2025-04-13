@@ -34,6 +34,9 @@
 	}
 
 	img {
+		/* Tailwind defaults images to block, which causes the image to be 100%
+			width, even though the aspect ratio makes it square */
+		display: inline-block;
 		width: calc(3.5 * var(--sp2));
 		aspect-ratio: 1;
 		border-radius: 50%;

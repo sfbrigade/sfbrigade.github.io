@@ -52,7 +52,6 @@ const metaData = {
 const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 
 ---
-
 <!doctype html>
 <html lang="en">
 	<head>
@@ -82,7 +81,7 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 
 		<title>{pageTitle}</title>
 	</head>
-	<body class="font-body">
+	<body class="font-body max-w-[920px] mx-auto">
 		<HeaderNav />
 		<main>
 			{header && !Astro.props.header &&
@@ -90,7 +89,7 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 			}
 			<slot />
 		</main>
-		<div class="max-w-[920px] mx-auto px-4 mt-16">
+		<div class="mt-16">
 			<FooterNav />
 		</div>
 	</body>
