@@ -1,0 +1,24 @@
+---
+import GitHubEvents from "../components/GitHubEvents/GitHubEvents";
+import TagOrnament from "./TagOrnament.astro";
+
+// we'll pass the ID of the section to the GitHubEvents component so that it can
+// hide the whole section in case there's an error, rather than leave a broken
+// component on the page
+const id = "in-the-code";
+const showOrnament = false;
+---
+
+<section id={id} class="mb-8">
+	<h2 class="text-primary font-condensed font-semibold uppercase text-7xl mb-8 text-center">In the Code</h2>
+	<GitHubEvents
+		org="sfbrigade"
+		sectionID={id}
+		client:only="react"
+	/>
+	{showOrnament && (
+		<div class="flex justify-center mt-16">
+			<TagOrnament />
+		</div>
+	)}
+</section>
