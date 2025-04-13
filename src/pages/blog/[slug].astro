@@ -37,7 +37,7 @@ const imageData = !image_list_only && image && await getImageAsset(image);
 const dateString = formatShortMDY(date);
 const meta = {
 	description,
-	image: imageData?.src ?? ""
+	image: imageData ? imageData.src : ""
 };
 ---
 

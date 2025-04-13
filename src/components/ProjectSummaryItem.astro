@@ -27,25 +27,31 @@ const {
 		}
 	}
 } = Astro.props;
-const thumbnailImage = thumbnail?.startsWith("http")
-	? thumbnail
-	: await getImageAsset(thumbnail);
+
 const url = repos?.[0];
+const isExternal = thumbnail?.startsWith("http") ?? false;
+const localImageMetadata = thumbnail && !isExternal
+	? await getImageAsset(thumbnail)
+	: null;
+
 ---
 
 <li class="project">
 	<article>
 		<OptionalAnchor href={url}>
-			{thumbnailImage
-				? <Image class="thumbnail"
-						src={thumbnailImage}
-						alt={name}
-						widths={[Thumbnail2X]}
-						sizes=`${Thumbnail2X}px`
-						inferSize
-					/>
-				: <DefaultThumbnail size={ThumbnailWidth} />
-			}
+			{thumbnail && isExternal ? (
+				<img class="thumbnail" src={thumbnail} alt={name} width={ThumbnailWidth} />
+			) : localImageMetadata ? (
+				<Image
+					class="thumbnail"
+					src={localImageMetadata}
+					alt={name}
+					widths={[ThumbnailWidth, Thumbnail2X]}
+					sizes={`(max-width: 768px) ${ThumbnailWidth}px, ${ThumbnailWidth}px`}
+				/>
+			) : (
+				<DefaultThumbnail size={ThumbnailWidth} />
+			)}
 		</OptionalAnchor>
 
 		<section>

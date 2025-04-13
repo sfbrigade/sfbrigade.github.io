@@ -18,7 +18,7 @@ const {
 	}
 } = Astro.props;
 const imageData = image && await getBlogImage(image);
-const backgroundImageURL = imageData?.src ?? "";
+const backgroundImageURL = imageData ? imageData.src : "";
 const postURL = "blog/" + id;
 const dateString = formatShortMDY(date);
 ---

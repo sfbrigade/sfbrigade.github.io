@@ -1,4 +1,4 @@
-type Attributes = Record<string, string | number>;
+type Attributes = Record<string, string | number | URL>;
 
 function tag(
 	name: string,
@@ -13,7 +13,7 @@ function tag(
 
 export function metaTag(
 	key: string,
-	value: string | number)
+	value: string | number | URL)
 {
 	return tag("meta", {
 		name: key,
@@ -23,7 +23,7 @@ export function metaTag(
 
 export function ogMetaTag(
 	key: string,
-	value: string | number)
+	value: string | number | URL)
 {
 	return tag("meta", {
 		property: "og:" + key,

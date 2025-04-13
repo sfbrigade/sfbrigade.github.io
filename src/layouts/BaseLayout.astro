@@ -12,26 +12,31 @@ interface Props {
 	frontmatter?: CollectionEntry<"blog">["data"] | CollectionEntry<"projects">["data"];
 }
 
-const {
-	meta,
-	frontmatter,
-	title = (frontmatter?.title ?? frontmatter?.name),
-	header = title,
+let {
+	title = "SF Civic Tech",
+	meta = {},
+	frontmatter
 } = Astro.props;
-let pageMeta = meta;
 
-if (frontmatter && !meta?.description) {
+if (frontmatter) {
+	title = "title" in frontmatter
+		? frontmatter.title
+		: "name" in frontmatter
+			? frontmatter.name
+			: title;
+
 	// there's frontmatter, which means we're laying out a markdown file, so make
 	// sure there's metadata for the page, and copy any description from the
 	// markdown file
-	pageMeta ??= {};
-	pageMeta.description = frontmatter.description;
+	meta.description = frontmatter.description ?? meta.description;
 }
+
+const header = Astro.props.header ?? title;
 ---
 
 <Page
 	title={title}
-	meta={pageMeta}
+	meta={meta}
 >
 	<HeaderNav />
 	<main class="container">
