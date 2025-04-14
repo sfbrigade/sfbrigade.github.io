@@ -49,7 +49,7 @@ jobs:
             exit 1
           fi
 
-      - name: Setup Node.js
+      - name: Setup node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -66,12 +66,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DOMAIN=$(gh api repos/${{ github.repository }}/pages --jq '.cname // "No custom domain configured"')
-          echo "Custom domain: $DOMAIN"
           echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
-
-      - name: Use custom domain
-        run: |
-          echo "The custom domain is '${{ steps.get-domain.outputs.domain }}'"
 
       - name: Build with Astro
         run: |
@@ -88,7 +83,7 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./dist --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} --branch=pr-${{ github.event.pull_request.number }} --commit-dirty=true
 
-      - name: Find Preview URL Comment
+      - name: Find preview URL comment
         uses: peter-evans/find-comment@v2
         id: find-comment
         with:
@@ -96,23 +91,16 @@ jobs:
           comment-author: 'github-actions[bot]'
           body-includes: '🚀 Preview URL'  # A unique string to identify your comment
 
-      - name: Create/Update Preview URL Comment
+      - name: Create/update preview URL comment
         uses: peter-evans/create-or-update-comment@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ### Preview URL
-            🚀 Preview URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+            #### 🚀 Preview URL
+
+            ${{ steps.deploy.outputs.pages-deployment-alias-url }}
 
             _Last updated: ${{ github.event.pull_request.updated_at }}_
           edit-mode: replace
-
-#      - name: Add Comment with Preview URL on PR
-#        uses: peter-evans/create-or-update-comment@v3
-#        with:
-#          token: ${{ secrets.GITHUB_TOKEN }}
-#          issue-number: ${{ github.event.pull_request.number }}
-#          body: |
-#            🚀 Preview URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
