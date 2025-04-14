@@ -88,10 +88,11 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist \
-            --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} \
-            --branch=pr-${{ github.event.pull_request.number }} \
-            --commit-dirty=true
+          command: |
+            pages deploy ./dist
+              --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }}
+              --branch=pr-${{ github.event.pull_request.number }}
+              --commit-dirty=true
 
       - name: Find Preview URL Comment
         uses: peter-evans/find-comment@v2
