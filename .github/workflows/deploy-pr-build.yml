@@ -67,13 +67,11 @@ jobs:
         run: |
           DOMAIN=$(gh api repos/${{ github.repository }}/pages --jq '.cname // "No custom domain configured"')
           echo "Custom domain: $DOMAIN"
-          echo "domain=$DOMAIN" >> $GITHUB_ENV
-#          echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
+          echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
 
       - name: Use custom domain
         run: |
           echo "The custom domain is '${{ steps.get-domain.outputs.domain }}'"
-#          echo "Using domain from environment variable: ${{ env.domain }}"
 
       - name: Build with Astro
         run: |
@@ -88,11 +86,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: |
-            pages deploy ./dist
-              --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }}
-              --branch=pr-${{ github.event.pull_request.number }}
-              --commit-dirty=true
+          command: pages deploy ./dist --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} --branch=pr-${{ github.event.pull_request.number }} --commit-dirty=true
 
       - name: Find Preview URL Comment
         uses: peter-evans/find-comment@v2
