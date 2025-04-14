@@ -8,6 +8,20 @@ permissions:
   contents: read
   pull-requests: write
 
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+env:
+  CLOUDFLARE_PROJECT_NAME: "sfcivictech-pr-builds"
+  BUILD_PATH: "." # default value when not using subfolders
+  POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+  BOARD_MINUTES_DRIVE_ID: ${{ secrets.BOARD_MINUTES_DRIVE_ID }}
+  BOARD_MINUTES_DRIVE_FOLDER: ${{ secrets.BOARD_MINUTES_DRIVE_FOLDER }}
+  BOARD_MINUTES_DRIVE_KEYS_JSON: ${{ secrets.BOARD_MINUTES_DRIVE_KEYS_JSON }}
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -23,28 +37,43 @@ jobs:
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
             echo "lockfile=yarn.lock" >> $GITHUB_OUTPUT
+            exit 0
           elif [ -f "${{ github.workspace }}/package.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
             echo "lockfile=package-lock.json" >> $GITHUB_OUTPUT
+            exit 0
           else
             echo "Unable to determine package manager"
             exit 1
           fi
 
-      - name: Setup Node.js
+      - name: Setup node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: ${{ steps.detect-package-manager.outputs.lockfile }}
+          cache-dependency-path: ${{ env.BUILD_PATH }}/${{ steps.detect-package-manager.outputs.lockfile }}
 
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        working-directory: ${{ env.BUILD_PATH }}
+
+      - name: Get GitHub Pages custom domain
+        id: get-domain
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DOMAIN=$(gh api repos/${{ github.repository }}/pages --jq '.cname // "No custom domain configured"')
+          echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
 
       - name: Build with Astro
-        run: ${{ steps.detect-package-manager.outputs.runner }} astro build
+        run: |
+          ${{ steps.detect-package-manager.outputs.runner }} astro build \
+            --site "https://${{ steps.get-domain.outputs.domain }}" \
+            --base ""
+        working-directory: ${{ env.BUILD_PATH }}
 
       - name: Deploy to Cloudflare Pages
         id: deploy
@@ -52,12 +81,26 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=your-project-name
+          command: pages deploy ./dist --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} --branch=pr-${{ github.event.pull_request.number }} --commit-dirty=true
 
-      - name: Comment Preview URL on PR
+      - name: Find preview URL comment
+        uses: peter-evans/find-comment@v2
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '🚀 Preview URL'  # A unique string to identify your comment
+
+      - name: Create/update preview URL comment
         uses: peter-evans/create-or-update-comment@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            🚀 Preview URL: ${{ steps.deploy.outputs.deployment-url }}
+            #### 🚀 Preview URL
+
+            ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+
+            _Last updated: ${{ github.event.pull_request.updated_at }}_
+          edit-mode: replace
