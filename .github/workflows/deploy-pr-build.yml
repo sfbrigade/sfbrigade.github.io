@@ -61,6 +61,8 @@ jobs:
 
       - name: Get GitHub Pages custom domain
         id: get_domain
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DOMAIN=$(gh api repos/${{ github.repository }}/pages --jq '.custom_domain')
           echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
