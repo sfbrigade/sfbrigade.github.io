@@ -76,7 +76,7 @@ jobs:
       - name: Build with Astro
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
-            --site "${{ steps.get-domain.outputs.domain }}" \
+            --site "https://${{ steps.get-domain.outputs.domain }}" \
             --base ""
         working-directory: ${{ env.BUILD_PATH }}
 
