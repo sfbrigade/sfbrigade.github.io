@@ -64,11 +64,15 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          DOMAIN=$(gh api repos/${{ github.repository }}/pages --jq '.custom_domain')
+          DOMAIN=$(gh api repos/${{ github.repository }}/pages --jq '.custom_domain // "No custom domain configured"')
+          echo "Custom domain: $DOMAIN"
+          echo "domain=$DOMAIN" >> $GITHUB_ENV
           echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
 
       - name: Use custom domain
-        run: echo "The custom domain is ${{ steps.get_domain.outputs.domain }}"
+        run: |
+          echo "The custom domain is '${{ steps.get_domain.outputs.domain }}'"
+          echo "Using domain from environment variable: ${{ env.domain }}"
 
       - name: Build with Astro
         run: |
