@@ -15,6 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  CLOUDFLARE_PROJECT_NAME: "sfcivictech-pr-builds"
   BUILD_PATH: "." # default value when not using subfolders
   POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
   BOARD_MINUTES_DRIVE_ID: ${{ secrets.BOARD_MINUTES_DRIVE_ID }}
@@ -60,24 +61,24 @@ jobs:
         working-directory: ${{ env.BUILD_PATH }}
 
       - name: Get GitHub Pages custom domain
-        id: get_domain
+        id: get-domain
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           DOMAIN=$(gh api repos/${{ github.repository }}/pages --jq '.cname // "No custom domain configured"')
           echo "Custom domain: $DOMAIN"
           echo "domain=$DOMAIN" >> $GITHUB_ENV
-          echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
+#          echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
 
       - name: Use custom domain
         run: |
-          echo "The custom domain is '${{ steps.get_domain.outputs.domain }}'"
-          echo "Using domain from environment variable: ${{ env.domain }}"
+          echo "The custom domain is '${{ steps.get-domain.outputs.domain }}'"
+#          echo "Using domain from environment variable: ${{ env.domain }}"
 
       - name: Build with Astro
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
-            --site "https://www.sfcivictech.org" \
+            --site "${{ steps.get-domain.outputs.domain }}" \
             --base ""
         working-directory: ${{ env.BUILD_PATH }}
 
@@ -87,17 +88,36 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=sfcivictech-pr-builds --branch=pr-${{ github.event.pull_request.number }} --commit-dirty=true
+          command: pages deploy ./dist \
+            --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }} \
+            --branch=pr-${{ github.event.pull_request.number }} \
+            --commit-dirty=true
 
-      - name: print wrangler command output
-        env:
-          CMD_OUTPUT: ${{ steps.deploy.outputs.command-output }}
-        run: echo $CMD_OUTPUT
+      - name: Find Preview URL Comment
+        uses: peter-evans/find-comment@v2
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: '🚀 Preview URL'  # A unique string to identify your comment
 
-      - name: Add Comment with Preview URL on PR
+      - name: Create/Update Preview URL Comment
         uses: peter-evans/create-or-update-comment@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
+            ### Preview URL
             🚀 Preview URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+
+            _Last updated: ${{ github.event.pull_request.updated_at }}_
+          edit-mode: replace
+
+#      - name: Add Comment with Preview URL on PR
+#        uses: peter-evans/create-or-update-comment@v3
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          issue-number: ${{ github.event.pull_request.number }}
+#          body: |
+#            🚀 Preview URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
