@@ -59,21 +59,21 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
 
+      - name: Get GitHub Pages custom domain
+        id: get_domain
+        run: |
+          DOMAIN=$(gh api repos/${{ github.repository }}/pages --jq '.custom_domain')
+          echo "domain=$DOMAIN" >> $GITHUB_OUTPUT
+
+      - name: Use custom domain
+        run: echo "The custom domain is ${{ steps.get_domain.outputs.domain }}"
+
       - name: Build with Astro
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "https://www.sfcivictech.org" \
             --base ""
         working-directory: ${{ env.BUILD_PATH }}
-
-#      - name: Change to repository directory
-#        run: cd ${{ github.workspace }}
-
-      - name: current
-        run: ls -al
-
-      - name: ${{ github.workspace }}
-        run: ls -al ${{ github.workspace }}
 
       - name: Deploy to Cloudflare Pages
         id: deploy
@@ -83,10 +83,15 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./dist --project-name=sfcivictech-pr-builds --branch=pr-${{ github.event.pull_request.number }} --commit-dirty=true
 
-      - name: Comment Preview URL on PR
+      - name: print wrangler command output
+        env:
+          CMD_OUTPUT: ${{ steps.deploy.outputs.command-output }}
+        run: echo $CMD_OUTPUT
+
+      - name: Add Comment with Preview URL on PR
         uses: peter-evans/create-or-update-comment@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            🚀 Preview URL: ${{ steps.deploy.outputs.deployment-url }}
+            🚀 Preview URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
