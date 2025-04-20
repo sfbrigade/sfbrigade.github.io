@@ -10,50 +10,22 @@ interface Props {
 const { title, src } = Astro.props;
 ---
 
-<li>
-	<figure>
-		<Image src={src} alt={title} loading="eager" />
-		<figcaption>
-			<h3>{title}</h3>
+<li class="relative pl-4 mb-6 [counter-increment:item]">
+	<figure class="flex flex-row items-start gap-6">
+		<Image class="w-24" src={src} alt={title} loading="eager" />
+		<figcaption class="p-0">
+			<h3 class="my-2 text-xl text-primary font-semibold">{title}</h3>
 			<slot />
 		</figcaption>
 	</figure>
 </li>
 
 <style>
-	figure {
-		display: flex;
-		flex-direction: row;
-		align-items: flex-start;
-		gap: 1.5rem;
-	}
-
-	figure figcaption {
-		padding: 0;
-	}
-
-	figure img {
-		width: 100px;
-	}
-
-	h3 {
-		margin: 0.5rem 0;
-		font-size: 1.25rem;
-		color: var(--color-accent);
-	}
-
-	li {
-		counter-increment: item;
-		padding-left: 1rem;
-		margin-bottom: var(--pico-block-spacing-vertical);
-		position: relative;
-	}
-
 	li::before {
 		content: counter(item);
 		font-weight: bold;
 		font-size: 2rem;
-		color: var(--color-accent);
+		color: var(--color-sf-red);
 		position: absolute;
 		left: -1.5rem;
 		line-height: 1;

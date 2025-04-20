@@ -36,10 +36,10 @@ const dateString = formatShortMDY(date);
 const thumbnailSize = `${ThumbnailUnits}rem`;
 ---
 
-<li>
+<li class="my-6 flex flex-row gap-4">
 	<a href={postURL}>
 			{thumbnailImage
-				? <Image class="thumbnail"
+				? <Image class="thumbnail aspect-square object-cover object-center w-56 h-56"
 						src={thumbnailImage}
 						alt={image_alt}
 						widths={[Thumbnail2X]}
@@ -48,38 +48,10 @@ const thumbnailSize = `${ThumbnailUnits}rem`;
 				: <DefaultThumbnail size={thumbnailSize} />
 			}
 	</a>
-	<div>
-		<time datetime={date?.toISOString()}>{dateString}</time>
-		<h3><a href={postURL}>{title}</a></h3>
-		{/* descriptionHTML is formatted as a <p> tag */}
+	<div class="flex-1">
+		<time class="block text-gray-500 mb-2 leading-none" datetime={date?.toISOString()}>{dateString}</time>
+		<h3 class="text-xl font-semibold mb-2"><a class="text-blue-700 hover:underline" href={postURL}>{title}</a></h3>
+		{/* descriptionHTML is formatted as a <p> tag - Tailwind prose handles paragraph styling if applied upstream */}
 		<Fragment set:html={descriptionHTML} />
 	</div>
 </li>
-
-<style>
-	li {
-		margin: var(--pico-block-spacing-vertical) 0 0 0;
-		display: flex;
-		flex-direction: row;
-		gap: var(--pico-block-spacing-horizontal);
-	}
-
-	img.thumbnail {
-		aspect-ratio: 1;
-		object-fit: cover;
-		object-position: center;
-		width: 14rem;
-		height: 14rem;
-	}
-
-	li > div {
-		flex: 1;
-	}
-
-	time {
-		color: var(--pico-muted-color);
-		margin-bottom: calc(var(--pico-block-spacing) * 0.5);
-		line-height: 1;
-		display: block;
-	}
-</style>
