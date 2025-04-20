@@ -61,6 +61,11 @@
 	p {
 		@apply mb-4;
 	}
+
+	a:where(a:not([role=button])), [role=link] {
+		color: var(--color-sf-red);
+		@apply underline font-semibold;
+	}
 }
 
 @layer utilities {
