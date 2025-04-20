@@ -1,8 +1,7 @@
 import { use, useCallback, useEffect, useRef, useState } from "react";
-import GitHubEventCard from "./GitHubEventCard.tsx";
-import { LeftArrow, RightArrow } from "./icons.tsx";
-import { type GitHubEvent } from "./getRecentEvents.tsx";
-import styles from "./GitHubEventsList.module.css";
+import GitHubEventCard from "./GitHubEventCard";
+import { LeftArrow, RightArrow } from "./icons";
+import { type GitHubEvent } from "./getRecentEvents";
 
 type ScrollDirection = "left" | "right";
 
@@ -19,9 +18,22 @@ function ScrollButton({
 		? LeftArrow
 		: RightArrow;
 
+	const positionClass = direction === "left"
+		? "-left-10 xl:-left-12"
+		: "-right-10 xl:-right-12";
+
 	return (
 		<button
-			className={`${styles.scrollButton} ${styles[direction]}`}
+			type="button"
+			className={`
+				absolute w-8 h-8 p-0
+				text-gray-300 dark:text-gray-600
+				opacity-25 hover:opacity-50 active:opacity-75
+				transition-opacity duration-300 ease-in-out
+				bg-none border-none rounded-full cursor-pointer
+				flex justify-center items-center shadow-none
+				hidden lg:flex ${positionClass}
+			`}
 			onClick={() => onClick(direction)}
 		>
 			<ArrowIcon />
@@ -79,14 +91,21 @@ export default function GitHubEventsList({
 	}, []);
 
 	return (
-		<div className={styles.githubEventsContainer}>
+		<div className="@container relative w-full flex items-center">
 			{canScrollLeft &&
 				<ScrollButton
 					direction="left"
 					onClick={scrollByPage}
 				/>
 			}
-			<div className={styles.scrollContainer} ref={containerRef}>
+			<div
+				ref={containerRef}
+				className="
+					flex-1 flex gap-10
+					overflow-x-auto scroll-smooth
+					snap-x snap-mandatory
+					scrollbar-hide"
+			>
 				{events.map((event) =>
 					<GitHubEventCard
 						key={event.id}

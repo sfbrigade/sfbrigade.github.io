@@ -1,3 +1,4 @@
+
 export const LeftArrow = () => (
 	<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 512 512">
 		<path fill="currentColor" d="M512 256a256 256 0 1 0-512 0a256 256 0 1 0 512

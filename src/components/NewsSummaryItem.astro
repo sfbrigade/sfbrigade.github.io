@@ -19,73 +19,22 @@ const {
 } = Astro.props;
 const imageData = image && await getBlogImage(image);
 const backgroundImageURL = imageData ? imageData.src : "";
-const postURL = "blog/" + id;
+const postURL = "/blog/" + id;
 const dateString = formatShortMDY(date);
 ---
 
-<article style={`background-image: url(${backgroundImageURL})`}>
+<article
+	class="aspect-square bg-cover bg-center overflow-hidden relative shadow-none group"
+	style={backgroundImageURL ? `background-image: url(${backgroundImageURL})` : ''}
+>
 	{ !imageData &&
-		<DefaultThumbnail size="100%" style="position: absolute;" />}
-	<div class="dimmer"></div>
-	<a href={postURL}>
-		<time datetime={date?.toISOString()}>{dateString}</time>
-		<h3>{title}</h3>
+		<div class="absolute inset-0">
+			<DefaultThumbnail size="100%" />
+		</div>
+	}
+	<div class="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors duration-200"></div>
+	<a href={postURL} class="relative flex flex-col justify-between h-full p-5 text-white no-underline">
+		<time datetime={date?.toISOString()} class="text-right">{dateString}</time>
+		<h3 class="text-lg font-condensed font-semibold text-white leading-[1.1] m-0">{title}</h3>
 	</a>
 </article>
-
-<style>
-	article {
-		aspect-ratio: 1;
-		background-size: cover;
-		background-position: center;
-		padding: 0;
-		margin: 0;
-		border-radius: 0;
-		overflow: hidden;
-		position: relative;
-		box-shadow: none;
-	}
-
-	article > a {
-		--pico-color: var(--pico-contrast-inverse);
-		text-decoration: none;
-		height: 100%;
-		padding: var(--pico-block-spacing);
-		flex-direction: column;
-		justify-content: space-between;
-		display: flex;
-		position: relative;
-	}
-
-	article time {
-		color: var(--pico-color, white);
-		font-size: 0.75em;
-	}
-
-	article h3 {
-		--pico-color: white;
-		font-size: 1em;
-		margin-bottom: 0;
-	}
-
-	.dimmer {
-		background-color: rgba(0, 0, 0, 40%);
-		width: 100%;
-		height: 100%;
-		left: 0;
-		top: 0;
-		transition: background-color .2s;
-		position: absolute;
-	}
-
-	article:hover .dimmer {
-		background-color: rgba(0, 0, 0, 25%);
-	}
-
-	@media only screen and (max-width: 768px) {
-		article {
-			aspect-ratio: 2;
-			font-size: larger;
-		}
-	}
-</style>

@@ -1,72 +1,69 @@
 ---
-import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Card from "@/components/Card.astro";
 import CodeSummary from "@/components/CodeSummary.astro";
 import NewsSummary from "@/components/NewsSummary.astro";
-import HackNightHero from "@/components/HackNightHero.astro";
-import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
-import propose from "@/assets/home/lightbulb.png";
-import chat from "@/assets/home/chat.png";
-import newsletter from "@/assets/home/megaphone.png";
+import BigText from "@/components/BigText.astro";
+//import { newsletterURL, pitchProjectURL, slackURL, getStartedURL } from "@/utils/urls";
 ---
 
-<BaseLayout title="Home" header="We are SF Civic Tech">
-	<p>
-		We are a welcoming and inclusive volunteer group of developers, designers,
-		data geeks, and citizen activists who use creative technology to solve civic
-		and social problems.
-	</p>
-	<p>
-		<a href="get-started" role="button">Get Started</a>
-	</p>
+<BaseLayout title="Home" header="">
+	<BigText>
+		<Fragment slot="title">
+			<b>SF</b><br>
+			Civic<br>
+			Tech
+		</Fragment>
+		<Fragment slot="body">
+			We are a welcoming and inclusive volunteer group of <i>developers</i>, <i>designers</i>,
+			<i>data geeks</i>, and <i>citizen activists</i> who use creative technology to address civic
+			and social problems.
+		</Fragment>
+	</BigText>
 
-	<HackNightHero />
+	<BigText anchor="right">
+		<Fragment slot="title">
+			<b>Every</b><br>
+			Wed<br>
+			6:30PM
+		</Fragment>
+		<Fragment slot="body">
+			<p><i>Virtual Civic Hack Night</i></p>
+			<p>Not just for techies, success means having volunteers from all across
+				our community.</p>
+			<p>Everyone is welcome!</p>
+		</Fragment>
+	</BigText>
 
-	<div class="grid">
-		<Card
-			color="#ec5f5d"
-			title="Propose a Project"
-			body="Have any idea to improve community or civic life in San Francisco? We want to hear it."
-			label="Propose a Project"
-			href={pitchProjectURL}
-		>
-			<Image src={propose} alt="lightbulb icon" />
-		</Card>
-		<Card
-			color="#67b4f5"
-			title="Chat on Slack"
-			body="Join a rich set of active projects on slack, available whenever and wherever you are."
-			label="Join Slack"
-			href={slackURL}
-		>
-			<Image src={chat} alt="chat bubbles icon" />
-		</Card>
-		<Card
-			color="#c05f9a"
-			title="Join Our Newsletter"
-			body="Keep in touch with the latest and greatest in the civic tech community."
-			label="Get the Newsletter"
-			href={newsletterURL}
-		>
-			<Image src={newsletter} alt="megaphone icon" />
-		</Card>
-	</div>
+	<BigText size="md" showOrnament={false}>
+		<Fragment slot="title">
+			<b>Propose a<br>
+			Project</b>
+		</Fragment>
+		<Fragment slot="body">
+			<p>Have an idea to improve community or civic life in San Francisco? We want to hear it.</p>
+		</Fragment>
+	</BigText>
+
+	<BigText size="md" anchor="right" showOrnament={false}>
+		<Fragment slot="title">
+			<b>Join the<br>
+			Conversation</b>
+		</Fragment>
+		<Fragment slot="body">
+			<p>Our Slack workspace is the main hub for communication and collaboration. Introduce yourself!</p>
+		</Fragment>
+	</BigText>
+
+	<BigText size="md">
+		<Fragment slot="title">
+			<b>Stay<br>
+			Informed</b>
+		</Fragment>
+		<Fragment slot="body">
+			<p>Sign up for our newsletter to stay updated on events, projects, and other announcements.</p>
+		</Fragment>
+	</BigText>
 
 	<NewsSummary />
 	<CodeSummary />
 </BaseLayout>
-
-<style>
-	.grid {
-		margin-bottom: var(--pico-block-spacing-vertical);
-	}
-
-	section:last-of-type {
-		margin-bottom: 0;
-	}
-
-	a[role="button"] {
-		margin-top: calc(.5 * var(--pico-block-spacing-vertical));
-	}
-</style>

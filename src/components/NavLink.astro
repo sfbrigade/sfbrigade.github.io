@@ -1,36 +1,9 @@
 ---
-import { base } from "@/utils/urls";
-
 interface Props {
-	href: string;
-	class?: string;
+    href: string;
 }
-
-// we can destructure `class` from props, but we have to rename it so it won't
-// trigger syntax errors in the JS
-const { href, class: className } = Astro.props;
-const baseURL = import.meta.env.BASE_URL.replace(/\/$/, "");
-// remove the base URL from the beginning of the current page so we can match
-// it against the href prop, which shouldn't include any base URL.  because of
-// annoying differences between dev and build modes, due to this behavior
-// (https://github.com/withastro/astro/issues/5630), we also have to remove
-// any trailing slash so currentPage can match the href.
-const currentPage = Astro.url.pathname
-	.replace(baseURL, "")
-	.replace(/(?<=\w)\/$/, "");
-// set the attribute to undefined when it's not the current page so
-// aria-current="false" isn't added to the anchor
-const ariaCurrent = currentPage === href ? "page" : undefined;
+const { href } = Astro.props;
 ---
-
-<a href={base(href)} class={className} aria-current={ariaCurrent}>
-	<slot />
+<a href={href} class="text-current no-underline hover:underline">
+    <slot />
 </a>
-
-<style>
-	a[aria-current] {
-		--pico-color: var(--pico-contrast);
-		cursor: default;
-		pointer-events: none;
-	}
-</style>
