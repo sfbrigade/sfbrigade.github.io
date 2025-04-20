@@ -1,6 +1,6 @@
 ---
 import GitHubEvents from "@/react/GitHubEvents/GitHubEvents";
-import HomeSection from "@/components/HomeSection.astro";
+import BigText from "./BigText.astro";
 
 // we'll pass the ID of the section to the GitHubEvents component so that it can
 // hide the whole section in case there's an error, rather than leave a broken
@@ -8,13 +8,16 @@ import HomeSection from "@/components/HomeSection.astro";
 const id = "in-the-code";
 ---
 
-<HomeSection
-	title="In the Code"
-	id={id}
->
+<section id={id} class="mb-8">
+	<BigText size="md" showOrnament={false}>
+		<Fragment slot="title">
+			<b>In the Code</b>
+		</Fragment>
+	</BigText>
+	<div class="mt-5" />
 	<GitHubEvents
 		org="sfbrigade"
 		sectionID={id}
 		client:only="react"
 	/>
-</HomeSection>
+</section>
