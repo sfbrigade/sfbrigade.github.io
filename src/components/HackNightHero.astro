@@ -4,77 +4,24 @@ import { meetupURL, zoomURL } from "@/utils/urls";
 import hackNight from "@/assets/home/hack-night.png";
 ---
 
-<section>
-	<div class="info">
-		<h2>Virtual Civic Hack Night</h2>
-		<p>
+<section class="flex flex-col md:flex-row justify-between items-stretch mt-12">
+	<div class="bg-[var(--color-sf-navy)] text-center p-8 flex-[1.2] flex flex-col justify-center">
+		<h2 class="text-[var(--color-sf-red)] font-[var(--font-barlow-condensed)] uppercase text-5xl font-bold mb-8">Virtual Civic Hack Night</h2>
+		<p class="text-[var(--color-white)] mb-4">
 			Not just for techies, success means having volunteers from all across our community!
 		</p>
-		<p>
-			All of our meetings are currently remote. Everyone is welcome!
+		<p class="text-[var(--color-white)] mb-4">
+			Everyone is welcome!
 		</p>
-		<p>
-			<a href={meetupURL}>Every Wednesday at 6:30pm&nbsp;Pacific</a>
+		<p class="mb-4">
+			<a href={meetupURL} class="text-[var(--color-white)] font-bold hover:underline decoration-[var(--color-white)]/90">Every Wednesday at 6:30pm&nbsp;Pacific</a>
 		</p>
 		<p>
 			Join us on Zoom
-			<a href={zoomURL}>https://c4sf.me/zoom</a>
+			<a href={zoomURL} class="text-[var(--color-white)] font-bold hover:underline decoration-[var(--color-white)]/90">https://c4sf.me/zoom</a>
 		</p>
 	</div>
-	<div class="image">
-		<Image src={hackNight} alt="hack night" loading="eager" />
+	<div class="bg-[var(--color-sf-cream)] p-8 flex-[1.8] flex items-center justify-center">
+		<Image src={hackNight} alt="hack night" loading="eager" class="w-full" />
 	</div>
 </section>
-
-<style>
-	section {
-		margin-top: var(--pico-block-spacing-vertical);
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: stretch;
-		gap: 0;
-	}
-
-	.info {
-		--pico-color: var(--pico-contrast-inverse);
-		background: rgb(50, 50, 102);
-		text-align: center;
-		padding: var(--pico-block-spacing);
-		flex: 1.2;
-	}
-
-	.info a {
-		--pico-color: var(--pico-contrast-inverse);
-		--pico-underline: rgba(255, 255, 255, 0.35);
-		font-weight: bold;
-	}
-
-	.info a:hover {
-		--pico-underline: rgba(255, 255, 255, 0.9);
-	}
-
-	.info h2 {
-		--pico-color: var(--color-accent);
-		margin-bottom: calc(2 * var(--pico-typography-spacing-vertical));
-	}
-
-	.image {
-		padding: var(--pico-block-spacing);
-		background: #f7efde;
-		flex: 1.8;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-	}
-
-	@media only screen and (max-width: 768px) {
-		section {
-			flex-direction: column;
-		}
-
-		.info {
-			padding-inline: calc(2 * var(--pico-block-spacing));
-		}
-	}
-</style>

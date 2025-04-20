@@ -4,7 +4,6 @@ import Page from "@/layouts/Page.astro";
 import HeaderNav from "@/components/HeaderNav.astro";
 import FooterNav from "@/components/FooterNav.astro";
 import type { MetadataProp } from "@/components/Metadata.astro";
-import "@/styles/global.css";
 
 interface Props {
 	title: string;
@@ -26,10 +25,10 @@ if (frontmatter) {
 			? frontmatter.name
 			: title;
 
-	// there's frontmatter, which means we're laying out a markdown file, so make
-	// sure there's metadata for the page, and copy any description from the
-	// markdown file
-	meta.description = frontmatter.description ?? meta.description;
+	if (!meta?.description && "description" in frontmatter) {
+		meta ??= {};
+		meta.description = frontmatter.description;
+	}
 }
 
 const header = Astro.props.header ?? title;
@@ -40,16 +39,10 @@ const header = Astro.props.header ?? title;
 	meta={meta}
 >
 	<HeaderNav />
-	<main class="container">
+	<main class="my-10">
 		{header &&
-			<h1>{header}</h1>}
+			<h1 class="text-3xl font-bold mb-8">{header}</h1>}
 		<slot />
 	</main>
 	<FooterNav />
 </Page>
-
-<style>
-	h1 {
-		margin-bottom: var(--pico-block-spacing-vertical);
-	}
-</style>

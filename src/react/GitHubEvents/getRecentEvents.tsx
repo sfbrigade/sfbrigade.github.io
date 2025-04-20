@@ -1,4 +1,4 @@
-import { EventProcessors } from "./EventProcessors.tsx";
+import { EventProcessors } from "./EventProcessors";
 
 export type GitHubEvent = {
 	id: string;
@@ -49,16 +49,13 @@ export async function getRecentEvents(
 			return null;
 		})
 		.flat()
-		.filter((event: GitHubEvent) => {
-			const key = event?.id;
-
-			if (!event || eventKeys.has(key)) {
-				// filter out the events that didn't match any of the processors or that
-				// we've already seen
+		.filter((event: GitHubEvent | null): event is GitHubEvent => {
+			if (!event || eventKeys.has(event.id)) {
+					// filter out nulls or events that we've already seen
 				return false;
 			}
 
-			eventKeys.add(key);
+			eventKeys.add(event.id);
 
 			return true;
 		});
