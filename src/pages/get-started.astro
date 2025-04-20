@@ -16,11 +16,11 @@ const meta = {
 <BaseLayout title="Get Started"
 	meta={meta}
 >
-	<p>
+	<p class="mb-4">
 		Regardless of skillset or background, anyone can contribute to their
 		community through SF Civic Tech
 	</p>
-	<ol class="steps">
+	<ol class="list-none [counter-reset:item] mt-6">
 		<GetStartedStep
 			title="Tell us about yourself"
 			src={about}
@@ -33,8 +33,8 @@ const meta = {
 			title="Onboard"
 			src={onboard}
 		>
-			<ol>
-				<li>
+			<ol class="list-decimal pl-5 space-y-1">
+				<li class="marker:initial">
 					Read our <a href={base(codeOfConductURL)}>Code of Conduct</a>
 				</li>
 				<li>
@@ -63,15 +63,3 @@ const meta = {
 		</GetStartedStep>
 	</ol>
 </BaseLayout>
-
-<style>
-	ol.steps {
-		list-style: none;
-		counter-reset: item;
-		margin-top: var(--pico-block-spacing-vertical);
-	}
-
-	a {
-		font-weight: bold;
-	}
-</style>
