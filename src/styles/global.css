@@ -8,6 +8,7 @@
 	--color-primary: var(--color-sf-red);
 	--color-text-base: black;
 	--color-background-base: white;
+	--color-muted: var(--color-stone-500);
 
 	--text-sm: 1rem;       /* 16px */
 	--text-base: 1.125rem; /* 18px */
@@ -51,9 +52,6 @@
 	}
 
 	body {
-		/*
-		font-family: var(--font-body);
-		*/
 		color: var(--color-text-base);
 		background-color: var(--color-background-base);
 	}
@@ -64,7 +62,14 @@
 
 	a:where(a:not([role=button])), [role=link] {
 		color: var(--color-sf-red);
-		@apply underline font-semibold;
+		@apply underline
+			font-semibold
+			transition
+			duration-300
+			ease-out
+			underline-offset-[.2rem]
+			decoration-primary/25
+			hover:decoration-primary;
 	}
 }
 
