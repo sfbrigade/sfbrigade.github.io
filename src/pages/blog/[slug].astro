@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import { render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import NavLink from "@/components/NavLink.astro";
 import { getImageAsset, formatShortMDY } from "@/utils";
 import { getBlogPosts } from "@/content";
 
@@ -45,14 +44,15 @@ const meta = {
 	title={title}
 	header=""
 	meta={meta}
+	mainClass="max-w-8col mx-auto"
 >
-	<h1 class="mb-2 text-3xl font-bold">{title}</h1>
-	<div class="date text-sm mb-6 flex justify-between items-center">
+	<h1 class="mb-1u text-3xl font-bold">{title}</h1>
+	<div class="font-condensed text-sm mb-2u flex justify-between items-center">
 		<time datetime={date?.toISOString()}>{dateString}</time>
-		<NavLink href="/blog">All posts</NavLink>
+		<a href="/blog">All posts</a>
 	</div>
 	{imageData &&
-		<p class="mb-4">
+		<p class="mb-1u">
 			<Image src={imageData} alt={image_alt} />
 		</p>}
 	<div class="prose max-w-none">

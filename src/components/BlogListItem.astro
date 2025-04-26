@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import DefaultThumbnail from "@/components/DefaultThumbnail.astro";
+import DefaultThumbnail from "./DefaultThumbnail.astro";
 import { base, getImageAsset, formatShortMDY } from "@/utils";
 
 interface Props {
@@ -10,7 +10,8 @@ interface Props {
 
 // the thumbnail item is set to 14rem square, and the largest base font size is
 // 21px, so double that to support a max 2X image
-const ThumbnailUnits = 14;
+// TODO: fix this calculation to make it more generic
+const ThumbnailUnits = 17.5;
 const ThumbnailWidth = ThumbnailUnits * 21;
 const Thumbnail2X = 2 * ThumbnailWidth;
 
@@ -36,10 +37,10 @@ const dateString = formatShortMDY(date);
 const thumbnailSize = `${ThumbnailUnits}rem`;
 ---
 
-<li class="my-6 flex flex-row gap-4">
+<li class="mb-2u flex flex-row gap-1u">
 	<a href={postURL}>
 			{thumbnailImage
-				? <Image class="thumbnail aspect-square object-cover object-center w-56 h-56"
+				? <Image class="thumbnail aspect-square object-cover object-center w-4col"
 						src={thumbnailImage}
 						alt={image_alt}
 						widths={[Thumbnail2X]}
@@ -50,7 +51,7 @@ const thumbnailSize = `${ThumbnailUnits}rem`;
 	</a>
 	<div class="flex-1">
 		<time class="block text-gray-500 mb-2 leading-none" datetime={date?.toISOString()}>{dateString}</time>
-		<h3 class="text-xl font-semibold mb-2"><a class="text-blue-700 hover:underline" href={postURL}>{title}</a></h3>
+		<h3 class="text-2xl font-semibold font-condensed mb-6"><a href={postURL}>{title}</a></h3>
 		{/* descriptionHTML is formatted as a <p> tag - Tailwind prose handles paragraph styling if applied upstream */}
 		<Fragment set:html={descriptionHTML} />
 	</div>
