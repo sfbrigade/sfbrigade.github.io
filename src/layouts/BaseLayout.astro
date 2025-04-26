@@ -10,12 +10,14 @@ interface Props {
 	header?: string;
 	meta?: MetadataProp;
 	frontmatter?: CollectionEntry<"blog">["data"] | CollectionEntry<"projects">["data"];
+	mainClass?: string;
 }
 
 let {
 	title = "SF Civic Tech",
 	meta = {},
-	frontmatter
+	frontmatter,
+	mainClass,
 } = Astro.props;
 
 if (frontmatter) {
@@ -39,7 +41,7 @@ const header = Astro.props.header ?? title;
 	meta={meta}
 >
 	<HeaderNav />
-	<main class="my-10">
+	<main class:list={["my-2u", mainClass]}>
 		{header &&
 			<h1 class="text-3xl font-bold mb-8">{header}</h1>}
 		<slot />
