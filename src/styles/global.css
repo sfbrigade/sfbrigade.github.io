@@ -7,7 +7,7 @@
 	--font-condensed: "Barlow Condensed", sans-serif;
 
 	--color-primary: var(--color-sf-red);
-	--color-text-base: black;
+	--color-text-base: var(--color-stone-900);
 	--color-background-base: white;
 	--color-muted: var(--color-stone-500);
 

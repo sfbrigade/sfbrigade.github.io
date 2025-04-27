@@ -5,14 +5,14 @@ interface Props {
 	color?: string;
 }
 
-const { color = "#f2f2f2" } = Astro.props;
+const { color } = Astro.props;
 ---
 
 <Icon
 	name="tag-ornament"
 	viewBox="0 18 116 116"
-	class={`w-24 max-w-full`}
-	style={{ color }}
+	class="w-24 max-w-full text-stone-100"
+	style={color && { color }}
 	width="inherit"
 	height="inherit"
 />
