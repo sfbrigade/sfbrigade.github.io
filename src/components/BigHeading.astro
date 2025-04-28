@@ -1,0 +1,55 @@
+---
+interface Props {
+	anchor?: "left" | "right";
+	size?: "lg" | "md" | "sm";
+	class?: string;
+}
+
+const Sizes = {
+	lg: {
+		Heading: "h2",
+		headingFontSize: "text-9xl",
+	},
+	md: {
+		Heading: "h3",
+		headingFontSize: "text-5xl leading-[0.9]",
+	},
+	sm: {
+		Heading: "h4",
+		headingFontSize: "text-3xl",
+	},
+};
+
+const {
+	anchor = "left",
+	size = "lg",
+	class: className,
+} = Astro.props;
+const { Heading, headingFontSize } = Sizes[size];
+---
+
+<Heading
+	class:list={[
+		"flex-1",
+		"font-condensed",
+		"font-semibold",
+		"uppercase",
+		headingFontSize,
+		"leading-[0.8]",
+		"trim-start",
+		"mb-0",
+		className,
+//		anchor === "left" && "text-right",
+	]}
+>
+	<slot />
+</Heading>
+
+<style>
+	h2, h3, h4 {
+		:global(b) {
+			color: var(--color-sf-red);
+			font-weight: inherit;
+		}
+	}
+</style>

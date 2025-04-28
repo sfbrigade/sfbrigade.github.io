@@ -2,39 +2,37 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import GetStartedStep from "@/components/GetStartedStep.astro";
 import { base, meetupURL, memberFormURL, projectsURL, slackURL, codeOfConductURL } from "@/utils/urls";
-import about from "@/assets/get-started/about.webp";
-import onboard from "@/assets/get-started/onboard.webp";
-import attend from "@/assets/get-started/attend.webp";
-import join from "@/assets/get-started/join.webp";
 
 const meta = {
 	description: "Get started with SF Civic Tech. We're here to help you get involved.",
-	image: onboard.src,
 };
 ---
 
-<BaseLayout title="Get Started"
+<BaseLayout title=""
 	meta={meta}
+	mainClass="max-w-8col mx-auto"
 >
-	<p>
-		Regardless of skillset or background, anyone can contribute to their
-		community through SF Civic Tech
-	</p>
-	<ol class="steps">
-		<GetStartedStep
-			title="Tell us about yourself"
-			src={about}
-		>
+	<ol class="list-none [counter-reset:item] mt-3u">
+		<GetStartedStep>
+			<Fragment slot="title">
+				<b>Tell us</b><br>
+				about<br>
+				yourself
+			</Fragment>
+
 			<p>
 				Fill out our <a href={memberFormURL}>2 minute form</a> so we can help match you with opportunities
 			</p>
 		</GetStartedStep>
-		<GetStartedStep
-			title="Onboard"
-			src={onboard}
-		>
-			<ol>
-				<li>
+
+		<GetStartedStep>
+			<Fragment slot="title">
+				<b>On</b><br>
+				board
+			</Fragment>
+
+			<ol class="list-decimal pl-5 space-y-1 marker:text-muted">
+				<li class="marker:initial">
 					Read our <a href={base(codeOfConductURL)}>Code of Conduct</a>
 				</li>
 				<li>
@@ -45,33 +43,28 @@ const meta = {
 				</li>
 			</ol>
 		</GetStartedStep>
-		<GetStartedStep
-			title="Attend Hack Night"
-			src={attend}
-		>
+
+		<GetStartedStep>
+			<Fragment slot="title">
+				<b>Attend</b><br>
+				Hack<br>
+				Night
+			</Fragment>
+
 			<p>
 				We meet remotely every Wednesday to work on projects! Head over to our <a href={meetupURL}>Meetup</a> for more details
 			</p>
 		</GetStartedStep>
-		<GetStartedStep
-			title="Join a Project"
-			src={join}
-		>
+
+		<GetStartedStep>
+			<Fragment slot="title">
+				<b>Join</b><br>
+				a Project
+			</Fragment>
+
 			<p>
 				Review our current portfolio listed on our <a href={projectsURL}>Projects</a> page. Join us at Hack Night or on Slack to get involved!
 			</p>
 		</GetStartedStep>
 	</ol>
 </BaseLayout>
-
-<style>
-	ol.steps {
-		list-style: none;
-		counter-reset: item;
-		margin-top: var(--pico-block-spacing-vertical);
-	}
-
-	a {
-		font-weight: bold;
-	}
-</style>

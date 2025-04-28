@@ -10,12 +10,14 @@ interface Props {
 	header?: string;
 	meta?: MetadataProp;
 	frontmatter?: CollectionEntry<"blog">["data"] | CollectionEntry<"projects">["data"];
+	mainClass?: string;
 }
 
 let {
 	title = "SF Civic Tech",
 	meta = {},
-	frontmatter
+	frontmatter,
+	mainClass,
 } = Astro.props;
 
 if (frontmatter) {
@@ -25,10 +27,10 @@ if (frontmatter) {
 			? frontmatter.name
 			: title;
 
-	// there's frontmatter, which means we're laying out a markdown file, so make
-	// sure there's metadata for the page, and copy any description from the
-	// markdown file
-	meta.description = frontmatter.description ?? meta.description;
+	if (!meta?.description && "description" in frontmatter) {
+		meta ??= {};
+		meta.description = frontmatter.description;
+	}
 }
 
 const header = Astro.props.header ?? title;
@@ -39,16 +41,10 @@ const header = Astro.props.header ?? title;
 	meta={meta}
 >
 	<HeaderNav />
-	<main class="container">
+	<main class:list={["my-2u", mainClass]}>
 		{header &&
-			<h1>{header}</h1>}
+			<h1 class="text-3xl font-bold mb-8">{header}</h1>}
 		<slot />
 	</main>
 	<FooterNav />
 </Page>
-
-<style>
-	h1 {
-		margin-bottom: var(--pico-block-spacing-vertical);
-	}
-</style>
