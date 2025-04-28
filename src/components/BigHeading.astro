@@ -2,6 +2,7 @@
 interface Props {
 	anchor?: "left" | "right";
 	size?: "lg" | "md" | "sm";
+	class?: string;
 }
 
 const Sizes = {
@@ -15,13 +16,14 @@ const Sizes = {
 	},
 	sm: {
 		Heading: "h4",
-		headingFontSize: "text-2xl",
+		headingFontSize: "text-3xl",
 	},
 };
 
 const {
 	anchor = "left",
 	size = "lg",
+	class: className,
 } = Astro.props;
 const { Heading, headingFontSize } = Sizes[size];
 ---
@@ -34,7 +36,9 @@ const { Heading, headingFontSize } = Sizes[size];
 		"uppercase",
 		headingFontSize,
 		"leading-[0.8]",
+		"trim-start",
 		"mb-0",
+		className,
 //		anchor === "left" && "text-right",
 	]}
 >

@@ -130,19 +130,31 @@
 	.prose {
 		line-height: revert;
 
-		/*
-		a {
-		*/
 		a:where(a:not([role=button])), [role=link] {
 			color: var(--color-sf-red);
-		@apply underline
-			font-semibold
-			transition
-			duration-300
-			ease-out
-			underline-offset-[.2rem]
-			decoration-primary/20
-			hover:decoration-primary;
+			@apply underline
+				font-semibold
+				transition
+				duration-300
+				ease-out
+				underline-offset-[.2rem]
+				decoration-primary/20
+				hover:decoration-primary;
 		}
+	}
+
+	.trim-start {
+		text-box-trim: trim-start;
+		text-box-edge: cap alphabetic;
+	}
+
+	.trim-end {
+		text-box-trim: trim-end;
+		text-box-edge: cap alphabetic;
+	}
+
+	.trim-both {
+		text-box-trim: trim-both;
+		text-box-edge: cap alphabetic;
 	}
 }
