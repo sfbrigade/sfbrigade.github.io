@@ -1,7 +1,7 @@
 ---
 status: active
 name: Routed
-thumbnail: routed.png
+thumbnail: routed.svg
 description: |-
   Everyday, paramedics make life and death decisions when choosing where to take patients. And they have to rely on their own experience to make the right choices.
 

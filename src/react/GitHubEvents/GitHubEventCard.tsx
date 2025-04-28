@@ -24,7 +24,7 @@ export default function GitHubEventCard({
 			target="_blank"
 			rel="noopener noreferrer"
 			className="
-				w-[calc((100cqw-2*theme(spacing.10)-1px)/3)]
+				w-[calc((100cqw-2*theme(spacing.1u))/3)]
 				block aspect-square p-4
 				text-center no-underline
 				text-stone-600 dark:text-stone-400

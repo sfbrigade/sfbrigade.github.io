@@ -101,7 +101,7 @@ export default function GitHubEventsList({
 			<div
 				ref={containerRef}
 				className="
-					flex-1 flex gap-10
+					flex-1 flex gap-1u
 					overflow-x-auto scroll-smooth
 					snap-x snap-mandatory
 					scrollbar-hide"

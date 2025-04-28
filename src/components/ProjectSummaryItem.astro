@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 import OptionalAnchor from "@/components/OptionalAnchor.astro";
 import DefaultThumbnail from "@/components/DefaultThumbnail.astro";
@@ -10,11 +9,7 @@ const cleanWebsite = (url: string) => url
 	.replace(/^https?:\/\//, "")
 	.replace(/\/$/, "");
 
-interface Props {
-	project: CollectionEntry<"projects">;
-}
-
-const ThumbnailWidth = 165;
+const ThumbnailWidth = 200;
 const Thumbnail2X = 2 * ThumbnailWidth;
 const IconClass = `
 	inline-block
@@ -56,7 +51,7 @@ const localImageMetadata = thumbnail && !isExternal
 
 ---
 
-<li class="flex flex-row items-start gap-1u mb-2u">
+<li class="flex flex-row items-start gap-1u mb-3u last:mb-0">
 	<OptionalAnchor href={url}>
 		{thumbnail && isExternal ? (
 			<img class={ThumbnailClass} src={thumbnail} alt={name} width={ThumbnailWidth} />
@@ -66,10 +61,10 @@ const localImageMetadata = thumbnail && !isExternal
 				src={localImageMetadata}
 				alt={name}
 				widths={[ThumbnailWidth, Thumbnail2X]}
-				sizes={`(max-width: 768px) ${ThumbnailWidth}px, ${ThumbnailWidth}px`}
+				sizes={`(max-width: 768px) ${ThumbnailWidth}px, ${Thumbnail2X}px`}
 			/>
 		) : (
-			<DefaultThumbnail size={ThumbnailWidth} />
+			<DefaultThumbnail size={ThumbnailWidth} class="w-4col" />
 		)}
 	</OptionalAnchor>
 

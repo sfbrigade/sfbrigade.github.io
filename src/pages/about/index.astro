@@ -12,6 +12,7 @@ const minutes = await getMinutes();
 <BaseLayout title="About"
 	header="About SF Civic Tech"
 	meta={meta}
+	mainClass="max-w-8col mx-auto"
 >
 	<p>
 		SF Civic Tech is a group of people, first and foremost. We also call ourselves
@@ -41,12 +42,12 @@ const minutes = await getMinutes();
 		<a href="https://www.civictechnologists.org/">Alliance of Civic Technologists</a>.
 	</p>
 
-	<h2 class="text-2xl font-bold mt-8 mb-4" id="core-team">Meet the Board</h2>
+	<h2 class="text-2xl font-bold mt-2u mb-1u" id="core-team">Meet the Board</h2>
 
 	<TeamList />
 
 	{minutes.length > 0 &&
-		<h3 class="text-xl font-semibold mt-6 mb-3" id="minutes">Minutes of Quarterly Board Meetings</h3>
+		<h3 class="text-xl font-semibold mt-2u mb-4" id="minutes">Minutes of Quarterly Board Meetings</h3>
 
 		<ul class="list-disc pl-5 space-y-1 mb-6">
 			{minutes.map(({ data: { url, year, quarter, isDraft }}) => (
@@ -59,7 +60,7 @@ const minutes = await getMinutes();
 		</ul>
 	}
 
-	<h2 class="text-2xl font-bold mt-8 mb-4" id="code-of-conduct">Code of Conduct</h2>
+	<h2 class="text-2xl font-bold mt-2u mb-4" id="code-of-conduct">Code of Conduct</h2>
 
 	<p>SF Civic Tech is a space for everyone. What does that mean?</p>
 
