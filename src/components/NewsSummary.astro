@@ -1,6 +1,6 @@
 ---
-import NewsSummaryItem from "./NewsSummaryItem.astro"; // Import from the same directory
 import { getBlogPosts } from "@/content";
+import NewsSummaryItem from "./NewsSummaryItem.astro";
 import BigText from "./BigText.astro";
 import TagOrnament from "./TagOrnament.astro";
 
@@ -14,7 +14,7 @@ const recentPosts = posts.slice(0, 3);
 			<b>In the News</b>
 		</Fragment>
 	</BigText>
-	<div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-10">
+	<div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-1u">
 		{recentPosts.map((post) => <NewsSummaryItem post={post} />)}
 	</div>
 	<div class="flex justify-center mt-16">
