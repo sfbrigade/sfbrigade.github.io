@@ -7,11 +7,11 @@ description: |-
 
   The goal of the organization is to provide equitable and efficient care to all those we serve in our community
 technologies:
-  - "React"
-  - "Vite"
-  - "Fastify"
-  - "Prisma"
-  - "Postgres"
+  - React
+  - Vite
+  - Fastify
+  - Prisma
+  - Postgres
 repos:
   - sf-lifeline
 slack:

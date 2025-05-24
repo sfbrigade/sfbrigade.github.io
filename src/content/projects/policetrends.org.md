@@ -9,7 +9,7 @@ description: |-
 
   This project is currently focused on outreach and building community partnerships.
 technologies:
-  - "Python"
-  - "Jupyter"
-  - "Notebook"
+  - Python
+  - Jupyter
+  - Notebook
 ---

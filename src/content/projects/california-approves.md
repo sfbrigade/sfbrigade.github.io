@@ -7,8 +7,8 @@ description: |-
 
   California Approves is an electoral-reform organization established in 2021 to promote approval voting and alternatives to "Choose-one" voting to fix this problem. How we vote is crucial to the justice of our political institutions and impacts every policy.
 technologies:
-  - "WordPress"
-  - "Python"
+  - WordPress
+  - Python
 slack:
   name: "#proj-brigade-calapproves"
   url: https://sfbrigade.slack.com/archives/C034TEBS2FK

@@ -6,6 +6,10 @@ import OptionalAnchor from "@/components/OptionalAnchor.astro";
 import DefaultThumbnail from "@/components/DefaultThumbnail.astro";
 import { getImageAsset } from "@/utils";
 
+const cleanWebsite = (url: string) => url
+	.replace(/^https?:\/\//, "")
+	.replace(/\/$/, "");
+
 interface Props {
 	project: CollectionEntry<"projects">;
 }
@@ -88,7 +92,7 @@ const localImageMetadata = thumbnail && !isExternal
 
 				{website &&
 					<p>
-						<Icon name={"fa:external-link"} class="icon" /> Visit: <a href={website}>{website}</a>
+						<Icon name={"fa:external-link"} class="icon" /> Visit: <a href={website}>{cleanWebsite(website)}</a>
 					</p>
 				}
 			</div>

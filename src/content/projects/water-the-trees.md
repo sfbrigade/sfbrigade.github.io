@@ -7,13 +7,13 @@ description: |-
 
   Water the Trees is an open source project run by tree planting volunteers at Sierra Club, Public Works, and developers at Code for San Francisco.
 technologies:
-  - "React"
-  - "Mapbox"
-  - "Node"
-  - "Postgres/PostGIS"
-  - "Martin/Rust"
-  - "Nginx"
-  - "Docker"
+  - React
+  - Mapbox
+  - Node
+  - Postgres/PostGIS
+  - Martin/Rust
+  - Nginx
+  - Docker
 repos:
   - waterthetrees
 slack:

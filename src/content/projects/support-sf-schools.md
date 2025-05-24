@@ -7,10 +7,10 @@ description: |-
 
   Sep 2024 update: Our MVP is live at [supportsfschools.org](https://supportsfschools.org)! We focus on helping people connect with schools near where they live or work, and to find where to donate their money or volunteer their time. The MVP is high school only, so we’ll soon be expanding to elementary and middle schools.
 technologies:
-  - "React"
-  - "Next.js"
-  - "Tailwind"
-  - "Postgres"
+  - React
+  - Next.js
+  - Tailwind
+  - Postgres
 slack:
   name: "#proj-support-sf-schools"
   url: https://sfbrigade.slack.com/archives/C03QWMXS9AT

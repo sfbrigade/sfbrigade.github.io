@@ -7,11 +7,11 @@ description: |-
 
   The current $2m/year application used by the city is inadequate, so TeamBATS is piloting an app that helps paramedics know which ERs have available beds, and ERs can learn about patients who are en route.
 technologies:
-  - "React"
-  - "Node"
-  - "Express"
-  - "Postgres"
-  - "Gatsby"
+  - React
+  - Node
+  - Express
+  - Postgres
+  - Gatsby
 repos:
   - bats-server
   - routedapp/routedapp.github.io
