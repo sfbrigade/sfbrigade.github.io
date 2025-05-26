@@ -5,6 +5,16 @@ import NewsSummary from "@/components/NewsSummary.astro";
 import BigText from "@/components/BigText.astro";
 import Button from "@/components/Button.astro";
 import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
+
+const ButtonClass = `
+	transition
+	duration-300
+	ease-in-out
+	underline-offset-[.2rem]
+	underline
+	decoration-primary/0
+	hover:decoration-primary/80
+`;
 ---
 
 <BaseLayout title="Home" header="">
@@ -39,8 +49,10 @@ import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
 
 	<BigText size="md" showOrnament={false}>
 		<Fragment slot="title">
-			<b>Join the</b><br>
-			Conversation
+			<a href={slackURL} role="button" class={ButtonClass}>
+				<b>Join</b> the
+				<br>Conversation
+			</a>
 		</Fragment>
 
 		<Fragment slot="body">
@@ -53,8 +65,10 @@ import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
 
 	<BigText size="md" anchor="right" showOrnament={false}>
 		<Fragment slot="title">
-			<b>Propose a</b><br>
-			Project
+			<a href={pitchProjectURL} role="button" class={ButtonClass}>
+				<b>Propose</b> a<br>
+				Project
+			</a>
 		</Fragment>
 
 		<Fragment slot="body">
@@ -67,8 +81,10 @@ import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
 
 	<BigText size="md">
 		<Fragment slot="title">
-			<b>Stay</b><br>
-			Informed
+			<a href={newsletterURL} role="button" class={ButtonClass}>
+				<b>Stay</b><br>
+				Informed
+			</a>
 		</Fragment>
 
 		<Fragment slot="body">
