@@ -10,13 +10,28 @@ const {
 	class: className,
 	newTab = false
 } = Astro.props;
-
 ---
 
 <a href={href}
 	role="button"
 	class:list={[
-		"font-condensed font-semibold uppercase border-2 text-primary text-sm px-2 pt-1 pb-1.5 rounded-md hover:bg-primary hover:text-white hover:border-primary hover:no-underline",
+		"font-condensed",
+		"font-semibold",
+		"uppercase",
+		"border-2",
+		"text-primary",
+		"text-sm",
+		"px-2",
+		"pt-1",
+		"pb-1.5",
+		"rounded-md",
+		"hover:bg-primary",
+		"hover:text-white",
+		"hover:border-primary",
+		"hover:no-underline",
+		"transition",
+		"duration-300",
+		"ease-out",
 		className
 	]}
 	target={newTab ? "_blank" : undefined}
