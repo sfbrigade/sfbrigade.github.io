@@ -4,6 +4,7 @@ import CodeSummary from "@/components/CodeSummary.astro";
 import NewsSummary from "@/components/NewsSummary.astro";
 import BigText from "@/components/BigText.astro";
 import Button from "@/components/Button.astro";
+import WelcomeList from "@/components/WelcomeList.astro";
 import { newsletterURL, pitchProjectURL, slackURL } from "@/utils/urls";
 
 const ButtonClass = `
@@ -15,6 +16,20 @@ const ButtonClass = `
 	decoration-primary/0
 	hover:decoration-primary/80
 `;
+const Volunteers = [
+	"developers",
+	"designers",
+	"data geeks",
+	"citizen activists",
+	"bus riders",
+	"learners",
+	"user researchers",
+	"cyclists",
+	"community builders",
+	"civic activists",
+	"teachers",
+	"project managers",
+];
 ---
 
 <BaseLayout title="Home" header="">
@@ -26,9 +41,7 @@ const ButtonClass = `
 		</Fragment>
 
 		<Fragment slot="body">
-			We are a welcoming and inclusive volunteer group of <i>developers</i>, <i>designers</i>,
-			<i>data geeks</i>, and <i>citizen activists</i> who use creative technology to address civic
-			and social problems.
+			<WelcomeList volunteers={Volunteers} />
 		</Fragment>
 	</BigText>
 

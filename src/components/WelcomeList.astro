@@ -1,0 +1,120 @@
+---
+interface Props {
+	volunteers?: string[];
+}
+
+const { volunteers = ["developers", "designers"] } = Astro.props;
+---
+
+<div>
+	<div>We are a welcoming and inclusive volunteer group of</div>
+	<div class="volunteer-anim">
+		<div class="volunteer-anim-container">
+			<div class="volunteer-text">{volunteers[0]}</div>
+			<div class="volunteer-text"></div>
+			&nbsp;
+		</div>
+	</div>
+	<div>who use creative technology to address civic	and social problems.</div>
+</div>
+
+<style>
+	.volunteer-anim {
+		margin-left: -1em;
+		padding-left: 1em;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.volunteer-anim-container {
+		position: relative;
+		container-type: inline-size;
+	}
+
+	.volunteer-text {
+		color: var(--color-stone-800);
+		font-weight: 600;
+		position: absolute;
+		left: 0;
+		top: 0;
+		white-space: nowrap;
+		opacity: 1;
+		transform: translateX(0) skewX(0);
+		transition: opacity 0.5s ease-out, transform .8s cubic-bezier(0.34, 1.51, 0.64, 1);
+	}
+
+	.fade-out {
+		opacity: 0;
+		transition: opacity 0.25s ease-out;
+	}
+
+	.slide-in {
+		opacity: 1;
+		transform: translateX(0) skewX(0);
+	}
+
+	.pre-slide-in {
+		opacity: 0;
+		transform: translateX(100cqw) skewX(-60deg);
+	}
+</style>
+
+<script define:vars={{ volunteers }}>
+	window.addEventListener("DOMContentLoaded", () => {
+		let index = 0;
+		let [outElem, inElem] = document.querySelectorAll(".volunteer-anim-container > div");
+
+		// we seem to have to add this class one time before showNext() does it below.
+		// otherwise, the first element doesn't slide in correctly.
+		inElem.classList.add("pre-slide-in");
+
+		function showNext()
+		{
+			if (!outElem || !inElem) {
+				return;
+			}
+
+			const nextIndex = (index + 1) % volunteers.length;
+
+			// set incoming text
+			inElem.textContent = volunteers[nextIndex];
+			inElem.style.display = "";
+			inElem.classList.remove("fade-out");
+			inElem.classList.add("pre-slide-in");
+
+			// start outgoing element's fade out
+			outElem.classList.remove("slide-in", "pre-slide-in");
+			outElem.classList.add("fade-out");
+
+			// animate the incoming element after giving the DOM a chance to update
+			// after adding the pre-slide-in class
+			setTimeout(() => {
+				if (!outElem || !inElem) {
+					return;
+				}
+
+				inElem.classList.remove("pre-slide-in");
+				inElem.classList.add("slide-in");
+			}, 20);
+
+			// after the slide-in animation, swap element roles
+			setTimeout(() => {
+				if (!outElem || !inElem) {
+					return;
+				}
+
+				outElem.style.display = "none";
+				inElem.style.display = "";
+				index = nextIndex;
+				[outElem, inElem] = [inElem, outElem];
+			}, 850);
+		}
+
+		// animate in the first element a second after the page loads, so it's more
+		// noticeable the first time, and then start doing it every 3 seconds
+		setTimeout(() => {
+			showNext();
+			setInterval(showNext, 3000);
+		}, 1000);
+	});
+</script>
