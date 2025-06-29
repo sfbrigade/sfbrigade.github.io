@@ -8,7 +8,7 @@ const posts = await getBlogPosts();
 ---
 
 <BaseLayout title="In the News">
-	<ul role="list">
+	<ul role="list" class="mt-2u">
 		{posts.map((post) => <BlogListItem post={post} />)}
 	</ul>
 </BaseLayout>

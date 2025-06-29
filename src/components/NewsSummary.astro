@@ -1,12 +1,23 @@
 ---
-import NewsSummaryItem from "@/components/NewsSummaryItem.astro";
-import HomeSection from "@/components/HomeSection.astro";
 import { getBlogPosts } from "@/content";
+import NewsSummaryItem from "./NewsSummaryItem.astro";
+import BigText from "./BigText.astro";
+import TagOrnament from "./TagOrnament.astro";
 
 const posts = await getBlogPosts();
 const recentPosts = posts.slice(0, 3);
 ---
 
-<HomeSection title="In the News">
-	{recentPosts.map((post) => <NewsSummaryItem post={post} />)}
-</HomeSection>
+<section class="mb-8">
+	<BigText size="md" anchor="right" showOrnament={false}>
+		<Fragment slot="title">
+			In the <b>News</b>
+		</Fragment>
+	</BigText>
+	<div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-1u">
+		{recentPosts.map((post) => <NewsSummaryItem post={post} />)}
+	</div>
+	<div class="flex justify-center mt-16">
+		<TagOrnament />
+	</div>
+</section>

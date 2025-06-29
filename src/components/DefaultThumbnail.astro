@@ -6,9 +6,10 @@ interface Props {
 	width?: number | string;
 	height?: number | string;
 	style?: string;
+	class?: string;
 }
 
-const { size, width, height, style } = Astro.props;
+const { size, width, height, style, class: className } = Astro.props;
 
 // below, set the viewBox to add 10% padding around the icon
 ---
@@ -19,6 +20,7 @@ const { size, width, height, style } = Astro.props;
 	width={width}
 	height={height}
 	style={style}
+	class={className}
 />
 
 <style>
