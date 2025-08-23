@@ -11,7 +11,6 @@ const stylisticRules = {
 };
 
 export default tseslint.config(
-	eslint.configs.recommended,
 	{
 		files: ["src/**/*.astro"],
 		plugins: {
@@ -68,6 +67,9 @@ export default tseslint.config(
 	},
 	{
 		files: ["src/**/*.{js,jsx}"],
+		extends: [
+			eslint.configs.recommended,
+		],
 		plugins: {
 			"@stylistic": stylistic
 		},
