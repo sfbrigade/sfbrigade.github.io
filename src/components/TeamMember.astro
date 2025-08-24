@@ -1,22 +1,35 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import { getImageAsset } from "@/utils";
+import DefaultThumbnail from "./DefaultThumbnail.astro";
 
 interface Props {
 	name: string;
 	title: string;
-	image: ImageMetadata;
+	image?: ImageMetadata;
 }
 
 const { name, title, image } = Astro.props;
+const filename = name
+	.trim()
+	.toLowerCase()
+	.replace(/[^a-z0-9]+/g, "-");
+const teamImage = image ?? await getImageAsset(`/src/assets/team/${filename}.webp`);
 ---
 
 <figure>
-	<Image
-		src={image}
-		alt={name}
-		loading="eager"
-	/>
+	{teamImage
+		? <Image
+			src={teamImage}
+			alt={name}
+			loading="eager"
+		/>
+		: <DefaultThumbnail
+			width="114px"
+			height="114px"
+		/>
+	}
 	<figcaption>
 		<h3>{name}</h3>
 		<h4>{title}</h4>
