@@ -21,21 +21,16 @@ const teamImage = image ?? await getImageAsset(`/src/assets/team/${filename}.web
 <figure class="flex-grow basis-0 min-w-[15ch] flex flex-col justify-between items-center gap-2">
 	{teamImage
 		? <Image
-			src={teamImage}
-			alt={name}
-			loading="eager"
-		/>
+				class="rounded-full w-[114px] h-[114px] object-cover"
+				src={teamImage}
+				alt={name}
+				loading="eager"
+			/>
 		: <DefaultThumbnail
-			width="114px"
-			height="114px"
-		/>
+				width="114px"
+				height="114px"
+			/>
 	}
-	<Image
-		class="rounded-full w-[114px] h-[114px] object-cover"
-		src={image}
-		alt={name}
-		loading="eager"
-	/>
 	<figcaption>
 		<h3 class="text-center m-0 font-semibold text-xl">{name}</h3>
 		<h4 class="text-center m-0 font-normal text-base mt-1">{title}</h4>
