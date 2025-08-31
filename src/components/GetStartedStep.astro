@@ -15,7 +15,9 @@ import BigHeading from "./BigHeading.astro";
 </li>
 
 <style>
-	/* we have to use @reference here to get access toTailwind utility classes */
+	/* we have to use @reference here to get access toTailwind utility classes.
+		 we're using a CSS selector here because prefixing everything with `before-`
+		 gets really annoying. */
 	@reference "@/styles/global.css";
 
 	li::before {

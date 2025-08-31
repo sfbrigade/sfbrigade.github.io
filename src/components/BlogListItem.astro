@@ -37,22 +37,22 @@ const dateString = formatShortMDY(date);
 const thumbnailSize = `${ThumbnailUnits}rem`;
 ---
 
-<li class="mb-2u flex flex-row gap-1u">
+<li class="mb-2u flex flex-col gap-1u md:flex-row">
 	<a href={postURL}>
 			{thumbnailImage
-				? <Image class="thumbnail aspect-square object-cover object-center w-4col"
+				? <Image class="thumbnail aspect-square object-cover object-center w-full md:w-4col"
 						src={thumbnailImage}
 						alt={image_alt}
 						widths={[Thumbnail2X]}
 						sizes=`${Thumbnail2X}px`
 						loading="lazy"
 					/>
-				: <DefaultThumbnail size={thumbnailSize} />
+				: <DefaultThumbnail size={thumbnailSize} class="w-full md:w-4col" />
 			}
 	</a>
-	<div class="flex-1">
+	<div class="flex-1 mt-1u md:mt-0">
 		<time class="block text-stone-500 font-condensed mb-2 leading-none" datetime={date?.toISOString()}>{dateString}</time>
-		<h3 class="text-2xl font-semibold font-condensed mb-6"><a href={postURL}>{title}</a></h3>
+		<h3 class="text-xl md:text-2xl lg:text-3xl font-semibold font-condensed mb-6"><a href={postURL}>{title}</a></h3>
 		{/* descriptionHTML is formatted as a <p> tag - Tailwind prose handles paragraph styling if applied upstream */}
 		<Fragment set:html={descriptionHTML} />
 	</div>

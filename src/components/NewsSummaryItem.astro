@@ -34,7 +34,7 @@ const dateString = formatShortMDY(date);
 	}
 	<div class="absolute inset-0 bg-black/40 group-hover:bg-black/25 transition-colors duration-200"></div>
 	<a href={postURL} class="relative flex flex-col justify-between h-full p-5 text-white no-underline">
-		<time datetime={date?.toISOString()} class="text-right">{dateString}</time>
-		<h3 class="text-lg font-condensed font-semibold text-white leading-[1.1] m-0">{title}</h3>
+		<time datetime={date?.toISOString()} class="text-xs md:text-sm text-right">{dateString}</time>
+		<h3 class="text-base md:text-lg lg:text-xl font-condensed font-semibold text-white leading-[1.1] m-0">{title}</h3>
 	</a>
 </article>

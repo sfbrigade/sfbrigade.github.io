@@ -20,6 +20,9 @@
 	--text-4xl: 3rem;      /* 48px */
 	--text-5xl: 3.75rem;   /* 60px */
 	--text-6xl: 4.5rem;    /* 72px */
+	--text-7xl: clamp(3rem, 6vw + 1rem, 4.5rem);
+	--text-8xl: clamp(3.5rem, 8vw + 1rem, 6rem);
+	--text-9xl: clamp(4rem, 10vw + 1rem, 7.5rem);
 
 	--spacing-1u: var(--unit);
 	--spacing-2u: calc(var(--unit) * 2);
@@ -46,11 +49,11 @@
 	:root {
 		--color-sf-red: #f22613;
 
-		--unit: 40px;
+		--unit: 24px;
 	}
 
 	html {
-		font-size: 12px; /* Base font size for smallest screens */
+		font-size: 14px; /* Base font size for smallest screens */
 		-webkit-tap-highlight-color: transparent; /* Optional: improves mobile tap experience */
 	}
 
@@ -59,11 +62,19 @@
 		html {
 			font-size: 16px; /* Standard base font size for medium screens and up */
 		}
+
+		:root {
+			--unit: 32px;
+		}
 	}
 
 	@media (min-width: theme("screens.lg")) {
 		html {
 			font-size: 18px;
+		}
+
+		:root {
+			--unit: 40px; /* maintain 920px grid (23 * 40px) on desktop */
 		}
 	}
 

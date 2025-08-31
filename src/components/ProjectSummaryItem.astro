@@ -20,10 +20,10 @@ const IconClass = `
 	data-[icon^=fa:github]:relative
 `;
 const ThumbnailClass = `
-	aspect-square
+	aspect-[2/1] md:aspect-square
 	object-contain
-	object-top
-	w-4col
+	object-left md:object-top
+	w-full md:w-4col
 	h-auto
 	max-w-none
 `;
@@ -51,7 +51,7 @@ const localImageMetadata = thumbnail && !isExternal
 
 ---
 
-<li class="flex flex-row items-start gap-1u mb-3u last:mb-0">
+<li class="flex flex-col md:flex-row items-start gap-1u mb-3u last:mb-0">
 	<OptionalAnchor href={url}>
 		{thumbnail && isExternal ? (
 			<img class={ThumbnailClass} src={thumbnail} alt={name} width={ThumbnailWidth} />
@@ -61,15 +61,17 @@ const localImageMetadata = thumbnail && !isExternal
 				src={localImageMetadata}
 				alt={name}
 				widths={[ThumbnailWidth, Thumbnail2X]}
-				sizes={`(max-width: 768px) ${ThumbnailWidth}px, ${Thumbnail2X}px`}
+				sizes={`(max-width: 768px) 100vw, ${Thumbnail2X}px`}
 			/>
 		) : (
-			<DefaultThumbnail size={ThumbnailWidth} class="w-4col" />
+			<div class="w-full md:w-4col aspect-[2/1] md:aspect-square overflow-hidden bg-stone-100 flex items-center justify-center">
+				<DefaultThumbnail size="70%" />
+			</div>
 		)}
 	</OptionalAnchor>
 
-	<article class="flex-1 prose">
-		<h3 class="text-3xl font-semibold font-condensed mb-1u not-prose trim-start">
+	<article class="flex-1 prose mt-1u md:mt-0">
+		<h3 class="text-2xl md:text-3xl font-semibold font-condensed mb-1u not-prose trim-start">
 			<OptionalAnchor href={url} class="text-text-base! decoration-text-base/20! hover:decoration-text-base!">
 				{name}
 			</OptionalAnchor>
