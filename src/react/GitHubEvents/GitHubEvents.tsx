@@ -1,13 +1,14 @@
 import { Suspense, useState } from "react";
-import GitHubEventsList from "./GitHubEventsList.tsx";
-import ErrorBoundary from "./ErrorBoundary.tsx";
-import { GitHubIcon } from "./icons.tsx";
-import { getRecentEvents } from "./getRecentEvents.tsx";
-import styles from "./GitHubEvents.module.css";
+import GitHubEventsList from "./GitHubEventsList";
+import ErrorBoundary from "./ErrorBoundary";
+import { GitHubIcon } from "./icons";
+import { getRecentEvents } from "./getRecentEvents";
 
 const Loader = () => (
-	<div className={styles.loader}>
-		<GitHubIcon />
+	<div className="w-full aspect-[3/1] flex justify-center items-center text-gray-200 dark:text-gray-700">
+		<div className="h-[40%] animate-pulse">
+			<GitHubIcon />
+		</div>
 	</div>
 );
 
@@ -23,18 +24,13 @@ export default function GitHubEvents({
 	const [eventsPromise] = useState(() => getRecentEvents(org));
 
 	const handleError = () => {
-		const section = document.getElementById(sectionID);
+		const section = sectionID ? document.getElementById(sectionID) : null;
 
 		if (section) {
-			// if there's some sort of error when fetching GitHub events, then just
-			// hide the Astro section that contains this component, since it's not
-			// critical to the site, and it's better than showing a broken component
 			section.style.display = "none";
 		}
 	};
 
-	// the Suspense component will show the Loader fallback until the eventsPromise
-	// resolves and the GitHubEventsList component renders
 	return (
 		<ErrorBoundary onError={handleError}>
 			<Suspense fallback={<Loader />}>

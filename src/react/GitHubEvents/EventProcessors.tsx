@@ -1,3 +1,11 @@
+// if we don't specify a font-weight: 700 for <strong>, it'll default to 900,
+// which makes Barlow Condensed look too bold and crunchy
+const Message = (props: { label: string, action: string, text: string }) => (
+	<>
+		<strong className="font-bold text-stone-800">{props.label} {props.action}:</strong> {props.text}
+	</>
+);
+
 export const EventProcessors = [
 	{
 		type: "PushEvent",
@@ -41,7 +49,7 @@ export const EventProcessors = [
 				repo,
 				username: actor.login,
 				avatar: actor.avatar_url,
-				message: <><strong>PR {action}:</strong> {pull_request.title}</>,
+				message: <Message label="PR" action={action} text={pull_request.title} />,
 				tooltip: `PR ${action}: ${pull_request.title}`,
 				link: pull_request.html_url,
 				timestamp: created_at,
@@ -61,7 +69,7 @@ export const EventProcessors = [
 				repo,
 				username: actor.login,
 				avatar: actor.avatar_url,
-				message: <><strong>Issue {action}:</strong> {issue.title}</>,
+				message: <Message label="Issue" action={action} text={issue.title} />,
 				tooltip: `Issue ${action}: ${issue.title}`,
 				link: issue.html_url,
 				timestamp: created_at,

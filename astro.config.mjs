@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import icon from "astro-icon";
+import tailwindcss from "@tailwindcss/vite";
 
 const oldCivcURL = "/blog/2019-06-22-introducing-civc-tech-to-san-franciscos-underserved-communities";
 
@@ -39,6 +40,9 @@ export default defineConfig({
 			modules: {
 				localsConvention: "camelCase",
 			}
-		}
+		},
+		plugins: [
+			tailwindcss()
+		]
 	}
 });

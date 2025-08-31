@@ -1,0 +1,18 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	color?: string;
+}
+
+const { color } = Astro.props;
+---
+
+<Icon
+	name="tag-ornament"
+	viewBox="0 18 116 116"
+	class="w-24 max-w-full text-stone-100"
+	style={color && { color }}
+	width="inherit"
+	height="inherit"
+/>
