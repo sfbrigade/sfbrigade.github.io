@@ -28,6 +28,7 @@ const columns = [
 			["/about#core-team", "meet the core team"],
 			["/about#code-of-conduct", "code of conduct"],
 			["mailto:hello@sfcivictech.org", "contact"],
+			[null, "formerly Code for San Francisco", null, "text-stone-400 italic mt-[3rem]"],
 		],
 	],
 	[
@@ -50,15 +51,19 @@ const columns = [
 		<nav aria-label="Footer" class="flex flex-col justify-start">
 			<h3 class="text-primary text-lg font-condensed font-bold uppercase mb-2">{cat}</h3>
 			<ul class="block list-none p-0 m-0">
-				{links.map(([page, label, iconName]) => (
-					<li class="hover:text-primary pb-1 flex items-center gap-1">
-						{iconName &&
-							<Icon name={iconName} class="inline-block min-w-6 text-center align-baseline" />
-						}
-						<NavLink href={page}>
-							{label}
-						</NavLink>
-					</li>
+				{links.map(([page, label, iconName, classes]) => (
+					page
+						? <li class="hover:text-primary pb-1 flex items-center gap-1">
+								{iconName &&
+									<Icon name={iconName} class="inline-block min-w-6 text-center align-baseline" />
+								}
+								<NavLink href={page}>
+									{label}
+								</NavLink>
+							</li>
+						: <li class={`pb-1 ${classes}`}>
+								{label}
+							</li>
 				))}
 			</ul>
 		</nav>

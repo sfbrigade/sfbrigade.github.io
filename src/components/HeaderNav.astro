@@ -32,8 +32,8 @@ const routes = [
 						<NavLink
 							href={route.href}
 							class:list={[
-								"font-condensed font-semibold text-lg text-stone-800",
-								route.highlight && "bg-primary text-white px-4 py-2 rounded-lg hover:bg-[#d54d4b] hover:no-underline"
+								"font-condensed font-semibold text-lg text-stone-800 transition duration-300 ease-out",
+								route.highlight && "bg-primary text-sm text-white uppercase px-2 pt-1 pb-1.5 rounded-lg border-2 border-primary hover:bg-white hover:text-primary hover:no-underline!"
 							]}
 							activeClass={activeClass}
 						>
