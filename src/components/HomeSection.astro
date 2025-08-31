@@ -1,25 +1,23 @@
 ---
+import TagOrnament from "./TagOrnament.astro";
+
 interface Props {
 	title: string;
 	id?: string;
+	showOrnament?: boolean;
 }
 
-const { title, id } = Astro.props;
+const { title, id, showOrnament = true } = Astro.props;
 ---
 
-<section id={id}>
-	<h2>{title}</h2>
-	<div class="grid">
+<section id={id} class="mb-8">
+	<h2 class="text-primary font-condensed font-semibold uppercase text-7xl mb-8 text-center">{title}</h2>
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
 		<slot />
 	</div>
+	{showOrnament && (
+		<div class="flex justify-center mt-8">
+			<TagOrnament />
+		</div>
+	)}
 </section>
-
-<style>
-	section:last-of-type {
-		margin-bottom: 0;
-	}
-
-	h2 {
-		margin-bottom: calc(2 * var(--pico-typography-spacing-vertical));
-	}
-</style>

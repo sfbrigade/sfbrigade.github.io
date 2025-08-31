@@ -28,6 +28,7 @@ const columns = [
 			["/about#core-team", "meet the core team"],
 			["/about#code-of-conduct", "code of conduct"],
 			["mailto:hello@sfcivictech.org", "contact"],
+			[null, "formerly Code for San Francisco", null, "text-stone-400 italic mt-[3rem]"],
 		],
 	],
 	[
@@ -45,76 +46,28 @@ const columns = [
 ] as const;
 ---
 
-<footer class="container">
+<footer class="mx-auto px-0 py-14 text-sm grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
 	{columns.map(([cat, links]) => (
-		<nav aria-label="Footer">
-			<h3>{cat}</h3>
-			<ul>
-				{links.map(([page, label, iconName]) => (
-					<li>
-						{iconName &&
-							<Icon name={iconName} class="icon" />
-						}
-						<NavLink href={page}>
+		<nav aria-label="Footer" class="flex flex-col justify-start">
+			<h3 class="text-primary text-lg font-condensed font-bold uppercase mb-2">{cat}</h3>
+			<ul class="block list-none p-0 m-0">
+				{links.map(([page, label, iconName, classes]) => (
+					page
+						?
+						<li class="hover:text-primary py-1.5 flex items-center gap-1">
+							{iconName &&
+								<Icon name={iconName} class="inline-block min-w-6 text-center align-baseline" />
+							}
+							<NavLink href={page}>
+								{label}
+							</NavLink>
+						</li>
+						:
+						<li class={`py-1.5 ${classes}`}>
 							{label}
-						</NavLink>
-					</li>
+						</li>
 				))}
 			</ul>
 		</nav>
-	))}
+    ))}
 </footer>
-
-<style>
-	footer {
-		font-size: smaller;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-
-	nav {
-		flex-direction: column;
-		justify-content: start;
-	}
-
-	h3 {
-		font-size: 1.25em;
-		margin-bottom: 0.5em;
-	}
-
-	ul {
-		display: block;
-	}
-
-	ul:first-of-type, ul:last-of-type {
-		margin-left: initial;
-		margin-right: initial;
-	}
-
-	li {
-		padding: .15em 0;
-		display: flex;
-		align-items: center;
-		gap: .25rem;
-	}
-
-	/* Pico CSS adds a ::before with content: "" for li's, which adds space on the */
-	/* left that we don't want */
-	li::before {
-		content: none;
-	}
-
-	/* force the a's in the NavLink to have no extra spacing */
-	li > :global(a) {
-		margin: 0;
-		padding: 0;
-	}
-
-	.icon {
-		display: inline-block;
-		min-width: 1.5em;
-		text-align: center;
-		vertical-align: baseline;
-	}
-</style>

@@ -3,8 +3,7 @@ import { base } from "@/utils/urls";
 import Metadata from "@/components/Metadata.astro";
 import type { MetadataProp } from "@/components/Metadata.astro";
 import MetricsSnippet from "@/components/MetricsSnippet.astro";
-import "@picocss/pico";
-import "./global.css";
+import "@/styles/global.css";
 
 interface Props {
 	title: string;
@@ -44,9 +43,13 @@ const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
 		<Metadata meta={meta} />
 		<MetricsSnippet />
 
+		<!-- Google Fonts for Barlow and Barlow Condensed -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 		<title>{pageTitle}</title>
 	</head>
-	<body>
+	<body class="font-body max-w-[920px] mx-auto px-4 sm:px-6 lg:px-0">
 		<slot />
 	</body>
 </html>

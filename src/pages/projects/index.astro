@@ -1,11 +1,21 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import type { CollectionEntry } from "astro:content";
 import ProjectSummaryItem from "@/components/ProjectSummaryItem.astro";
+import BigHeading from "@/components/BigHeading.astro";
 import { getProjects } from "@/content";
+// add the groupBy polyfill if needed
 import "@/utils/groupBy";
 
+const Sections = [
+	["active", "Active"],
+	["inactive", "Inactive"],
+	["completed", "Completed"],
+];
+
 const projects = await getProjects();
-const projectsByStatus = Object.groupBy(projects, (project) => project.data.status);
+const projectsByStatus: Record<string, CollectionEntry<"projects">[]> =
+	Object.groupBy(projects, (project) => project.data.status);
 const meta = {
 	description: "Civic tech projects by, and for, San Francisco residents",
 };
@@ -15,42 +25,28 @@ const meta = {
 	header="Projects"
 	meta={meta}
 >
-	<p>All projects built by SF Civic Tech are:</p>
+	<div class="prose max-w-none">
+		<p>All projects built by SF Civic Tech are:</p>
 
-	<ul>
-		<li>Open source</li>
-		<li>Volunteer-driven</li>
-		<li>Not-for-profit</li>
-		<li>In service of the public good</li>
-	</ul>
-
-	{projectsByStatus.active?.length &&
-		<h2>Active projects</h2>
-
-		<ul role="list">
-			{projectsByStatus.active.map((project) => (
-				<ProjectSummaryItem project={project} />
-			))}
+		<ul>
+			<li>Open source</li>
+			<li>Volunteer-driven</li>
+			<li>Not-for-profit</li>
+			<li>In service of the public good</li>
 		</ul>
-	}
+	</div>
 
-	{projectsByStatus.inactive?.length &&
-		<h2>Inactive projects</h2>
+	{Sections.map(([key, title]) => projectsByStatus[key]?.length > 0 &&
+		<section class="mt-3u">
+			<BigHeading size="md">
+				<b>{title}</b> projects
+			</BigHeading>
 
-		<ul role="list">
-			{projectsByStatus.inactive?.map((project) => (
-				<ProjectSummaryItem project={project} />
-			))}
-		</ul>
-	}
-
-	{projectsByStatus.completed?.length &&
-		<h2>Completed projects</h2>
-
-		<ul role="list">
-			{projectsByStatus.completed?.map((project) => (
-				<ProjectSummaryItem project={project} />
-			))}
-		</ul>
-	}
+			<ul role="list" class="mt-2u">
+				{projectsByStatus[key].map((project) =>
+					<ProjectSummaryItem project={project} />
+				)}
+			</ul>
+		</section>
+	)}
 </BaseLayout>

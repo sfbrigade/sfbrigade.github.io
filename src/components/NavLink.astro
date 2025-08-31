@@ -4,11 +4,17 @@ import { base } from "@/utils/urls";
 interface Props {
 	href: string;
 	class?: string;
+	activeClass?: string;
 }
 
 // we can destructure `class` from props, but we have to rename it so it won't
 // trigger syntax errors in the JS
-const { href, class: className } = Astro.props;
+const {
+	href,
+	class: className,
+	activeClass,
+//	activeClass = "text-muted decoration-inherit cursor-default pointer-events-none",
+} = Astro.props;
 const baseURL = import.meta.env.BASE_URL.replace(/\/$/, "");
 // remove the base URL from the beginning of the current page so we can match
 // it against the href prop, which shouldn't include any base URL.  because of
@@ -22,15 +28,14 @@ const currentPage = Astro.url.pathname
 // aria-current="false" isn't added to the anchor
 const ariaCurrent = currentPage === href ? "page" : undefined;
 ---
-
-<a href={base(href)} class={className} aria-current={ariaCurrent}>
-	<slot />
+<a href={base(href)}
+	aria-current={ariaCurrent}
+	class:list={[
+		"font-normal text-current no-underline hover:underline",
+		className,
+		ariaCurrent && "text-muted! decoration-inherit cursor-default pointer-events-none",
+		ariaCurrent && activeClass,
+	]}
+>
+    <slot />
 </a>
-
-<style>
-	a[aria-current] {
-		--pico-color: var(--pico-contrast);
-		cursor: default;
-		pointer-events: none;
-	}
-</style>

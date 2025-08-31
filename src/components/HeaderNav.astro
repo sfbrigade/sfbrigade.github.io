@@ -1,163 +1,100 @@
 ---
+import HeaderLogo from "./HeaderLogo.astro";
 import NavLink from "./NavLink.astro";
-import NavDropdown from "./NavDropdown.astro";
 import {
 	meetupURL,
 	getStartedURL,
 	aboutURL,
 	blogURL,
-	codeOfConductURL,
 	donateURL,
 	projectsURL,
 } from "@/utils/urls";
-import HeaderLogo from "./HeaderLogo.astro";
 
+const activeClass = "text-muted relative after:content-[''] after:absolute after:left-0 after:top-[calc(1em+.2rem)] after:w-2 after:h-1 after:bg-primary";
 const routes = [
-	{ label: "Get Started", page: getStartedURL },
-	{ label: "Events", page: meetupURL },
-	{ label: "Projects", page: projectsURL },
-	{ label: "Blog", page: blogURL },
-	{ label: "Donate", page: donateURL },
-	{ label: "About", page: aboutURL,
-		pages: [
-			{ label: "Code of Conduct", page: codeOfConductURL }
-		]
-	}
+	{ label: "Get Started", href: getStartedURL },
+	{ label: "Events", href: meetupURL },
+	{ label: "Projects", href: projectsURL },
+	{ label: "Blog", href: blogURL },
+	{ label: "About", href: aboutURL },
+	{ label: "Donate", href: donateURL, highlight: true }
 ];
 ---
 
-<header class="container">
-	<nav aria-label="Header">
-		<ul>
-			<li class="home">
-				<NavLink href="/" class="contrast">
-					<HeaderLogo />
-				</NavLink>
-			</li>
-		</ul>
-		<input type="checkbox" id="toggle-button" aria-controls="nav-links" />
-		<label for="toggle-button" class="toggle-icon">
-			<span></span>
-		</label>
-		<ul id="nav-links">
-			{routes.map(({ label, page, pages }) => (
+<header class="w-full bg-white relative z-[1000]">
+	<nav class="py-4 flex justify-between items-center">
+		<NavLink href="/">
+			<HeaderLogo />
+		</NavLink>
+		<!-- mobile hamburger -->
+		<button
+			class="md:hidden text-stone-800 p-2"
+			id="mobile-menu-button"
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+			aria-label="Toggle menu"
+			type="button"
+		>
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+			</svg>
+		</button>
+		<ul class="hidden md:flex items-center space-x-6">
+			{routes.map((route) => (
 				<li>
-					<NavLink href={page}>
-						{label}
+					<NavLink
+						href={route.href}
+						class:list={[
+							"font-condensed font-semibold text-lg text-stone-800 transition duration-300 ease-out",
+							route.highlight && "bg-primary text-sm text-white uppercase px-2 pt-1 pb-1.5 rounded-lg border-2 border-primary hover:bg-white hover:text-primary hover:no-underline!"
+						]}
+						activeClass={activeClass}
+					>
+						{route.label}
 					</NavLink>
-					{!!pages?.length &&
-						<NavDropdown items={pages} />
-					}
 				</li>
 			))}
 		</ul>
 	</nav>
+    <!-- Mobile menu -->
+    <div class="md:hidden hidden fixed inset-x-0 top-0 w-full bg-white z-[9999]" id="mobile-menu" role="menu">
+        <div class="mx-auto max-w-[920px] px-4 py-2 space-y-2">
+            {routes.map((route) => (
+                <a
+                    href={route.href}
+                    class:list={[
+                        "font-condensed font-semibold uppercase text-base px-3 py-2",
+                        route.highlight
+                            ? "inline-flex w-auto items-center self-start rounded-lg border-2 border-primary bg-primary text-white"
+                            : "block text-stone-800",
+                    ]}
+                    role="menuitem"
+                >
+                    {route.label}
+                </a>
+            ))}
+        </div>
+    </div>
 </header>
 
-<style>
-	header {
-		padding: 0;
-	}
+<script>
+	// Mobile menu toggle
+	document.addEventListener("DOMContentLoaded", () => {
+		const menuButton = document.getElementById("mobile-menu-button");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const headerEl = document.querySelector("header");
+		if (menuButton && mobileMenu) {
+			menuButton.addEventListener("click", () => {
+				const expanded = menuButton.getAttribute("aria-expanded") === "true";
+				menuButton.setAttribute("aria-expanded", (!expanded).toString());
+				mobileMenu.classList.toggle("hidden");
 
-	#nav-links li {
-		white-space: nowrap;
-	}
-
-	#toggle-button, .toggle-icon {
-		display: none;
-		user-select: none;
-	}
-
-	@media only screen and (max-width: 768px) {
-		header {
-			max-width: initial;
-			display: flex;
+				// position the fixed menu directly under the header and avoid any hairline gaps
+				if (!mobileMenu.classList.contains("hidden") && headerEl) {
+					const h = headerEl.offsetHeight || 0;
+					mobileMenu.style.top = `${Math.max(0, h - 1)}px`;
+				}
+			});
 		}
-
-		nav {
-			width: 100%;
-			align-items: center;
-			position: relative;
-		}
-
-		.home {
-			margin: 0 var(--pico-spacing);
-		}
-
-		#nav-links {
-			padding-bottom: var(--pico-spacing);
-			padding-left: 56px;
-			display: none;
-			box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.25);
-		}
-
-		#nav-links li {
-			padding-left: 0;
-		}
-
-		#toggle-button:checked ~ #nav-links {
-			background-color: var(--pico-background-color);
-			top: 100%;
-			width: 100%;
-			display: flex;
-			align-items: start;
-			flex-direction: column;
-			position: absolute;
-			z-index: 100;
-		}
-
-		.toggle-icon {
-			padding: .5rem;
-			margin: 0 calc(var(--pico-spacing) - .5rem);
-			cursor: pointer;
-			position: relative;
-			display: inline-block;
-			--bar-color: #333;
-
-			span {
-				background: var(--bar-color);
-				display: block;
-				height: .1rem;
-				position: relative;
-				transition: background .1s ease-out;
-				width: 1rem;
-			}
-
-			/* annoyingly, the PostCSS nesting plugin can't seem to handle pseudoelements */
-			/* like &::before, even though it's valid CSS.  so we have to write out span. */
-			span::before,
-			span::after {
-				content: "";
-				background: var(--bar-color);
-				transition: inherit;
-				width: 100%;
-				height: 100%;
-				position: absolute;
-			}
-
-			span::before {
-				top: 6px;
-			}
-
-			span::after {
-				top: -6px;
-			}
-		}
-
-		#toggle-button:checked ~ .toggle-icon {
-			span {
-				background: transparent;
-			}
-
-			span::before {
-				transform: rotate(45deg);
-				top: 0;
-			}
-
-			span::after {
-				transform: rotate(-45deg);
-				top: 0;
-			}
-		}
-	}
-</style>
+	});
+</script>

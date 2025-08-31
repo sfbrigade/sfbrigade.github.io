@@ -10,78 +10,17 @@ interface Props {
 const { color, title, body, label, href } = Astro.props;
 ---
 
-<div class="card" style={`background: ${color}`}>
-	<slot />
-	<div class="body">
-		<h3>{title}</h3>
-		<p>
-			{body}
-		</p>
-		<a href={href} target="_blank">
-			{label}
-		</a>
-	</div>
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-8 rounded-lg text-center md:text-left" style={`background: ${color}`}>
+    <div class="w-full md:w-1/3 mb-4 md:mb-0">
+        <slot />
+    </div>
+    <div class="flex flex-col h-full gap-2 w-full md:w-3/5">
+        <h3 class="text-white font-[var(--font-barlow-condensed)] uppercase text-xl md:text-2xl font-bold min-h-[3rem]">{title}</h3>
+        <p class="text-white text-sm md:text-base h-full mb-4">
+            {body}
+        </p>
+        <a href={href} target="_blank" class="text-white font-bold text-base md:text-lg hover:underline decoration-white/90">
+            {label}
+        </a>
+    </div>
 </div>
-
-<style>
-	.card {
-		--pico-color: var(--pico-contrast-inverse);
-		font-size: smaller;
-		text-align: center;
-		align-items: center;
-		padding: var(--pico-block-spacing);
-		display: flex;
-		flex-direction: column;
-		gap: calc(var(--pico-block-spacing) * .25);
-	}
-
-	.card :global(img) {
-		width: 60%;
-	}
-
-	.body {
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: calc(var(--pico-block-spacing) * .25);
-	}
-
-	h3 {
-		--pico-color: var(--pico-contrast-inverse);
-		font-size: 1.25rem;
-		text-transform: uppercase;
-		min-height: calc(var(--pico-line-height) * 2 * 1em);
-	}
-
-	p {
-		height: 100%;
-	}
-
-	a {
-		--pico-color: var(--pico-contrast-inverse);
-		--pico-underline: rgba(255, 255, 255, 0.35);
-		font-weight: bold;
-		font-size: larger;
-	}
-
-	a:hover {
-		--pico-color: var(--pico-contrast-inverse);
-		--pico-underline: rgba(255, 255, 255, 0.9);
-	}
-
-	@media only screen and (max-width: 768px) {
-		.card {
-			font-size: initial;
-			flex-direction: row;
-			justify-content: space-evenly;
-		}
-
-		.card :global(img) {
-			width: 30%;
-		}
-
-		.body {
-			width: 60%;
-		}
-	}
-</style>

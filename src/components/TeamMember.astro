@@ -18,55 +18,21 @@ const filename = name
 const teamImage = image ?? await getImageAsset(`/src/assets/team/${filename}.webp`);
 ---
 
-<figure>
+<figure class="flex-grow basis-0 min-w-[15ch] flex flex-col justify-between items-center gap-2">
 	{teamImage
 		? <Image
-			src={teamImage}
-			alt={name}
-			loading="eager"
-		/>
+				class="rounded-full w-[114px] h-[114px] object-cover"
+				src={teamImage}
+				alt={name}
+				loading="eager"
+			/>
 		: <DefaultThumbnail
-			width="114px"
-			height="114px"
-		/>
+				width="114px"
+				height="114px"
+			/>
 	}
 	<figcaption>
-		<h3>{name}</h3>
-		<h4>{title}</h4>
+		<h3 class="text-center m-0 font-semibold text-xl">{name}</h3>
+		<h4 class="text-center m-0 font-normal text-base mt-1">{title}</h4>
 	</figcaption>
 </figure>
-
-<style>
-	figure {
-		flex-grow: 1;
-		flex-basis: 0%;
-		min-width: 15ch;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
-		gap: calc(.5 * var(--pico-block-spacing));
-	}
-
-	img {
-		border-radius: 50%;
-		width: 114px;
-		height: 114px;
-		object-fit: cover;
-	}
-
-	h3, h4 {
-		text-align: center;
-		margin: 0;
-	}
-
-	h3 {
-		font-size: 1.25rem;
-	}
-
-	h4 {
-		font-weight: normal;
-		font-size: 1rem;
-		margin-top: 0.25rem;
-	}
-</style>
