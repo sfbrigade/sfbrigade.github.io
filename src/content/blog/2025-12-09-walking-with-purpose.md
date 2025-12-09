@@ -2,13 +2,13 @@
 title: "Walking with Purpose: Celebrating the Legacy of Let’s Walk"
 description: >
   Since 2019, the Let’s Walk program has brought thousands of San Franciscans together, one step at a time. What began as a modest pilot evolved into a community-powered walking challenge that blended technology, sports, and public health—reaching hundreds of families in neighborhoods with some of the city’s greatest health disparities.
-image: 2025-12-09/certificate-and-team.jpg
+image: 2025-12-09/team.jpg
 authors:
   - Danielle Lundstrom
   - Francis Li
 ---
 
-_Editor’s note: This post was written collectively by the SF Nutrition Equity Opportunity & Physical Activity (SF NEOP) team from the City and County of San Francisco's Department of Public Health. On July 4, 2025, the federal budget reconciliation bill known as the One Big Beautiful Bill Act was signed in to law, eliminating all funding for the Nutrition Education and Obesity Prevention Grant Program (also known as SNAP-Ed, Supplemental Nutrition Assistance Program Education) effective October 1, 2025. As a result, the SF NEOP team was disbanded and the Let’s Walk program has been sunsetted. SF Civic Tech would like to thank the SF NEOP team for their vision, leadership, and collaboration alongside all the volunteers who worked on building the technology for the program._
+_Editor’s note: This post was written collectively by the SF Nutrition Equity Opportunity & Physical Activity (SF NEOP) team from the City and County of San Francisco's Department of Public Health. On July 4, 2025, the federal budget reconciliation bill known as the One Big Beautiful Bill Act was signed in to law, eliminating all funding for the Nutrition Education and Obesity Prevention Grant Program (also known as SNAP-Ed, Supplemental Nutrition Assistance Program Education) effective October 1, 2025. As a result, the SF NEOP team was disbanded and the Let’s Walk program has been sunsetted. SF Civic Tech would like to thank the SF NEOP team for their vision, leadership, and collaboration alongside all the volunteers who worked on building the technology for the program over the years._
 
 Since 2019, the Let’s Walk program has brought thousands of San Franciscans together, one step at a time. What began as a modest pilot evolved into a community-powered walking challenge that blended technology, sports, and public health—reaching hundreds of families in neighborhoods with some of the city’s greatest health disparities.
 
@@ -54,3 +54,9 @@ As we wind down this chapter, we remain hopeful that the lessons learned from Le
 To our participants, partners, and neighbors: thank you for walking with us. 
 
 We may be taking our last official steps, but the path we paved together will continue to lead toward healthier, more connected communities. 
+
+| More Team Photos |  |
+|---|---|
+| ![Team photo](../../assets/blog/2025-12-09/team2.jpg "Team photo") | ![Team photo](../../assets/blog/2025-12-09/team3.jpg "Team photo") | 
+
+![Certificate of recognition](../../assets/blog/2025-12-09/certificate.jpg "Certificate of recognition")
