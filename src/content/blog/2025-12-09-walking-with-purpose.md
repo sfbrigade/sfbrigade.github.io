@@ -28,12 +28,12 @@ Together, we co-designed a mobile app tailored for our diverse, multilingual par
 From the start, Let’s Walk was grounded in three guiding principles: equity, community-informed design, and partnership. We worked hand-in-hand with WIC to launch a fully virtual recruitment campaign during the pandemic, reaching nearly 6,000 San Francisco families through trilingual text messages and digital guides. Over 400 participants enrolled in the 2020 program—demonstrating that virtual outreach, when done intentionally, can truly work. 
 
 Our data has told a powerful story: 
-*	A total of 490 million steps logged (over 245,000 miles!) 
-*	Most participants lived in zip codes with high rates of poverty and chronic disease 
-*	After adding the Where to Walk feature, >80% of respondents consistently reported walking at a local park during the program 
-*	On average, respondents consistently reported that friends and/or family walked with them >3 days per week 
-*	Participants indicated experiencing health benefits associated with physical activity, including higher energy levels, lower stress, and improved sleep quality  
-*	In 2023, 79% of participants reported making healthy lifestyle changes as a result of participating in the program, including movement, nutrition, and other health behaviors 
+* A total of 490 million steps logged (over 245,000 miles!)
+* Most participants lived in zip codes with high rates of poverty and chronic disease
+* After adding the Where to Walk feature, >80% of respondents consistently reported walking at a local park during the program
+* On average, respondents consistently reported that friends and/or family walked with them >3 days per week
+* Participants indicated experiencing health benefits associated with physical activity, including higher energy levels, lower stress, and improved sleep quality
+* In 2023, 79% of participants reported making healthy lifestyle changes as a result of participating in the program, including movement, nutrition, and other health behaviors
 
 When participants were asked what they liked most about the app, the top responses were its ease of use, the ability to track steps, and the motivation to stay active. And >90% of survey respondents consistently said they would rejoin the program—a testament to the program’s relevance and value. 
  
