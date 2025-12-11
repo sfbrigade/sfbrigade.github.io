@@ -49,7 +49,7 @@ Behind every data point is a neighbor, parent, or community member who took step
 These reflections remind us that Let’s Walk was more than an app or a program—it was a movement powered by community. 
 
 ### Looking Ahead
-As we wind down this chapter, we remain hopeful that the lessons learned from Let’s Walk will live on. This program proved that public health can innovate, that partnerships between city agencies and volunteer tech groups can thrive, and that when you design with equity in mind, meaningful change is possible.  
+As we wind down this chapter, we remain hopeful that the lessons learned from Let’s Walk will live on. This program proved that public health can innovate, that partnerships between city agencies and volunteer tech groups can thrive, and that when you design with equity in mind, meaningful change is possible.
  
 To our participants, partners, and neighbors: thank you for walking with us. 
 
