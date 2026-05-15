@@ -1,5 +1,5 @@
 ---
-status: active
+status: inactive
 name: Intentional Walk
 thumbnail: iwalk.png
 description: |-
