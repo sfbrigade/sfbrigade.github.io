@@ -34,21 +34,21 @@ const meta = {
 		</ul>
 	}
 
-	{projectsByStatus.inactive?.length &&
-		<h2>Inactive projects</h2>
-
-		<ul role="list">
-			{projectsByStatus.inactive?.map((project) => (
-				<ProjectSummaryItem project={project} />
-			))}
-		</ul>
-	}
-
 	{projectsByStatus.completed?.length &&
 		<h2>Completed projects</h2>
 
 		<ul role="list">
 			{projectsByStatus.completed?.map((project) => (
+				<ProjectSummaryItem project={project} />
+			))}
+		</ul>
+	}
+
+	{projectsByStatus.inactive?.length &&
+		<h2>Inactive projects</h2>
+
+		<ul role="list">
+			{projectsByStatus.inactive?.map((project) => (
 				<ProjectSummaryItem project={project} />
 			))}
 		</ul>
