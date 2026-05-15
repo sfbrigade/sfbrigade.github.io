@@ -1,5 +1,5 @@
 ---
-status: active
+status: inactive
 name: Water the Trees
 thumbnail: Water_The_Trees_Logo.webp
 description: |-
