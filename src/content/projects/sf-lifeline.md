@@ -1,5 +1,5 @@
 ---
-status: active
+status: inactive
 name: SF LifeLine
 thumbnail: sf-lifeline.webp
 description: |-
