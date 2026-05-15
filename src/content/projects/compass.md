@@ -1,5 +1,5 @@
 ---
-status: active
+status: inactive
 name: Compass
 thumbnail: compass.png
 description: |-
