@@ -7,6 +7,12 @@ export async function getBlogPosts()
 		.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 }
 
+export async function getBlogV2Posts()
+{
+	return (await getCollection("blogV2"))
+		.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+}
+
 export async function getProjects()
 {
 	// sort the projects in alphabetical order by name

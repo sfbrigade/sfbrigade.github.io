@@ -10,6 +10,7 @@ export default defineConfig({
 	trailingSlash: "ignore",
 	compressHTML: true,
 	redirects: {
+		"/": "/v2",
 		// redirect old post URL to a new one without the typo
 		[oldCivcURL]: oldCivcURL.replace("civc", "civic"),
 	},

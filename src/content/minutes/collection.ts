@@ -6,9 +6,7 @@ const MinutesPDFPattern = /(\d{4})[- _]+Q(\d)/;
 const DraftPDFPattern = /^DRAFT\s+(\d{4})[- _]+Q(\d)/i;
 // strip this unnecessary param from the viewLinks
 const USPPattern = /\?usp=\w+$/;
-
-const credentials = JSON.parse(import.meta.env.BOARD_MINUTES_DRIVE_KEYS_JSON ?? "");
-const driveID = import.meta.env.BOARD_MINUTES_DRIVE_ID ?? "";
+const credentials = JSON.parse(import.meta.env.BOARD_MINUTES_DRIVE_KEYS_JSON || "{}");const driveID = import.meta.env.BOARD_MINUTES_DRIVE_ID ?? "";
 // the path should be from the root of the shared drive to the folder containing
 // the PDFs of the minutes
 const minutesFolder = import.meta.env.BOARD_MINUTES_DRIVE_FOLDER ?? "";

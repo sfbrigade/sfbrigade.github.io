@@ -129,8 +129,152 @@ const projects = defineCollection({
 	})),
 });
 
+const blogV2 = defineCollection({
+	loader: globWithParser({
+		pattern: MarkdownPattern,
+		base: "./src/content/blog-v2",
+		parser: async (entry) => {
+			const { id, data } = entry;
+
+			if (!data.date) {
+				(data as { date?: string }).date = dateStringFromSlug(id);
+			}
+
+			return entry;
+		}
+	}),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		date: z.preprocess((value) => {
+			if (value instanceof Date && !isNaN(value.getTime())) {
+				value = dayjs(value).utc().format("YYYY-MM-DD");
+			}
+
+			return isValidYMD(value as string)
+				? parseYMDToDate(value as string)
+				: value;
+			},
+			z.date()),
+		image: z.string()
+			.transform((value) => {
+				if (!value) {
+					return z.NEVER;
+				}
+
+				return assetPath("blog", value.replace(/^\/img\/uploads\//, ""));
+			})
+			.optional(),
+		image_alt: z.string().optional(),
+		image_list_only: z.boolean().optional(),
+		authors: z.array(z.string()).optional(),
+		category: z.array(z.string()).optional()
+	}).transform((data) => ({
+		...data,
+		descriptionHTML: marked.parse(data.description),
+	})),
+});
+
+
+const projectsV2 = defineCollection({
+	loader: glob({
+		pattern: MarkdownPattern,
+		base: "./src/content/projects-v2"
+	}),
+	schema: z.object({
+		status: z.enum(["active", "inactive", "completed"]),
+		name: z.string(),
+		thumbnail: z.string()
+			.transform((value) => {
+				if (!value) {
+					return z.NEVER;
+				} else if (value.startsWith("http")) {
+					return value;
+				}
+
+				return assetPath("projects", value);
+			})
+			.optional(),
+		description: z.string(),
+		technologies: z.array(z.string()).optional(),
+		repos: z.array(z.string())
+			.transform((value) => value.map((url) => {
+				if (SFCTRepoPattern.test(url)) {
+					return SFCTRepoBase + url;
+				} else if (GHRepoPattern.test(url)) {
+					return GHRepoBase + url;
+				}
+				return url;
+			}))
+			.optional(),
+		website: z.string().optional(),
+		seekingVolunteers: z.boolean(),
+		cause: z.array(z.string()).optional(),
+		seekingRoles: z.array(z.object({
+			title: z.string(),
+			postedDate: z.date().optional(),
+			url: z.string().optional()
+		})).optional(),
+		activelyRunning: z.boolean().optional(),
+		visible: z.boolean().default(true)
+	}).transform((data) => ({
+		...data,
+		descriptionHTML: marked.parse(data.description),
+	})),
+});
+
+const completedProjectsV2 = defineCollection({
+	loader: glob({
+		pattern: MarkdownPattern,
+		base: "./src/content/completed-projects-v2"
+	}),
+	schema: z.object({
+		status: z.enum(["active", "inactive", "completed"]),
+		name: z.string(),
+		thumbnail: z.string()
+			.transform((value) => {
+				if (!value) {
+					return z.NEVER;
+				} else if (value.startsWith("http")) {
+					return value;
+				}
+
+				return assetPath("projects", value);
+			})
+			.optional(),
+		description: z.string(),
+		technologies: z.array(z.string()).optional(),
+		repos: z.array(z.string())
+			.transform((value) => value.map((url) => {
+				if (SFCTRepoPattern.test(url)) {
+					return SFCTRepoBase + url;
+				} else if (GHRepoPattern.test(url)) {
+					return GHRepoBase + url;
+				}
+				return url;
+			}))
+			.optional(),
+		website: z.string().optional(),
+		seekingVolunteers: z.boolean().optional(),
+		cause: z.array(z.string()).optional(),
+		seekingRoles: z.array(z.object({
+			title: z.string(),
+			postedDate: z.date().optional(),
+			url: z.string().optional()
+		})).optional(),
+		activelyRunning: z.boolean().optional(),
+		visible: z.boolean().default(true)
+	}).transform((data) => ({
+		...data,
+		descriptionHTML: marked.parse(data.description),
+	})),
+});
+
 export const collections = {
 	blog,
+	blogV2,
 	projects,
+	projectsV2,
+	completedProjectsV2,
 	minutes,
 };
