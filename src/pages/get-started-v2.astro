@@ -1,0 +1,365 @@
+---
+import { Icon } from 'astro-icon/components';
+import LayoutV2 from "@/layouts/LayoutV2.astro";
+import HeaderV2 from "@/components/HeaderV2.astro";
+import FooterV2 from "@/components/FooterV2.astro";
+import { proposeTalkURL } from "@/utils/urls";
+import { getCollection } from "astro:content";
+import { marked } from "marked";
+
+const activeProjects = await getCollection("projectsV2", (entry) => entry.data.visible && entry.data.status === "active" && entry.data.seekingVolunteers);
+---
+
+<LayoutV2 title="Get Started v2">
+	<HeaderV2 />
+	
+	<main>
+		<!-- Hero Section: Get Involved -->
+		<section class="bg-gray py-4">
+			<div class="container hero-container text-center">
+				<h1 class="section-title title-red">Get Involved</h1>
+				<p class="hero-subtitle mx-auto max-w-text">
+					Make a meaningful impact with SF Civic Tech. Explore the ways you can get involved and start contributing to your community. Scroll down for more information on each.
+				</p>
+
+				<div class="grid-3 mt-4">
+					<!-- Card 1 -->
+					<article class="action-card text-center bg-white">
+						<Icon name="fa6-solid:hand-holding-heart" class="card-icon" />
+						<h3 class="card-title">VOLUNTEER WITH US</h3>
+						<p class="card-text">Use your skills to make a difference in your community. You don't have to know how to code to help—we need designers, researchers, and project managers, too.</p>
+						<a href="/roles-v2" class="btn btn-secondary mt-auto">View volunteer roles</a>
+					</article>
+					<!-- Card 2 -->
+					<article class="action-card text-center bg-white">
+						<Icon name="fa6-solid:handshake" class="card-icon" />
+						<h3 class="card-title">BECOME A PARTNER</h3>
+						<p class="card-text">Partner with us as a community sponsor, or work with us to build out new solutions for the city spanning all things technology and design.</p>
+						<a href="#partner" class="btn btn-secondary mt-auto">Partner with us</a>
+					</article>
+					<!-- Card 3 -->
+					<article class="action-card text-center bg-white">
+						<Icon name="fa6-solid:gift" class="card-icon" />
+						<h3 class="card-title">PROPOSE A TALK</h3>
+						<p class="card-text">Got an idea that can help our city? Pitch it to us! We're constantly on the lookout for new ideas that can strengthen our community.</p>
+						<a href={proposeTalkURL} target="_blank" rel="noopener noreferrer" class="btn btn-secondary mt-auto">Submit idea</a>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- How To Volunteer Section -->
+		<section class="container py-4">
+			<h2 class="section-title title-red">How To Volunteer</h2>
+			<p class="mb-4">No matter your background or skill level, anyone can make a meaningful impact with SF Civic Tech. Explore the ways you can get involved and start contributing to your community.</p>
+			
+			<div class="grid-2 step-grid">
+				<!-- Step 1 -->
+				<div class="step-card">
+					<div class="step-number">1</div>
+					<h3 class="step-title">Tell us about yourself</h3>
+					<p>Fill out our brief form so we can learn more about you and match you with opportunities.</p>
+				</div>
+				<!-- Step 2 -->
+				<div class="step-card">
+					<div class="step-number">2</div>
+					<h3 class="step-title">Onboard</h3>
+					<ul class="step-list">
+						<li>Read the Code of Conduct</li>
+						<li>Check out current projects</li>
+						<li>Join our Slack</li>
+					</ul>
+				</div>
+				<!-- Step 3 -->
+				<div class="step-card">
+					<div class="step-number">3</div>
+					<h3 class="step-title">Attend Hack Night</h3>
+					<p>We meet in-person every Wednesday at 6:30pm (pacific) to work on projects. Head over to our <a href="https://www.meetup.com/sfcivictech/" target="_blank" rel="noopener noreferrer" class="text-link">Meetup</a> for more details and to RSVP to learn more about joining.</p>
+				</div>
+				<!-- Step 4 -->
+				<div class="step-card">
+					<div class="step-number">4</div>
+					<h3 class="step-title">Join a Project</h3>
+					<p>Browse our current projects on our <a href="/projects" class="text-link">Projects</a> page and check out the open roles below! Don't see a fit? You can pitch a project or join our general meeting to find out.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Volunteer Roles Section -->
+		<section id="volunteer-roles" class="container py-4">
+			<h2 class="section-title title-red">Volunteer Roles</h2>
+			<p class="mb-3">SF Civic Tech is open to everyone—we put trust in the hard work of our volunteers and don't limit members. You don't have to have a technical background! Whether you enjoy administration, community organization, designing, or planning, your contributions are highly valued by SF Civic Tech. Check out our open roles below!</p>
+			
+			<!-- Table Placeholder -->
+			<div class="table-container mb-4">
+				<table class="roles-table">
+					<thead>
+						<tr>
+							<th>Project Name</th>
+							<th>Role(s)</th>
+							<th>Skills/Tools</th>
+						</tr>
+					</thead>
+					<tbody>
+						{activeProjects.map(project => (
+							<tr>
+								<td>
+									<a href={`/projects-v2`} class="project-name-link">
+										<div class="project-dot"></div>
+										{project.data.name}
+									</a>
+								</td>
+								<td>
+									{project.data.seekingRoles && project.data.seekingRoles.length > 0 ? (
+										<ul class="role-list">
+											{project.data.seekingRoles.map((role: any) => (
+												<li class="role-item">
+													{role.url ? (
+														<a href={role.url} target="_blank" rel="noopener noreferrer" set:html={marked.parseInline(role.title)}></a>
+													) : (
+														<span set:html={marked.parseInline(role.title)}></span>
+													)}
+												</li>
+											))}
+										</ul>
+									) : (
+										"Any"
+									)}
+								</td>
+								<td>
+									{project.data.technologies ? project.data.technologies.join(", ") : "N/A"}
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+
+			<a href="/roles-v2" class="btn btn-primary">Search Roles</a>
+		</section>
+
+		<!-- Become a Partner or Sponsor Section -->
+		<section id="partner" class="bg-gray py-4 mt-4">
+			<div class="container text-center">
+				<h2 class="section-title title-red mb-2">Become a Partner or Sponsor</h2>
+				<p class="mx-auto max-w-text mb-4">
+					Sponsors support our projects in a variety of ways through collaboration, knowledge-sharing, or offering resources that strengthen volunteer efforts. Interested in becoming a partner or sponsor? Here you can learn how to get involved and find out more about our current and past partners too.
+				</p>
+				<a href="/sponsor" class="btn btn-primary">Become a Partner</a>
+			</div>
+		</section>
+
+	</main>
+
+	<FooterV2 />
+</LayoutV2>
+
+<style>
+	/* Utilities */
+	.text-center { text-align: center; }
+	.mx-auto { margin-left: auto; margin-right: auto; }
+	.mt-4 { margin-top: 4rem; }
+	.mb-2 { margin-bottom: 2rem; }
+	.mb-3 { margin-bottom: 3rem; }
+	.mb-4 { margin-bottom: 4rem; }
+	.py-4 { padding-top: 4rem; padding-bottom: 4rem; }
+	.bg-gray { background-color: #f7f7f7; }
+	.bg-white { background-color: #ffffff; }
+	.max-w-text { max-width: 800px; }
+	.mt-auto { margin-top: auto; }
+	
+	.title-red {
+		color: #F22613;
+		font-family: var(--font-heading);
+		font-weight: 800;
+	}
+
+	.hero-subtitle {
+		font-family: var(--font-body);
+		font-size: 1.125rem;
+		color: #000000;
+	}
+
+	/* Grids */
+	.grid-2 { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+	.grid-3 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+	
+	@media (min-width: 768px) {
+		.grid-2 { grid-template-columns: 1fr 1fr; }
+		.grid-3 { grid-template-columns: repeat(3, 1fr); }
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		padding-bottom: 2rem;
+	}
+
+	/* Action Cards */
+	.action-card {
+		padding: 3rem 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+		border-radius: var(--border-radius);
+		border: 1px solid #eaeaea;
+	}
+
+	.card-icon {
+		font-size: 3rem;
+		color: #F22613;
+		margin-bottom: 1.5rem;
+	}
+
+	.card-title {
+		font-size: 1.25rem;
+		margin-bottom: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		color: #000000;
+		font-weight: 800;
+	}
+
+	.card-text {
+		color: #444;
+		margin-bottom: 2rem;
+	}
+
+	/* Steps Section */
+	.step-grid {
+		gap: 4rem 3rem;
+	}
+
+	.step-card {
+		position: relative;
+		padding-left: 1rem;
+	}
+
+	.step-number {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		border: 2px solid #F22613;
+		color: #111;
+		font-size: 1.75rem;
+		font-weight: 800;
+		font-family: var(--font-heading);
+		margin-bottom: 1rem;
+		background: transparent;
+	}
+
+	.step-title {
+		font-size: 1.5rem;
+		color: #000000;
+		margin-bottom: 1rem;
+		font-weight: 800;
+	}
+
+	.step-list {
+		list-style-type: disc;
+		padding-left: 1.5rem;
+	}
+
+	.step-list li {
+		margin-bottom: 0.5rem;
+	}
+
+	.text-link {
+		color: #000000;
+		text-decoration: underline;
+		font-weight: 600;
+	}
+
+	.text-link:hover {
+		color: #F22613;
+	}
+
+	/* Roles Table */
+	.table-container {
+		width: 100%;
+		overflow-x: auto;
+		border: 1px solid #eaeaea;
+		border-radius: var(--border-radius);
+		background-color: #fff;
+	}
+
+	.roles-table {
+		width: 100%;
+		border-collapse: collapse;
+		text-align: left;
+		font-family: var(--font-body);
+	}
+
+	.roles-table th,
+	.roles-table td {
+		padding: 1.5rem 1rem;
+		border-bottom: 1px solid #eaeaea;
+	}
+
+	.roles-table th {
+		font-weight: 700;
+		color: #666;
+		text-transform: uppercase;
+		font-size: 0.875rem;
+		letter-spacing: 0.5px;
+	}
+
+	.roles-table tr:last-child td {
+		border-bottom: none;
+	}
+
+	.role-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.role-item {
+		margin-bottom: 0.25rem;
+	}
+
+	.role-item :global(a) {
+		color: #2b7bc4;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.role-item :global(a:hover) {
+		text-decoration: underline;
+	}
+
+	.table-link {
+		color: #2b7bc4;
+		text-decoration: none;
+	}
+
+	.table-link:hover {
+		text-decoration: underline;
+	}
+
+	.project-name-link {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		color: #000000;
+		font-weight: 500;
+		text-decoration: none;
+	}
+
+	.project-name-link:hover {
+		color: #F22613;
+	}
+
+	.project-dot {
+		width: 24px;
+		height: 24px;
+		background-color: #e0e0e0;
+		border-radius: 50%;
+		flex-shrink: 0;
+	}
+</style>

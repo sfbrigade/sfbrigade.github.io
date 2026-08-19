@@ -7,4 +7,6 @@ slack:
   name: "#proj-earthquake"
   url: https://sfbrigade.slack.com/archives/C079Z8M1TNE
 website: https://safehome.report/
+repos: 
+    - http://github.com/sfbrigade/datasci-earthquake
 ---

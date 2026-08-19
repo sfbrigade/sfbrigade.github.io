@@ -1,0 +1,448 @@
+---
+import { Image } from "astro:assets";
+import { Icon } from 'astro-icon/components';
+import LayoutV2 from "@/layouts/LayoutV2.astro";
+import HeaderV2 from "@/components/HeaderV2.astro";
+import FooterV2 from "@/components/FooterV2.astro";
+import { getBlogV2Posts } from "@/content";
+
+// Images
+import heroBridge from "@/assets/home/golden gate bridge hero image.png";
+import hackNight from "@/assets/home/hack night in person.png";
+import supportUsImg from "@/assets/home/support-us.png";
+
+const allPosts = await getBlogV2Posts();
+const latestPosts = allPosts.slice(0, 4);
+---
+
+<LayoutV2 title="Home v2">
+	<HeaderV2 />
+	
+	<main>
+		<!-- Hero Section -->
+		<section class="hero-section">
+			<div class="hero-bg-wrapper">
+				<Image src={heroBridge} alt="Golden Gate Bridge" class="hero-bg" loading="eager" />
+			</div>
+			<div class="hero-content">
+				<h1 class="hero-title">Empowering San Francisco through civic tech</h1>
+				<p class="hero-subtitle">
+					We are a diverse community of volunteers working to improve San Francisco for all. All backgrounds and experiences are welcome!
+				</p>
+				<div class="hero-buttons">
+					<a href="/get-started-v2" class="btn btn-primary">Get Started</a>
+					<a href="/about-v2" class="btn btn-secondary">Learn More</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Who We Are Section -->
+		<section class="who-we-are container">
+			<div class="grid-2">
+				<div class="who-text">
+					<h2 class="section-title">Who We Are</h2>
+					<p>SF Civic Tech is a volunteer-run organization that creates technology products for community problems. We organize our free time to prototype, test, and ship open-source tech for public interest.</p>
+					<p>We're part of a nationwide network of civic tech organizations looking to make a difference in our community. We meet every Wednesday in downtown San Francisco. All skill levels and community members are welcome!</p>
+					<a href="/get-started-v2" class="btn btn-primary mt-1">Join us</a>
+				</div>
+				<div class="who-image">
+					<Image src={hackNight} alt="Volunteers at hack night" class="rounded-img" />
+				</div>
+			</div>
+		</section>
+
+		<!-- Our Impact Section -->
+		{false && (
+		<section class="impact-section container">
+			<h2 class="section-title text-center">Our Impact</h2>
+			<p class="text-center max-w-text mx-auto">
+				Our volunteers dedicate their time to creating impact that is scalable, measurable, and sustainable. Here are some of the ways we are making San Francisco more accessible and equitable, from neighborhood cleanups to data analysis projects that aim to help unhoused individuals.
+			</p>
+			
+			<div class="stats-grid mt-3">
+				<div class="stat-item">
+					<span class="stat-number">20</span>
+					<span class="stat-label">Active Projects</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-number">+100</span>
+					<span class="stat-label">Volunteers</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-number">5</span>
+					<span class="stat-label">Sponsors</span>
+				</div>
+				<div class="stat-item">
+					<span class="stat-number">95%</span>
+					<span class="stat-label">Success rate</span>
+				</div>
+			</div>
+			<div class="text-center mt-3">
+				<a href="/donate" class="btn btn-primary">Donate</a>
+			</div>
+		</section>
+		)}
+
+		<!-- Ways To Join Section -->
+		<section class="bg-gray">
+			<div class="ways-to-join container py-4">
+				<h2 class="section-title text-center mb-3">Ways To Join</h2>
+				<div class="grid-3">
+					<article class="join-card text-center">
+						<Icon name="fa6-solid:users" class="card-icon" />
+						<h3 class="card-title">Volunteer with us</h3>
+						<p>Use your skills to make a difference in your community! You don't have to know how to code to help—we need designers, researchers, and project managers, too.</p>
+						<a href="/roles-v2" class="card-link mt-auto">View open volunteer roles</a>
+					</article>
+					<article class="join-card text-center">
+						<Icon name="fa6-solid:handshake" class="card-icon" />
+						<h3 class="card-title">Become a partner</h3>
+						<p>Partner with us as a community sponsor, or work with us to build out new solutions for the city spanning all things technology and design.</p>
+						<a href="/sponsor" class="card-link mt-auto">Partner with us</a>
+					</article>
+					<article class="join-card text-center">
+						<Icon name="fa6-solid:lightbulb" class="card-icon" />
+						<h3 class="card-title">Pitch a project</h3>
+						<p>Got an idea that can help our city? Pitch it to us! We're constantly on the lookout for new ideas that can strengthen our community.</p>
+						<a href="/propose-v2" class="card-link mt-auto">Submit project idea</a>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- Latest Updates -->
+		<section class="latest-updates container">
+			<h2 class="section-title mb-3">Latest Updates</h2>
+			<div class="grid-4 updates-grid">
+				{latestPosts.map(post => (
+					<article class="blog-card">
+						<a href={`/blog/${post.id}`} class="blog-card-link">
+							{post.data.image ? (
+								<Image src={post.data.image} alt={post.data.image_alt || post.data.title} class="blog-img" width={400} height={300} />
+							) : (
+								<div class="placeholder-img blog-img">Image Placeholder</div>
+							)}
+							<div class="blog-content">
+								<h4>{post.data.title}</h4>
+								<p>
+									{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+									{post.data.authors && post.data.authors.length > 0 && ` • ${post.data.authors.join(', ')}`}
+								</p>
+							</div>
+						</a>
+					</article>
+				))}
+			</div>
+			<div class="text-center mt-3">
+				<a href="/blog-v2" class="btn btn-primary">Read More</a>
+			</div>
+		</section>
+
+		<!-- Support Us Section -->
+		<section class="bg-gray">
+			<div class="support-us container py-4">
+				<h2 class="section-title text-center mb-1">Support Us</h2>
+				<p class="text-center max-w-text mx-auto mb-3">
+					Your donation helps us provide free technology services to the community. By supporting SF Civic Tech, you're directly contributing to an equitable, thriving, and technologically accessible San Francisco. Your contribution matters, big or small! We put every dollar back into making the city better.
+				</p>
+				
+				<div class="grid-2 support-grid bg-white shadow-sm p-0 rounded-lg">
+					<div class="impact-panel p-3">
+						<h3 class="text-center">Your Impact</h3>
+						<p class="text-center impact-highlight">100% of your donation goes directly to our programs.</p>
+						<Image src={supportUsImg} alt="SF Civic Tech members collaborating around a table with laptops" class="support-image my-2" />
+						<ul class="impact-list">
+							<li>$10 helps cover hosting and domain names for apps being used by the public.</li>
+							<li>$50 supports design and usability improvements in our open-source tools and projects.</li>
+							<li>$100 enables us to host community events and hack-nights that bring in new contributors to help solve civic problems.</li>
+						</ul>
+						<div class="text-center mt-2">
+							<a href="/donate" class="btn btn-primary">Learn More</a>
+						</div>
+					</div>
+					<div class="donate-panel p-3">
+						<h3 class="text-center mb-2">Donate</h3>
+						<div class="donation-form-placeholder bg-white">
+							<div>
+								<div data-zeffy-embed data-form-url="/embed/donation-form/donate-to-sf-civic-tech"></div>
+								<div data-zeffy-embed-fallback style="display:none;">
+									<div style="position:relative;overflow:hidden;height:450px;width:100%;"><iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' src='https://www.zeffy.com/embed/donation-form/donate-to-sf-civic-tech' {...{ allowpaymentrequest: "true", allowtransparency: "true" }}></iframe></div>
+								</div>
+								<script
+									is:inline
+									src="https://www.zeffy.com/embed/v2/zeffy-embed.js"
+									onerror="document.querySelectorAll('[data-zeffy-embed-fallback]').forEach(function(el){el.style.display='block';});">
+								</script>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Sponsors & Partners -->
+		<section class="sponsors container text-center">
+			<h2 class="section-title mb-3">Sponsors & Partners</h2>
+			<div class="logo-grid">
+				<div class="logo-placeholder">Google Logo</div>
+				<div class="logo-placeholder">Microsoft Logo</div>
+				<div class="logo-placeholder">Meta Logo</div>
+				<div class="logo-placeholder">AWS Logo</div>
+			</div>
+			<div class="mt-3">
+				<a href="/sponsor" class="btn btn-primary">Become a Partner</a>
+			</div>
+		</section>
+	</main>
+
+	<FooterV2 />
+</LayoutV2>
+
+<style>
+	/* Utilities */
+	.text-center { text-align: center; }
+	.mt-1 { margin-top: 1rem; }
+	.mt-2 { margin-top: 2rem; }
+	.mt-3 { margin-top: 3rem; }
+	.mt-4 { margin-top: 4rem; }
+	.mb-1 { margin-bottom: 1rem; }
+	.mb-2 { margin-bottom: 2rem; }
+	.mb-3 { margin-bottom: 3rem; }
+	.my-2 { margin-top: 2rem; margin-bottom: 2rem; }
+	.py-4 { padding-top: 4rem; padding-bottom: 4rem; }
+	.p-3 { padding: 2rem; }
+	.p-0 { padding: 0; }
+	.mx-auto { margin-left: auto; margin-right: auto; }
+	.mt-auto { margin-top: auto; }
+	
+	.max-w-text { max-width: 800px; }
+	.bg-gray { background-color: #fafafa; }
+	.bg-gray-light { background-color: #f5f5f5; }
+	.bg-white { background-color: #ffffff; }
+	.shadow-sm { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+	.rounded-lg { border-radius: 12px; overflow: hidden; }
+	.rounded-img { border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+	.text-sm { font-size: 0.875rem; color: #666; }
+
+	/* Grids */
+	.grid-2 { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+	.grid-3 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+	.grid-4 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+	
+	@media (min-width: 768px) {
+		.grid-2 { grid-template-columns: 1fr 1fr; }
+		.grid-3 { grid-template-columns: repeat(3, 1fr); }
+		.grid-4 { grid-template-columns: repeat(4, 1fr); }
+	}
+
+	.support-grid {
+		align-items: start;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: 5rem;
+		padding-bottom: 2rem;
+	}
+
+	/* Hero Section */
+	.hero-section {
+		position: relative;
+		min-height: 500px;
+		display: flex;
+		align-items: center;
+		color: white;
+		overflow: hidden;
+	}
+
+	.hero-bg-wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+	}
+
+	.hero-bg-wrapper::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+
+	.hero-bg {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+		max-width: 700px;
+		padding: 3rem 0;
+		padding-left: 60px;
+	}
+
+	.hero-title {
+		color: #F22613;
+		margin-bottom: 1rem;
+		text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+	}
+
+	.hero-subtitle {
+		font-size: 1.25rem;
+		margin-bottom: 2rem;
+		color: #000000;
+		text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+	}
+
+	.hero-buttons {
+		display: flex;
+		gap: 1rem;
+	}
+
+	/* Stats Grid */
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+		text-align: center;
+	}
+
+	@media (min-width: 768px) {
+		.stats-grid { grid-template-columns: repeat(4, 1fr); }
+	}
+
+	.stat-number {
+		display: block;
+		font-family: var(--font-heading);
+		font-size: 3rem;
+		font-weight: 800;
+	}
+
+	.stat-label {
+		display: block;
+		font-size: 1.1rem;
+		color: #555;
+		font-weight: 700;
+	}
+
+	/* Ways to Join Cards */
+	.join-card {
+		background: white;
+		padding: 2.5rem 1.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+		border-radius: var(--border-radius);
+	}
+
+	.card-icon {
+		font-size: 3rem;
+		color: var(--color-primary);
+		margin-bottom: 1.5rem;
+	}
+
+	.card-title {
+		font-size: 1.25rem;
+		margin-bottom: 1rem;
+		letter-spacing: 0.5px;
+	}
+
+	.card-link {
+		font-family: var(--font-condensed);
+		font-weight: 600;
+		text-decoration: underline;
+		color: #333;
+	}
+
+	/* Placeholders */
+	.placeholder-img {
+		background-color: #eee;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #999;
+	}
+
+	.blog-card {
+		background: white;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.blog-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+	}
+
+	.blog-card-link {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+		height: 100%;
+	}
+
+	.blog-card-link h4 {
+		transition: color 0.2s ease;
+	}
+
+	.blog-card-link:hover h4 {
+		color: var(--color-primary);
+	}
+
+	.blog-img { height: 160px; width: 100%; object-fit: cover; }
+	.blog-content { padding: 1.5rem; }
+	.blog-content h4 { margin-bottom: 0.5rem; font-size: 1.1rem; line-height: 1.4; color: #111; }
+	.blog-content p { margin-bottom: 0; font-size: 0.9rem; color: #666; }
+
+	.support-image {
+		display: block;
+		margin: 0 auto;
+		width: 100%;
+		height: auto;
+		max-height: 250px;
+		object-fit: cover;
+		border-radius: 10px;
+	}
+	.impact-highlight { color: var(--color-primary); font-weight: 700; font-size: 1.1rem; }
+	.impact-list { padding-left: 1.5rem; list-style-type: disc; }
+	.impact-list li { margin-bottom: 0.75rem; }
+
+	.donation-form-placeholder {
+		border: none;
+		border-radius: var(--border-radius);
+		min-height: 450px;
+		width: 100%;
+	}
+
+	/* Sponsors */
+	.logo-grid {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 2rem;
+	}
+
+	.logo-placeholder {
+		width: 160px;
+		height: 80px;
+		background-color: #fff;
+		border: 1px solid #eaeaea;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #888;
+		font-weight: 500;
+		border-radius: var(--border-radius);
+	}
+</style>

@@ -1,0 +1,425 @@
+---
+import { Image } from "astro:assets";
+import type { GetStaticPaths } from "astro";
+import LayoutV2 from "@/layouts/LayoutV2.astro";
+import HeaderV2 from "@/components/HeaderV2.astro";
+import FooterV2 from "@/components/FooterV2.astro";
+import { getBlogV2Posts } from "@/content";
+
+export const getStaticPaths = (async ({ paginate }) => {
+	const posts = await getBlogV2Posts();
+	return paginate(posts, { pageSize: 10 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const posts = page.data;
+
+// Filter categories according to the wireframe
+const filters = [
+	"Event recap", 
+	"Program description", 
+	"Member feature", 
+	"Partner feature",
+	"Project case study"
+];
+---
+
+<LayoutV2 title="Blog v2">
+	<HeaderV2 />
+	
+	<main class="container py-4">
+		<h1 class="page-title title-red mb-3">Blog</h1>
+		
+		<!-- Filter Chips Row -->
+		<div class="filters-row mb-4" id="blog-filters">
+			<span class="chip chip-active filter-chip" data-filter="all">View all</span>
+			{filters.map(filter => (
+				<span class="chip chip-outline filter-chip" data-filter={filter}>{filter}</span>
+			))}
+		</div>
+		
+		<!-- Blog Posts Grid/List -->
+		<div class="blog-list" id="blog-list">
+			{posts.map(post => (
+				<article class="blog-card" data-categories={JSON.stringify(post.data.category || [])}>
+					<!-- Left: Image -->
+					<div class="blog-image-wrapper">
+						{post.data.image ? (
+							<Image 
+								src={post.data.image} 
+								alt={post.data.image_alt || post.data.title} 
+								class="blog-image" 
+								width={400} 
+								height={400} 
+							/>
+						) : (
+							<div class="placeholder-image"></div>
+						)}
+					</div>
+					
+					<!-- Right: Content -->
+					<div class="blog-content">
+						<div class="blog-meta">
+							<!-- Date -->
+							<span class="blog-date">
+								{post.data.date.toLocaleDateString('en-US', {
+									month: '2-digit',
+									day: '2-digit',
+									year: 'numeric'
+								})}
+							</span>
+							
+							<!-- Categories -->
+							<div class="blog-categories">
+								{post.data.category && post.data.category.map((cat: string) => (
+									<span class="chip-category">{cat}</span>
+								))}
+							</div>
+						</div>
+						
+						<!-- Title -->
+						<h2 class="blog-title title-red">
+							<a href={`/blog/${post.id}`}>{post.data.title}</a>
+						</h2>
+						
+						<!-- Summary text (Description) -->
+						<div class="blog-summary" set:html={post.data.descriptionHTML} />
+					</div>
+				</article>
+			))}
+		</div>
+		
+		<!-- Pagination -->
+		{page.lastPage > 1 && (
+			<div class="pagination-container">
+				<span class="pagination-label">Jump to pages:</span>
+				
+				{page.url.prev ? (
+					<a href={page.url.prev} class="pagination-arrow title-red" aria-label="Previous page">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+					</a>
+				) : (
+					<span class="pagination-arrow title-red pagination-disabled">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+					</span>
+				)}
+				
+				<div class="pagination-numbers">
+					{Array.from({ length: page.lastPage }, (_, i) => i + 1).map((pageNum) => (
+						<a 
+							href={pageNum === 1 ? '/blog-v2' : `/blog-v2/${pageNum}`} 
+							class={`pagination-number ${page.currentPage === pageNum ? 'active' : ''}`}
+						>
+							{pageNum}
+						</a>
+					))}
+				</div>
+				
+				{page.url.next ? (
+					<a href={page.url.next} class="pagination-arrow title-red" aria-label="Next page">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+					</a>
+				) : (
+					<span class="pagination-arrow title-red pagination-disabled">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+					</span>
+				)}
+			</div>
+		)}
+	</main>
+
+	<FooterV2 />
+</LayoutV2>
+
+<style>
+	.py-4 {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.mb-3 {
+		margin-bottom: 2rem;
+	}
+
+	.mb-4 {
+		margin-bottom: 4rem;
+	}
+
+	.title-red {
+		color: #F22613;
+	}
+
+	.page-title {
+		font-family: var(--font-heading);
+		font-size: 3.5rem;
+		font-weight: 800;
+		margin-top: 0;
+	}
+
+	/* Filter Chips */
+	.filters-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.chip {
+		font-family: var(--font-condensed);
+		font-size: 0.9rem;
+		padding: 0.4rem 1rem;
+		border-radius: var(--border-radius);
+		cursor: pointer;
+		display: inline-block;
+	}
+
+	.chip-active {
+		background-color: #1a1a1a;
+		color: #fff;
+		border: 1px solid #1a1a1a;
+	}
+
+	.chip-outline {
+		background-color: #fff;
+		color: #333;
+		border: 1px solid #ccc;
+		transition: all 0.2s;
+	}
+
+	.chip-outline:hover {
+		border-color: #1a1a1a;
+		color: #1a1a1a;
+	}
+
+	/* Blog List */
+	.blog-list {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	.blog-card {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		align-items: start;
+	}
+
+	@media (min-width: 768px) {
+		.blog-card {
+			grid-template-columns: 350px 1fr;
+		}
+	}
+
+	/* Image */
+	.blog-image-wrapper {
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		background-color: #e5e5e5; /* grey placeholder bg */
+	}
+
+	.blog-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.placeholder-image {
+		width: 100%;
+		height: 100%;
+		background-color: #d8d8d8; /* light gray from wireframe */
+	}
+
+	/* Content */
+	.blog-content {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.blog-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.5rem;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.blog-date {
+		font-family: var(--font-condensed);
+		font-size: 1.1rem;
+		color: #999;
+		font-weight: 600;
+	}
+
+	.blog-categories {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.chip-category {
+		background-color: #1a1a1a;
+		color: #ffffff;
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		font-weight: 700;
+		padding: 0.15rem 0.6rem;
+		border-radius: 4px;
+	}
+
+	.blog-title {
+		font-family: var(--font-heading);
+		font-size: 2rem;
+		font-weight: 800;
+		margin-top: 0;
+		margin-bottom: 1rem;
+	}
+
+	.blog-title a {
+		color: #F22613;
+		text-decoration: none;
+	}
+
+	.blog-title a:hover {
+		text-decoration: underline;
+	}
+
+	.blog-summary {
+		font-family: var(--font-body);
+		font-size: 1rem;
+		line-height: 1.6;
+		color: #111;
+	}
+
+	.blog-summary p {
+		margin-bottom: 0.5rem;
+	}
+
+	/* Pagination */
+	.pagination-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 4rem;
+		gap: 0.5rem;
+		font-family: var(--font-body);
+		font-size: 1.5rem;
+	}
+
+	.pagination-label {
+		color: #999;
+		margin-right: 0.5rem;
+	}
+
+	.pagination-numbers {
+		display: flex;
+		gap: 0.75rem;
+	}
+
+	.pagination-number {
+		color: #999;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.pagination-number:hover {
+		color: #F22613;
+	}
+
+	.pagination-number.active {
+		color: #111;
+	}
+
+	.pagination-arrow {
+		display: flex;
+		align-items: center;
+		color: #F22613;
+		text-decoration: none;
+	}
+
+	.pagination-disabled {
+		opacity: 0.3;
+		cursor: not-allowed;
+	}
+
+	.pagination-arrow svg {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+</style>
+
+<script>
+	function setupBlogFilters() {
+		const filters = document.querySelectorAll('.filter-chip');
+		const cards = document.querySelectorAll('.blog-card');
+		if (!filters.length || !cards.length) return;
+
+		let selectedFilters = new Set();
+
+		filters.forEach(filter => {
+			filter.addEventListener('click', () => {
+				const filterValue = filter.getAttribute('data-filter');
+				const viewAllChip = document.querySelector('.filter-chip[data-filter="all"]');
+
+				if (filterValue === 'all') {
+					selectedFilters.clear();
+					filters.forEach(f => {
+						if (f.getAttribute('data-filter') === 'all') {
+							f.classList.remove('chip-outline');
+							f.classList.add('chip-active');
+						} else {
+							f.classList.remove('chip-active');
+							f.classList.add('chip-outline');
+						}
+					});
+				} else {
+					if (selectedFilters.has(filterValue)) {
+						selectedFilters.delete(filterValue);
+						filter.classList.remove('chip-active');
+						filter.classList.add('chip-outline');
+					} else {
+						selectedFilters.add(filterValue);
+						filter.classList.remove('chip-outline');
+						filter.classList.add('chip-active');
+					}
+
+					if (selectedFilters.size === 0) {
+						if (viewAllChip) {
+							viewAllChip.classList.remove('chip-outline');
+							viewAllChip.classList.add('chip-active');
+						}
+					} else {
+						if (viewAllChip) {
+							viewAllChip.classList.remove('chip-active');
+							viewAllChip.classList.add('chip-outline');
+						}
+					}
+				}
+
+				cards.forEach(card => {
+					if (selectedFilters.size === 0) {
+						(card as HTMLElement).style.display = '';
+						return;
+					}
+
+					const catAttr = card.getAttribute('data-categories');
+					const categories = catAttr ? JSON.parse(catAttr) : [];
+					
+					const matches = categories.some((cat: string) => selectedFilters.has(cat));
+					if (matches) {
+						(card as HTMLElement).style.display = '';
+					} else {
+						(card as HTMLElement).style.display = 'none';
+					}
+				});
+			});
+		});
+	}
+
+	document.addEventListener('DOMContentLoaded', setupBlogFilters);
+	document.addEventListener('astro:page-load', setupBlogFilters);
+</script>

@@ -1,0 +1,440 @@
+---
+import LayoutV2 from "@/layouts/LayoutV2.astro";
+import HeaderV2 from "@/components/HeaderV2.astro";
+import FooterV2 from "@/components/FooterV2.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+const projects = await getCollection("projectsV2", p => p.data.visible && p.data.status === "active" && p.data.seekingVolunteers);
+
+const roles = projects.flatMap(p => 
+	(p.data.seekingRoles || []).map(r => ({
+		project: p,
+		role: r
+	}))
+).sort((a, b) => {
+	const dateA = a.role.postedDate ? new Date(a.role.postedDate).getTime() : 0;
+	const dateB = b.role.postedDate ? new Date(b.role.postedDate).getTime() : 0;
+	return dateB - dateA;
+});
+
+const allCauses = ["Earthquake safety", "Homelessness", "Education", "Environmental", "Transportation", "Health", "Law & Law Enforcement", "Government", "Internal", "Other"];
+const allRoleKeywords = ["Software development", "Data science", "UX design", "Community leader"];
+
+function formatDate(date: Date | string | undefined) {
+	if (!date) return "";
+	const d = new Date(date);
+	return `${(d.getUTCMonth() + 1).toString().padStart(2, '0')}/${d.getUTCDate().toString().padStart(2, '0')}/${d.getUTCFullYear()}`;
+}
+---
+
+<LayoutV2 title="Open volunteer roles">
+	<HeaderV2 />
+	
+	<main class="container py-4">
+		<h1 class="page-title title-red mb-3">Open volunteer roles</h1>
+		
+		<div class="roles-intro mb-4">
+			<p>Here are our projects currently seeking new technical and non-technical volunteers. Browse a variety of ways to help make San Francisco a better place through software engineering, data science, product design, marketing, community relations, and more!</p>
+			<p>All roles are <strong>part-time and remote</strong>, with occasional non-mandatory in-person meetings.</p>
+			<p><strong>See a role that interests you? To join a project, visit our <a href="/get-started-v2" class="text-link">Get Started</a> page.</strong></p>
+		</div>
+
+		<div class="filters-container mb-4">
+			<span class="filters-label">Filters:</span>
+			
+			<div class="custom-dropdown" id="role-dropdown">
+				<button class="dropdown-btn" type="button">
+					<Icon name="fa6-solid:wrench" class="filter-icon" /> Role <Icon name="fa6-solid:chevron-down" class="chevron-icon" />
+				</button>
+				<div class="dropdown-content">
+					{allRoleKeywords.map(keyword => (
+						<label class="dropdown-item">
+							<input type="checkbox" value={keyword} class="role-filter" /> {keyword}
+						</label>
+					))}
+				</div>
+			</div>
+
+			<div class="custom-dropdown" id="cause-dropdown">
+				<button class="dropdown-btn" type="button">
+					<Icon name="fa6-solid:hand-holding-heart" class="filter-icon" /> Cause <Icon name="fa6-solid:chevron-down" class="chevron-icon" />
+				</button>
+				<div class="dropdown-content">
+					{allCauses.map(cause => (
+						<label class="dropdown-item">
+							<input type="checkbox" value={cause} class="cause-filter" /> {cause}
+						</label>
+					))}
+				</div>
+			</div>
+		</div>
+
+		<div class="roles-list" id="roles-list">
+			{roles.length === 0 && (
+				<p>No volunteer roles are currently available. Check back soon!</p>
+			)}
+			
+			{roles.map(({ project, role }) => (
+				<div class="role-card" data-causes={JSON.stringify(project.data.cause || [])} data-role-title={role.title.toLowerCase()}>
+					<div class="role-image-wrapper">
+						{project.data.thumbnail ? (
+							<img src={project.data.thumbnail} alt={project.data.name} class="role-image" />
+						) : (
+							<div class="placeholder-img">No Image</div>
+						)}
+					</div>
+					<div class="role-details">
+						<div class="role-header">
+							<h2 class="role-title">{role.title}</h2>
+							{role.postedDate && (
+								<span class="role-date">Posted {formatDate(role.postedDate)}</span>
+							)}
+						</div>
+						<h3 class="project-name">{project.data.name}</h3>
+						<div class="project-desc" set:html={project.data.descriptionHTML} />
+						
+						<div class="role-links">
+							{project.data.website && (
+								<a href={project.data.website.startsWith('http') ? project.data.website : `https://${project.data.website}`} target="_blank" rel="noopener noreferrer" class="visit-link">
+									<Icon name="fa6-solid:globe" class="link-icon" /> Visit website
+								</a>
+							)}
+							{role.url && (
+								<a href={role.url} target="_blank" rel="noopener noreferrer" class="visit-link">
+									<Icon name="fa6-solid:arrow-up-right-from-square" class="link-icon" /> View role application
+								</a>
+							)}
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+	</main>
+
+	<FooterV2 />
+</LayoutV2>
+
+<script>
+	function setupFilters() {
+		const roleDropdownBtn = document.querySelector('#role-dropdown .dropdown-btn');
+		const roleContent = document.querySelector('#role-dropdown .dropdown-content');
+		const causeDropdownBtn = document.querySelector('#cause-dropdown .dropdown-btn');
+		const causeContent = document.querySelector('#cause-dropdown .dropdown-content');
+
+		// Toggle dropdowns
+		roleDropdownBtn?.addEventListener('click', (e) => {
+			e.stopPropagation();
+			roleContent?.classList.toggle('show');
+			causeContent?.classList.remove('show');
+		});
+
+		causeDropdownBtn?.addEventListener('click', (e) => {
+			e.stopPropagation();
+			causeContent?.classList.toggle('show');
+			roleContent?.classList.remove('show');
+		});
+
+		// Close dropdowns when clicking outside
+		document.addEventListener('click', () => {
+			roleContent?.classList.remove('show');
+			causeContent?.classList.remove('show');
+		});
+
+		// Prevent closing when clicking inside
+		roleContent?.addEventListener('click', (e) => e.stopPropagation());
+		causeContent?.addEventListener('click', (e) => e.stopPropagation());
+
+		const roleCheckboxes = document.querySelectorAll('.role-filter') as NodeListOf<HTMLInputElement>;
+		const causeCheckboxes = document.querySelectorAll('.cause-filter') as NodeListOf<HTMLInputElement>;
+		const roleCards = document.querySelectorAll('.role-card') as NodeListOf<HTMLElement>;
+
+		function updateFilters() {
+			const selectedRoles = Array.from(roleCheckboxes).filter(cb => cb.checked).map(cb => cb.value.toLowerCase());
+			const selectedCauses = Array.from(causeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+
+			roleCards.forEach(card => {
+				const cardRoleTitle = card.getAttribute('data-role-title') || '';
+				const cardCausesAttr = card.getAttribute('data-causes');
+				const cardCauses = cardCausesAttr ? JSON.parse(cardCausesAttr) : [];
+
+				// Role match logic: True if NO roles selected, OR if any selected role has at least ONE word matching the card title
+				let roleMatch = true;
+				if (selectedRoles.length > 0) {
+					roleMatch = selectedRoles.some(roleFilter => {
+						const words = roleFilter.split(' ');
+						return words.some(word => cardRoleTitle.includes(word));
+					});
+				}
+
+				// Cause match logic: True if NO causes selected, OR if the card causes overlap with selected causes
+				let causeMatch = true;
+				if (selectedCauses.length > 0) {
+					causeMatch = selectedCauses.some(cause => cardCauses.includes(cause));
+				}
+
+				if (roleMatch && causeMatch) {
+					card.style.display = 'flex';
+				} else {
+					card.style.display = 'none';
+				}
+			});
+		}
+
+		roleCheckboxes.forEach(cb => cb.addEventListener('change', updateFilters));
+		causeCheckboxes.forEach(cb => cb.addEventListener('change', updateFilters));
+	}
+
+	// Run on initial load and view transitions
+	document.addEventListener('DOMContentLoaded', setupFilters);
+	document.addEventListener('astro:page-load', setupFilters);
+</script>
+
+<style>
+	.py-4 { padding-top: 4rem; padding-bottom: 4rem; }
+	.mb-2 { margin-bottom: 1rem; }
+	.mb-3 { margin-bottom: 2rem; }
+	.mb-4 { margin-bottom: 3rem; }
+
+	.title-red { color: #F22613; }
+	.page-title {
+		font-family: var(--font-heading);
+		font-size: 3.5rem;
+		font-weight: 800;
+		margin-top: 0;
+	}
+
+	.roles-intro p {
+		font-family: var(--font-body);
+		font-size: 1.125rem;
+		line-height: 1.6;
+		margin-bottom: 1rem;
+		max-width: 900px;
+	}
+
+	.text-link {
+		color: #111;
+		text-decoration: underline;
+	}
+
+	.text-link:hover {
+		color: #F22613;
+	}
+
+	/* Filters */
+	.filters-container {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		flex-wrap: wrap;
+	}
+
+	.filters-label {
+		font-family: var(--font-body);
+		color: #666;
+		font-size: 1.125rem;
+	}
+
+	.custom-dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	.dropdown-btn {
+		background-color: #fff;
+		border: 1px solid #ccc;
+		border-radius: var(--border-radius);
+		padding: 0.5rem 1rem;
+		font-family: var(--font-body);
+		font-size: 1rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: #333;
+	}
+
+	.dropdown-btn:hover {
+		border-color: #999;
+	}
+
+	.filter-icon {
+		color: #666;
+		font-size: 1rem;
+	}
+
+	.chevron-icon {
+		font-size: 0.875rem;
+		color: #999;
+		margin-left: 0.5rem;
+	}
+
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		background-color: #f9f9f9;
+		min-width: 200px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+		z-index: 10;
+		border-radius: var(--border-radius);
+		margin-top: 0.5rem;
+		padding: 0.5rem 0;
+		max-height: 300px;
+		overflow-y: auto;
+	}
+
+	.dropdown-content.show {
+		display: block;
+	}
+
+	.dropdown-item {
+		padding: 0.5rem 1rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		cursor: pointer;
+		font-family: var(--font-body);
+		font-size: 0.95rem;
+	}
+
+	.dropdown-item:hover {
+		background-color: #f1f1f1;
+	}
+
+	/* Roles List */
+	.roles-list {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.role-card {
+		display: flex;
+		flex-direction: column;
+		background: #fff;
+		border-radius: var(--border-radius);
+		box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+		border: 1px solid #eaeaea;
+		overflow: hidden;
+	}
+
+	@media (min-width: 768px) {
+		.role-card {
+			flex-direction: row;
+		}
+	}
+
+	.role-image-wrapper {
+		width: 100%;
+		aspect-ratio: 1;
+		background-color: #f0f0f0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		flex-shrink: 0;
+	}
+
+	@media (min-width: 768px) {
+		.role-image-wrapper {
+			width: 300px;
+			max-width: 300px;
+			border-right: 1px solid #eaeaea;
+		}
+	}
+
+	.role-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.placeholder-img {
+		color: #999;
+		font-family: var(--font-condensed);
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+
+	.role-details {
+		padding: 2rem;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	.role-header {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+
+	@media (min-width: 768px) {
+		.role-header {
+			flex-direction: row;
+			align-items: center;
+		}
+	}
+
+	.role-title {
+		font-family: var(--font-heading);
+		font-weight: 800;
+		font-size: 1.5rem;
+		margin: 0;
+		color: #000;
+	}
+
+	.role-date {
+		font-family: var(--font-body);
+		color: #666;
+		font-size: 0.875rem;
+	}
+
+	.project-name {
+		font-family: var(--font-body);
+		font-weight: 500;
+		font-size: 1.25rem;
+		margin: 0 0 1rem 0;
+		color: #333;
+	}
+
+	.project-desc {
+		font-family: var(--font-body);
+		line-height: 1.6;
+		color: #444;
+		margin-bottom: 1.5rem;
+	}
+
+	.role-links {
+		margin-top: auto;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+	}
+
+	.visit-link {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: #2b7bc4;
+		text-decoration: none;
+		font-weight: 600;
+		font-family: var(--font-body);
+	}
+
+	.visit-link:hover {
+		color: #F22613;
+		text-decoration: underline;
+	}
+
+	.link-icon {
+		font-size: 1rem;
+	}
+</style>
