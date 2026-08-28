@@ -16,4 +16,5 @@ technologies:
 repos:
   - waterthetrees
 seekingVolunteers: false
+visible: false
 ---

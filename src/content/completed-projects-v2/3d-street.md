@@ -1,17 +1,14 @@
 ---
 status: completed
-name: 3DStreet
-thumbnail: 3d-street.png
-description: |-
-  How do you visualize what a street *could* be, with transit friendly options?
-
-  Add a bike lane, add a bus lane, and create a visual that can be used for advocacy. Already, this tool-in-progress has been used by reporters in Philadelphia to create visualizations for articles.
+name: 3D Street
+thumbnail: 3D Street 2026.png
+description: 3D22 has since transitioned to streetmix.net. Read more about their open-sourced public launch.
+website: https://3Dstreet.com
 technologies:
-  - A-Frame
-  - JavaScript
-slack:
-  name: "#proj-3d-street"
-  url: https://sfbrigade.slack.com/archives/C0232B9RL1J
+  - Unity
+  - Three.js
+repos:
+  - https://github.com/3DStreet/3dstreet
 activelyRunning: false
-visible: false
+visible: true
 ---

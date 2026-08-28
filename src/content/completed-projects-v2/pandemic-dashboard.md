@@ -1,12 +1,16 @@
 ---
 status: completed
 name: Pandemic (PanDa) COVID-19 Dashboard
-thumbnail: pandemic-dashboard.png
-description: |-
-  PanDa, the Bay Area Pandemic Dashboard, is the best tool available specifically for Bay Area residents. This collaboration between Code for San Francisco, Open Oakland, and Code for San Jose rigorously curates the most complete Bay Area data resource possible while surfacing insights using metrics that directly impact residents’ lives during Covid.
-
-  Project members are developing open source web scrapers for capturing data being posted in nine different ways to nine different county websites. Front end contributors are developing beautiful interactive data visualizations designed by UX Design contributors.
+thumbnail: bay area pandemic dashboard.png
+description: The dashboard displayed real-time COVID-19 data that helped health agencies visualize the virus's spread in the Bay Area.
+website: https://panda.baybrigades.org/
+technologies:
+  - Vue/Nuxt
+  - Python
+  - Pandas
+  - AWS
 repos:
   - stop-covid19-sfbayarea
-activelyRunning: true
+activelyRunning: false
+visible: true
 ---

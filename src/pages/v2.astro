@@ -5,6 +5,7 @@ import LayoutV2 from "@/layouts/LayoutV2.astro";
 import HeaderV2 from "@/components/HeaderV2.astro";
 import FooterV2 from "@/components/FooterV2.astro";
 import { getBlogV2Posts } from "@/content";
+import { getImageAsset } from "@/utils";
 
 // Images
 import heroBridge from "@/assets/home/golden gate bridge hero image.png";
@@ -12,10 +13,15 @@ import hackNight from "@/assets/home/hack night in person.png";
 import supportUsImg from "@/assets/home/support-us.png";
 
 const allPosts = await getBlogV2Posts();
-const latestPosts = allPosts.slice(0, 4);
+const latestPosts = await Promise.all(
+	allPosts.slice(0, 4).map(async (post) => ({
+		post,
+		imageData: post.data.image ? await getImageAsset(post.data.image) : null
+	}))
+);
 ---
 
-<LayoutV2 title="Home v2">
+<LayoutV2 title="Home">
 	<HeaderV2 />
 	
 	<main>
@@ -98,7 +104,7 @@ const latestPosts = allPosts.slice(0, 4);
 						<Icon name="fa6-solid:handshake" class="card-icon" />
 						<h3 class="card-title">Become a partner</h3>
 						<p>Partner with us as a community sponsor, or work with us to build out new solutions for the city spanning all things technology and design.</p>
-						<a href="/sponsor" class="card-link mt-auto">Partner with us</a>
+						<a href="/sponsor-v2" class="card-link mt-auto">Partner with us</a>
 					</article>
 					<article class="join-card text-center">
 						<Icon name="fa6-solid:lightbulb" class="card-icon" />
@@ -114,11 +120,11 @@ const latestPosts = allPosts.slice(0, 4);
 		<section class="latest-updates container">
 			<h2 class="section-title mb-3">Latest Updates</h2>
 			<div class="grid-4 updates-grid">
-				{latestPosts.map(post => (
+				{latestPosts.map(({ post, imageData }) => (
 					<article class="blog-card">
-						<a href={`/blog/${post.id}`} class="blog-card-link">
-							{post.data.image ? (
-								<Image src={post.data.image} alt={post.data.image_alt || post.data.title} class="blog-img" width={400} height={300} />
+						<a href={`/blog-v2/${post.id}`} class="blog-card-link">
+							{imageData ? (
+								<Image src={imageData} alt={post.data.image_alt || post.data.title} class="blog-img" width={400} height={300} />
 							) : (
 								<div class="placeholder-img blog-img">Image Placeholder</div>
 							)}
@@ -190,7 +196,7 @@ const latestPosts = allPosts.slice(0, 4);
 				<div class="logo-placeholder">AWS Logo</div>
 			</div>
 			<div class="mt-3">
-				<a href="/sponsor" class="btn btn-primary">Become a Partner</a>
+				<a href="/sponsor-v2" class="btn btn-primary">Become a Partner</a>
 			</div>
 		</section>
 	</main>

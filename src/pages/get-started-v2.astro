@@ -10,7 +10,7 @@ import { marked } from "marked";
 const activeProjects = await getCollection("projectsV2", (entry) => entry.data.visible && entry.data.status === "active" && entry.data.seekingVolunteers);
 ---
 
-<LayoutV2 title="Get Started v2">
+<LayoutV2 title="Get Started">
 	<HeaderV2 />
 	
 	<main>
@@ -35,7 +35,7 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 						<Icon name="fa6-solid:handshake" class="card-icon" />
 						<h3 class="card-title">BECOME A PARTNER</h3>
 						<p class="card-text">Partner with us as a community sponsor, or work with us to build out new solutions for the city spanning all things technology and design.</p>
-						<a href="#partner" class="btn btn-secondary mt-auto">Partner with us</a>
+						<a href="/sponsor-v2" class="btn btn-secondary mt-auto">Partner with us</a>
 					</article>
 					<!-- Card 3 -->
 					<article class="action-card text-center bg-white">
@@ -145,7 +145,7 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 				<p class="mx-auto max-w-text mb-4">
 					Sponsors support our projects in a variety of ways through collaboration, knowledge-sharing, or offering resources that strengthen volunteer efforts. Interested in becoming a partner or sponsor? Here you can learn how to get involved and find out more about our current and past partners too.
 				</p>
-				<a href="/sponsor" class="btn btn-primary">Become a Partner</a>
+				<a href="/sponsor-v2" class="btn btn-primary">Become a Partner</a>
 			</div>
 		</section>
 
@@ -356,9 +356,9 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 	}
 
 	.project-dot {
-		width: 24px;
-		height: 24px;
-		background-color: #e0e0e0;
+		width: 6px;
+		height: 6px;
+		background-color: currentColor;
 		border-radius: 50%;
 		flex-shrink: 0;
 	}

@@ -2,11 +2,18 @@
 status: completed
 name: ShelterTech
 thumbnail: sheltertech.png
-description: |-
-  Less than half of nearly 28,000 people experiencing homelessness in the Bay Area have reliable access to the internet.
-  
-  ShelterTech is a technology-focused nonprofit organization making it easier for this community to connect with resources that can help them address their challenges.
-  
-  Begun as a project at Code for San Francisco, ShelterTech spun-off into it's own organization in 2006 and has grown to a volunteer organization with an annual budget over $100k.
-activelyRunning: true
+description: ShelterTech is a tech nonprofit run by volunteers that builds products to help people experiencing homelessness. They have created a variety of products that provide wifi to shelters, a directory of services, and other digital resources.
+website: https://www.sheltertech.org/
+technologies:
+  - Python
+  - React
+  - Next.js
+  - Node.js
+  - Postgres
+  - MongoDB
+  - Docker
+repos:
+  - https://github.com/shelterTechSF
+activelyRunning: false
+visible: true
 ---

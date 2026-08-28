@@ -1,19 +1,40 @@
 ---
+import { Image } from "astro:assets";
 import LayoutV2 from "@/layouts/LayoutV2.astro";
 import HeaderV2 from "@/components/HeaderV2.astro";
 import FooterV2 from "@/components/FooterV2.astro";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { marked } from "marked";
+import { getImageAsset } from "@/utils";
 
 const projects = await getCollection("projectsV2");
 const completedProjects = await getCollection("completedProjectsV2");
 
+// resolve each project's thumbnail to an imported image asset, unless it's
+// already a remote URL (those get rendered with a plain <img> tag instead)
+const resolveThumbnail = async (project: CollectionEntry<"projectsV2"> | CollectionEntry<"completedProjectsV2">) => ({
+	project,
+	imageData: project.data.thumbnail && !project.data.thumbnail.startsWith("http")
+		? await getImageAsset(project.data.thumbnail)
+		: null
+});
+
 // Sort projects alphabetically
-const activeProjects = projects.filter(p => p.data.status === "active" && p.data.visible !== false).sort((a, b) => a.data.name.localeCompare(b.data.name));
-const completedProjectsFiltered = completedProjects.filter(p => p.data.visible !== false).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const activeProjects = await Promise.all(
+	projects
+		.filter(p => p.data.status === "active" && p.data.visible !== false)
+		.sort((a, b) => a.data.name.localeCompare(b.data.name))
+		.map(resolveThumbnail)
+);
+const completedProjectsFiltered = await Promise.all(
+	completedProjects
+		.filter(p => p.data.visible !== false)
+		.sort((a, b) => a.data.name.localeCompare(b.data.name))
+		.map(resolveThumbnail)
+);
 ---
 
-<LayoutV2 title="Projects v2">
+<LayoutV2 title="Projects">
 	<HeaderV2 />
 	
 	<main class="container py-4">
@@ -32,10 +53,12 @@ const completedProjectsFiltered = completedProjects.filter(p => p.data.visible !
 		
 		<!-- Projects List (Active) -->
 		<div class="projects-list" id="list-active">
-			{activeProjects.map(project => (
+			{activeProjects.map(({ project, imageData }) => (
 				<article class="project-card">
 					<div class="project-thumbnail">
-						{project.data.thumbnail && (
+						{imageData ? (
+							<Image src={imageData} alt={project.data.name} width={300} height={300} />
+						) : project.data.thumbnail && (
 							<img src={project.data.thumbnail} alt={project.data.name} />
 						)}
 					</div>
@@ -60,7 +83,7 @@ const completedProjectsFiltered = completedProjects.filter(p => p.data.visible !
 							{project.data.website && (
 								<div class="link-row">
 									<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-									<span><strong>Official website:</strong> <a href={project.data.website.startsWith('http') ? project.data.website : `https://${project.data.website}`} target="_blank" rel="noopener noreferrer">{project.data.website}</a></span>
+									<span><strong>Official website:</strong> <a href={project.data.website.startsWith('http') ? project.data.website : `https://${project.data.website}`} target="_blank" rel="noopener noreferrer">{project.data.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></span>
 								</div>
 							)}
 							{project.data.technologies && project.data.technologies.length > 0 && (
@@ -83,10 +106,12 @@ const completedProjectsFiltered = completedProjects.filter(p => p.data.visible !
 
 		<!-- Projects List (Completed) -->
 		<div class="projects-list" id="list-completed" style="display: none;">
-			{completedProjectsFiltered.map(project => (
+			{completedProjectsFiltered.map(({ project, imageData }) => (
 				<article class="project-card">
 					<div class="project-thumbnail">
-						{project.data.thumbnail && (
+						{imageData ? (
+							<Image src={imageData} alt={project.data.name} width={300} height={300} />
+						) : project.data.thumbnail && (
 							<img src={project.data.thumbnail} alt={project.data.name} />
 						)}
 					</div>
@@ -104,7 +129,7 @@ const completedProjectsFiltered = completedProjects.filter(p => p.data.visible !
 							{project.data.website && (
 								<div class="link-row">
 									<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-									<span><strong>Official website:</strong> <a href={project.data.website.startsWith('http') ? project.data.website : `https://${project.data.website}`} target="_blank" rel="noopener noreferrer">{project.data.website}</a></span>
+									<span><strong>Official website:</strong> <a href={project.data.website.startsWith('http') ? project.data.website : `https://${project.data.website}`} target="_blank" rel="noopener noreferrer">{project.data.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></span>
 								</div>
 							)}
 							{project.data.technologies && project.data.technologies.length > 0 && (
@@ -264,6 +289,7 @@ const completedProjectsFiltered = completedProjects.filter(p => p.data.visible !
 		max-width: 100%;
 		max-height: 100%;
 		object-fit: contain;
+		border-radius: 10px;
 	}
 
 	.project-content {

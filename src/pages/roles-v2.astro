@@ -71,6 +71,8 @@ function formatDate(date: Date | string | undefined) {
 			</div>
 		</div>
 
+		<div class="selected-filters-container" id="selected-filters"></div>
+
 		<div class="roles-list" id="roles-list">
 			{roles.length === 0 && (
 				<p>No volunteer roles are currently available. Check back soon!</p>
@@ -78,13 +80,6 @@ function formatDate(date: Date | string | undefined) {
 			
 			{roles.map(({ project, role }) => (
 				<div class="role-card" data-causes={JSON.stringify(project.data.cause || [])} data-role-title={role.title.toLowerCase()}>
-					<div class="role-image-wrapper">
-						{project.data.thumbnail ? (
-							<img src={project.data.thumbnail} alt={project.data.name} class="role-image" />
-						) : (
-							<div class="placeholder-img">No Image</div>
-						)}
-					</div>
 					<div class="role-details">
 						<div class="role-header">
 							<h2 class="role-title">{role.title}</h2>
@@ -110,6 +105,7 @@ function formatDate(date: Date | string | undefined) {
 					</div>
 				</div>
 			))}
+			<div id="no-results" class="no-results hidden">No projects match the selected criteria at this time</div>
 		</div>
 	</main>
 
@@ -149,11 +145,13 @@ function formatDate(date: Date | string | undefined) {
 		const roleCheckboxes = document.querySelectorAll('.role-filter') as NodeListOf<HTMLInputElement>;
 		const causeCheckboxes = document.querySelectorAll('.cause-filter') as NodeListOf<HTMLInputElement>;
 		const roleCards = document.querySelectorAll('.role-card') as NodeListOf<HTMLElement>;
+		const selectedFiltersContainer = document.getElementById('selected-filters');
 
 		function updateFilters() {
 			const selectedRoles = Array.from(roleCheckboxes).filter(cb => cb.checked).map(cb => cb.value.toLowerCase());
 			const selectedCauses = Array.from(causeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
 
+			let visibleCount = 0;
 			roleCards.forEach(card => {
 				const cardRoleTitle = card.getAttribute('data-role-title') || '';
 				const cardCausesAttr = card.getAttribute('data-causes');
@@ -176,14 +174,42 @@ function formatDate(date: Date | string | undefined) {
 
 				if (roleMatch && causeMatch) {
 					card.style.display = 'flex';
+					visibleCount++;
 				} else {
 					card.style.display = 'none';
 				}
 			});
+
+			const noResultsEl = document.getElementById('no-results');
+			if (noResultsEl) {
+				if (visibleCount === 0) {
+					noResultsEl.classList.remove('hidden');
+				} else {
+					noResultsEl.classList.add('hidden');
+				}
+			}
+
+			if (selectedFiltersContainer) {
+				selectedFiltersContainer.innerHTML = '';
+				const checkedBoxes = Array.from(roleCheckboxes).concat(Array.from(causeCheckboxes)).filter(cb => cb.checked);
+				checkedBoxes.forEach(cb => {
+					const chip = document.createElement('span');
+					chip.className = 'filter-chip-selected';
+					chip.innerHTML = `${cb.value} <span class="chip-remove">&times;</span>`;
+					chip.addEventListener('click', () => {
+						cb.checked = false;
+						cb.dispatchEvent(new Event('change'));
+					});
+					selectedFiltersContainer.appendChild(chip);
+				});
+			}
 		}
 
 		roleCheckboxes.forEach(cb => cb.addEventListener('change', updateFilters));
 		causeCheckboxes.forEach(cb => cb.addEventListener('change', updateFilters));
+
+		// Run initially to sync checkbox states on load
+		updateFilters();
 	}
 
 	// Run on initial load and view transitions
@@ -436,5 +462,54 @@ function formatDate(date: Date | string | undefined) {
 
 	.link-icon {
 		font-size: 1rem;
+	}
+
+	.no-results {
+		color: #666;
+		font-size: 1rem;
+		text-align: center;
+		padding: 3rem 0;
+		font-family: var(--font-body);
+		width: 100%;
+	}
+	
+	.no-results.hidden {
+		display: none;
+	}
+
+	.selected-filters-container {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-bottom: 2rem;
+		width: 100%;
+		justify-content: flex-start;
+	}
+
+	.filter-chip-selected {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		background-color: #000000 !important;
+		color: #ffffff !important;
+		padding: 0.5rem 1rem;
+		border-radius: 5px;
+		font-family: var(--font-body);
+		font-size: 1rem;
+		cursor: pointer;
+		user-select: none;
+		transition: opacity 0.2s ease;
+	}
+
+	.filter-chip-selected:hover {
+		opacity: 0.8;
+	}
+
+	.chip-remove {
+		font-size: 1.2rem;
+		line-height: 1;
+		font-weight: bold;
+		color: #ffffff !important;
+		margin-left: 0.25rem;
 	}
 </style>
