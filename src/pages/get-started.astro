@@ -14,35 +14,28 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 	<HeaderV2 />
 	
 	<main>
-		<!-- Hero Section: Get Involved -->
+		<!-- Hero Section: Get Started -->
 		<section class="bg-gray py-4">
 			<div class="container hero-container text-center">
-				<h1 class="section-title title-red">Get Involved</h1>
+				<h1 class="section-title title-red">Get Started</h1>
 				<p class="hero-subtitle mx-auto max-w-text">
 					Make a meaningful impact with SF Civic Tech. Explore the ways you can get involved and start contributing to your community. Scroll down for more information on each.
 				</p>
 
-				<div class="grid-3 mt-4">
+				<div class="grid-2 join-grid mt-4">
 					<!-- Card 1 -->
-					<article class="action-card text-center bg-white">
-						<Icon name="fa6-solid:hand-holding-heart" class="card-icon" />
-						<h3 class="card-title">VOLUNTEER WITH US</h3>
-						<p class="card-text">Use your skills to make a difference in your community. You don't have to know how to code to help—we need designers, researchers, and project managers, too.</p>
-						<a href="/roles-v2" class="btn btn-secondary mt-auto">View volunteer roles</a>
+					<article class="join-card text-center">
+						<Icon name="fa6-solid:users" class="card-icon" />
+						<h3 class="card-title">Volunteer with us</h3>
+						<p>Use your skills to make a difference in your community. You don't have to know how to code to help — we need designers, researchers, and project managers, too.</p>
+						<a href="/roles" class="card-link mt-auto">View volunteer roles</a>
 					</article>
 					<!-- Card 2 -->
-					<article class="action-card text-center bg-white">
-						<Icon name="fa6-solid:handshake" class="card-icon" />
-						<h3 class="card-title">BECOME A PARTNER</h3>
-						<p class="card-text">Partner with us as a community sponsor, or work with us to build out new solutions for the city spanning all things technology and design.</p>
-						<a href="/sponsor-v2" class="btn btn-secondary mt-auto">Partner with us</a>
-					</article>
-					<!-- Card 3 -->
-					<article class="action-card text-center bg-white">
-						<Icon name="fa6-solid:gift" class="card-icon" />
-						<h3 class="card-title">PROPOSE A TALK</h3>
-						<p class="card-text">Got an idea that can help our city? Pitch it to us! We're constantly on the lookout for new ideas that can strengthen our community.</p>
-						<a href={proposeTalkURL} target="_blank" rel="noopener noreferrer" class="btn btn-secondary mt-auto">Submit idea</a>
+					<article class="join-card text-center">
+						<Icon name="fa6-solid:lightbulb" class="card-icon" />
+						<h3 class="card-title">Propose a talk</h3>
+						<p>Got an idea that can help our city? Pitch it to us! We're constantly on the lookout for new ideas that can strengthen our community.</p>
+						<a href={proposeTalkURL} target="_blank" rel="noopener noreferrer" class="card-link mt-auto">Submit idea</a>
 					</article>
 				</div>
 			</div>
@@ -58,7 +51,7 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 				<div class="step-card">
 					<div class="step-number">1</div>
 					<h3 class="step-title">Tell us about yourself</h3>
-					<p>Fill out our brief form so we can learn more about you and match you with opportunities.</p>
+					<p>Fill out our <a href="https://c4sf.me/member" target="_blank" rel="noopener noreferrer" class="text-link">brief form</a> so we can learn more about you and match you with opportunities.</p>
 				</div>
 				<!-- Step 2 -->
 				<div class="step-card">
@@ -67,7 +60,7 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 					<ul class="step-list">
 						<li>Read the Code of Conduct</li>
 						<li>Check out current projects</li>
-						<li>Join our Slack</li>
+						<li><a href="https://c4sf.me/slack" target="_blank" rel="noopener noreferrer" class="text-link">Join our Slack</a></li>
 					</ul>
 				</div>
 				<!-- Step 3 -->
@@ -88,8 +81,9 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 		<!-- Volunteer Roles Section -->
 		<section id="volunteer-roles" class="container py-4">
 			<h2 class="section-title title-red">Volunteer Roles</h2>
-			<p class="mb-3">SF Civic Tech is open to everyone—we put trust in the hard work of our volunteers and don't limit members. You don't have to have a technical background! Whether you enjoy administration, community organization, designing, or planning, your contributions are highly valued by SF Civic Tech. Check out our open roles below!</p>
+			<p class="mb-3">SF Civic Tech is open to everyone — we put trust in the hard work of our volunteers and don't limit members. You don't have to have a technical background! Whether you enjoy administration, community organization, designing, or planning, your contributions are highly valued by SF Civic Tech. Check out our open roles below!</p>
 			
+			{false && (
 			<!-- Table Placeholder -->
 			<div class="table-container mb-4">
 				<table class="roles-table">
@@ -104,7 +98,7 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 						{activeProjects.map(project => (
 							<tr>
 								<td>
-									<a href={`/projects-v2`} class="project-name-link">
+									<a href={`/projects`} class="project-name-link">
 										<div class="project-dot"></div>
 										{project.data.name}
 									</a>
@@ -134,10 +128,12 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 					</tbody>
 				</table>
 			</div>
+			)}
 
-			<a href="/roles-v2" class="btn btn-primary">Search Roles</a>
+			<a href="/roles" class="btn btn-primary">View Open Volunteer Roles</a>
 		</section>
 
+		{false && (
 		<!-- Become a Partner or Sponsor Section -->
 		<section id="partner" class="bg-gray py-4 mt-4">
 			<div class="container text-center">
@@ -145,9 +141,10 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 				<p class="mx-auto max-w-text mb-4">
 					Sponsors support our projects in a variety of ways through collaboration, knowledge-sharing, or offering resources that strengthen volunteer efforts. Interested in becoming a partner or sponsor? Here you can learn how to get involved and find out more about our current and past partners too.
 				</p>
-				<a href="/sponsor-v2" class="btn btn-primary">Become a Partner</a>
+				<a href="/sponsor" class="btn btn-primary">Become a Partner</a>
 			</div>
 		</section>
+		)}
 
 	</main>
 
@@ -182,11 +179,10 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 
 	/* Grids */
 	.grid-2 { display: grid; grid-template-columns: 1fr; gap: 3rem; }
-	.grid-3 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-	
+	.join-grid { gap: 2rem; }
+
 	@media (min-width: 768px) {
 		.grid-2 { grid-template-columns: 1fr 1fr; }
-		.grid-3 { grid-template-columns: repeat(3, 1fr); }
 	}
 
 	main {
@@ -196,35 +192,34 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 		padding-bottom: 2rem;
 	}
 
-	/* Action Cards */
-	.action-card {
-		padding: 3rem 2rem;
+	/* Ways-to-join cards, matching the homepage's "Ways To Join" cards */
+	.join-card {
+		background: white;
+		padding: 2.5rem 1.5rem;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 		border-radius: var(--border-radius);
-		border: 1px solid #eaeaea;
 	}
 
 	.card-icon {
 		font-size: 3rem;
-		color: #F22613;
+		color: var(--color-primary);
 		margin-bottom: 1.5rem;
 	}
 
 	.card-title {
 		font-size: 1.25rem;
 		margin-bottom: 1rem;
-		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		color: #000000;
-		font-weight: 800;
 	}
 
-	.card-text {
-		color: #444;
-		margin-bottom: 2rem;
+	.card-link {
+		font-family: var(--font-condensed);
+		font-weight: 600;
+		text-decoration: underline;
+		color: #333;
 	}
 
 	/* Steps Section */

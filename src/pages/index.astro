@@ -36,8 +36,8 @@ const latestPosts = await Promise.all(
 					We are a diverse community of volunteers working to improve San Francisco for all. All backgrounds and experiences are welcome!
 				</p>
 				<div class="hero-buttons">
-					<a href="/get-started-v2" class="btn btn-primary">Get Started</a>
-					<a href="/about-v2" class="btn btn-secondary">Learn More</a>
+					<a href="/get-started" class="btn btn-primary">Get Started</a>
+					<a href="/about" class="btn btn-secondary">Learn More</a>
 				</div>
 			</div>
 		</section>
@@ -49,7 +49,7 @@ const latestPosts = await Promise.all(
 					<h2 class="section-title">Who We Are</h2>
 					<p>SF Civic Tech is a volunteer-run organization that creates technology products for community problems. We organize our free time to prototype, test, and ship open-source tech for public interest.</p>
 					<p>We're part of a nationwide network of civic tech organizations looking to make a difference in our community. We meet every Wednesday in downtown San Francisco. All skill levels and community members are welcome!</p>
-					<a href="/get-started-v2" class="btn btn-primary mt-1">Join us</a>
+					<a href="/get-started" class="btn btn-primary mt-1">Join us</a>
 				</div>
 				<div class="who-image">
 					<Image src={hackNight} alt="Volunteers at hack night" class="rounded-img" />
@@ -98,19 +98,19 @@ const latestPosts = await Promise.all(
 						<Icon name="fa6-solid:users" class="card-icon" />
 						<h3 class="card-title">Volunteer with us</h3>
 						<p>Use your skills to make a difference in your community! You don't have to know how to code to help—we need designers, researchers, and project managers, too.</p>
-						<a href="/roles-v2" class="card-link mt-auto">View open volunteer roles</a>
+						<a href="/roles" class="card-link mt-auto">View open volunteer roles</a>
 					</article>
 					<article class="join-card text-center">
 						<Icon name="fa6-solid:handshake" class="card-icon" />
 						<h3 class="card-title">Become a partner</h3>
 						<p>Partner with us as a community sponsor, or work with us to build out new solutions for the city spanning all things technology and design.</p>
-						<a href="/sponsor-v2" class="card-link mt-auto">Partner with us</a>
+						<a href="/sponsor" class="card-link mt-auto">Partner with us</a>
 					</article>
 					<article class="join-card text-center">
 						<Icon name="fa6-solid:lightbulb" class="card-icon" />
 						<h3 class="card-title">Pitch a project</h3>
 						<p>Got an idea that can help our city? Pitch it to us! We're constantly on the lookout for new ideas that can strengthen our community.</p>
-						<a href="/propose-v2" class="card-link mt-auto">Submit project idea</a>
+						<a href="/propose" class="card-link mt-auto">Submit project idea</a>
 					</article>
 				</div>
 			</div>
@@ -122,7 +122,7 @@ const latestPosts = await Promise.all(
 			<div class="grid-4 updates-grid">
 				{latestPosts.map(({ post, imageData }) => (
 					<article class="blog-card">
-						<a href={`/blog-v2/${post.id}`} class="blog-card-link">
+						<a href={`/blog/${post.id}`} class="blog-card-link">
 							{imageData ? (
 								<Image src={imageData} alt={post.data.image_alt || post.data.title} class="blog-img" width={400} height={300} />
 							) : (
@@ -140,7 +140,7 @@ const latestPosts = await Promise.all(
 				))}
 			</div>
 			<div class="text-center mt-3">
-				<a href="/blog-v2" class="btn btn-primary">Read More</a>
+				<a href="/blog" class="btn btn-primary">Read More</a>
 			</div>
 		</section>
 
@@ -186,6 +186,7 @@ const latestPosts = await Promise.all(
 			</div>
 		</section>
 
+		{false && (
 		<!-- Sponsors & Partners -->
 		<section class="sponsors container text-center">
 			<h2 class="section-title mb-3">Sponsors & Partners</h2>
@@ -196,9 +197,10 @@ const latestPosts = await Promise.all(
 				<div class="logo-placeholder">AWS Logo</div>
 			</div>
 			<div class="mt-3">
-				<a href="/sponsor-v2" class="btn btn-primary">Become a Partner</a>
+				<a href="/sponsor" class="btn btn-primary">Become a Partner</a>
 			</div>
 		</section>
+		)}
 	</main>
 
 	<FooterV2 />
