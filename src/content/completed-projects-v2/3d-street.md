@@ -9,6 +9,9 @@ technologies:
   - Three.js
 repos:
   - https://github.com/3DStreet/3dstreet
+slack:
+  name: "#proj-3d-street"
+  url: https://sfbrigade.slack.com/archives/C0232B9RL1J
 activelyRunning: false
 visible: true
 ---

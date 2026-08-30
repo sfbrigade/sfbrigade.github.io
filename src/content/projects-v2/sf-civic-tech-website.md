@@ -11,6 +11,9 @@ technologies:
   - Python
 repos:
   - sfbrigade.github.io
+slack:
+  name: "#proj-sfcivictech-website"
+  url: https://sfbrigade.slack.com/archives/C051X1WTCVA
 seekingVolunteers: true
 cause:
   - Internal

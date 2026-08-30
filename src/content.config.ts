@@ -208,6 +208,11 @@ const projectsV2 = defineCollection({
 			}))
 			.optional(),
 		website: z.string().optional(),
+		slack: z.object({
+			name: z.string(),
+			url: z.string(),
+		})
+			.optional(),
 		seekingVolunteers: z.boolean(),
 		cause: z.array(z.string()).optional(),
 		seekingRoles: z.array(z.object({
@@ -255,6 +260,11 @@ const completedProjectsV2 = defineCollection({
 			}))
 			.optional(),
 		website: z.string().optional(),
+		slack: z.object({
+			name: z.string(),
+			url: z.string(),
+		})
+			.optional(),
 		seekingVolunteers: z.boolean().optional(),
 		cause: z.array(z.string()).optional(),
 		seekingRoles: z.array(z.object({

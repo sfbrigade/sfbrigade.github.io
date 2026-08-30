@@ -11,6 +11,9 @@ technologies:
   - JavaScript
 repos:
   - sf-lifeline
+slack:
+  name: "#proj-sf-lifeline"
+  url: https://sfbrigade.slack.com/archives/C062GS238CQ
 seekingVolunteers: false
 cause:
   - Health
