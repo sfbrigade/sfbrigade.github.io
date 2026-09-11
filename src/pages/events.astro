@@ -9,7 +9,7 @@ import eventsHeroImg from "@/assets/events/events-hero.png";
 import hackNightImg from "@/assets/home/hack-night.png";
 ---
 
-<LayoutV2 title="Events v2">
+<LayoutV2 title="Events">
 	<HeaderV2 />
 	
 	<main>
@@ -38,52 +38,49 @@ import hackNightImg from "@/assets/home/hack-night.png";
 			<div class="grid-3 events-grid">
 				<!-- Event Card 1 -->
 				<article class="event-card">
-					<div class="event-image-wrapper">
-						<Image src={hackNightImg} alt="Virtual Civic Hack Night" class="event-image" />
-					</div>
 					<div class="event-content">
 						<div class="event-header">
 							<h3 class="event-title">Virtual Civic Hack Night</h3>
-							<span class="badge badge-outline">Online</span>
+							<div class="event-badges">
+								<span class="badge-outline">Online</span>
+							</div>
 						</div>
 						<p class="event-time">Every Wednesday at 6:30PM Pacific.</p>
 						<p class="event-date">Upcoming meeting: December 3rd, 2026</p>
-						<a href={meetupURL} class="btn btn-primary mt-auto">View All</a>
 					</div>
 				</article>
 
 				<!-- Event Card 2 -->
 				<article class="event-card">
-					<div class="event-image-wrapper">
-						<Image src={hackNightImg} alt="Good Neighbor Hackathon" class="event-image" />
-					</div>
 					<div class="event-content">
 						<div class="event-header">
 							<h3 class="event-title">Good Neighbor Hackathon</h3>
-							<span class="badge badge-outline">In Person</span>
+							<div class="event-badges">
+								<span class="badge-outline">In Person</span>
+							</div>
 						</div>
 						<p class="event-desc">Join us for an unprecedented civic tech hack night in San Francisco.</p>
 						<p class="event-date">Upcoming meeting: December 5th, 2026</p>
-						<a href={meetupURL} class="btn btn-primary mt-auto">View All</a>
 					</div>
 				</article>
 
 				<!-- Event Card 3 -->
 				<article class="event-card">
-					<div class="event-image-wrapper">
-						<div class="status-badge canceled">Canceled</div>
-						<Image src={hackNightImg} alt="Virtual Civic Hack Night" class="event-image" />
-					</div>
 					<div class="event-content">
 						<div class="event-header">
 							<h3 class="event-title">Virtual Civic Hack Night</h3>
-							<span class="badge badge-outline">Online</span>
+							<div class="event-badges">
+								<span class="badge-canceled">Canceled</span>
+							</div>
 						</div>
 						<p class="event-time">Every Wednesday at 6:30PM Pacific.</p>
 						<p class="event-date">Upcoming meeting: December 10th, 2026</p>
-						<a href={meetupURL} class="btn btn-primary mt-auto">View All</a>
 					</div>
 				</article>
+			</div>
+
+			<div class="view-all-container">
+				<a href={meetupURL} class="btn btn-primary">View All</a>
 			</div>
 		</section>
 
@@ -301,5 +298,29 @@ import hackNightImg from "@/assets/home/hack-night.png";
 	.form-input:focus {
 		outline: none;
 		border-color: #F22613;
+	}
+
+	.event-badges {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	.badge-canceled {
+		background-color: rgba(242, 38, 19, 0.4);
+		color: #000000;
+		border: 1px solid rgba(242, 38, 19, 0.4);
+		padding: 0.25rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.view-all-container {
+		display: flex;
+		justify-content: center;
+		margin-top: 1rem;
 	}
 </style>

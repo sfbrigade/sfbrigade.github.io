@@ -28,12 +28,12 @@ const boardMembers = [
 ];
 ---
 
-<LayoutV2 title="About Us v2">
+<LayoutV2 title="About Us">
 	<HeaderV2 />
 	
 	<main>
 		<!-- Hero / History Section -->
-		<section class="bg-peach py-4">
+		<section class="py-4">
 			<div class="container hero-container text-center">
 				<h1 class="page-title title-red mb-4">About Us</h1>
 				
@@ -54,7 +54,7 @@ const boardMembers = [
 				</p>
 
 				<div class="mx-auto max-w-text text-left">
-					<h2 class="history-title mb-2">History</h2>
+					<h2 class="section-title title-red mb-2">History</h2>
 					<p class="about-desc">
 						SF Civic Tech was originally founded in 2013 as Code for San Francisco, part of the Code for America Brigade Network. After the sunsetting of the Code for America Brigade Program in 2023, the organization rebranded itself to SF Civic Tech in 2024 and became an independent 501(c)3 tax-exempt non-profit. SF Civic Tech is also a member of the Alliance of Civic Technologists.
 					</p>
@@ -80,7 +80,7 @@ const boardMembers = [
 		</section>
 
 		<!-- Code of Conduct Section -->
-		<section class="bg-peach py-4 mt-4">
+		<section class="py-4 mt-4">
 			<div class="container">
 				<div class="mx-auto max-w-text">
 					<h2 class="section-title text-black mb-3 text-left">Code of conduct</h2>
@@ -98,11 +98,11 @@ const boardMembers = [
 						These are not just statements of belief, but principles that we commit to uphold. We are dedicated to providing a friendly and welcoming environment for all members of our community and partners.
 					</p>
 					
-					<p class="mb-4 text-left text-sm">
-						The full <a href="/code-of-conduct-v2" class="text-link">Code of Conduct</a> is available, with more details and examples of our community principles. The Code for San Francisco policies apply in connection to this code of conduct. If you have questions about the event policies, Code of Conduct, or wish to report an issue, please contact us at <a href="mailto:hello@sfcivictech.org" class="text-link">hello@sfcivictech.org</a>.
+					<p class="mb-4 text-left">
+						The full <a href="/code-of-conduct" class="text-link">Code of Conduct</a> is available, with more details and examples of our community principles. The SF Civic Tech policies apply in connection to this code of conduct. If you have questions about the event policies, Code of Conduct, or wish to report an issue, please contact us at <a href="mailto:hello@sfcivictech.org" class="text-link">hello@sfcivictech.org</a>.
 					</p>
 					
-					<a href="/code-of-conduct-v2" class="btn btn-primary">View Code of Conduct</a>
+					<a href="/code-of-conduct" class="btn btn-primary">View Code of Conduct</a>
 				</div>
 			</div>
 		</section>
@@ -121,11 +121,9 @@ const boardMembers = [
 	.mb-3 { margin-bottom: 2rem; }
 	.mb-4 { margin-bottom: 3rem; }
 	.py-4 { padding-top: 4rem; padding-bottom: 4rem; }
-	.bg-peach { background-color: #FFF5F0; }
 	.bg-white { background-color: #ffffff; }
 	.max-w-text { max-width: 900px; }
 	.text-black { color: #000000; }
-	.text-sm { font-size: 0.9rem; }
 	
 	.title-red {
 		color: #F22613;
@@ -146,13 +144,6 @@ const boardMembers = [
 		font-family: var(--font-heading);
 		font-size: 2.5rem;
 		font-weight: 800;
-	}
-
-	.history-title {
-		font-family: var(--font-body);
-		font-size: 1.5rem;
-		font-weight: 400;
-		color: #000;
 	}
 
 	.about-desc {

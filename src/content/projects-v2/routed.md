@@ -12,6 +12,9 @@ technologies:
 repos:
   - bats-server
   - routedapp/routedapp.github.io
+slack:
+  name: "#proj-routed"
+  url: https://sfbrigade.slack.com/archives/CTLPPDJH2
 seekingVolunteers: false
 cause:
   - Transportation

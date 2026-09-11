@@ -1,14 +1,17 @@
 ---
 status: completed
-name: PolicyEngine
+name: Policy Engine
 thumbnail: policy-engine.png
-description: |-
-  We compute the impact of public policy. Simulate and communicate the impact of proposed policy changes on individuals across the country.
+description: Policy Engine computes the impact of public policies by simulating taxes and benefits, showing how proposals affect state revenues, poverty, and local families.
+website: https://www.policyengine.org/us
 technologies:
   - Python
-  - Javascript
+  - React
+repos:
+  - https://github.com/PolicyEngine/policyengine-us
 slack:
   name: "#proj-policyengine"
   url: https://sfbrigade.slack.com/archives/C04ALC6MYKX
 activelyRunning: false
+visible: true
 ---

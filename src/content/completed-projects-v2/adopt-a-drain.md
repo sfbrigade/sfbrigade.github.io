@@ -1,12 +1,15 @@
 ---
 status: completed
-name: Adopt-a-Drain
+name: Adopt-A-Drain
 thumbnail: adopt-a-drain.png
-description: |-
-  Launched in October 2016, the Adopt a Drain Program enables San Francisco residents to "adopt" one of the City's 25,000 storm drains, keeping it free of debris. While helping to reduce localized flooding, the program also fosters community engagement by encouraging San Franciscans to take an active role in improving their neighborhood. Sign up and adopt a drain!
-
-  This project was adopted in-house by the SF Public Utilities Commission but could still use your contributions!
+description: Adopt-A-Drain is a program run by the San Francisco Public Utilities Commission that invites volunteers to adopt one of the city's 25,000 storm drains. Adopt-A-Drain encourages community members to keep the drain clear of leaves and debris.
+website: https://adoptadrain.sfwater.org/
+technologies:
+  - Ruby
+  - Javascript
+  - Postgres
 repos:
   - adopt-a-drain
-activelyRunning: true
+activelyRunning: false
+visible: true
 ---

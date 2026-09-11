@@ -2,16 +2,15 @@
 status: completed
 name: Intentional Walk
 thumbnail: iwalk.png
-description: |-
-  Intentional Walk is a program run by the San Francisco Department of Public Health, in partnership with the California Department of Public Health, SF Recreation and Parks Department, the San Francisco Giants, and Code for San Francisco to encourage San Francisco residents who are eligible for CalFresh/MediCal benefits to increase physical activity and develop healthy habits.
+description: A custom mobile app for the San Francisco Department of Public Health designed to encourage physical activity through community challenges, helping residents increase their daily steps.
 technologies:
   - React Native
-  - React
-  - Python/Django
-  - Postgres
-  - Figma
+  - Firebase
+repos:
+  - intentional-walk
 slack:
   name: "#proj-intentional-walk"
   url: https://sfbrigade.slack.com/archives/CSH8FFBHU
 activelyRunning: false
+visible: true
 ---

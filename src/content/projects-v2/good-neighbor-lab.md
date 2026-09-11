@@ -8,6 +8,9 @@ technologies:
   - React
   - TypeScript
   - Postgres
+slack:
+  name: "#proj-community-news-lab"
+  url: https://sfbrigade.slack.com/archives/C07LESPT3M4
 seekingVolunteers: true
 cause:
   - Government

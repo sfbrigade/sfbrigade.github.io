@@ -2,7 +2,7 @@
 export const getStartedURL = "/get-started";
 export const projectsURL = "/projects";
 export const blogURL = "/blog";
-export const donateURL = "/donate-v2";
+export const donateURL = "/donate";
 export const aboutURL = "/about";
 export const codeOfConductURL = "/about/code-of-conduct";
 

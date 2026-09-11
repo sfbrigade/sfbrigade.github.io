@@ -15,5 +15,9 @@ technologies:
   - HTML
 repos:
   - waterthetrees
+slack:
+  name: "#proj-waterthetrees"
+  url: https://sfbrigade.slack.com/archives/C010EGACUTU
 seekingVolunteers: false
+visible: false
 ---
