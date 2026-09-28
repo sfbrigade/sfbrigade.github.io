@@ -14,6 +14,8 @@ description: >-
   improves democracy.
 pin_to_frontpage: false
 image_list_only: false
+category:
+  - "Project case study"
 ---
 We Vote is nonpartisan and nonprofit, founded and built by volunteers, including engineers from the Code for San Francisco Brigade of Code for America.
 

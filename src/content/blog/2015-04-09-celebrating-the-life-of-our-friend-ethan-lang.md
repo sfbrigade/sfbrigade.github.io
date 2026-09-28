@@ -7,6 +7,8 @@ title: Celebrating the Life of Our Friend, Ethan Lang
 description: Ethan loved to bring people together through music. His friends, family and loved ones will never forget his footloose spirit and ability to always get them on a dance floor. In Turkey, he was known to dance at a traditional turkish bar with locals in a bar mitzvah-type circle. In 2011, while celebrating at the Boston Marathon, he never stopped jiving to the street music, despite warning from policemen. "Dancin' ain't illegal," he'd say. He inspired people around him to enjoy life to the fullest and not take anything too seriously. His dance moves could cure anyone during the saddest of times – and they still do.
 image: EthanProfessional.jpg
 image_alt: Photo of Ethan
+category:
+  - "Member feature"
 ---
 
 Two months ago, Code for San Francisco lost a friend. Ethan Lang was a passionate civic hacker who had moved to San Francisco in October to live with his brother. He quickly found his place in the Bay Area, joining the LocalFreeWeb initiative and starting a job at City Hall. Ethan passed away in the night of January 30, after a short illness.

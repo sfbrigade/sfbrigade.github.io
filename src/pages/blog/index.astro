@@ -3,11 +3,11 @@ import { Image } from "astro:assets";
 import LayoutV2 from "@/layouts/LayoutV2.astro";
 import HeaderV2 from "@/components/HeaderV2.astro";
 import FooterV2 from "@/components/FooterV2.astro";
-import { getBlogV2Posts } from "@/content";
+import { getBlogPosts } from "@/content";
 import { getImageAsset } from "@/utils";
 
 const posts = await Promise.all(
-	(await getBlogV2Posts()).map(async (post) => ({
+	(await getBlogPosts()).map(async (post) => ({
 		post,
 		imageData: post.data.image ? await getImageAsset(post.data.image) : null
 	}))

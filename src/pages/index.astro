@@ -4,7 +4,7 @@ import { Icon } from 'astro-icon/components';
 import LayoutV2 from "@/layouts/LayoutV2.astro";
 import HeaderV2 from "@/components/HeaderV2.astro";
 import FooterV2 from "@/components/FooterV2.astro";
-import { getBlogV2Posts } from "@/content";
+import { getBlogPosts } from "@/content";
 import { getImageAsset } from "@/utils";
 
 // Images
@@ -12,7 +12,7 @@ import heroBridge from "@/assets/home/golden gate bridge hero image.png";
 import hackNight from "@/assets/home/hack night in person.png";
 import supportUsImg from "@/assets/home/support-us.png";
 
-const allPosts = await getBlogV2Posts();
+const allPosts = await getBlogPosts();
 const latestPosts = await Promise.all(
 	allPosts.slice(0, 4).map(async (post) => ({
 		post,

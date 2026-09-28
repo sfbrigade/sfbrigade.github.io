@@ -7,6 +7,8 @@ title: Open Data Day 2018 Recap
 image: sandra.jpg
 image_alt: Sandra Zuniga
 description: Open Data Day 2018 Recap
+category:
+  - "Event recap"
 ---
 
 # Open Data Day 2018

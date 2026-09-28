@@ -5,11 +5,11 @@ import LayoutV2 from "@/layouts/LayoutV2.astro";
 import HeaderV2 from "@/components/HeaderV2.astro";
 import FooterV2 from "@/components/FooterV2.astro";
 import { getImageAsset, formatShortMDY } from "@/utils";
-import { getBlogV2Posts } from "@/content";
+import { getBlogPosts } from "@/content";
 
 export async function getStaticPaths()
 {
-	const posts = await getBlogV2Posts();
+	const posts = await getBlogPosts();
 
 	return posts.map((entry) => ({
 		params: {

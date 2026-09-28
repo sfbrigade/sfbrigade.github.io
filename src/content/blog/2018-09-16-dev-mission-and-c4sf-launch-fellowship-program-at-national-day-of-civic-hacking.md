@@ -15,6 +15,9 @@ image_list_only: false
 authors:
   - allen_meyer
   - sebastian_meyer
+category:
+  - "Event recap"
+  - "Program description"
 ---
 _Code for San Francisco, the city’s local chapter of Code for America, recently announced the launch of their first fellowship program this year. The Fellowship is in partnership with dev/Mission, with support from Microsoft._
 

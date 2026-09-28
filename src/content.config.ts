@@ -53,8 +53,8 @@ const blog = defineCollection({
 				value = dayjs(value).utc().format("YYYY-MM-DD");
 			}
 
-			return isValidYMD(value)
-				? parseYMDToDate(value)
+			return isValidYMD(value as string)
+				? parseYMDToDate(value as string)
 				: value;
 			},
 			z.date()),
@@ -69,6 +69,8 @@ const blog = defineCollection({
 			.optional(),
 		image_alt: z.string().optional(),
 		image_list_only: z.boolean().optional(),
+		authors: z.array(z.string()).optional(),
+		category: z.array(z.string()).optional()
 	}).transform((data) => ({
 		...data,
 		// some description fields contain markdown, which we want to convert to
@@ -128,53 +130,6 @@ const projects = defineCollection({
 		descriptionHTML: marked.parse(data.description),
 	})),
 });
-
-const blogV2 = defineCollection({
-	loader: globWithParser({
-		pattern: MarkdownPattern,
-		base: "./src/content/blog-v2",
-		parser: async (entry) => {
-			const { id, data } = entry;
-
-			if (!data.date) {
-				(data as { date?: string }).date = dateStringFromSlug(id);
-			}
-
-			return entry;
-		}
-	}),
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		date: z.preprocess((value) => {
-			if (value instanceof Date && !isNaN(value.getTime())) {
-				value = dayjs(value).utc().format("YYYY-MM-DD");
-			}
-
-			return isValidYMD(value as string)
-				? parseYMDToDate(value as string)
-				: value;
-			},
-			z.date()),
-		image: z.string()
-			.transform((value) => {
-				if (!value) {
-					return z.NEVER;
-				}
-
-				return assetPath("blog", value.replace(/^\/img\/uploads\//, ""));
-			})
-			.optional(),
-		image_alt: z.string().optional(),
-		image_list_only: z.boolean().optional(),
-		authors: z.array(z.string()).optional(),
-		category: z.array(z.string()).optional()
-	}).transform((data) => ({
-		...data,
-		descriptionHTML: marked.parse(data.description),
-	})),
-});
-
 
 const projectsV2 = defineCollection({
 	loader: glob({
@@ -282,7 +237,6 @@ const completedProjectsV2 = defineCollection({
 
 export const collections = {
 	blog,
-	blogV2,
 	projects,
 	projectsV2,
 	completedProjectsV2,
