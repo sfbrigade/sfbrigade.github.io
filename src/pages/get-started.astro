@@ -17,8 +17,8 @@ const activeProjects = await getCollection("projects", (entry) => entry.data.vis
 		<!-- Hero Section: Get Started -->
 		{false && (
 		<section class="bg-gray py-4">
-			<div class="container hero-container text-center">
-				<h1 class="section-title title-red">Get Started</h1>
+			<div class="container text-center">
+				<h1>Get Started</h1>
 				<p class="hero-subtitle mx-auto max-w-text">
 					Make a meaningful impact with SF Civic Tech. Explore the ways you can get involved and start contributing to your community. Scroll down for more information on each.
 				</p>
@@ -45,11 +45,8 @@ const activeProjects = await getCollection("projects", (entry) => entry.data.vis
 
 		<!-- How To Volunteer Section -->
 		<section class="container py-4">
-			<div class="container hero-container text-center">
-				<h1 class="page-title title-red mb-2">Get Started</h1>
-				<p class="about-desc mx-auto max-w-text mb-4 text-left">
-					No matter your background or skill level, anyone can make a meaningful impact with SF Civic Tech. Explore the ways you can get involved and start contributing to your community.
-				</p>
+			<div class="container text-center">
+				<h1>Get Started</h1>
 			</div>
 			
 			<div class="grid-2 step-grid">
@@ -161,7 +158,6 @@ const activeProjects = await getCollection("projects", (entry) => entry.data.vis
 
 <style>
 	/* Utilities */
-	.text-center { text-align: center; }
 	.mx-auto { margin-left: auto; margin-right: auto; }
 	.mt-4 { margin-top: 4rem; }
 	.mb-2 { margin-bottom: 2rem; }

@@ -10,7 +10,7 @@ import { getImageAsset } from "@/utils";
 // Images
 import heroBridge from "@/assets/home/golden gate bridge hero image.png";
 import hackNight from "@/assets/home/hack night in person.png";
-import supportUsImg from "@/assets/home/support-us.png";
+import supportUsImg from "@/assets/about/large-group.png";
 
 const allPosts = await getBlogPosts();
 const latestPosts = await Promise.all(
@@ -30,14 +30,16 @@ const latestPosts = await Promise.all(
 			<div class="hero-bg-wrapper">
 				<Image src={heroBridge} alt="Golden Gate Bridge" class="hero-bg" loading="eager" />
 			</div>
-			<div class="hero-content">
-				<h1 class="hero-title">Empowering San Francisco through civic tech</h1>
-				<p class="hero-subtitle">
-					We are a diverse community of volunteers working to improve San Francisco for all. All backgrounds and experiences are welcome!
-				</p>
-				<div class="hero-buttons">
-					<a href="/get-started" class="btn btn-primary">Get Started</a>
-					<a href="/about" class="btn btn-secondary">Learn More</a>
+			<div class="container">
+				<div class="hero-content">
+					<h1 class="hero-title">Empowering San Francisco through civic tech</h1>
+					<p class="hero-subtitle">
+						We are a diverse community of volunteers working to improve San Francisco for all. All backgrounds and experiences are welcome!
+					</p>
+					<div class="hero-buttons">
+						<a href="/get-started" class="btn btn-primary">Get Started</a>
+						<a href="/about" class="btn btn-secondary">Learn More</a>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -208,7 +210,6 @@ const latestPosts = await Promise.all(
 
 <style>
 	/* Utilities */
-	.text-center { text-align: center; }
 	.mt-1 { margin-top: 1rem; }
 	.mt-2 { margin-top: 2rem; }
 	.mt-3 { margin-top: 3rem; }
@@ -296,7 +297,7 @@ const latestPosts = await Promise.all(
 		max-width: 700px;
 		width: 100%;
 		box-sizing: border-box;
-		padding: 3rem 1.25rem;
+		padding: 3rem 0;
 	}
 
 	.hero-title {
@@ -320,11 +321,6 @@ const latestPosts = await Promise.all(
 	}
 
 	@media (min-width: 768px) {
-		.hero-content {
-			padding: 3rem 0;
-			padding-left: 60px;
-		}
-
 		.hero-title {
 			font-size: 4rem;
 		}

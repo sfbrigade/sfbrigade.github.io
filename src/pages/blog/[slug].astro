@@ -55,7 +55,7 @@ const dateString = formatShortMDY(date);
 				)}
 			</div>
 
-			<h1 class="page-title title-red mb-3">{title}</h1>
+			<h1>{title}</h1>
 
 			{authors && authors.length > 0 && (
 				<p class="blog-authors mb-3">By {authors.join(", ")}</p>
@@ -92,13 +92,6 @@ const dateString = formatShortMDY(date);
 
 	.blog-post {
 		max-width: 900px;
-	}
-
-	.page-title {
-		font-family: var(--font-heading);
-		font-size: 3rem;
-		font-weight: 800;
-		margin-top: 0;
 	}
 
 	.blog-meta {

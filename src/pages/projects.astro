@@ -37,124 +37,134 @@ const completedProjects = await Promise.all(
 <LayoutV2 title="Projects">
 	<HeaderV2 />
 	
-	<main class="container py-4">
-		<h1 class="page-title title-red mb-3">All projects</h1>
-		<p class="projects-intro">
-			All our projects are open source. At SF Civic Tech, our projects focus on improving
-			community readiness, educational systems, public safety, marginalized
-			communities, the natural environment, and more.
-		</p>
-		
-		<!-- Tabs Row -->
-		<div class="tabs-row mb-4">
-			<div class="tab tab-active" id="tab-active">Active</div>
-			<div class="tab tab-inactive" id="tab-completed">Completed</div>
-		</div>
-		
-		<!-- Projects List (Active) -->
-		<div class="projects-list" id="list-active">
-			{activeProjects.map(({ project, imageData }) => (
-				<article class="project-card">
-					<div class="project-thumbnail">
-						{imageData ? (
-							<Image src={imageData} alt={project.data.name} width={300} height={300} />
-						) : project.data.thumbnail && (
-							<img src={project.data.thumbnail} alt={project.data.name} />
-						)}
-					</div>
-					<div class="project-content">
-						<div class="project-header">
-							<h2 class="project-name">{project.data.name}</h2>
-						</div>
-						
-						<div class="project-description" set:html={project.data.descriptionHTML} />
-						
-						{project.data.seekingVolunteers && (
-							<div class="volunteer-badge">
-								<strong>This project is currently looking for volunteers for:</strong> 
-								<span set:html={project.data.seekingRoles?.map((role: any) => role.url ? `<a href="${role.url}" target="_blank">${marked.parseInline(role.title)}</a>` : marked.parseInline(role.title)).join(", ")}></span>
+	<main class="py-4">
+		<!-- Hero / History Section -->
+		<section>
+			<div class="container text-center">
+				<h1>Projects</h1>
+				{false && (
+				<p class="projects-intro">
+					All our projects are open source. At SF Civic Tech, our projects focus on improving
+					community readiness, educational systems, public safety, marginalized
+					communities, the natural environment, and more.
+				</p>
+				)}
+			</div>
+		</section>
+		<section>
+			<div class="container">
+				<!-- Tabs Row -->
+				<div class="tabs-row mb-4">
+					<div class="tab tab-active" id="tab-active">Active</div>
+					<div class="tab tab-inactive" id="tab-completed">Completed</div>
+				</div>
+				
+				<!-- Projects List (Active) -->
+				<div class="projects-list" id="list-active">
+					{activeProjects.map(({ project, imageData }) => (
+						<article class="project-card">
+							<div class="project-thumbnail">
+								{imageData ? (
+									<Image src={imageData} alt={project.data.name} width={300} height={300} />
+								) : project.data.thumbnail && (
+									<img src={project.data.thumbnail} alt={project.data.name} />
+								)}
 							</div>
-						)}
-						
-						<div class="project-links">
-							{project.data.website && (
-								<div class="link-row">
-									<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-									<span><strong>Official website:</strong> <a href={project.data.website.startsWith('http') ? project.data.website : `https://${project.data.website}`} target="_blank" rel="noopener noreferrer">{project.data.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></span>
+							<div class="project-content">
+								<div class="project-header">
+									<h2 class="project-name">{project.data.name}</h2>
 								</div>
-							)}
-							{project.data.technologies && project.data.technologies.length > 0 && (
-								<div class="link-row">
-									<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-									<span><strong>Tech stack:</strong> {project.data.technologies.join(", ")}</span>
+								
+								<div class="project-description" set:html={project.data.descriptionHTML} />
+								
+								{project.data.seekingVolunteers && (
+									<div class="volunteer-badge">
+										<strong>This project is currently looking for volunteers for:</strong> 
+										<span set:html={project.data.seekingRoles?.map((role: any) => role.url ? `<a href="${role.url}" target="_blank">${marked.parseInline(role.title)}</a>` : marked.parseInline(role.title)).join(", ")}></span>
+									</div>
+								)}
+								
+								<div class="project-links">
+									{project.data.website && (
+										<div class="link-row">
+											<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+											<span><strong>Official website:</strong> <a href={project.data.website.startsWith('http') ? project.data.website : `https://${project.data.website}`} target="_blank" rel="noopener noreferrer">{project.data.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></span>
+										</div>
+									)}
+									{project.data.technologies && project.data.technologies.length > 0 && (
+										<div class="link-row">
+											<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+											<span><strong>Tech stack:</strong> {project.data.technologies.join(", ")}</span>
+										</div>
+									)}
+									{project.data.slack && (
+										<div class="link-row">
+											<Image src={slackIcon} alt="" class="icon" width={16} height={16} />
+											<a href={project.data.slack.url} target="_blank" rel="noopener noreferrer">{project.data.slack.name}</a>
+										</div>
+									)}
+									{project.data.repos && project.data.repos.length > 0 && (
+										<div class="link-row">
+											<svg class="icon github-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.1a5.8 5.8 0 0 0-1.6-4.1 5.4 5.4 0 0 0-.15-4.05s-1.3-.4-4.2 1.6a14.7 14.7 0 0 0-7 0c-2.9-2-4.2-1.6-4.2-1.6a5.4 5.4 0 0 0-.15 4.05 5.8 5.8 0 0 0-1.6 4.1c0 5.7 3.35 6.7 6.5 7.1a4.8 4.8 0 0 0-1 3.03v4"/><path d="M9 20c-3 1-5-1-5-3"/></svg>
+											<a href={project.data.repos[0]} target="_blank" rel="noopener noreferrer" class="github-link">View code</a>
+										</div>
+									)}
 								</div>
-							)}
-							{project.data.slack && (
-								<div class="link-row">
-									<Image src={slackIcon} alt="" class="icon" width={16} height={16} />
-									<a href={project.data.slack.url} target="_blank" rel="noopener noreferrer">{project.data.slack.name}</a>
-								</div>
-							)}
-							{project.data.repos && project.data.repos.length > 0 && (
-								<div class="link-row">
-									<svg class="icon github-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.1a5.8 5.8 0 0 0-1.6-4.1 5.4 5.4 0 0 0-.15-4.05s-1.3-.4-4.2 1.6a14.7 14.7 0 0 0-7 0c-2.9-2-4.2-1.6-4.2-1.6a5.4 5.4 0 0 0-.15 4.05 5.8 5.8 0 0 0-1.6 4.1c0 5.7 3.35 6.7 6.5 7.1a4.8 4.8 0 0 0-1 3.03v4"/><path d="M9 20c-3 1-5-1-5-3"/></svg>
-									<a href={project.data.repos[0]} target="_blank" rel="noopener noreferrer" class="github-link">View code</a>
-								</div>
-							)}
-						</div>
-					</div>
-				</article>
-			))}
-		</div>
+							</div>
+						</article>
+					))}
+				</div>
 
-		<!-- Projects List (Completed) -->
-		<div class="projects-list" id="list-completed" style="display: none;">
-			{completedProjects.map(({ project, imageData }) => (
-				<article class="project-card">
-					<div class="project-thumbnail">
-						{imageData ? (
-							<Image src={imageData} alt={project.data.name} width={300} height={300} />
-						) : project.data.thumbnail && (
-							<img src={project.data.thumbnail} alt={project.data.name} />
-						)}
-					</div>
-					<div class="project-content">
-						<div class="project-header">
-							<h2 class="project-name">{project.data.name}</h2>
-						</div>
-						
-						<div class="project-description" set:html={project.data.descriptionHTML} />
-						
-						<div class="project-links">
-							{project.data.website && (
-								<div class="link-row">
-									<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-									<span><strong>Official website:</strong> <a href={project.data.website.startsWith('http') ? project.data.website : `https://${project.data.website}`} target="_blank" rel="noopener noreferrer">{project.data.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></span>
+				<!-- Projects List (Completed) -->
+				<div class="projects-list" id="list-completed" style="display: none;">
+					{completedProjects.map(({ project, imageData }) => (
+						<article class="project-card">
+							<div class="project-thumbnail">
+								{imageData ? (
+									<Image src={imageData} alt={project.data.name} width={300} height={300} />
+								) : project.data.thumbnail && (
+									<img src={project.data.thumbnail} alt={project.data.name} />
+								)}
+							</div>
+							<div class="project-content">
+								<div class="project-header">
+									<h2 class="project-name">{project.data.name}</h2>
 								</div>
-							)}
-							{project.data.technologies && project.data.technologies.length > 0 && (
-								<div class="link-row">
-									<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-									<span><strong>Tech stack:</strong> {project.data.technologies.join(", ")}</span>
+								
+								<div class="project-description" set:html={project.data.descriptionHTML} />
+								
+								<div class="project-links">
+									{project.data.website && (
+										<div class="link-row">
+											<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+											<span><strong>Official website:</strong> <a href={project.data.website.startsWith('http') ? project.data.website : `https://${project.data.website}`} target="_blank" rel="noopener noreferrer">{project.data.website.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></span>
+										</div>
+									)}
+									{project.data.technologies && project.data.technologies.length > 0 && (
+										<div class="link-row">
+											<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+											<span><strong>Tech stack:</strong> {project.data.technologies.join(", ")}</span>
+										</div>
+									)}
+									{project.data.slack && (
+										<div class="link-row">
+											<Image src={slackIcon} alt="" class="icon" width={16} height={16} />
+											<a href={project.data.slack.url} target="_blank" rel="noopener noreferrer">{project.data.slack.name}</a>
+										</div>
+									)}
+									{project.data.repos && project.data.repos.length > 0 && (
+										<div class="link-row">
+											<svg class="icon github-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.1a5.8 5.8 0 0 0-1.6-4.1 5.4 5.4 0 0 0-.15-4.05s-1.3-.4-4.2 1.6a14.7 14.7 0 0 0-7 0c-2.9-2-4.2-1.6-4.2-1.6a5.4 5.4 0 0 0-.15 4.05 5.8 5.8 0 0 0-1.6 4.1c0 5.7 3.35 6.7 6.5 7.1a4.8 4.8 0 0 0-1 3.03v4"/><path d="M9 20c-3 1-5-1-5-3"/></svg>
+											<a href={project.data.repos[0]} target="_blank" rel="noopener noreferrer" class="github-link">View code</a>
+										</div>
+									)}
 								</div>
-							)}
-							{project.data.slack && (
-								<div class="link-row">
-									<Image src={slackIcon} alt="" class="icon" width={16} height={16} />
-									<a href={project.data.slack.url} target="_blank" rel="noopener noreferrer">{project.data.slack.name}</a>
-								</div>
-							)}
-							{project.data.repos && project.data.repos.length > 0 && (
-								<div class="link-row">
-									<svg class="icon github-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.1a5.8 5.8 0 0 0-1.6-4.1 5.4 5.4 0 0 0-.15-4.05s-1.3-.4-4.2 1.6a14.7 14.7 0 0 0-7 0c-2.9-2-4.2-1.6-4.2-1.6a5.4 5.4 0 0 0-.15 4.05 5.8 5.8 0 0 0-1.6 4.1c0 5.7 3.35 6.7 6.5 7.1a4.8 4.8 0 0 0-1 3.03v4"/><path d="M9 20c-3 1-5-1-5-3"/></svg>
-									<a href={project.data.repos[0]} target="_blank" rel="noopener noreferrer" class="github-link">View code</a>
-								</div>
-							)}
-						</div>
-					</div>
-				</article>
-			))}
-		</div>
+							</div>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
 	</main>
 
 	<FooterV2 />
@@ -201,13 +211,6 @@ const completedProjects = await Promise.all(
 
 	.title-red {
 		color: #F22613;
-	}
-
-	.page-title {
-		font-family: var(--font-heading);
-		font-size: 3.5rem;
-		font-weight: 800;
-		margin-top: 0;
 	}
 
 	.projects-intro {

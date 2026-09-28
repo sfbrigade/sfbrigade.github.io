@@ -34,12 +34,14 @@ const boardMembers = [
 	<main>
 		<!-- Hero / History Section -->
 		<section class="py-4">
-			<div class="container hero-container text-center">
-				<h1 class="page-title title-red mb-4">About Us</h1>
+			<div class="container text-center">
+				<h1>About Us</h1>
 				
+				{false && (
 				<div class="image-wrapper wide-image mb-4 mx-auto">
 					<Image src={largeGroupImg} alt="SF Civic Tech Group Photo" class="about-image" />
 				</div>
+				)}
 				
 				<p class="about-desc mx-auto max-w-text mb-4 text-left">
 					SF Civic Tech is a group of people, first and foremost. We also call ourselves technologists, planners, designers, doers, thinkers, and activists. Each week, we actually come together to improve the City and County of San Francisco, often using technology to support our efforts. By connecting people, organizations, resources, tools, and networks to build for San Francisco, we all still thrive.
@@ -113,7 +115,6 @@ const boardMembers = [
 
 <style>
 	/* Utilities */
-	.text-center { text-align: center; }
 	.text-left { text-align: left; }
 	.mx-auto { margin-left: auto; margin-right: auto; }
 	.mt-4 { margin-top: 4rem; }
@@ -131,13 +132,6 @@ const boardMembers = [
 
 	.title-red {
 		color: #F22613;
-	}
-
-	.page-title {
-		font-family: var(--font-heading);
-		font-size: 3.5rem;
-		font-weight: 800;
-		margin-top: 0;
 	}
 
 	.section-title {
