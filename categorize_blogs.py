@@ -1,7 +1,7 @@
 import os
 import re
 
-DIR = "src/content/blog-v2"
+DIR = "src/content/blog"
 files = os.listdir(DIR)
 
 for f in files:
