@@ -10,16 +10,35 @@ for f in files:
     with open(path, "r") as file:
         content = file.read()
     
-    if "category:" in content:
+    parts = content.split("---", 2)
+    if len(parts) < 3:
         continue
-
+        
+    frontmatter = parts[1]
+    body = parts[2]
+    
     # Extract title
-    title_match = re.search(r'title:\s*"?([^"\n]+)"?', content)
+    title_match = re.search(r'title:\s*"?([^"\n]+)"?', frontmatter)
     title = title_match.group(1).lower() if title_match else ""
-
+    
+    # Remove existing category lines
+    lines = frontmatter.split('\n')
+    new_lines = []
+    skip = False
+    for line in lines:
+        if line.startswith("category:"):
+            skip = True
+            continue
+        if skip and line.startswith("  -"):
+            continue
+        if skip and not line.startswith("  -") and line.strip() != "":
+            skip = False
+        if not skip:
+            new_lines.append(line)
+            
+    # Calculate categories
     categories = []
     
-    # Simple logic
     if any(k in title or k in f for k in ["event", "summit", "night", "day", "hackathon", "recap", "forum", "congress", "camp", "codeacross", "odsc"]):
         categories.append("Event recap")
     if any(k in title or k in f for k in ["fellowship", "program", "fund", "group"]):
@@ -34,15 +53,12 @@ for f in files:
     if not categories:
         categories.append("Program description") # fallback
 
-    cat_str = "category:\n" + "\n".join(f"  - {c}" for c in categories)
+    cat_str = "category:\n" + "\n".join(f"  - \"{c}\"" for c in categories)
     
-    # insert before --- closing frontmatter
-    parts = content.split("---", 2)
-    if len(parts) >= 3:
-        frontmatter = parts[1]
-        frontmatter = frontmatter.rstrip() + "\n" + cat_str + "\n"
-        new_content = "---" + frontmatter + "---" + parts[2]
-        with open(path, "w") as file:
-            file.write(new_content)
+    final_frontmatter = "\n".join(new_lines).strip() + "\n" + cat_str + "\n"
+    new_content = "---\n" + final_frontmatter + "---" + body
+    
+    with open(path, "w") as file:
+        file.write(new_content)
 
-print("Done")
+print("Done updating categories")
