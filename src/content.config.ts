@@ -122,6 +122,14 @@ const projects = defineCollection({
 		})
 			.optional(),
 		website: z.string().optional(),
+		seekingVolunteers: z.boolean().default(false),
+		cause: z.array(z.string()).optional(),
+		seekingRoles: z.array(z.object({
+			title: z.string(),
+			postedDate: z.date().optional(),
+			url: z.string().optional()
+		})).optional(),
+		visible: z.boolean().default(true)
 	}).transform((data) => ({
 		...data,
 		// some description fields contain markdown, which we want to convert to
@@ -131,114 +139,8 @@ const projects = defineCollection({
 	})),
 });
 
-const projectsV2 = defineCollection({
-	loader: glob({
-		pattern: MarkdownPattern,
-		base: "./src/content/projects-v2"
-	}),
-	schema: z.object({
-		status: z.enum(["active", "inactive", "completed"]),
-		name: z.string(),
-		thumbnail: z.string()
-			.transform((value) => {
-				if (!value) {
-					return z.NEVER;
-				} else if (value.startsWith("http")) {
-					return value;
-				}
-
-				return assetPath("projects", value);
-			})
-			.optional(),
-		description: z.string(),
-		technologies: z.array(z.string()).optional(),
-		repos: z.array(z.string())
-			.transform((value) => value.map((url) => {
-				if (SFCTRepoPattern.test(url)) {
-					return SFCTRepoBase + url;
-				} else if (GHRepoPattern.test(url)) {
-					return GHRepoBase + url;
-				}
-				return url;
-			}))
-			.optional(),
-		website: z.string().optional(),
-		slack: z.object({
-			name: z.string(),
-			url: z.string(),
-		})
-			.optional(),
-		seekingVolunteers: z.boolean(),
-		cause: z.array(z.string()).optional(),
-		seekingRoles: z.array(z.object({
-			title: z.string(),
-			postedDate: z.date().optional(),
-			url: z.string().optional()
-		})).optional(),
-		activelyRunning: z.boolean().optional(),
-		visible: z.boolean().default(true)
-	}).transform((data) => ({
-		...data,
-		descriptionHTML: marked.parse(data.description),
-	})),
-});
-
-const completedProjectsV2 = defineCollection({
-	loader: glob({
-		pattern: MarkdownPattern,
-		base: "./src/content/completed-projects-v2"
-	}),
-	schema: z.object({
-		status: z.enum(["active", "inactive", "completed"]),
-		name: z.string(),
-		thumbnail: z.string()
-			.transform((value) => {
-				if (!value) {
-					return z.NEVER;
-				} else if (value.startsWith("http")) {
-					return value;
-				}
-
-				return assetPath("projects", value);
-			})
-			.optional(),
-		description: z.string(),
-		technologies: z.array(z.string()).optional(),
-		repos: z.array(z.string())
-			.transform((value) => value.map((url) => {
-				if (SFCTRepoPattern.test(url)) {
-					return SFCTRepoBase + url;
-				} else if (GHRepoPattern.test(url)) {
-					return GHRepoBase + url;
-				}
-				return url;
-			}))
-			.optional(),
-		website: z.string().optional(),
-		slack: z.object({
-			name: z.string(),
-			url: z.string(),
-		})
-			.optional(),
-		seekingVolunteers: z.boolean().optional(),
-		cause: z.array(z.string()).optional(),
-		seekingRoles: z.array(z.object({
-			title: z.string(),
-			postedDate: z.date().optional(),
-			url: z.string().optional()
-		})).optional(),
-		activelyRunning: z.boolean().optional(),
-		visible: z.boolean().default(true)
-	}).transform((data) => ({
-		...data,
-		descriptionHTML: marked.parse(data.description),
-	})),
-});
-
 export const collections = {
 	blog,
 	projects,
-	projectsV2,
-	completedProjectsV2,
 	minutes,
 };

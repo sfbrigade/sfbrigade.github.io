@@ -7,7 +7,7 @@ import { proposeTalkURL } from "@/utils/urls";
 import { getCollection } from "astro:content";
 import { marked } from "marked";
 
-const activeProjects = await getCollection("projectsV2", (entry) => entry.data.visible && entry.data.status === "active" && entry.data.seekingVolunteers);
+const activeProjects = await getCollection("projects", (entry) => entry.data.visible && entry.data.status === "active" && entry.data.seekingVolunteers);
 ---
 
 <LayoutV2 title="Get Started">
@@ -15,6 +15,7 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 	
 	<main>
 		<!-- Hero Section: Get Started -->
+		{false && (
 		<section class="bg-gray py-4">
 			<div class="container hero-container text-center">
 				<h1 class="section-title title-red">Get Started</h1>
@@ -40,11 +41,16 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 				</div>
 			</div>
 		</section>
+		)}
 
 		<!-- How To Volunteer Section -->
 		<section class="container py-4">
-			<h2 class="section-title title-red">How To Volunteer</h2>
-			<p class="mb-4">No matter your background or skill level, anyone can make a meaningful impact with SF Civic Tech. Explore the ways you can get involved and start contributing to your community.</p>
+			<div class="container hero-container text-center">
+				<h1 class="page-title title-red mb-2">Get Started</h1>
+				<p class="about-desc mx-auto max-w-text mb-4 text-left">
+					No matter your background or skill level, anyone can make a meaningful impact with SF Civic Tech. Explore the ways you can get involved and start contributing to your community.
+				</p>
+			</div>
 			
 			<div class="grid-2 step-grid">
 				<!-- Step 1 -->
@@ -79,6 +85,7 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 		</section>
 
 		<!-- Volunteer Roles Section -->
+		{false && (
 		<section id="volunteer-roles" class="container py-4">
 			<h2 class="section-title title-red">Volunteer Roles</h2>
 			<p class="mb-3">SF Civic Tech is open to everyone — we put trust in the hard work of our volunteers and don't limit members. You don't have to have a technical background! Whether you enjoy administration, community organization, designing, or planning, your contributions are highly valued by SF Civic Tech. Check out our open roles below!</p>
@@ -132,6 +139,7 @@ const activeProjects = await getCollection("projectsV2", (entry) => entry.data.v
 
 			<a href="/roles" class="btn btn-primary">View Open Volunteer Roles</a>
 		</section>
+		)}
 
 		{false && (
 		<!-- Become a Partner or Sponsor Section -->

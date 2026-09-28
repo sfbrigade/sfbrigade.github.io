@@ -8,12 +8,11 @@ import { marked } from "marked";
 import { getImageAsset } from "@/utils";
 import slackIcon from "@/assets/icons/black slack icon.svg";
 
-const projects = await getCollection("projectsV2");
-const completedProjects = await getCollection("completedProjectsV2");
+const projects = await getCollection("projects");
 
 // resolve each project's thumbnail to an imported image asset, unless it's
 // already a remote URL (those get rendered with a plain <img> tag instead)
-const resolveThumbnail = async (project: CollectionEntry<"projectsV2"> | CollectionEntry<"completedProjectsV2">) => ({
+const resolveThumbnail = async (project: CollectionEntry<"projects">) => ({
 	project,
 	imageData: project.data.thumbnail && !project.data.thumbnail.startsWith("http")
 		? await getImageAsset(project.data.thumbnail)
@@ -27,9 +26,9 @@ const activeProjects = await Promise.all(
 		.sort((a, b) => a.data.name.localeCompare(b.data.name))
 		.map(resolveThumbnail)
 );
-const completedProjectsFiltered = await Promise.all(
-	completedProjects
-		.filter(p => p.data.visible !== false)
+const completedProjects = await Promise.all(
+	projects
+		.filter(p => p.data.status !== "active" && p.data.visible !== false)
 		.sort((a, b) => a.data.name.localeCompare(b.data.name))
 		.map(resolveThumbnail)
 );
@@ -66,9 +65,6 @@ const completedProjectsFiltered = await Promise.all(
 					<div class="project-content">
 						<div class="project-header">
 							<h2 class="project-name">{project.data.name}</h2>
-							{project.data.activelyRunning === false && (
-								<div class="inactive-badge hidden">Inactive</div>
-							)}
 						</div>
 						
 						<div class="project-description" set:html={project.data.descriptionHTML} />
@@ -113,7 +109,7 @@ const completedProjectsFiltered = await Promise.all(
 
 		<!-- Projects List (Completed) -->
 		<div class="projects-list" id="list-completed" style="display: none;">
-			{completedProjectsFiltered.map(({ project, imageData }) => (
+			{completedProjects.map(({ project, imageData }) => (
 				<article class="project-card">
 					<div class="project-thumbnail">
 						{imageData ? (
@@ -125,9 +121,6 @@ const completedProjectsFiltered = await Promise.all(
 					<div class="project-content">
 						<div class="project-header">
 							<h2 class="project-name">{project.data.name}</h2>
-							{project.data.activelyRunning === false && (
-								<div class="inactive-badge hidden">Inactive</div>
-							)}
 						</div>
 						
 						<div class="project-description" set:html={project.data.descriptionHTML} />
