@@ -12,6 +12,7 @@ import heroBridge from "@/assets/home/golden gate bridge hero image.png";
 import hackNight from "@/assets/home/hack night in person.png";
 import supportUsImg from "@/assets/about/large-group.png";
 
+const currentYear = new Date().getFullYear();
 const allPosts = await getBlogPosts();
 const latestPosts = await Promise.all(
 	allPosts.slice(0, 4).map(async (post) => ({
@@ -32,9 +33,9 @@ const latestPosts = await Promise.all(
 			</div>
 			<div class="container">
 				<div class="hero-content">
-					<h1 class="hero-title">Empowering San Francisco through civic tech</h1>
+					<h1 class="hero-title">We are SF Civic Tech</h1>
 					<p class="hero-subtitle">
-						We are a diverse community of volunteers working to improve San Francisco for all. All backgrounds and experiences are welcome!
+						We are a welcoming and inclusive volunteer group of developers, designers, data geeks, and citizen activists who use creative technology to solve civic and social problems.
 					</p>
 					<div class="hero-buttons">
 						<a href="/get-started" class="btn btn-primary">Get Started</a>
@@ -49,8 +50,8 @@ const latestPosts = await Promise.all(
 			<div class="grid-2">
 				<div class="who-text">
 					<h2 class="section-title">Who We Are</h2>
-					<p>SF Civic Tech is a volunteer-run organization that creates technology products for community problems. We organize our free time to prototype, test, and ship open-source tech for public interest.</p>
-					<p>We're part of a nationwide network of civic tech organizations looking to make a difference in our community. We meet every Wednesday in downtown San Francisco. All skill levels and community members are welcome!</p>
+					<p>Formerly Code for San Francisco, we run the city’s longest-running weekly hack night, now going on {currentYear - 2013} years. We are a <b>training ground</b> for aspiring designers, engineers, researchers, and project managers, a <b>home base</b> for those in-between jobs, a <b>place to learn and experiment</b> for career-switchers, an <b>opportunity</b> for seasoned professionals to give back and mentor those new to their field, and a <b>community</b> for like-minded individuals who care about using technology to improve San Francisco.</p>
+					<p>Our <a href="/projects?tab=completed">success stories</a> include <a href="https://adoptadrain.sfwater.org/">Adopt-a-Drain</a>, which was built by SF Civic Tech volunteers and is now run by the SF Public Utilities Commission since 2016, <a href="https://www.sheltertech.org/">ShelterTech</a> which became its own 501(c)3 non-profit powering the <a href="https://www.sfserviceguide.org/">SF Service Guide</a>, and <a href="https://wevote.us/">WeVote</a>, which also became its own 501(c)3 non-profit to help educate voters on their ballots.</p>
 					<a href="/get-started" class="btn btn-primary mt-1">Join us</a>
 				</div>
 				<div class="who-image">
@@ -152,10 +153,6 @@ const latestPosts = await Promise.all(
 		<section class="bg-gray">
 			<div class="support-us container py-4">
 				<h2 class="section-title text-center mb-1">Support Us</h2>
-				<p class="text-center max-w-text mx-auto mb-3">
-					Your donation helps us provide free technology services to the community. By supporting SF Civic Tech, you're directly contributing to an equitable, thriving, and technologically accessible San Francisco. Your contribution matters, big or small! We put every dollar back into making the city better.
-				</p>
-				
 				<div class="grid-2 support-grid bg-white shadow-sm p-0 rounded-lg">
 					<div class="impact-panel p-3">
 						<h3 class="text-center">Your Impact</h3>

@@ -193,6 +193,11 @@ const completedProjects = await Promise.all(
 		if (listCompleted) listCompleted.style.display = 'flex';
 		if (listActive) listActive.style.display = 'none';
 	});
+
+	const params = new URLSearchParams(window.location.search);
+	if (params.get('tab') === 'completed') {
+		tabCompleted?.click();
+	}
 </script>
 
 <style>
