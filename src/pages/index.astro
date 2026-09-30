@@ -95,24 +95,26 @@ const latestPosts = await Promise.all(
 		<section class="bg-gray">
 			<div class="ways-to-join container py-4">
 				<h2 class="section-title text-center mb-3">Ways To Join</h2>
-				<div class="grid-3">
+				<div class="grid-2">
 					<article class="join-card text-center">
 						<Icon name="fa6-solid:users" class="card-icon" />
 						<h3 class="card-title">Volunteer with us</h3>
 						<p>Use your skills to make a difference in your community! You don't have to know how to code to help—we need designers, researchers, and project managers, too.</p>
 						<a href="/get-started" class="btn btn-primary">Get Started</a>
 					</article>
+					{false && (
 					<article class="join-card text-center">
 						<Icon name="fa6-solid:handshake" class="card-icon" />
 						<h3 class="card-title">Become a partner</h3>
 						<p>Partner with us as a community sponsor, or work with us to build out new solutions for the city spanning all things technology and design.</p>
 						<a href="/sponsor" class="card-link mt-auto">Partner with us</a>
 					</article>
+					)}
 					<article class="join-card text-center">
 						<Icon name="fa6-solid:lightbulb" class="card-icon" />
-						<h3 class="card-title">Pitch a project</h3>
+						<h3 class="card-title">Pitch a new Project</h3>
 						<p>Got an idea that can help our city? Pitch it to us! We're constantly on the lookout for new ideas that can strengthen our community.</p>
-						<a href="/propose" class="card-link mt-auto">Submit project idea</a>
+						<a href="/propose" class="btn btn-primary">Submit a Project Pitch</a>
 					</article>
 				</div>
 			</div>
