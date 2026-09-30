@@ -10,6 +10,8 @@ image: congress.jpg
 image_alt: Brigade Congress Attendees
 image_list_only: true
 description: The report back from Code for San Franicisco's Brigade contingent to the 2017 Code for America Brigade Congress.
+category:
+  - "Event recap"
 ---
 
 Each member of the SF Brigade contingent (Ryan, Vincent, Jude and I) had a distinct itinerary and a few different modes

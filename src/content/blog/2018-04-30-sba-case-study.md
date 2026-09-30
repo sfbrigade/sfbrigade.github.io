@@ -10,7 +10,8 @@ image_list_only: true
 description: >
   A look at how Code for San Francisco's Data Science Working group was able to work with the local Small Business
   Administration office to develop a tool to analyze loan data and answer questions to increase the office's impact.
-
+category:
+  - "Project case study"
 ---
 
 <h3 data-toc-skip>Contributing Authors</h3>

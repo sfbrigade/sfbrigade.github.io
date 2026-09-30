@@ -1,6 +1,6 @@
 ---
 status: inactive
-name: PolicyEngine
+name: Policy Engine
 thumbnail: policy-engine.png
 description: |-
   We compute the impact of public policy. Simulate and communicate the impact of proposed policy changes on individuals across the country.

@@ -7,6 +7,9 @@ authors:
   - julio_feliciano
   - seunghee_eu
 published: true
+category:
+  - "Program description"
+  - "Project case study"
 ---
 
 FOR IMMEDIATE RELEASE

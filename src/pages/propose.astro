@@ -1,0 +1,110 @@
+---
+import LayoutV2 from "@/layouts/LayoutV2.astro";
+import HeaderV2 from "@/components/HeaderV2.astro";
+import FooterV2 from "@/components/FooterV2.astro";
+---
+
+<LayoutV2 title="Propose a Project">
+	<HeaderV2 />
+	
+	<main class="container page-container">
+		<h1>Propose a project</h1>
+		
+		<p class="intro-text">
+			SF Civic Tech is currently open to new project submissions! Submitting a project means you'll be opening it up to our current and new volunteers across a variety of disciplines to contribute to.
+		</p>
+		
+		<p class="rules-heading">Project rules:</p>
+		<ul class="rules-list">
+			<li>The project must contribute to improving local quality of life including, but not limited to the city of San Francisco</li>
+			<li>The code must be open-source.</li>
+			<li>All work on the project must be volunteer-driven.</li>
+			<li>The project does not serve the purpose of generating profit.</li>
+		</ul>
+		
+		<p class="conduct-text">
+			Before submitting a project and working with us, please review our <a href="/code-of-conduct" class="text-link">Code of Conduct</a>.
+		</p>
+		
+		<div class="action-container">
+			<a href="https://docs.google.com/forms/d/e/1FAIpQLSexe5qvmJ6LTiU1HcR-XAzlrgPLBudVBPK_ouHeBkFz2JVUHw/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Submit a project</a>
+		</div>
+	</main>
+
+	<FooterV2 />
+</LayoutV2>
+
+<style>
+	.page-container {
+		padding-top: 4rem;
+		padding-bottom: 6rem;
+		max-width: 800px;
+		margin: 0 auto;
+		text-align: left;
+	}
+
+	.title-red {
+		color: #F22613;
+	}
+
+	.intro-text, .conduct-text, .rules-heading {
+		font-family: var(--font-body);
+		font-size: 1.125rem;
+		color: #111;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+	}
+
+	.rules-heading {
+		margin-bottom: 0.5rem;
+	}
+
+	.rules-list {
+		list-style-type: disc;
+		padding-left: 2.5rem;
+		margin-bottom: 2rem;
+		font-family: var(--font-body);
+		font-size: 1.125rem;
+		color: #111;
+		line-height: 1.6;
+	}
+
+	.rules-list li {
+		margin-bottom: 0.75rem;
+	}
+
+	.text-link {
+		color: #000;
+		text-decoration: underline;
+		font-weight: 600;
+	}
+
+	.text-link:hover {
+		color: #F22613;
+	}
+
+	.action-container {
+		margin-top: 3rem;
+		text-align: center;
+	}
+
+	.btn-outline {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		font-family: var(--font-condensed);
+		font-weight: 600;
+		font-size: 1.125rem;
+		text-transform: uppercase;
+		border: 2px solid #F22613;
+		color: #F22613;
+		background: transparent;
+		border-radius: var(--border-radius);
+		text-decoration: none;
+		transition: all 0.2s ease;
+	}
+
+	.btn-outline:hover {
+		background-color: #F22613;
+		color: #ffffff;
+	}
+</style>

@@ -7,6 +7,9 @@ pin_to_frontpage: true
 image_list_only: true
 authors:
 - allen_meyer
+category:
+  - "Program description"
+  - "Partner feature"
 ---
 ## Civic Tech Design 101 for the Next Generation of Tech Talent
 

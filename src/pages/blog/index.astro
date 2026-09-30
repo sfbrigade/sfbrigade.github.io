@@ -1,0 +1,476 @@
+---
+import { Image } from "astro:assets";
+import LayoutV2 from "@/layouts/LayoutV2.astro";
+import HeaderV2 from "@/components/HeaderV2.astro";
+import FooterV2 from "@/components/FooterV2.astro";
+import { getBlogPosts } from "@/content";
+import { getImageAsset } from "@/utils";
+
+const posts = await Promise.all(
+	(await getBlogPosts()).map(async (post) => ({
+		post,
+		imageData: post.data.image ? await getImageAsset(post.data.image) : null
+	}))
+);
+
+// Filter categories according to the wireframe
+const filters = [
+	"Event recap", 
+	"Program description", 
+	"Member feature", 
+	"Partner feature",
+	"Project case study"
+];
+---
+
+<LayoutV2 title="Blog">
+	<HeaderV2 />
+	
+	<main class="container py-4">
+		<h1 class="text-center">Blog</h1>
+		
+		<!-- Filter Chips Row -->
+		<div class="filters-row mb-4" id="blog-filters">
+			<span class="chip chip-active filter-chip" data-filter="all">View all</span>
+			{filters.map(filter => (
+				<span class="chip chip-outline filter-chip" data-filter={filter}>{filter}</span>
+			))}
+		</div>
+		
+		<!-- Blog Posts Grid/List -->
+		<div class="blog-list" id="blog-list">
+			{posts.map(({ post, imageData }) => (
+				<article class="blog-card" data-categories={JSON.stringify(post.data.category || [])}>
+					<!-- Left: Image -->
+					<div class="blog-image-wrapper">
+						{imageData ? (
+							<Image
+								src={imageData}
+								alt={post.data.image_alt || post.data.title}
+								class="blog-image"
+								width={400}
+								height={400}
+							/>
+						) : (
+							<div class="placeholder-image"></div>
+						)}
+					</div>
+					
+					<!-- Right: Content -->
+					<div class="blog-content">
+						<div class="blog-meta">
+							<!-- Date -->
+							<span class="blog-date">
+								{post.data.date.toLocaleDateString('en-US', {
+									month: '2-digit',
+									day: '2-digit',
+									year: 'numeric'
+								})}
+							</span>
+							
+							<!-- Categories -->
+							<div class="blog-categories">
+								{post.data.category && post.data.category.map((cat: string) => (
+									<span class="chip-category">{cat}</span>
+								))}
+							</div>
+						</div>
+						
+						<!-- Title -->
+						<h2 class="blog-title title-red">
+							<a href={`/blog/${post.id}`}>{post.data.title}</a>
+						</h2>
+						
+						<!-- Summary text (Description) -->
+						<div class="blog-summary" set:html={post.data.descriptionHTML} />
+					</div>
+				</article>
+			))}
+		</div>
+		
+		<!-- Pagination -->
+		<div class="pagination-container"></div>
+	</main>
+
+	<FooterV2 />
+</LayoutV2>
+
+<style>
+	.py-4 {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+
+	.mb-3 {
+		margin-bottom: 2rem;
+	}
+
+	.mb-4 {
+		margin-bottom: 4rem;
+	}
+
+	.title-red {
+		color: #F22613;
+	}
+
+	/* Filter Chips */
+	.filters-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		align-items: center;
+	}
+
+	.chip {
+		font-family: var(--font-condensed);
+		font-size: 0.9rem;
+		padding: 0.4rem 1rem;
+		border-radius: var(--border-radius);
+		cursor: pointer;
+		display: inline-block;
+	}
+
+	.chip-active {
+		background-color: #1a1a1a;
+		color: #fff;
+		border: 1px solid #1a1a1a;
+	}
+
+	.chip-outline {
+		background-color: #fff;
+		color: #333;
+		border: 1px solid #ccc;
+		transition: all 0.2s;
+	}
+
+	.chip-outline:hover {
+		border-color: #1a1a1a;
+		color: #1a1a1a;
+	}
+
+	/* Blog List */
+	.blog-list {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	.blog-card {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		align-items: start;
+	}
+
+	@media (min-width: 768px) {
+		.blog-card {
+			grid-template-columns: 350px 1fr;
+		}
+	}
+
+	/* Image */
+	.blog-image-wrapper {
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		background-color: #e5e5e5; /* grey placeholder bg */
+	}
+
+	.blog-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.placeholder-image {
+		width: 100%;
+		height: 100%;
+		background-color: #d8d8d8; /* light gray from wireframe */
+	}
+
+	/* Content */
+	.blog-content {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.blog-meta {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.5rem;
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	.blog-date {
+		font-family: var(--font-condensed);
+		font-size: 1.1rem;
+		color: #999;
+		font-weight: 600;
+	}
+
+	.blog-categories {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.chip-category {
+		background-color: #1a1a1a;
+		color: #ffffff;
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		font-weight: 700;
+		padding: 0.15rem 0.6rem;
+		border-radius: 4px;
+	}
+
+	.blog-title {
+		font-family: var(--font-heading);
+		font-size: 2rem;
+		font-weight: 800;
+		margin-top: 0;
+		margin-bottom: 1rem;
+	}
+
+	.blog-title a {
+		color: #F22613;
+		text-decoration: none;
+	}
+
+	.blog-title a:hover {
+		text-decoration: underline;
+	}
+
+	.blog-summary {
+		font-family: var(--font-body);
+		font-size: 1rem;
+		line-height: 1.6;
+		color: #111;
+	}
+
+	.blog-summary p {
+		margin-bottom: 0.5rem;
+	}
+
+	/* Pagination */
+	.pagination-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 4rem;
+		gap: 1.5rem;
+		font-family: var(--font-body);
+		font-size: 1.5rem;
+	}
+
+	.pagination-container :global(.pagination-numbers) {
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	.pagination-container :global(.pagination-number) {
+		color: #999;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.pagination-container :global(.pagination-number:hover) {
+		color: #F22613;
+	}
+
+	.pagination-container :global(.pagination-number.active) {
+		color: #111;
+	}
+
+	.pagination-container :global(.pagination-arrow) {
+		display: flex;
+		align-items: center;
+		color: #F22613;
+		text-decoration: none;
+	}
+
+	.pagination-container :global(.pagination-disabled) {
+		opacity: 0.3;
+		cursor: not-allowed;
+	}
+
+	.pagination-container :global(.pagination-arrow svg) {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+</style>
+
+<script>
+	function setupBlogFilters() {
+		const filters = document.querySelectorAll('.filter-chip');
+		const cards = document.querySelectorAll('.blog-card');
+		const paginationContainer = document.querySelector('.pagination-container');
+		if (!cards.length) return;
+
+		let selectedFilters = new Set();
+		let currentPage = 1;
+		const pageSize = 10;
+
+		function getFilteredCards() {
+			return Array.from(cards).filter(card => {
+				if (selectedFilters.size === 0) return true;
+				const catAttr = card.getAttribute('data-categories');
+				const categories = catAttr ? JSON.parse(catAttr) : [];
+				return categories.some((cat: string) => selectedFilters.has(cat));
+			});
+		}
+
+		function render() {
+			const filteredCards = getFilteredCards();
+			const totalPages = Math.ceil(filteredCards.length / pageSize);
+
+			// Clamp currentPage
+			if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+			// Hide all cards first
+			cards.forEach(card => {
+				(card as HTMLElement).style.display = 'none';
+			});
+
+			// Show cards for the current page
+			const startIndex = (currentPage - 1) * pageSize;
+			const endIndex = startIndex + pageSize;
+			const cardsToDisplay = filteredCards.slice(startIndex, endIndex);
+			
+			cardsToDisplay.forEach(card => {
+				(card as HTMLElement).style.display = 'grid'; // Grid style matches .blog-card layout
+			});
+
+			// Render pagination
+			if (paginationContainer) {
+				if (totalPages <= 1) {
+					paginationContainer.style.display = 'none';
+				} else {
+					paginationContainer.style.display = 'flex';
+					
+					// Build inner HTML for pagination container
+					let html = '';
+					
+					// Prev button
+					if (currentPage > 1) {
+						html += `<a href="#" class="pagination-arrow prev-page title-red" aria-label="Previous page">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+						</a>`;
+					} else {
+						html += `<span class="pagination-arrow prev-page title-red pagination-disabled">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+						</span>`;
+					}
+
+					// Numbers
+					html += `<div class="pagination-numbers">`;
+					for (let i = 1; i <= totalPages; i++) {
+						html += `<a href="#" class="pagination-number page-num ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
+					}
+					html += `</div>`;
+
+					// Next button
+					if (currentPage < totalPages) {
+						html += `<a href="#" class="pagination-arrow next-page title-red" aria-label="Next page">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+						</a>`;
+					} else {
+						html += `<span class="pagination-arrow next-page title-red pagination-disabled">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+						</span>`;
+					}
+
+					paginationContainer.innerHTML = html;
+
+					// Add event listeners to new elements
+					paginationContainer.querySelector('.prev-page')?.addEventListener('click', (e) => {
+						e.preventDefault();
+						if (currentPage > 1) {
+							currentPage--;
+							render();
+							window.scrollTo({ top: 0, behavior: 'smooth' });
+						}
+					});
+
+					paginationContainer.querySelector('.next-page')?.addEventListener('click', (e) => {
+						e.preventDefault();
+						if (currentPage < totalPages) {
+							currentPage++;
+							render();
+							window.scrollTo({ top: 0, behavior: 'smooth' });
+						}
+					});
+
+					paginationContainer.querySelectorAll('.page-num').forEach(el => {
+						el.addEventListener('click', (e) => {
+							e.preventDefault();
+							const targetPage = parseInt(el.getAttribute('data-page') || '1');
+							if (targetPage !== currentPage) {
+								currentPage = targetPage;
+								render();
+								window.scrollTo({ top: 0, behavior: 'smooth' });
+							}
+						});
+					});
+				}
+			}
+		}
+
+		// Set up chip filters click listeners
+		filters.forEach(filter => {
+			filter.addEventListener('click', () => {
+				const filterValue = filter.getAttribute('data-filter');
+				const viewAllChip = document.querySelector('.filter-chip[data-filter="all"]');
+
+				if (filterValue === 'all') {
+					selectedFilters.clear();
+					filters.forEach(f => {
+						if (f.getAttribute('data-filter') === 'all') {
+							f.classList.remove('chip-outline');
+							f.classList.add('chip-active');
+						} else {
+							f.classList.remove('chip-active');
+							f.classList.add('chip-outline');
+						}
+					});
+				} else {
+					if (selectedFilters.has(filterValue)) {
+						selectedFilters.delete(filterValue);
+						filter.classList.remove('chip-active');
+						filter.classList.add('chip-outline');
+					} else {
+						selectedFilters.add(filterValue);
+						filter.classList.remove('chip-outline');
+						filter.classList.add('chip-active');
+					}
+
+					if (selectedFilters.size === 0) {
+						if (viewAllChip) {
+							viewAllChip.classList.remove('chip-outline');
+							viewAllChip.classList.add('chip-active');
+						}
+					} else {
+						if (viewAllChip) {
+							viewAllChip.classList.remove('chip-active');
+							viewAllChip.classList.add('chip-outline');
+						}
+					}
+				}
+
+				// Reset page to 1 on filter change
+				currentPage = 1;
+				render();
+			});
+		});
+
+		// Initial render
+		render();
+	}
+
+	document.addEventListener('DOMContentLoaded', setupBlogFilters);
+	document.addEventListener('astro:page-load', setupBlogFilters);
+</script>

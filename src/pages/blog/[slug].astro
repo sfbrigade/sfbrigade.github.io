@@ -1,8 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import { render } from "astro:content";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import NavLink from "@/components/NavLink.astro";
+import LayoutV2 from "@/layouts/LayoutV2.astro";
+import HeaderV2 from "@/components/HeaderV2.astro";
+import FooterV2 from "@/components/FooterV2.astro";
 import { getImageAsset, formatShortMDY } from "@/utils";
 import { getBlogPosts } from "@/content";
 
@@ -24,50 +25,142 @@ const {
 	entry: {
 		data: {
 			title,
-			description,
 			image,
 			image_alt = "",
 			image_list_only,
-			date
+			date,
+			authors,
+			category
 		}
 	}
 } = Astro.props;
 const { Content } = await render(Astro.props.entry);
 const imageData = !image_list_only && image && await getImageAsset(image);
 const dateString = formatShortMDY(date);
-const meta = {
-	description,
-	image: imageData ? imageData.src : ""
-};
 ---
 
-<BaseLayout
-	title={title}
-	header=""
-	meta={meta}
->
-	<h1>{title}</h1>
-	<div class="date">
-		<time datetime={date?.toISOString()}>{dateString}</time>
-		<NavLink href="/blog">All posts</NavLink>
-	</div>
-	{imageData &&
-		<p>
-			<Image src={imageData} alt={image_alt} />
-		</p>}
-	<Content />
-</BaseLayout>
+<LayoutV2 title={title}>
+	<HeaderV2 />
+
+	<main class="container py-4">
+		<article class="blog-post mx-auto">
+			<div class="blog-meta mb-2">
+				<time class="blog-date" datetime={date?.toISOString()}>{dateString}</time>
+				{category && category.length > 0 && (
+					<div class="blog-categories">
+						{category.map((cat: string) => (
+							<span class="chip-category">{cat}</span>
+						))}
+					</div>
+				)}
+			</div>
+
+			<h1>{title}</h1>
+
+			{authors && authors.length > 0 && (
+				<p class="blog-authors mb-3">By {authors.join(", ")}</p>
+			)}
+
+			{imageData && (
+				<div class="image-wrapper mb-4">
+					<Image src={imageData} alt={image_alt} class="blog-post-image" />
+				</div>
+			)}
+
+			<div class="blog-content">
+				<Content />
+			</div>
+
+			<a href="/blog" class="btn btn-secondary mt-4">All posts</a>
+		</article>
+	</main>
+
+	<FooterV2 />
+</LayoutV2>
 
 <style>
-	h1 {
-		margin-bottom: calc(var(--pico-block-spacing-vertical) * .5);
+	.py-4 { padding-top: 4rem; padding-bottom: 4rem; }
+	.mb-2 { margin-bottom: 1rem; }
+	.mb-3 { margin-bottom: 2rem; }
+	.mb-4 { margin-bottom: 3rem; }
+	.mt-4 { margin-top: 4rem; }
+	.mx-auto { margin-left: auto; margin-right: auto; }
+
+	.title-red {
+		color: #F22613;
 	}
 
-	.date {
-		font-size: smaller;
-		margin-bottom: calc(var(--pico-block-spacing-vertical) * 1.5);
+	.blog-post {
+		max-width: 900px;
+	}
+
+	.blog-meta {
 		display: flex;
-		justify-content: space-between;
+		flex-wrap: wrap;
 		align-items: center;
+		gap: 1rem;
+	}
+
+	.blog-date {
+		font-family: var(--font-condensed);
+		font-size: 1.1rem;
+		color: #999;
+		font-weight: 600;
+	}
+
+	.blog-categories {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.chip-category {
+		background-color: #1a1a1a;
+		color: #ffffff;
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		font-weight: 700;
+		padding: 0.15rem 0.6rem;
+		border-radius: 4px;
+	}
+
+	.blog-authors {
+		font-family: var(--font-body);
+		font-size: 1rem;
+		color: #666;
+	}
+
+	.image-wrapper {
+		border-radius: var(--border-radius);
+		overflow: hidden;
+	}
+
+	.blog-post-image {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: cover;
+	}
+
+	.blog-content {
+		font-family: var(--font-body);
+		font-size: 1.1rem;
+		line-height: 1.6;
+		color: #111;
+	}
+
+	.blog-content :global(h1),
+	.blog-content :global(h2),
+	.blog-content :global(h3) {
+		color: #111;
+		margin-top: 2rem;
+	}
+
+	.blog-content :global(p) {
+		margin-bottom: 1rem;
+	}
+
+	.blog-content :global(img) {
+		border-radius: var(--border-radius);
 	}
 </style>
