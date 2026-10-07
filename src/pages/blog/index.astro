@@ -312,17 +312,41 @@ const filters = [
 		const paginationContainer = document.querySelector('.pagination-container');
 		if (!cards.length) return;
 
-		let selectedFilters = new Set();
 		const params = new URLSearchParams(window.location.search);
+		let selectedFilter = params.get('filter') || 'all';
 		let currentPage = parseInt(params.get('page') || '1', 10);
 		const pageSize = 10;
 
 		function getFilteredCards() {
 			return Array.from(cards).filter(card => {
-				if (selectedFilters.size === 0) return true;
+				if (selectedFilter === 'all') return true;
 				const catAttr = card.getAttribute('data-categories');
 				const categories = catAttr ? JSON.parse(catAttr) : [];
-				return categories.some((cat: string) => selectedFilters.has(cat));
+				return categories.includes(selectedFilter);
+			});
+		}
+
+		function getURL(filter = selectedFilter, page = currentPage) {
+			const params = {};
+			if (filter !== "all") {
+				params['filter'] = filter;
+			}
+			if (page > 1) {
+				params['page'] = page;
+			}
+			const queryString = new URLSearchParams(params).toString();
+			return queryString ? `/blog?${queryString}` : "/blog";
+		}
+
+		function updateFilters() {
+			filters.forEach(f => {
+				if (f.getAttribute('data-filter') === selectedFilter) {
+					f.classList.remove('chip-outline');
+					f.classList.add('chip-active');
+				} else {
+					f.classList.remove('chip-active');
+					f.classList.add('chip-outline');
+				}
 			});
 		}
 
@@ -359,7 +383,7 @@ const filters = [
 					
 					// Prev button
 					if (currentPage > 1) {
-						html += `<a href="/blog?page=${currentPage - 1}" class="pagination-arrow prev-page title-red" aria-label="Previous page">
+						html += `<a href="${getURL(selectedFilter, currentPage - 1)}" class="pagination-arrow prev-page title-red" aria-label="Previous page">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
 						</a>`;
 					} else {
@@ -371,13 +395,13 @@ const filters = [
 					// Numbers
 					html += `<div class="pagination-numbers">`;
 					for (let i = 1; i <= totalPages; i++) {
-						html += `<a href="/blog?page=${i}" class="pagination-number page-num ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
+						html += `<a href="${getURL(selectedFilter, i)}" class="pagination-number page-num ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
 					}
 					html += `</div>`;
 
 					// Next button
 					if (currentPage < totalPages) {
-						html += `<a href="/blog?page=${currentPage + 1}" class="pagination-arrow next-page title-red" aria-label="Next page">
+						html += `<a href="${getURL(selectedFilter, currentPage + 1)}" class="pagination-arrow next-page title-red" aria-label="Next page">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
 						</a>`;
 					} else {
@@ -393,7 +417,7 @@ const filters = [
 						e.preventDefault();
 						if (currentPage > 1) {
 							currentPage--;
-							history.pushState(null, "", `/blog?page=${currentPage}`);
+							history.pushState(null, "", getURL());
 							render();
 							window.scrollTo({ top: 0, behavior: 'smooth' });
 						}
@@ -403,7 +427,7 @@ const filters = [
 						e.preventDefault();
 						if (currentPage < totalPages) {
 							currentPage++;
-							history.pushState(null, "", `/blog?page=${currentPage}`);
+							history.pushState(null, "", getURL());
 							render();
 							window.scrollTo({ top: 0, behavior: 'smooth' });
 						}
@@ -415,7 +439,7 @@ const filters = [
 							const targetPage = parseInt(el.getAttribute('data-page') || '1');
 							if (targetPage !== currentPage) {
 								currentPage = targetPage;
-								history.pushState(null, "", `/blog?page=${currentPage}`);
+								history.pushState(null, "", getURL());
 								render();
 								window.scrollTo({ top: 0, behavior: 'smooth' });
 							}
@@ -428,51 +452,25 @@ const filters = [
 		// Set up chip filters click listeners
 		filters.forEach(filter => {
 			filter.addEventListener('click', () => {
-				const filterValue = filter.getAttribute('data-filter');
+				selectedFilter = filter.getAttribute('data-filter');
 				const viewAllChip = document.querySelector('.filter-chip[data-filter="all"]');
 
-				if (filterValue === 'all') {
-					selectedFilters.clear();
-					filters.forEach(f => {
-						if (f.getAttribute('data-filter') === 'all') {
-							f.classList.remove('chip-outline');
-							f.classList.add('chip-active');
-						} else {
-							f.classList.remove('chip-active');
-							f.classList.add('chip-outline');
-						}
-					});
-				} else {
-					if (selectedFilters.has(filterValue)) {
-						selectedFilters.delete(filterValue);
-						filter.classList.remove('chip-active');
-						filter.classList.add('chip-outline');
-					} else {
-						selectedFilters.add(filterValue);
-						filter.classList.remove('chip-outline');
-						filter.classList.add('chip-active');
-					}
-
-					if (selectedFilters.size === 0) {
-						if (viewAllChip) {
-							viewAllChip.classList.remove('chip-outline');
-							viewAllChip.classList.add('chip-active');
-						}
-					} else {
-						if (viewAllChip) {
-							viewAllChip.classList.remove('chip-active');
-							viewAllChip.classList.add('chip-outline');
-						}
-					}
-				}
+				updateFilters();
 
 				// Reset page to 1 on filter change
 				currentPage = 1;
+				// Build the new URL with filter parameter
+				let newUrl = "/blog";
+				if (selectedFilter !== "all") {
+					newUrl += `?filter=${encodeURIComponent(selectedFilter)}`;
+				}
+				history.pushState(null, "", newUrl);
 				render();
 			});
 		});
 
 		// Initial render
+		updateFilters();
 		render();
 	}
 
