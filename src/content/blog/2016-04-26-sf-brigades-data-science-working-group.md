@@ -15,7 +15,7 @@ description: |
   other civic hackers at Code for San Francisco. By providing data science expertise
   they’ve become a central resource to the broader SF Brigade.
 category:
-  - "Program description"
+  - "Project case study"
 ---
 
 # SF Brigade's Data Science Working Group

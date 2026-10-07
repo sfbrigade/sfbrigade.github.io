@@ -7,7 +7,8 @@ authors:
   - Danielle Lundstrom
   - Francis Li
 category:
-  - "Member feature"
+  - "Project case study"
+  - "Partner feature"
 ---
 
 _Editor’s note: This post was written collectively by the SF Nutrition Equity Opportunity & Physical Activity (SF NEOP) team from the City and County of San Francisco's Department of Public Health. On July 4, 2025, the federal budget reconciliation bill known as the One Big Beautiful Bill Act was signed in to law, eliminating all funding for the Nutrition Education and Obesity Prevention Grant Program (also known as SNAP-Ed, Supplemental Nutrition Assistance Program Education) effective October 1, 2025. As a result, the SF NEOP team was disbanded and the Let’s Walk program has been sunsetted. SF Civic Tech would like to thank the SF NEOP team for their vision, leadership, and collaboration alongside all the volunteers who worked on building the technology for the program over the years._

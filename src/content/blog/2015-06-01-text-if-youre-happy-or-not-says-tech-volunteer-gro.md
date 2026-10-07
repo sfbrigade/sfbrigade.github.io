@@ -8,7 +8,7 @@ authors:
   - seunghee_eu
 published: true
 category:
-  - "Program description"
+  - "News"
   - "Project case study"
 ---
 

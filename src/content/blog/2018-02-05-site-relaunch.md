@@ -8,7 +8,7 @@ image: return-to-jekyll.jpg
 image_alt: The return to Jekyll
 description: The return to Jekyll
 category:
-  - "Program description"
+  - "News"
 ---
 
 If you are reading this post on [codeforsanfrancisco.org](codeforsanfrancisco.org), you may have noticed that it looks

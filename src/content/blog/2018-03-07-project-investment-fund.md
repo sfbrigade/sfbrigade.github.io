@@ -8,8 +8,8 @@ image: logo.png
 image_alt: Project investment fund banner
 description: Project investment fund releaunch
 category:
-  - "Program description"
-  - "Project case study"
+  - "News"
+  - "Partner feature"
 ---
 
 # Code for San Francisco Project Investment Fund Program

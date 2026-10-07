@@ -9,7 +9,7 @@ image_list_only: true
 title: LocalFreeWeb
 description: Many organizations and institutions offer access to free, internet-enabled computers, but there is no way for someone to find these locations without being online already. In short, you need the internet to find the internet. LocalFreeWeb makes it so all you need is a cell phone.
 category:
-  - "Program description"
+  - "Project case study"
 ---
 
 If you couldn’t access the internet right now, how would you figure out where to go to get online? Maybe you would go to the library, but what if it’s closed? What if there's a long wait? Where would you go then?

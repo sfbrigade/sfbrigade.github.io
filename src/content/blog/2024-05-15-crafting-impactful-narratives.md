@@ -6,7 +6,7 @@ image: 2024-05-15/photo-1.jpg
 authors:
   - Janice Tam
 category:
-  - "Program description"
+  - "Event recap"
 ---
 
 On May 15, 2024, SF Civic Tech, in collaboration with [Technologists for the Public Good](https://www.publicgood.tech/), hosted an inspiring event entitled *Crafting Impactful Narratives: Presenting on Public Interest Tech*. This event was our first in-person event post-Covid, bringing together cross-sector professionals and enthusiasts dedicated to making a difference in the public sector. Held alongside our [civic hack night](https://www.meetup.com/sfcivictech/), the event featured insightful presentations from leading voices in the field.

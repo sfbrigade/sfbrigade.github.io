@@ -1,20 +1,20 @@
 ---
 image: four-fine-fellows.jpg
-image_alt: 'dev/Mission Fellows, Edgar, Mellany, AJ and Daniel'
+image_alt: 'Dev/Mission Fellows, Edgar, Mellany, AJ and Daniel'
 title: Introducing Civic Tech to San Francisco's Underserved Communities
 authors:
 - allen_meyer
 description: >-
-  Code for San Francisco teams up with <dev/Mission> to create a Fellowship
+  Code for San Francisco teams up with <Dev/Mission> to create a Fellowship
   program to introduce San Francisco's underserved youth to civic tech.
 pin_to_frontpage: yes
 image_list_only: false
 category:
-  - "Project case study"
+  - "Partner feature"
 ---
-The [<dev/Mission>](https://devmission.org/) Code for San Francisco Fellowship began with a desire of the C4SF organizing team to increase the diversity of the communities that participate in our weekly hack night. The team thought they could make a contribution to the movement to bring tech training to underserved communities, and also contribute to tech equity, by tapping into the large pool of volunteer knowledge and skills that shows up at our weekly hack nights.
+The [<Dev/Mission>](https://devmission.org/) Code for San Francisco Fellowship began with a desire of the C4SF organizing team to increase the diversity of the communities that participate in our weekly hack night. The team thought they could make a contribution to the movement to bring tech training to underserved communities, and also contribute to tech equity, by tapping into the large pool of volunteer knowledge and skills that shows up at our weekly hack nights.
 
-We thought we might be more effective if we partnered with a community-based organization and found a great fit with <dev/Mission>. CEO Leo Sosa describes <dev/Mission> as “A nonprofit organization that aims to train untapped young adults for careers in tech who can bring prosperity to underserved communities”. <dev/Mission’s> technology training programs teach young adults ages 16-24, skills in IoT, hardware/software, coding and critical career skills. <dev/Mission> has also opened up STEM training labs for K-12 and a digital music program for ages 14-21. [Microsoft](https://blogs.microsoft.com/bayarea/), a sponsor to <dev/Mission>, agreed to support the Fellows who completed the Fellowship with a stipend.
+We thought we might be more effective if we partnered with a community-based organization and found a great fit with <Dev/Mission>. CEO Leo Sosa describes <Dev/Mission> as “A nonprofit organization that aims to train untapped young adults for careers in tech who can bring prosperity to underserved communities”. <Dev/Mission’s> technology training programs teach young adults ages 16-24, skills in IoT, hardware/software, coding and critical career skills. <Dev/Mission> has also opened up STEM training labs for K-12 and a digital music program for ages 14-21. [Microsoft](https://blogs.microsoft.com/bayarea/), a sponsor to <Dev/Mission>, agreed to support the Fellows who completed the Fellowship with a stipend.
 
 The Fellows’ journey began last August when we introduced the [Fellowship at National Day of Civic Hacking](https://codeforsanfrancisco.org/2018/09/16/dev-mission-and-c4sf-launch-fellowship-program-at-national-day-of-civic-hacking/). We asked the Fellows to begin with an issue that they wanted to address in their communities, which for the most part is the Mission district. Brigade member, Allen Meyer led the Fellows and workshop attendees through a design thinking exercise that addressed the issues the Fellows wanted to tackle. The issues included training youth in tech, connecting community gardens to each other, and San Francisco’s seemingly intractable homelessness.
 
@@ -22,7 +22,7 @@ The workshop enabled the Fellows to develop a basic product idea that they could
 
 The next design step was to create some basic personas based on who they had talked to and what they had learned from those interviews. The research helped them to verify their initial assumptions and ideas but they also found that they might need to pivot a bit. Yes, along the way we dropped in tech start-up concepts, such as pivoting.
 
-The Fellows spent the next six months working with Francis Li, their <dev/Mission> mentor, on Sundays learning full-stack web development, and attending [Wednesday Civic Hack Nights](https://www.meetup.com/Code-for-San-Francisco-Civic-Hack-Night/). All the hard work was showcased at the program’s sponsor [Microsoft Reactor](https://developer.microsoft.com/en-us/reactor/#ReactorSF). The Showcase’s attendees included Joshua Arce, Director of Workforce Development for Mayor London Breed.
+The Fellows spent the next six months working with Francis Li, their <Dev/Mission> mentor, on Sundays learning full-stack web development, and attending [Wednesday Civic Hack Nights](https://www.meetup.com/Code-for-San-Francisco-Civic-Hack-Night/). All the hard work was showcased at the program’s sponsor [Microsoft Reactor](https://developer.microsoft.com/en-us/reactor/#ReactorSF). The Showcase’s attendees included Joshua Arce, Director of Workforce Development for Mayor London Breed.
 
 The Fellowship was a learning experience for both the Fellows and the Code for San Francisco Team. It may have been a bit ambitious to learn basic product development, UX design and coding, but the Fellows really impressed us with their dedication.
 
@@ -60,7 +60,7 @@ _How was the experience of taking a project from concept to prototype? Anything 
 
 _Do you have any plans now that the Fellowship is done, do you have plans to keep developing the project?_
 
-**Mellany:** Right now, I am transitioning into a four-year university, participating in the Uber Career Prep Program, and working as a Program Instructor at <dev/Mission>. I do intend to keep developing my project throughout the summer on my own time, unfortunately due to my schedule I am not able to attend at C4SF on Wednesday nights.
+**Mellany:** Right now, I am transitioning into a four-year university, participating in the Uber Career Prep Program, and working as a Program Instructor at <Dev/Mission>. I do intend to keep developing my project throughout the summer on my own time, unfortunately due to my schedule I am not able to attend at C4SF on Wednesday nights.
 
 **Project Name:** SFPest\
 **Project Leads:** Daniel Guardado, Ajmal Shah

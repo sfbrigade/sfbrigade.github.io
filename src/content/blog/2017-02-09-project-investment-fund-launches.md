@@ -9,8 +9,8 @@ description: Code for San Francisco is happy to announce we are launching a new 
 image: logo.png
 image_alt: Project investment fund banner
 category:
-  - "Program description"
-  - "Project case study"
+  - "News"
+  - "Partner feature"
 ---
 
 ## Project Investment Fund Launches Today

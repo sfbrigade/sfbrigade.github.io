@@ -6,7 +6,8 @@ description: 'A tribute to our dear friend Sanat Moningi, we miss you.'
 pin_to_frontpage: false
 image_list_only: true
 category:
-  - "Program description"
+  - "News"
+  - "Member feature"
 ---
 
 It is with a heavy heart that we share the news that Sanat Moningi passed away the weekend of April 22nd, 2018. Sanat co-founded the Data Science Working Group at Code for San Francisco and led multiple projects, primarily in the areas of environment and housing. Below are statements from members of Code for San Francisco and the Data Science Working Group in honor of Sanat.
