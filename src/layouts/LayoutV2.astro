@@ -1,0 +1,137 @@
+---
+import { base } from "@/utils/urls";
+
+interface Props {
+	title: string;
+}
+
+const pageTitle = `${Astro.props.title} | SF Civic Tech`;
+const baseURL = import.meta.env.BASE_URL.replace(/([^/])$/, "$1/");
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<base href={baseURL} />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href={base("favicon.ico")} />
+		<link rel="apple-touch-icon" sizes="180x180" href={base("apple-touch-icon.png")} />
+		<link rel="icon" type="image/png" sizes="32x32" href={base("favicon-32x32.png")} />
+		<link rel="icon" type="image/png" sizes="16x16" href={base("favicon-16x16.png")} />
+		
+		<!-- Import Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@600&family=Roboto+Slab:wght@400;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+		
+		<title>{pageTitle}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	/* CSS Reset & Variables */
+	:root {
+		--color-primary: #F22613;
+		--color-primary-hover: #D92211;
+		--font-heading: 'Roboto Slab', serif;
+		--font-body: 'Roboto', sans-serif;
+		--font-condensed: 'Roboto Condensed', sans-serif;
+		--spacing-base: 1rem;
+		--border-radius: 5px;
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		font-family: var(--font-body);
+		color: #333;
+		line-height: 1.6;
+		background-color: #fff;
+		-webkit-font-smoothing: antialiased;
+		overflow-x: hidden;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: var(--font-heading);
+		color: var(--color-primary);
+		line-height: 1.2;
+		margin-bottom: 1rem;
+	}
+
+	h1 { font-size: 4rem; font-weight: 800; margin-bottom: 4rem }
+	h2 { font-size: 2.5rem; font-weight: 800; }
+	h3 { font-size: 1.75rem; font-weight: 700; }
+
+	a {
+		color: var(--color-primary);
+		text-decoration: none;
+	}
+
+	p {
+		margin-bottom: 1rem;
+	}
+
+	ul, ol {
+		list-style: none;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	.container {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1rem;
+	}
+
+	/* Buttons */
+	.btn, #daf_link {
+		display: inline-block;
+		font-family: var(--font-condensed);
+		font-weight: 600;
+		font-size: 18px;
+		border-radius: var(--border-radius);
+		padding: 0.75rem 1.5rem;
+		text-align: center;
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+
+	.btn-primary, #daf_link {
+		background-color: var(--color-primary);
+		border: 1px solid var(--color-primary);
+		color: #fff;
+	}
+
+	.btn-primary:hover {
+		background-color: var(--color-primary-hover);
+		border-color: var(--color-primary-hover);
+		color: #fff;
+	}
+
+	.btn-secondary {
+		background-color: #fff;
+		border: 1px solid var(--color-primary);
+		color: var(--color-primary);
+	}
+
+	.btn-secondary:hover {
+		background-color: #fafafa;
+		border-color: var(--color-primary-hover);
+		color: var(--color-primary-hover);
+	}
+
+	.text-center { text-align: center; }
+</style>

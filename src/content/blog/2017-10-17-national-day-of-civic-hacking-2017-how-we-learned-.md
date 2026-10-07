@@ -8,6 +8,8 @@ title: 'National Day of Civic Hacking 2017: How We Learned to Deal with Disaster
 description: Live long enough in California and you might experience an earthquake, wildfire, catastrophic flood from winter rains, extreme drought, and those are just the natural events. C4SF decided to do something a little different this year for NDoCH. Rather than a two or three day event, we decided to do a one-day deeper exploration of resilience and disaster preparedness in our neighborhoods.
 image: team.jpg
 image_alt: Run Your Resilientville Team Photo
+category:
+  - "Event recap"
 ---
 
 Live long enough in California and you might experience an earthquake, wildfire, catastrophic flood from winter rains, extreme drought, and those are just the natural events. C4SF decided to do something a little different this year for NDoCH. Rather than a two or three day event, we decided to do a one-day deeper exploration of resilience and disaster preparedness in our neighborhoods.

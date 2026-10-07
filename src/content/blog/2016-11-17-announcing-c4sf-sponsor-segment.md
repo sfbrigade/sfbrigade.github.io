@@ -9,7 +9,8 @@ image: segment.png
 image_alt: Segment Logo
 redirect_from:
 - /blog/post/Announcing-C4SF-sponsor-Segment
-
+category:
+  - "Partner feature"
 ---
 
 ### Code for San Francisco is happy to announce that Segment has contributed $5,047 to support our efforts. A huge, sincere thank you to Segment!

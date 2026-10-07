@@ -1,0 +1,51 @@
+---
+import LayoutV2 from "@/layouts/LayoutV2.astro";
+import HeaderV2 from "@/components/HeaderV2.astro";
+import FooterV2 from "@/components/FooterV2.astro";
+---
+
+<LayoutV2 title="Partner with us - SF Civic Tech">
+	<HeaderV2 />
+	
+	<main class="container page-container">
+		<h1>Partner with us</h1>
+		
+		<p class="intro-text">
+			SF Civic Tech has worked with several partners in a variety of industries to serve a more diverse range of communities together. To learn more about working together, please reach out to us at <a href="mailto:hello@sfcivictech.org" class="text-link">hello@sfcivictech.org</a>.
+		</p>
+	</main>
+
+	<FooterV2 />
+</LayoutV2>
+
+<style>
+	.page-container {
+		padding-top: 6rem;
+		padding-bottom: 8rem;
+		max-width: 800px;
+		margin: 0 auto;
+		text-align: left;
+	}
+
+	.title-red {
+		color: #F22613;
+	}
+
+	.intro-text {
+		font-family: var(--font-body);
+		font-size: 1.25rem;
+		color: #111;
+		line-height: 1.7;
+		margin-bottom: 2rem;
+	}
+
+	.text-link {
+		color: #000;
+		text-decoration: underline;
+		font-weight: 600;
+	}
+
+	.text-link:hover {
+		color: #F22613;
+	}
+</style>

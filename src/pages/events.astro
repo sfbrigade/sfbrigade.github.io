@@ -1,0 +1,318 @@
+---
+import { Image } from 'astro:assets';
+import LayoutV2 from "@/layouts/LayoutV2.astro";
+import HeaderV2 from "@/components/HeaderV2.astro";
+import FooterV2 from "@/components/FooterV2.astro";
+import { meetupURL } from "@/utils/urls";
+
+import eventsHeroImg from "@/assets/events/events-hero.png";
+import hackNightImg from "@/assets/home/hack-night.png";
+---
+
+<LayoutV2 title="Events">
+	<HeaderV2 />
+	
+	<main>
+		<!-- Hero Section -->
+		<section class="bg-peach py-4">
+			<div class="container">
+				<div class="grid-2 align-center">
+					<div class="hero-text">
+						<h1>Events</h1>
+						<p class="hero-desc">
+							SF Civic Tech hosts a variety of events to help our community and bring volunteers together. Our meetings are mostly remote but we have occasional in person events too. Our main gathering is Hack Night, a weekly meetup where teams collaborate and new volunteers can learn more about us and get started. We also run other events throughout the year such as hackathons, talks and casual meetups.
+						</p>
+						<a href={meetupURL} class="btn btn-primary mt-2">View All</a>
+					</div>
+					<div class="hero-image-wrapper">
+						<Image src={eventsHeroImg} alt="SF Civic Tech Event" class="hero-image" />
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Upcoming Events -->
+		<section class="container py-4">
+			<h2 class="section-title title-red mb-3">Upcoming Events</h2>
+			
+			<div class="grid-3 events-grid">
+				<!-- Event Card 1 -->
+				<article class="event-card">
+					<div class="event-content">
+						<div class="event-header">
+							<h3 class="event-title">Virtual Civic Hack Night</h3>
+							<div class="event-badges">
+								<span class="badge-outline">Online</span>
+							</div>
+						</div>
+						<p class="event-time">Every Wednesday at 6:30PM Pacific.</p>
+						<p class="event-date">Upcoming meeting: December 3rd, 2026</p>
+					</div>
+				</article>
+
+				<!-- Event Card 2 -->
+				<article class="event-card">
+					<div class="event-content">
+						<div class="event-header">
+							<h3 class="event-title">Good Neighbor Hackathon</h3>
+							<div class="event-badges">
+								<span class="badge-outline">In Person</span>
+							</div>
+						</div>
+						<p class="event-desc">Join us for an unprecedented civic tech hack night in San Francisco.</p>
+						<p class="event-date">Upcoming meeting: December 5th, 2026</p>
+					</div>
+				</article>
+
+				<!-- Event Card 3 -->
+				<article class="event-card">
+					<div class="event-content">
+						<div class="event-header">
+							<h3 class="event-title">Virtual Civic Hack Night</h3>
+							<div class="event-badges">
+								<span class="badge-canceled">Canceled</span>
+							</div>
+						</div>
+						<p class="event-time">Every Wednesday at 6:30PM Pacific.</p>
+						<p class="event-date">Upcoming meeting: December 10th, 2026</p>
+					</div>
+				</article>
+			</div>
+
+			<div class="view-all-container">
+				<a href={meetupURL} class="btn btn-primary">View All</a>
+			</div>
+		</section>
+
+		<!-- Propose a talk -->
+		<section class="container py-4 text-center">
+			<h2 class="section-title title-red mb-2">Propose a talk</h2>
+			<p class="mx-auto max-w-text mb-4">
+				Organizations can co-host workshops, sponsor hackathons, or collaborate on community-focused events. If you'd like to support volunteers or bring a civic challenge to the group, we'd be happy to connect.
+			</p>
+			<a href="/propose" class="btn btn-primary">Become a Speaker</a>
+		</section>
+
+		<!-- Stay up to date -->
+		<section class="bg-peach py-4 mt-4">
+			<div class="container text-center">
+				<h2 class="section-title mb-2">Stay up to date</h2>
+				<p class="mx-auto max-w-text mb-3">
+					Subscribe to our newsletter and get the latest updates delivered to your inbox.
+				</p>
+				
+				<form class="newsletter-form mx-auto">
+					<input type="email" placeholder="Enter your email" required class="form-input" />
+					<button type="submit" class="btn btn-primary w-full mt-2">Subscribe</button>
+				</form>
+				<p class="text-sm mt-2 text-gray">No spam. Unsubscribe anytime.</p>
+			</div>
+		</section>
+	</main>
+
+	<FooterV2 />
+</LayoutV2>
+
+<style>
+	/* Utilities */
+	.mx-auto { margin-left: auto; margin-right: auto; }
+	.mt-2 { margin-top: 1rem; }
+	.mt-3 { margin-top: 2rem; }
+	.mt-4 { margin-top: 4rem; }
+	.mb-2 { margin-bottom: 1rem; }
+	.mb-3 { margin-bottom: 2rem; }
+	.mb-4 { margin-bottom: 3rem; }
+	.py-4 { padding-top: 4rem; padding-bottom: 4rem; }
+	.bg-peach { background-color: #FFF5F0; } /* Derived from wireframe */
+	.bg-white { background-color: #ffffff; }
+	.max-w-text { max-width: 800px; }
+	.mt-auto { margin-top: auto; }
+	.w-full { width: 100%; }
+	.text-sm { font-size: 0.875rem; }
+	.text-gray { color: #666; }
+	
+	.title-red {
+		color: #F22613;
+	}
+
+	.title-red {
+		color: #F22613;
+	}
+
+	.section-title {
+		font-family: var(--font-heading);
+		font-size: 2.5rem;
+		font-weight: 800;
+		margin-bottom: 1rem;
+	}
+
+	.hero-desc {
+		font-size: 1.125rem;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+	}
+
+	/* Grids */
+	.grid-2 { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+	.grid-3 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+	.align-center { align-items: center; }
+	
+	@media (min-width: 768px) {
+		.grid-2 { grid-template-columns: 1fr 1fr; }
+		.grid-3 { grid-template-columns: repeat(3, 1fr); }
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		padding-bottom: 0;
+	}
+
+	/* Hero Image */
+	.hero-image-wrapper {
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+	}
+	
+	.hero-image {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: cover;
+	}
+
+	/* Event Cards */
+	.event-card {
+		display: flex;
+		flex-direction: column;
+		background: #fff;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+		border: 1px solid #eaeaea;
+		height: 100%;
+	}
+
+	.event-image-wrapper {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		background: #f0f0f0;
+	}
+
+	.event-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.status-badge {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+		padding: 0.25rem 0.75rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		z-index: 2;
+	}
+
+	.status-badge.canceled {
+		background-color: #F22613;
+		color: #fff;
+	}
+
+	.event-content {
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	.event-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 1rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.event-title {
+		font-size: 1.25rem;
+		font-weight: 700;
+		font-family: var(--font-heading);
+		color: #000;
+		margin: 0;
+	}
+
+	.badge-outline {
+		border: 1px solid #ccc;
+		color: #555;
+		padding: 0.25rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	.event-time, .event-desc, .event-date {
+		font-size: 0.875rem;
+		color: #444;
+		margin-bottom: 0.5rem;
+		line-height: 1.5;
+	}
+
+	.event-date {
+		font-weight: 600;
+		color: #000;
+		margin-bottom: 1.5rem;
+	}
+
+	/* Newsletter Form */
+	.newsletter-form {
+		max-width: 400px;
+	}
+
+	.form-input {
+		width: 100%;
+		padding: 0.75rem 1rem;
+		border: 1px solid #ccc;
+		border-radius: var(--border-radius);
+		font-size: 1rem;
+		font-family: var(--font-body);
+	}
+	
+	.form-input:focus {
+		outline: none;
+		border-color: #F22613;
+	}
+
+	.event-badges {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+	}
+
+	.badge-canceled {
+		background-color: rgba(242, 38, 19, 0.4);
+		color: #000000;
+		border: 1px solid rgba(242, 38, 19, 0.4);
+		padding: 0.25rem 0.5rem;
+		border-radius: 4px;
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.view-all-container {
+		display: flex;
+		justify-content: center;
+		margin-top: 1rem;
+	}
+</style>

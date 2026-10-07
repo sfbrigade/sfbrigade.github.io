@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "dev": "astro dev --allowed-hosts true",
+    "start": "astro dev --allowed-hosts true",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -19,6 +19,7 @@
     "@astrojs/rss": "^4.0.12",
     "@iconify-json/fa": "^1.2.2",
     "@iconify-json/fa6-brands": "^1.2.6",
+    "@iconify-json/fa6-solid": "^1.2.4",
     "@picocss/pico": "^2.1.1",
     "@stylistic/eslint-plugin": "^5.2.3",
     "@stylistic/stylelint-config": "^3.0.1",
