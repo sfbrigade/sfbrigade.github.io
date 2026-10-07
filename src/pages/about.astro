@@ -55,56 +55,44 @@ const boardMembers = [
 					SF Civic Tech is a safe space for experimentation, learning and practicing skills, taking chances, and asking questions, all to affect and encourage positive change. Whenever possible, we proactively reach out to those who are left out, excluded, ignored, or discriminated against.
 				</p>
 
-				<div class="mx-auto max-w-text text-left">
-					<h2 class="section-title title-red mb-2">History</h2>
+				<h2 class="section-title title-red mb-2">History</h2>
+				<div class="mx-auto max-w-text text-left mb-4">
 					<p class="about-desc">
 						SF Civic Tech was originally founded in 2013 as Code for San Francisco, part of the Code for America Brigade Network. After the sunsetting of the Code for America Brigade Program in 2023, the organization rebranded itself to SF Civic Tech in 2024 and became an independent 501(c)3 tax-exempt non-profit. SF Civic Tech is also a member of the Alliance of Civic Technologists.
 					</p>
 				</div>
-			</div>
-		</section>
 
-		<!-- Meet the Board Section -->
-		<section class="container py-4 text-center" id="board">
-			<h2 class="section-title title-red mb-4">Meet the board</h2>
-			
-			<div class="board-grid mx-auto">
-				{boardMembers.map(member => (
-					<div class="board-member">
-						<div class="avatar-wrapper">
-							<Image src={member.image} alt={member.name} class="avatar-image" width={150} height={150} />
+				<h2 class="section-title title-red mb-4">Meet the Board</h2>
+				<div class="board-grid mx-auto mb-4">
+					{boardMembers.map(member => (
+						<div class="board-member">
+							<div class="avatar-wrapper">
+								<Image src={member.image} alt={member.name} class="avatar-image" width={150} height={150} />
+							</div>
+							<h3 class="member-name">{member.name}</h3>
+							<p class="member-title">{member.title}</p>
 						</div>
-						<h3 class="member-name">{member.name}</h3>
-						<p class="member-title">{member.title}</p>
-					</div>
-				))}
-			</div>
-		</section>
+					))}
+				</div>
 
-		<!-- Code of Conduct Section -->
-		<section class="py-4 mt-4">
-			<div class="container">
-				<div class="mx-auto max-w-text">
-					<h2 class="section-title text-black mb-3 text-left">Code of conduct</h2>
-					
+				<h2 class="section-title mb-2 text-center">Code of conduct</h2>
+				<div class="about-desc mb-4">
 					<p class="mb-3 text-left">SF Civic Tech is a space for everyone. We have three main rules:</p>
-					
 					<ul class="conduct-list mb-3">
 						<li>We value the people here and make everyone feel welcome.</li>
 						<li>We value ideas for all, regardless of personal background or technical experience.</li>
 						<li>We support our members to take a chance and lead our community.</li>
 						<li>We respect the boundaries of others.</li>
 					</ul>
-					
 					<p class="mb-3 text-left">
 						These are not just statements of belief, but principles that we commit to uphold. We are dedicated to providing a friendly and welcoming environment for all members of our community and partners.
 					</p>
-					
 					<p class="mb-4 text-left">
 						The full <a href="/code-of-conduct" class="text-link">Code of Conduct</a> is available, with more details and examples of our community principles. The SF Civic Tech policies apply in connection to this code of conduct. If you have questions about the event policies, Code of Conduct, or wish to report an issue, please contact us at <a href="mailto:hello@sfcivictech.org" class="text-link">hello@sfcivictech.org</a>.
 					</p>
-					
-					<a href="/code-of-conduct" class="btn btn-primary">View Code of Conduct</a>
+					<p class="text-center">
+						<a href="/code-of-conduct" class="btn btn-primary">View Code of Conduct</a>
+					</p>
 				</div>
 			</div>
 		</section>
