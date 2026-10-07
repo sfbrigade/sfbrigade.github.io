@@ -8,7 +8,7 @@ import { getBlogPosts } from "@/content";
 import { getImageAsset } from "@/utils";
 
 // Images
-import heroBridge from "@/assets/home/golden gate bridge hero image.png";
+import hero from "@/assets/home/skyline.jpeg";
 import hackNight from "@/assets/home/hack night in person.png";
 import supportUsImg from "@/assets/about/large-group.png";
 
@@ -29,7 +29,7 @@ const latestPosts = await Promise.all(
 		<!-- Hero Section -->
 		<section class="hero-section">
 			<div class="hero-bg-wrapper">
-				<Image src={heroBridge} alt="Golden Gate Bridge" class="hero-bg" loading="eager" />
+				<Image src={hero} alt="Golden Gate Bridge" class="hero-bg" loading="eager" />
 			</div>
 			<div class="container">
 				<div class="hero-content">
@@ -287,6 +287,7 @@ const latestPosts = await Promise.all(
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		object-position: right 20%;
 	}
 
 	.hero-content {
