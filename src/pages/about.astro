@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import LayoutV2 from "@/layouts/LayoutV2.astro";
 import HeaderV2 from "@/components/HeaderV2.astro";
 import FooterV2 from "@/components/FooterV2.astro";
+import { getMinutes } from "@/content";
 
 // Photos
 import largeGroupImg from "@/assets/about/large-group.png";
@@ -26,6 +27,9 @@ const boardMembers = [
 	{ name: "Julia Gitis", title: "Board Member", image: juliaGitis },
 	{ name: "Leela Solomon", title: "Board Member", image: leelaSolomon }
 ];
+
+const minutes = await getMinutes();
+
 ---
 
 <LayoutV2 title="About Us">
@@ -74,6 +78,19 @@ const boardMembers = [
 						</div>
 					))}
 				</div>
+
+				{minutes.length > 0 &&
+					<h3 id="minutes">Minutes of Quarterly Board Meetings</h3>
+					<ul class="mb-4">
+						{minutes.map(({ data: { url, year, quarter, isDraft }}) => (
+							<li>
+								<a class="text-link" href={url} target="_blank">
+									{year} Q{quarter} {isDraft ? "(Draft)" : ""}
+								</a>
+							</li>
+						))}
+					</ul>
+				}
 
 				<h2 class="section-title mb-2 text-center">Code of conduct</h2>
 				<div class="about-desc mb-4">
