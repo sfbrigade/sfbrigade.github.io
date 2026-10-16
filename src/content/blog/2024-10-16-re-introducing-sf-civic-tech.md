@@ -5,6 +5,8 @@ description: >
 image: 2024-10-16/SF_Civic_Tech_Announcement-01.png
 authors:
   - Francis Li
+category:
+  - "News"
 ---
 
 Hello! I’m Francis, a member of SF Civic Tech's current leadership team. Our organization was founded in [2013](https://web.archive.org/web/20131217073736/https://codeforsanfrancisco.org/) as Code for San Francisco. We were part of the Code for America Brigade Network, a nationwide collection of volunteer groups united by a common goal:  leveraging technology to help government work better and tackle local civic issues.

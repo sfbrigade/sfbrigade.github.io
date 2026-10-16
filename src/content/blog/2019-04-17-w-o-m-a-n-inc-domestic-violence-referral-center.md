@@ -12,6 +12,8 @@ description: >-
   together.
 pin_to_frontpage: true
 image_list_only: true
+category:
+  - "Project case study"
 ---
 By: ShaenaSpoor - shaena@womaninc.org
 

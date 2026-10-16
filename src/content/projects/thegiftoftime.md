@@ -6,4 +6,5 @@ description: |-
 slack:
   name: "#proj-thegiftoftime"
   url: https://sfbrigade.slack.com/archives/C02PGVDA0LV
+visible: false
 ---

@@ -53,8 +53,8 @@ const blog = defineCollection({
 				value = dayjs(value).utc().format("YYYY-MM-DD");
 			}
 
-			return isValidYMD(value)
-				? parseYMDToDate(value)
+			return isValidYMD(value as string)
+				? parseYMDToDate(value as string)
 				: value;
 			},
 			z.date()),
@@ -69,6 +69,8 @@ const blog = defineCollection({
 			.optional(),
 		image_alt: z.string().optional(),
 		image_list_only: z.boolean().optional(),
+		authors: z.array(z.string()).optional(),
+		category: z.array(z.string()).optional()
 	}).transform((data) => ({
 		...data,
 		// some description fields contain markdown, which we want to convert to
@@ -120,6 +122,14 @@ const projects = defineCollection({
 		})
 			.optional(),
 		website: z.string().optional(),
+		seekingVolunteers: z.boolean().default(false),
+		cause: z.array(z.string()).optional(),
+		seekingRoles: z.array(z.object({
+			title: z.string(),
+			postedDate: z.date().optional(),
+			url: z.string().optional()
+		})).optional(),
+		visible: z.boolean().default(true)
 	}).transform((data) => ({
 		...data,
 		// some description fields contain markdown, which we want to convert to

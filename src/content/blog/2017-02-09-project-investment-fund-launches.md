@@ -8,6 +8,9 @@ title: Project Investment Fund Launches
 description: Code for San Francisco is happy to announce we are launching a new partnership with Microsoft to support the work of our volunteers. Beginning today, projects organized through Code for San Francisco can apply to access up to $2,000 to spend on anything they need to build stronger solutions; e.g. web hosting, training, data processing, user testing, or more! We are excited to begin this new experiment and look forward to seeing where it leads.
 image: logo.png
 image_alt: Project investment fund banner
+category:
+  - "News"
+  - "Partner feature"
 ---
 
 ## Project Investment Fund Launches Today

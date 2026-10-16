@@ -1,5 +1,5 @@
 ---
-layout: "@/layouts/BaseLayout.astro"
+layout: "@/layouts/MarkdownLayoutV2.astro"
 title: Code of Conduct
 description: This Code of Conduct contains not just statements of belief, but principles that we collectively enact. We are dedicated to upholding them, and to ensuring that all members of our community respect them.
 ---
@@ -77,6 +77,22 @@ This anti-harassment policy is based on the example policy from the Geek Feminis
 
 
 ## Email Template for Anti-Harassment Reporting
-SUBJECT: Safe Space alert at [EVENT NAME]
 
-I am writing because of a harassment issue at SF Civic Tech, (NAME, PLACE [even virtual events], DATE OF EVENT). You can reach me at (CONTACT INFO). Thank you.
+<div class="email-template">
+<p><strong>SUBJECT:</strong> Safe Space alert at [EVENT NAME]</p>
+
+<p>I am writing because of a harassment issue at SF Civic Tech, (NAME, PLACE [even virtual events], DATE OF EVENT). You can reach me at (CONTACT INFO). Thank you.</p>
+</div>
+
+<style>
+.email-template {
+  background-color: rgba(242, 38, 19, 0.1);
+  border: 1px solid rgba(242, 38, 19, 0.7);
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+}
+.email-template p:last-child {
+  margin-bottom: 0;
+}
+</style>

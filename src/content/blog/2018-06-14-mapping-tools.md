@@ -9,6 +9,8 @@ title: Data Mapping Tools for Brigades
 description: |
             The Civic Innovation Group has built a suite of tools that Brigade members can use to remove roadblacks and
             save time when working with filtering and mapping data, especially for people who don't have map coding skills.
+category:
+  - "Project case study"
 ---
 
 Code for SF has incubated a variety of groups and projects over the five years it's been hacking. [The Civic Innovation

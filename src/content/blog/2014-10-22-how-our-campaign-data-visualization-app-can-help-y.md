@@ -8,6 +8,9 @@ image: image.png
 image_alt: Visualization
 tags:
   - Data Visualization
+category:
+  - "Event recap"
+  - "Project case study"
 ---
 
 On November 4th, San Franciscans head to the polls to vote for, amongst other things, a tax on carbonated beverages (aka “Soda”). Did you know that pro-soda tax individuals and committees have raised $224,971 to pass the ordinance, while the soda industry has raised $7,700,000 to defeat it?

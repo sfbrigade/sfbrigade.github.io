@@ -1,0 +1,138 @@
+---
+import NavLink from "./NavLink.astro";
+import HeaderLogo from "./HeaderLogo.astro";
+import {
+	meetupURL,
+	getStartedURL,
+	aboutURL,
+	blogURL,
+	donateURL,
+	projectsURL,
+} from "@/utils/urls";
+
+const routes = [
+	{ label: "Get Started", page: getStartedURL },
+	{ label: "Projects", page: projectsURL },
+	{ label: "Events", page: meetupURL },
+	{ label: "Blog", page: blogURL },
+	{ label: "About", page: aboutURL }
+];
+---
+
+<header class="v2-header container">
+	<nav class="v2-nav">
+		<div class="logo-wrapper">
+			<a href="/" aria-label="Home">
+				<HeaderLogo />
+			</a>
+		</div>
+		
+		<!-- Mobile toggle (simplified for v2) -->
+		<input type="checkbox" id="v2-toggle" />
+		<label for="v2-toggle" class="hamburger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</label>
+
+		<div class="nav-links">
+			<ul class="routes-list">
+				{routes.map(({ label, page }) => (
+					<li>
+						<a href={page} class="nav-item">{label}</a>
+					</li>
+				))}
+			</ul>
+			<div class="donate-wrapper">
+				<a href={donateURL} class="btn btn-primary">Donate</a>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<style>
+	.v2-header {
+		padding-top: 1rem;
+		padding-bottom: 1rem; /* Reduced vertical whitespace */
+	}
+
+	.v2-nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		position: relative;
+	}
+
+	.logo-wrapper {
+		margin-left: 0; /* Reduced left whitespace */
+	}
+
+	.nav-links {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.routes-list {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.nav-item {
+		font-family: var(--font-condensed);
+		font-weight: 600;
+		font-size: 18px;
+		color: #333;
+		text-decoration: none;
+	}
+
+	.nav-item:hover {
+		color: var(--color-primary);
+	}
+
+	.donate-wrapper {
+		margin-left: 1rem;
+	}
+
+	/* Hamburger menu (hidden on desktop) */
+	#v2-toggle { display: none; }
+	.hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; }
+	.hamburger span { display: block; width: 25px; height: 3px; background-color: #333; }
+
+	@media (max-width: 768px) {
+		.hamburger { display: flex; }
+		.nav-links {
+			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: white;
+			flex-direction: column;
+			align-items: stretch;
+			padding: 1rem;
+			box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+			z-index: 100;
+		}
+		
+		#v2-toggle:checked ~ .nav-links {
+			display: flex;
+		}
+
+		.routes-list {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 1rem;
+		}
+
+		.donate-wrapper {
+			margin-left: 0;
+			margin-top: 1rem;
+			text-align: center;
+		}
+	}
+</style>

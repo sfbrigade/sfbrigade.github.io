@@ -7,6 +7,8 @@ title: 'Announcing C4SF sponsor: Microsoft'
 image: microsoft.png
 img_alt: Microsoft
 description: As Captain of Code for San Francisco, it is my pleasure to announce [Microsoft](https://www.microsoftbayarea.com/) as the Brigade's first sponsor.
+category:
+  - "Partner feature"
 ---
 
 I joined Code for San Francisco in October of 2013 and immediately found myself surrounded by a group of people dedicated to improving the lives of fellow City residents. At the time we didn't have money or tangible resources, but we did have passion and a deep motivation to change our city.
