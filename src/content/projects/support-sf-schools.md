@@ -12,4 +12,6 @@ technologies:
 slack:
   name: "#proj-support-sf-schools"
   url: https://sfbrigade.slack.com/archives/C03QWMXS9AT
+repos:
+  - https://github.com/sfbrigade/support-sfusd
 ---
